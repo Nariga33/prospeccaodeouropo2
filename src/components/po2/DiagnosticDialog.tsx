@@ -129,7 +129,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
             type="submit"
             className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
           >
-            Enviar e abrir WhatsApp <ArrowRight className="size-4" />
+            Iniciar diagnóstico <ArrowRight className="size-4" />
           </button>
           <p className="text-center text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
             Resposta em até 24h úteis
