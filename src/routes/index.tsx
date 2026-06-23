@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
+import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
@@ -61,7 +62,7 @@ function Nav() {
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
-        <a href="#contato" className={ctaPrimary}>Agendar diagnóstico <ArrowRight className="size-4" /></a>
+        <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
       </div>
     </header>
   );
@@ -90,7 +91,7 @@ function Hero() {
             Do primeiro contato à reunião qualificada. Estruturamos sua operação outbound com ICP, cadência, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#contato" className={ctaPrimary}>Agendar diagnóstico gratuito <ArrowRight className="size-4" /></a>
+            <DiagnosticDialog trigger={<button className={ctaPrimary}>Realizar o diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
             <a href="#metodo" className={ctaSecondary}>Ver o método PO2</a>
           </div>
         </div>
@@ -470,9 +471,14 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="#contato" className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${p.highlight ? "bg-gold text-gold-foreground hover:shadow-[0_0_40px_rgba(197,160,89,0.45)]" : "border border-white/10 bg-white/5 text-foreground hover:bg-white/10"}`}>
-                Quero este plano <ArrowRight className="size-4" />
-              </a>
+              <DiagnosticDialog
+                plan={p.name}
+                trigger={
+                  <button className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${p.highlight ? "bg-gold text-gold-foreground hover:shadow-[0_0_40px_rgba(197,160,89,0.45)]" : "border border-white/10 bg-white/5 text-foreground hover:bg-white/10"}`}>
+                    Realizar o diagnóstico gratuito <ArrowRight className="size-4" />
+                  </button>
+                }
+              />
             </div>
           ))}
         </div>
@@ -494,9 +500,13 @@ function FinalCta() {
           Agende um diagnóstico gratuito. Em 30 minutos, mapeamos os gargalos da sua operação outbound e mostramos onde está o ouro.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href="mailto:contato@po2.com.br?subject=Quero%20agendar%20um%20diagn%C3%B3stico%20PO2" className={ctaPrimary}>
-            <Phone className="size-4" /> Agendar diagnóstico gratuito
-          </a>
+          <DiagnosticDialog
+            trigger={
+              <button className={ctaPrimary}>
+                <Phone className="size-4" /> Realizar o diagnóstico gratuito
+              </button>
+            }
+          />
         </div>
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Vagas limitadas por mês</p>
       </div>
