@@ -471,9 +471,14 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="#contato" className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${p.highlight ? "bg-gold text-gold-foreground hover:shadow-[0_0_40px_rgba(197,160,89,0.45)]" : "border border-white/10 bg-white/5 text-foreground hover:bg-white/10"}`}>
-                Quero este plano <ArrowRight className="size-4" />
-              </a>
+              <DiagnosticDialog
+                plan={p.name}
+                trigger={
+                  <button className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${p.highlight ? "bg-gold text-gold-foreground hover:shadow-[0_0_40px_rgba(197,160,89,0.45)]" : "border border-white/10 bg-white/5 text-foreground hover:bg-white/10"}`}>
+                    Realizar o diagnóstico gratuito <ArrowRight className="size-4" />
+                  </button>
+                }
+              />
             </div>
           ))}
         </div>
