@@ -270,10 +270,10 @@ function DiagnosticoPage() {
               rel="noopener noreferrer"
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
             >
-              <Phone className="size-4" /> Receber meu diagnóstico no WhatsApp <ArrowRight className="size-4" />
+              <Phone className="size-4" /> Falar com o time PO2 <ArrowRight className="size-4" />
             </a>
             <p className="mt-4 text-xs text-muted-foreground">
-              Vamos te enviar a leitura completa pelo WhatsApp +55 51 98921-8827.
+              Vamos te enviar a leitura completa diretamente pelo nosso canal de atendimento.
             </p>
           </div>
         )}
