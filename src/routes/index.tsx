@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
+import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
