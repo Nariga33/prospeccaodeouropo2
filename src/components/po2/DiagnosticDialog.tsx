@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { z } from "zod";
 import { ArrowRight, Phone } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog";
@@ -10,7 +11,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 
-const WHATSAPP_NUMBER = "5551989218827";
+
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(100),
@@ -36,6 +37,7 @@ interface Props {
 }
 
 export function DiagnosticDialog({ trigger, plan }: Props) {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<FormData>({ nome: "", email: "", telefone: "", faturamento: "" });
   const [errors, setErrors] = useState<Errors>({});
@@ -57,20 +59,12 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
       setErrors(errs);
       return;
     }
-    const lines = [
-      "Olá! Quero realizar o diagnóstico gratuito da PO2.",
-      "",
-      `Nome: ${parsed.data.nome}`,
-      `E-mail: ${parsed.data.email}`,
-      `Telefone: ${parsed.data.telefone}`,
-      `Faturamento: ${parsed.data.faturamento}`,
-    ];
-    if (plan) lines.push(`Plano de interesse: ${plan}`);
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    sessionStorage.setItem("po2-lead", JSON.stringify({ ...parsed.data, plan }));
     setOpen(false);
     setData({ nome: "", email: "", telefone: "", faturamento: "" });
+    navigate({ to: "/diagnostico" });
   }
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
