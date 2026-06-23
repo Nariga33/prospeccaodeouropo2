@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { z } from "zod";
 import { ArrowRight, Phone } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog";
