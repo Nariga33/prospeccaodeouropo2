@@ -11,7 +11,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 
-const WHATSAPP_NUMBER = "5551989218827";
+
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(100),
