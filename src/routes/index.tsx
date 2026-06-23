@@ -500,9 +500,13 @@ function FinalCta() {
           Agende um diagnóstico gratuito. Em 30 minutos, mapeamos os gargalos da sua operação outbound e mostramos onde está o ouro.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href="mailto:contato@po2.com.br?subject=Quero%20agendar%20um%20diagn%C3%B3stico%20PO2" className={ctaPrimary}>
-            <Phone className="size-4" /> Agendar diagnóstico gratuito
-          </a>
+          <DiagnosticDialog
+            trigger={
+              <button className={ctaPrimary}>
+                <Phone className="size-4" /> Realizar o diagnóstico gratuito
+              </button>
+            }
+          />
         </div>
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Vagas limitadas por mês</p>
       </div>
