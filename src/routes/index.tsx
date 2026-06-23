@@ -62,7 +62,7 @@ function Nav() {
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
-        <a href="#contato" className={ctaPrimary}>Agendar diagnóstico <ArrowRight className="size-4" /></a>
+        <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
       </div>
     </header>
   );
