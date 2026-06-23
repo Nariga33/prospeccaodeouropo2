@@ -78,7 +78,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
             Vamos olhar sua operação outbound.
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Preencha os dados abaixo. Você será direcionado ao WhatsApp para iniciarmos o diagnóstico.
+            Preencha os dados abaixo para iniciar seu diagnóstico estratégico.
           </DialogDescription>
         </DialogHeader>
 
