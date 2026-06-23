@@ -91,7 +91,7 @@ function Hero() {
             Do primeiro contato à reunião qualificada. Estruturamos sua operação outbound com ICP, cadência, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#contato" className={ctaPrimary}>Agendar diagnóstico gratuito <ArrowRight className="size-4" /></a>
+            <DiagnosticDialog trigger={<button className={ctaPrimary}>Realizar o diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
             <a href="#metodo" className={ctaSecondary}>Ver o método PO2</a>
           </div>
         </div>
