@@ -18,6 +18,8 @@ const schema = z.object({
   email: z.string().trim().email("E-mail inválido").max(255),
   telefone: z.string().trim().min(8, "Telefone inválido").max(20),
   faturamento: z.string().min(1, "Selecione uma faixa"),
+  ticket: z.string().trim().min(1, "Informe o ticket médio"),
+  metaContratos: z.string().trim().min(1, "Informe a meta de contratos"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -36,10 +38,17 @@ interface Props {
   plan?: string;
 }
 
+function parseNumber(v: string): number {
+  const n = Number(v.replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", "."));
+  return Number.isFinite(n) ? n : 0;
+}
+
 export function DiagnosticDialog({ trigger, plan }: Props) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<FormData>({ nome: "", email: "", telefone: "", faturamento: "" });
+  const [data, setData] = useState<FormData>({
+    nome: "", email: "", telefone: "", faturamento: "", ticket: "", metaContratos: "",
+  });
   const [errors, setErrors] = useState<Errors>({});
 
   function update<K extends keyof FormData>(key: K, value: FormData[K]) {
@@ -59,11 +68,18 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
       setErrors(errs);
       return;
     }
-    sessionStorage.setItem("po2-lead", JSON.stringify({ ...parsed.data, plan }));
+    const payload = {
+      ...parsed.data,
+      plan,
+      ticketValor: parseNumber(parsed.data.ticket),
+      metaValor: parseNumber(parsed.data.metaContratos),
+    };
+    sessionStorage.setItem("po2-lead", JSON.stringify(payload));
     setOpen(false);
-    setData({ nome: "", email: "", telefone: "", faturamento: "" });
+    setData({ nome: "", email: "", telefone: "", faturamento: "", ticket: "", metaContratos: "" });
     navigate({ to: "/diagnostico" });
   }
+
 
 
   return (
