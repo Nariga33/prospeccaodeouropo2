@@ -266,6 +266,31 @@ function DiagnosticoPage() {
             <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">{verdict.tag}.</h2>
             <p className="mt-4 max-w-xl text-muted-foreground">{verdict.desc}</p>
 
+            {moneyGap.potencialMensal > 0 && (
+              <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  Quanto você está deixando de faturar
+                </div>
+                <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-display text-5xl text-gold md:text-6xl">{fmt(moneyGap.gapMensal)}</span>
+                  <span className="text-sm text-muted-foreground">por mês</span>
+                </div>
+                <div className="mt-1 text-sm text-foreground/80">
+                  Até <span className="font-bold text-gold">{fmt(moneyGap.gapAnual)}</span> por ano que não entram no caixa.
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <MiniStat label="Ticket médio" value={fmt(moneyGap.ticket)} />
+                  <MiniStat label="Meta de contratos/mês" value={`${moneyGap.meta}`} />
+                  <MiniStat label="Potencial mensal" value={fmt(moneyGap.potencialMensal)} />
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Cálculo: ticket médio × meta de novos contratos × lacuna de maturidade da operação ({100 - pct}%).
+                </p>
+              </div>
+            )}
+
+
+
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Pontuação</div>
