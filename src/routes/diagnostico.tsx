@@ -184,7 +184,16 @@ function DiagnosticoPage() {
       `Faturamento: ${lead.faturamento}`,
     ];
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
+    if (moneyGap.potencialMensal > 0) {
+      lines.push(
+        `Ticket médio: ${fmt(moneyGap.ticket)}`,
+        `Meta de contratos/mês: ${moneyGap.meta}`,
+        `Potencial mensal: ${fmt(moneyGap.potencialMensal)}`,
+        `Gap mensal estimado: ${fmt(moneyGap.gapMensal)}  |  Anual: ${fmt(moneyGap.gapAnual)}`,
+      );
+    }
     lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`, "", "Respostas:");
+
     QUESTIONS.forEach((q, i) => {
       const a = answers[i];
       lines.push(`${i + 1}. ${q.title}`);
