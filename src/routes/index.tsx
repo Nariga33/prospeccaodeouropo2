@@ -375,10 +375,12 @@ function Methodologies() {
             </div>
           ))}
         </div>
+        <EvolutionModel />
       </div>
     </section>
   );
 }
+
 
 function Cases() {
   const cases = [
