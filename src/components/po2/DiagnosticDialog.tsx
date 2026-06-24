@@ -140,6 +140,32 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               </SelectContent>
             </Select>
           </Field>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Ticket médio (R$)" error={errors.ticket}>
+              <Input
+                inputMode="decimal"
+                value={data.ticket}
+                onChange={(e) => update("ticket", e.target.value)}
+                placeholder="Ex.: 5.000"
+                className="border-white/10 bg-background/60"
+                maxLength={15}
+              />
+            </Field>
+            <Field label="Novos contratos/mês" error={errors.metaContratos}>
+              <Input
+                inputMode="numeric"
+                value={data.metaContratos}
+                onChange={(e) => update("metaContratos", e.target.value)}
+                placeholder="Ex.: 5"
+                className="border-white/10 bg-background/60"
+                maxLength={6}
+              />
+            </Field>
+          </div>
+          <p className="-mt-2 text-[10px] text-muted-foreground">
+            Quanto você quer fechar por mês via prospecção ativa.
+          </p>
+
 
           <button
             type="submit"
