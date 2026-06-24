@@ -21,98 +21,102 @@ interface Question { title: string; helper: string; options: Option[] }
 
 const QUESTIONS: Question[] = [
   {
-    title: "Você tem ICP e personas definidos por escrito?",
-    helper: "Empresas, cargos, dores e critérios de qualificação.",
+    title: "Você tem um Perfil Ideal de Cliente definido por escrito?",
+    helper: "Quais empresas, cargos e dores você quer atingir.",
     options: [
-      { label: "Sim, documentado e usado pelo time", score: 2 },
-      { label: "Tenho na cabeça, mas nada formal", score: 1 },
+      { label: "Sim, documentado e usado por todo o time", score: 2 },
+      { label: "Tenho na cabeça, mas nada formalizado", score: 1 },
       { label: "Não, prospectamos qualquer empresa", score: 0 },
     ],
   },
   {
-    title: "Sua equipe estuda o lead antes de cada contato?",
-    helper: "Empresa, decisor, contexto, gatilhos recentes.",
+    title: "Sua equipe estuda o cliente antes de cada contato?",
+    helper: "Pesquisar a empresa, o decisor e o momento dele.",
     options: [
-      { label: "Sempre — temos checklist de pré-abordagem", score: 2 },
+      { label: "Sempre — temos um roteiro de preparação", score: 2 },
       { label: "Às vezes, depende do vendedor", score: 1 },
       { label: "Nunca, vamos direto para o contato", score: 0 },
     ],
   },
   {
-    title: "Existe uma cadência multicanal estruturada?",
-    helper: "E-mail, LinkedIn, cold call e WhatsApp em sequência.",
+    title: "Vocês usam vários canais de forma organizada?",
+    helper: "E-mail, LinkedIn, ligação e WhatsApp em sequência planejada.",
     options: [
-      { label: "Sim, com toques definidos e mensurados", score: 2 },
-      { label: "Usamos canais, mas sem sequência clara", score: 1 },
-      { label: "Cada um faz do seu jeito", score: 0 },
+      { label: "Sim, com sequência definida e medida", score: 2 },
+      { label: "Usamos os canais, mas sem ordem clara", score: 1 },
+      { label: "Cada vendedor faz do seu jeito", score: 0 },
     ],
   },
   {
-    title: "A cold call é consultiva ou script decorado?",
-    helper: "Abertura com contexto vs. ligação automática.",
+    title: "Como são as ligações de prospecção?",
+    helper: "Conversa com contexto x script decorado.",
     options: [
-      { label: "Consultiva, com diagnóstico e perguntas", score: 2 },
-      { label: "Mistura — depende do BDR", score: 1 },
-      { label: "Script decorado, sem contexto", score: 0 },
+      { label: "Consultivas, com perguntas e diagnóstico", score: 2 },
+      { label: "Depende do vendedor — mistura os dois", score: 1 },
+      { label: "Script decorado, sem leitura do cliente", score: 0 },
     ],
   },
   {
-    title: "Vocês documentam e trabalham objeções?",
-    helper: "Mapear, entender raiz e ajustar discurso.",
+    title: "Vocês registram e trabalham as objeções recebidas?",
+    helper: "Mapear o motivo real do 'não' e ajustar o discurso.",
     options: [
-      { label: "Sim, temos biblioteca viva de objeções", score: 2 },
-      { label: "Discutimos pontualmente em reunião", score: 1 },
+      { label: "Sim, temos uma lista viva de objeções", score: 2 },
+      { label: "Conversamos em reunião, sem registro", score: 1 },
       { label: "Não tratamos objeções de forma estruturada", score: 0 },
     ],
   },
   {
-    title: "Aplica algum framework de qualificação?",
-    helper: "CHAMP, SPIN, BANT, Gap Selling, Challenger…",
+    title: "Existe um padrão para qualificar os leads?",
+    helper: "Critérios claros para saber se vale avançar.",
     options: [
-      { label: "Sim, padronizado por estágio de lead", score: 2 },
+      { label: "Sim, critérios padronizados por etapa", score: 2 },
       { label: "Conhecemos, mas aplicamos solto", score: 1 },
-      { label: "Não usamos nenhum framework", score: 0 },
+      { label: "Não temos critérios definidos", score: 0 },
     ],
   },
   {
-    title: "Você acompanha métricas por etapa do funil?",
-    helper: "Volume, conexão, agendamento, conversão por canal.",
+    title: "Vocês acompanham números em cada etapa do funil?",
+    helper: "Volume, conexão, agendamento e conversão por canal.",
     options: [
-      { label: "Sim, dashboard semanal com indicadores", score: 2 },
-      { label: "Olhamos números soltos, sem ritual", score: 1 },
-      { label: "Não temos visibilidade dos números", score: 0 },
+      { label: "Sim, indicadores revistos toda semana", score: 2 },
+      { label: "Olhamos números soltos, sem rotina", score: 1 },
+      { label: "Não temos clareza dos números", score: 0 },
     ],
   },
   {
-    title: "O pitch dos primeiros 15 segundos é estruturado?",
-    helper: "Pattern interrupt, contexto, diagnóstico, CTA.",
+    title: "Os primeiros 15 segundos do contato têm um roteiro?",
+    helper: "Abertura, contexto, diagnóstico e próximo passo.",
     options: [
-      { label: "Sim, treinamos e revisamos o pitch", score: 2 },
+      { label: "Sim, treinamos e revisamos a abordagem", score: 2 },
       { label: "Existe, mas cada um adapta como quer", score: 1 },
-      { label: "Não temos pitch definido", score: 0 },
+      { label: "Não temos abordagem padrão", score: 0 },
     ],
   },
   {
-    title: "Usa CRM, automação e ferramentas integradas?",
-    helper: "Stack que sustenta a operação outbound.",
+    title: "Vocês usam sistema de vendas (CRM) e automações?",
+    helper: "Ferramentas que sustentam a operação no dia a dia.",
     options: [
-      { label: "Sim, stack integrado e bem operado", score: 2 },
-      { label: "Temos CRM, mas pouco disciplinado", score: 1 },
+      { label: "Sim, bem integrado e disciplinado", score: 2 },
+      { label: "Temos CRM, mas pouco organizado", score: 1 },
       { label: "Trabalhamos em planilhas soltas", score: 0 },
     ],
   },
   {
-    title: "Existe ritual semanal de revisão e melhoria?",
-    helper: "Ajustes de ICP, cadência, pitch e métricas.",
+    title: "Existe uma reunião semanal para revisar e melhorar?",
+    helper: "Ajustar perfil de cliente, abordagem e números.",
     options: [
       { label: "Sim, ritual fixo com plano de ação", score: 2 },
-      { label: "Acontece eventualmente", score: 1 },
+      { label: "Acontece de vez em quando", score: 1 },
       { label: "Não revisamos, apenas executamos", score: 0 },
     ],
   },
 ];
 
-interface Lead { nome: string; email: string; telefone: string; faturamento: string; plan?: string }
+interface Lead {
+  nome: string; email: string; telefone: string; faturamento: string; plan?: string;
+  ticket?: string; metaContratos?: string; ticketValor?: number; metaValor?: number;
+}
+
 
 function DiagnosticoPage() {
   const navigate = useNavigate();
@@ -156,6 +160,19 @@ function DiagnosticoPage() {
     return { tag: "Operação no improviso", desc: "A prospecção depende de esforço pessoal, não de método. Estruturar agora destrava receita rápido." };
   }, [pct]);
 
+  const moneyGap = useMemo(() => {
+    const ticket = lead?.ticketValor ?? 0;
+    const meta = lead?.metaValor ?? 0;
+    const potencialMensal = ticket * meta;
+    const gapMensal = Math.round(potencialMensal * (1 - pct / 100));
+    const gapAnual = gapMensal * 12;
+    return { ticket, meta, potencialMensal, gapMensal, gapAnual };
+  }, [lead, pct]);
+
+  const fmt = (n: number) =>
+    n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+
+
   function buildWhatsAppUrl() {
     if (!lead) return "#";
     const lines = [
@@ -167,7 +184,16 @@ function DiagnosticoPage() {
       `Faturamento: ${lead.faturamento}`,
     ];
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
+    if (moneyGap.potencialMensal > 0) {
+      lines.push(
+        `Ticket médio: ${fmt(moneyGap.ticket)}`,
+        `Meta de contratos/mês: ${moneyGap.meta}`,
+        `Potencial mensal: ${fmt(moneyGap.potencialMensal)}`,
+        `Gap mensal estimado: ${fmt(moneyGap.gapMensal)}  |  Anual: ${fmt(moneyGap.gapAnual)}`,
+      );
+    }
     lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`, "", "Respostas:");
+
     QUESTIONS.forEach((q, i) => {
       const a = answers[i];
       lines.push(`${i + 1}. ${q.title}`);
@@ -249,6 +275,31 @@ function DiagnosticoPage() {
             <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">{verdict.tag}.</h2>
             <p className="mt-4 max-w-xl text-muted-foreground">{verdict.desc}</p>
 
+            {moneyGap.potencialMensal > 0 && (
+              <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  Quanto você está deixando de faturar
+                </div>
+                <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-display text-5xl text-gold md:text-6xl">{fmt(moneyGap.gapMensal)}</span>
+                  <span className="text-sm text-muted-foreground">por mês</span>
+                </div>
+                <div className="mt-1 text-sm text-foreground/80">
+                  Até <span className="font-bold text-gold">{fmt(moneyGap.gapAnual)}</span> por ano que não entram no caixa.
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  <MiniStat label="Ticket médio" value={fmt(moneyGap.ticket)} />
+                  <MiniStat label="Meta de contratos/mês" value={`${moneyGap.meta}`} />
+                  <MiniStat label="Potencial mensal" value={fmt(moneyGap.potencialMensal)} />
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Cálculo: ticket médio × meta de novos contratos × lacuna de maturidade da operação ({100 - pct}%).
+                </p>
+              </div>
+            )}
+
+
+
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Pontuação</div>
@@ -285,3 +336,13 @@ function DiagnosticoPage() {
     </div>
   );
 }
+
+function MiniStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-card/40 p-3">
+      <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="mt-1 font-display text-xl text-foreground">{value}</div>
+    </div>
+  );
+}
+
