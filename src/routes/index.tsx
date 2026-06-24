@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
+import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
@@ -375,10 +376,12 @@ function Methodologies() {
             </div>
           ))}
         </div>
+        <EvolutionModel />
       </div>
     </section>
   );
 }
+
 
 function Cases() {
   const cases = [

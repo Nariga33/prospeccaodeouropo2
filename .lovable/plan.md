@@ -1,33 +1,40 @@
-# LP da PO2 — Prospecção de Ouro 2.0
+# Adicionar "Modelo PO2 de Evolução Comercial" na seção Metodologias
 
-Vou construir uma landing page one-page em tema escuro com paleta dourada, usando o logo da PO2 (já preparado em `src/assets/po2-logo.png` com fundo transparente) no lugar do texto "PO2" em todos os pontos da marca.
+Vou criar uma nova subseção visual logo após o bloco atual de "Metodologias aplicadas" (CHAMP, Challenger, LAER, SPIN, Gap Selling, BANT), apresentando o **Modelo PO2 de Evolução Comercial** como a jornada/filosofia da PO2.
 
-## Direção visual
+## O que será construído
 
-Direção **Gold Precision**: fundo escuro grafite (#0F1115), acentos em dourado (#C5A059), tipografia Plus Jakarta Sans + Instrument Serif para títulos editoriais. Estética B2B premium, sem clichês de SaaS.
+Um bloco editorial dentro da mesma seção `#metodologias`, com dois componentes visuais lado a lado em desktop e empilhados em mobile:
 
-## Estrutura de seções
+### 1. Jornada de 5 níveis (Mentalidade → Resultado)
+Uma timeline vertical em "trilha dourada" com 5 estágios, cada um como um cartão escuro com:
+- Ícone (lucide-react): `Brain` (Mentalidade), `Eye` (Consciência), `Map` (Caminho), `Footprints` (Jornada), `Trophy` (Resultado)
+- Tag curta entre parênteses ("Como penso", "O que enxergo", "O que decido", "O que executo", "O que construo")
+- Título grande na fonte display
+- 1 frase de aplicação na PO2 (ex.: Mentalidade → "Desenvolvemos líderes comerciais")
+- Linha vertical dourada conectando os cartões com pequenos nós/círculos numerados
 
-1. **Nav** — logo PO2 à esquerda, links (Método · Metodologias · Planos · Resultados), CTA "Agendar diagnóstico"
-2. **Hero** — headline "Prospecção ativa com método, inteligência e previsibilidade", subhead, CTA primário + secundário, painel lateral com mini-dashboard de KPIs (R$2M, +100k ligações, +1k agendas)
-3. **Credibilidade do fundador** — Matheus Staruck, 24 anos, +4 anos em ops outbound, +100k ligações, +5k empresas, +1k agendas qualificadas, +R$2M de receita
-4. **O Problema** — "Outbound não falha por falta de esforço. Falha por falta de método." + 4 cards (Sem ICP, Abordagem Genérica, Cadência Sem Estratégia, Número Sem Análise)
-5. **O preço de operar no escuro** — 4 consequências (Pipeline Fraco, Reuniões Sem Qualidade, CAC Alto, Dependência de Indicação)
-6. **A Tese PO2** — quote editorial em destaque com a tese do método
-7. **Método PO2 — 7 etapas** — diagrama em grid das 7 etapas (ICP & Listas → Estudo de Lead → Cadência Multicanal → Cold Call Consultiva → Gestão de Objeções → Qualificação → Métricas e Melhoria Contínua)
-8. **Pitch de 4 Blocos** — Pattern Interrupt · Elevator Pitch · Diagnóstico Consultivo · CTA de Baixo Atrito
-9. **Metodologias aplicadas** — CHAMP, Challenger, LAER, SPIN, Gap Selling, BANT
-10. **Casos de sucesso** — Tech Solutions (+40% reuniões), Inovação Digital (-25% CAC, pipeline 2x), Consultoria Estratégica (3 contas em 60d), Indústria 4.0 (+15% vendas)
-11. **Planos & Investimento** — 3 cards comparativos: PO2 Core (R$8.000, 1 mês), PO2 Growth (R$12.000, 3 meses, destacado), PO2 Enterprise (R$45.000, 6 meses)
-12. **CTA final** — "Pronto para tirar a prospecção do improviso?" + botão diagnóstico
-13. **Footer** — logo, direitos reservados, contato
+Sob a timeline, exemplos curtos em formato "❌ ✅" para Mentalidade e Consciência, em 2 cartões compactos:
+- ❌ "Ninguém responde minhas mensagens" / ✅ "Minha abordagem ainda não gera curiosidade suficiente"
+- ❌ "Falta lead" / ✅ "Falta conversão — a consciência revela o problema real"
+
+### 2. Ciclo C.R.E.S.C.E.R. (filosofia oficial)
+Ao lado da timeline (ou abaixo em mobile), um **círculo de repetições** representando o método contínuo:
+- SVG circular com 7 nós distribuídos ao redor (Consciência → Responsabilidade → Estratégia → Sistema → Constância → Evolução → Resultado)
+- Setas curvas conectando os nós no sentido horário, indicando ciclo contínuo
+- No centro do círculo: ícone `RefreshCw` ou `Infinity` em dourado + label "Método C.R.E.S.C.E.R."
+- Legenda abaixo: "A filosofia oficial PO2 — um ciclo, não uma linha reta."
+
+## Onde entra
+
+- Arquivo: `src/routes/index.tsx`, seção `#metodologias` — novo bloco adicionado **abaixo** do grid atual das 6 metodologias (CHAMP etc.), separado por um divisor sutil dourado e um eyebrow "Filosofia PO2".
+- Sem alterar nav, hero, planos, diagnóstico ou qualquer outro fluxo.
+- Usa tokens existentes (`text-gold`, `bg-card`, `border-white/10`, fonte `font-display`) — sem novos tokens nem dependências.
 
 ## Detalhes técnicos
 
-- Rota: `src/routes/index.tsx` (substituir placeholder)
-- Componentes em `src/components/po2/` (Nav, Hero, Stats, Problem, Method, Pitch, Methodologies, Cases, Pricing, CTA, Footer)
-- Design tokens em `src/styles.css`: cores grafite/dourado em oklch, fontes Plus Jakarta Sans + Instrument Serif via `<link>` no `__root.tsx`
-- SEO: title/description/og atualizados em `__root.tsx` e `index.tsx`
-- Logo importado de `src/assets/po2-logo.png` (já com fundo transparente) — usado no header, footer e como elemento visual no hero
-- Nenhuma menção ao NEX nesta entrega
-- Sem backend nesta etapa (CTAs apontam para `mailto:` ou `#contato` — posso conectar Calendly/Lovable Cloud depois quando você indicar)
+- Componente novo: `src/components/po2/EvolutionModel.tsx` exportando dois subcomponentes internos (`JourneyTimeline`, `CrescerCycle`) renderizados juntos no grid `lg:grid-cols-[1.1fr_1fr]`.
+- Ícones de `lucide-react` (já no projeto).
+- Círculo C.R.E.S.C.E.R. desenhado em SVG inline (sem libs novas): círculo base + 7 `<g>` rotacionados via `transform`, com `<text>` para os labels e pequenos `<circle>` dourados como nós.
+- Animação leve: rotação contínua suave do anel externo do SVG via CSS `@keyframes spin` 60s linear infinite (opcional, respeitando `prefers-reduced-motion`).
+- Sem mudança em backend, rotas, ou diagnóstico.

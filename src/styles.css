@@ -61,3 +61,15 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
+@keyframes po2-cycle-spin {
+  to { transform: rotate(360deg); }
+}
+.po2-cycle-spin {
+  transform-origin: center;
+  animation: po2-cycle-spin 80s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .po2-cycle-spin { animation: none; }
+}
+
