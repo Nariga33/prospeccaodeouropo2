@@ -160,6 +160,19 @@ function DiagnosticoPage() {
     return { tag: "Operação no improviso", desc: "A prospecção depende de esforço pessoal, não de método. Estruturar agora destrava receita rápido." };
   }, [pct]);
 
+  const moneyGap = useMemo(() => {
+    const ticket = lead?.ticketValor ?? 0;
+    const meta = lead?.metaValor ?? 0;
+    const potencialMensal = ticket * meta;
+    const gapMensal = Math.round(potencialMensal * (1 - pct / 100));
+    const gapAnual = gapMensal * 12;
+    return { ticket, meta, potencialMensal, gapMensal, gapAnual };
+  }, [lead, pct]);
+
+  const fmt = (n: number) =>
+    n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+
+
   function buildWhatsAppUrl() {
     if (!lead) return "#";
     const lines = [
