@@ -327,3 +327,13 @@ function DiagnosticoPage() {
     </div>
   );
 }
+
+function MiniStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-card/40 p-3">
+      <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="mt-1 font-display text-xl text-foreground">{value}</div>
+    </div>
+  );
+}
+
