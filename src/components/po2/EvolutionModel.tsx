@@ -61,15 +61,24 @@ function JourneyTimeline() {
       </ol>
 
       <div className="mt-8 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-white/10 bg-card/50 p-4">
-          <div className="text-xs text-red-300/90">❌ "Ninguém responde minhas mensagens"</div>
-          <div className="mt-2 text-xs text-gold">✅ "Minha abordagem ainda não gera curiosidade suficiente"</div>
-        </div>
-        <div className="rounded-xl border border-white/10 bg-card/50 p-4">
-          <div className="text-xs text-red-300/90">❌ "Falta lead"</div>
-          <div className="mt-2 text-xs text-gold">✅ "Falta conversão — a consciência revela o problema real"</div>
-        </div>
+        {[
+          { before: "Ninguém responde minhas mensagens", after: "Minha abordagem ainda não gera curiosidade suficiente" },
+          { before: "Falta lead", after: "Falta conversão — a consciência revela o problema real" },
+        ].map((ex) => (
+          <div key={ex.before} className="rounded-xl border border-white/10 bg-card/50 p-4">
+            <div className="flex gap-3 text-xs">
+              <span className="w-14 shrink-0 font-bold uppercase tracking-[0.2em] text-red-300/80">Antes</span>
+              <span className="text-muted-foreground">"{ex.before}"</span>
+            </div>
+            <div className="my-3 h-px bg-white/10" />
+            <div className="flex gap-3 text-xs">
+              <span className="w-14 shrink-0 font-bold uppercase tracking-[0.2em] text-gold">Depois</span>
+              <span className="text-foreground">"{ex.after}"</span>
+            </div>
+          </div>
+        ))}
       </div>
+
     </div>
   );
 }
