@@ -275,6 +275,8 @@ function DiagnosticoPage() {
             <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">{verdict.tag}.</h2>
             <p className="mt-4 max-w-xl text-muted-foreground">{verdict.desc}</p>
 
+            <CountdownBanner nome={lead.nome} />
+
             {moneyGap.potencialMensal > 0 && (
               <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
                 <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
