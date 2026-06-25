@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Check, AlertTriangle, Minus, ArrowLeft, ArrowRight, Phone, Sparkles } from "lucide-react";
+import { Check, AlertTriangle, Minus, ArrowLeft, ArrowRight, Phone, Sparkles, Timer } from "lucide-react";
 import logo from "@/assets/po2-logo.png";
 
 export const Route = createFileRoute("/diagnostico")({
@@ -275,6 +275,8 @@ function DiagnosticoPage() {
             <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">{verdict.tag}.</h2>
             <p className="mt-4 max-w-xl text-muted-foreground">{verdict.desc}</p>
 
+            <CountdownBanner nome={lead.nome} />
+
             {moneyGap.potencialMensal > 0 && (
               <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
                 <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
@@ -342,6 +344,70 @@ function MiniStat({ label, value }: { label: string; value: string }) {
     <div className="rounded-xl border border-white/10 bg-card/40 p-3">
       <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
       <div className="mt-1 font-display text-xl text-foreground">{value}</div>
+    </div>
+  );
+}
+
+const COUNTDOWN_MS = 2 * 60 * 60 * 1000;
+const COUNTDOWN_KEY = "po2-diag-deadline";
+
+function CountdownBanner({ nome }: { nome: string }) {
+  const [remaining, setRemaining] = useState<number>(() => {
+    if (typeof window === "undefined") return COUNTDOWN_MS;
+    const stored = sessionStorage.getItem(COUNTDOWN_KEY);
+    const deadline = stored ? Number(stored) : Date.now() + COUNTDOWN_MS;
+    if (!stored) sessionStorage.setItem(COUNTDOWN_KEY, String(deadline));
+    return Math.max(0, deadline - Date.now());
+  });
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const stored = Number(sessionStorage.getItem(COUNTDOWN_KEY) ?? 0);
+      setRemaining(Math.max(0, stored - Date.now()));
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const expired = remaining <= 0;
+  const totalSec = Math.floor(remaining / 1000);
+  const hh = String(Math.floor(totalSec / 3600)).padStart(2, "0");
+  const mm = String(Math.floor((totalSec % 3600) / 60)).padStart(2, "0");
+  const ss = String(totalSec % 60).padStart(2, "0");
+  const firstName = nome.trim().split(" ")[0] || "você";
+
+  return (
+    <div className={`mt-6 overflow-hidden rounded-2xl border p-5 ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/40 bg-background/60"}`}>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className={`inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] ${expired ? "text-red-300" : "text-gold"}`}>
+            <Timer className="size-3.5" /> {expired ? "Oportunidade expirada" : "Janela exclusiva aberta"}
+          </div>
+          <p className="mt-2 text-sm text-foreground">
+            {firstName}, você acaba de receber um <span className="font-bold text-gold">diagnóstico gratuito com Matheus Staruck</span>.
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {expired
+              ? "O tempo acabou. Recarregue para iniciar um novo diagnóstico — sem garantia de nova janela."
+              : "Se sair desta tela, a vaga é liberada para outra empresa. Garanta sua conversa antes do tempo acabar."}
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <TimeBox value={hh} label="hrs" expired={expired} />
+          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>:</span>
+          <TimeBox value={mm} label="min" expired={expired} />
+          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>:</span>
+          <TimeBox value={ss} label="seg" expired={expired} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TimeBox({ value, label, expired }: { value: string; label: string; expired: boolean }) {
+  return (
+    <div className={`min-w-[54px] rounded-lg border px-2 py-1.5 text-center ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/30 bg-gold/5"}`}>
+      <div className={`font-display text-2xl tabular-nums ${expired ? "text-red-200" : "text-gold"}`}>{value}</div>
+      <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
     </div>
   );
 }
