@@ -287,18 +287,32 @@ function Method() {
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, idx) => (
-            <div key={s.n} className={`group relative rounded-2xl border border-white/10 bg-card/70 p-7 transition-all hover:-translate-y-1 hover:border-gold/40 ${idx === 6 ? "lg:col-start-2" : ""}`}>
-              <div className="mb-6 flex items-center justify-between">
-                <span className="font-display text-3xl text-gold">{s.n}</span>
-                <div className="flex size-10 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
-                  <s.icon className="size-5" />
-                </div>
-              </div>
-              <h3 className="text-lg font-bold">{s.t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-            </div>
+            <StepInsightDialog
+              key={s.n}
+              stepKey={s.n}
+              trigger={
+                <button
+                  type="button"
+                  aria-label={`Ver insight da etapa ${s.n} — ${s.t}`}
+                  className={`group relative cursor-pointer rounded-2xl border border-white/10 bg-card/70 p-7 text-left transition-all hover:-translate-y-1 hover:border-gold/40 focus:outline-none focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/40 ${idx === 6 ? "lg:col-start-2" : ""}`}
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className="font-display text-3xl text-gold">{s.n}</span>
+                    <div className="flex size-10 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
+                      <s.icon className="size-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold">{s.t}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.2em] text-gold/70 transition-colors group-hover:text-gold">
+                    Ver insight →
+                  </span>
+                </button>
+              }
+            />
           ))}
         </div>
+
       </div>
     </section>
   );
