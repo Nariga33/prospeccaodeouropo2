@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Check, AlertTriangle, Minus, ArrowLeft, ArrowRight, Phone, Sparkles } from "lucide-react";
+import { Check, AlertTriangle, Minus, ArrowLeft, ArrowRight, Phone, Sparkles, Timer } from "lucide-react";
 import logo from "@/assets/po2-logo.png";
 
 export const Route = createFileRoute("/diagnostico")({
