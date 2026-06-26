@@ -1,4 +1,6 @@
-import { Brain, Eye, Map as MapIcon, Footprints, Trophy, Infinity as InfinityIcon } from "lucide-react";
+import { useState } from "react";
+import { Brain, Eye, Map as MapIcon, Footprints, Trophy, Infinity as InfinityIcon, ChevronLeft, ChevronRight } from "lucide-react";
+
 
 const goldRule = "inline-block h-px w-10 bg-gold/60";
 
@@ -10,15 +12,17 @@ const levels = [
   { n: "05", icon: Trophy, title: "Resultado", tag: "O que construo", desc: "Receita previsível e crescimento sustentável — consequência, não acaso." },
 ];
 
-const cycle = [
-  "Consciência",
-  "Responsabilidade",
-  "Estratégia",
-  "Sistema",
-  "Constância",
-  "Evolução",
-  "Resultado",
+type CycleItem = { letter: string; label: string; desc: string };
+const cycle: CycleItem[] = [
+  { letter: "C", label: "Consciência", desc: "Enxergar a realidade da operação antes de agir. Diagnóstico honesto do que funciona, do que não funciona e por quê." },
+  { letter: "R", label: "Responsabilidade", desc: "Assumir o problema. Parar de terceirizar a culpa para o mercado, para o lead ou para a sorte." },
+  { letter: "E", label: "Estratégia", desc: "Desenhar o plano com ICP, cadência, abordagem e prioridade. Decisão clara antes da ação." },
+  { letter: "S", label: "Sistema", desc: "Processo replicável e documentado. Operação que funciona sem depender de esforço heróico." },
+  { letter: "C", label: "Constância", desc: "Execução diária com disciplina. Prospecção é regularidade, não pico de motivação." },
+  { letter: "E", label: "Evolução", desc: "Medir, ajustar e repetir. Cada ciclo melhora pitch, ICP e cadência com base em dados reais." },
+  { letter: "R", label: "Resultado", desc: "Receita previsível como consequência do método — não como acaso comercial." },
 ];
+
 
 function JourneyTimeline() {
   return (
@@ -84,10 +88,16 @@ function JourneyTimeline() {
 }
 
 function CrescerCycle() {
-  const size = 360;
+  const size = 380;
   const cx = size / 2;
   const cy = size / 2;
-  const r = 140;
+  const r = 135;
+  const [active, setActive] = useState(0);
+  const current = cycle[active];
+
+  const go = (delta: number) => {
+    setActive((prev) => (prev + delta + cycle.length) % cycle.length);
+  };
 
   return (
     <div>
@@ -98,14 +108,22 @@ function CrescerCycle() {
         Método <span className="italic text-gold">C.R.E.S.C.E.R.</span>
       </h3>
       <p className="mt-3 max-w-md text-sm text-muted-foreground">
-        Um ciclo contínuo — não uma linha reta. Cada volta eleva o patamar da operação.
+        Um ciclo contínuo — não uma linha reta. Clique em cada letra para entender o que ela significa.
       </p>
 
-      <div className="relative mt-8 flex items-center justify-center">
+      <div
+        className="relative mt-8 flex items-center justify-center outline-none"
+        tabIndex={0}
+        role="group"
+        aria-label="Ciclo C.R.E.S.C.E.R. — use as setas para navegar"
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+        }}
+      >
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="po2-cycle-spin h-[360px] w-[360px] max-w-full"
-          aria-hidden="true"
+          className="h-[380px] w-[380px] max-w-full"
         >
           <defs>
             <radialGradient id="po2CycleGlow" cx="50%" cy="50%" r="50%">
@@ -115,33 +133,49 @@ function CrescerCycle() {
           </defs>
           <circle cx={cx} cy={cy} r={r + 30} fill="url(#po2CycleGlow)" />
           <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(197,160,89,0.35)" strokeWidth="1" strokeDasharray="3 6" />
-          {cycle.map((label, i) => {
+          {cycle.map((item, i) => {
             const angle = (i / cycle.length) * Math.PI * 2 - Math.PI / 2;
             const x = cx + Math.cos(angle) * r;
             const y = cy + Math.sin(angle) * r;
-            const letter = label.charAt(0);
+            const lx = cx + Math.cos(angle) * (r + 42);
+            const ly = cy + Math.sin(angle) * (r + 42);
+            const isActive = i === active;
             return (
-              <g key={label}>
-                <circle cx={x} cy={y} r="22" fill="#0F1115" stroke="rgba(197,160,89,0.6)" strokeWidth="1.5" />
+              <g
+                key={`${item.letter}-${i}`}
+                className="cursor-pointer"
+                onClick={() => setActive(i)}
+              >
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="24"
+                  fill={isActive ? "#1a1208" : "#0F1115"}
+                  stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
+                  strokeWidth={isActive ? 2.5 : 1.5}
+                  style={isActive ? { filter: "drop-shadow(0 0 10px rgba(197,160,89,0.7))" } : undefined}
+                />
                 <text
                   x={x}
-                  y={y + 5}
+                  y={y + 6}
                   textAnchor="middle"
-                  fontSize="16"
+                  fontSize="18"
                   fontWeight="700"
                   fill="#C5A059"
+                  className="pointer-events-none select-none"
                 >
-                  {letter}
+                  {item.letter}
                 </text>
                 <text
-                  x={cx + Math.cos(angle) * (r + 38)}
-                  y={cy + Math.sin(angle) * (r + 38) + 4}
+                  x={lx}
+                  y={ly + 4}
                   textAnchor="middle"
                   fontSize="11"
-                  fill="rgba(230,225,215,0.85)"
                   fontWeight="600"
+                  fill={isActive ? "#C5A059" : "rgba(230,225,215,0.85)"}
+                  className="pointer-events-none select-none"
                 >
-                  {label}
+                  {item.label}
                 </text>
               </g>
             );
@@ -158,17 +192,54 @@ function CrescerCycle() {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-2 text-xs text-muted-foreground sm:grid-cols-3">
-        {cycle.map((c) => (
-          <div key={c} className="rounded-md border border-white/10 bg-card/40 px-3 py-2">
-            <span className="mr-1.5 font-bold text-gold">{c.charAt(0)}.</span>
-            {c}
+      <div className="mt-6 flex items-center justify-center gap-3">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          aria-label="Anterior"
+          className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-card/60 text-gold transition-colors hover:border-gold/40"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+        <div className="flex gap-1.5">
+          {cycle.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Ir para item ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-gold" : "w-1.5 bg-white/20 hover:bg-white/40"}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          aria-label="Próximo"
+          className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-card/60 text-gold transition-colors hover:border-gold/40"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-gold/30 bg-card/70 p-6">
+        <div className="flex items-start gap-4">
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-gold/40 bg-gold/10 font-display text-2xl text-gold">
+            {current.letter}
+          </span>
+          <div>
+            <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+              {active + 1} de {cycle.length}
+            </div>
+            <div className="mt-1 font-display text-2xl text-foreground">{current.label}</div>
+            <p className="mt-2 text-sm text-muted-foreground">{current.desc}</p>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
 }
+
 
 export function EvolutionModel() {
   return (

@@ -1,35 +1,43 @@
 ## O que fazer
 
-Tornar cada um dos 7 cards da seção "Prospecção de Ouro 2.0 — 7 etapas" clicável. Ao clicar, abre um **modal (dialog)** com um conteúdo de "insight de mercado" sobre aquele tema: um dado-chave em destaque, um mini gráfico visual e 2–3 bullets explicando o impacto na operação comercial. Sem chamadas externas — conteúdo curado, estático, fiel ao tom PO2.
+Três ajustes nas seções existentes da landing page:
 
-## Conteúdo por etapa
+### 1) Ciclo C.R.E.S.C.E.R. interativo (imagem 1)
 
-1. **ICP & Listas** — Gráfico de barras comparando *com ICP* vs *sem ICP* (taxa de conversão em reuniões). Mensagem: empresas sem ICP desperdiçam ~60% do esforço de prospecção falando com quem nunca vai comprar.
-2. **Estudo de Lead** — Donut "com pesquisa prévia" vs "abordagem genérica". Mensagem: sem munição não há cold call consultiva — é só interrupção.
-3. **Cadência Multicanal** — Barras empilhadas mostrando resposta em 1 canal vs 3+ canais coordenados. Mensagem: a maioria dos decisores só responde após o 5º toque.
-4. **Cold Call Consultiva** — Comparativo "script decorado" vs "abordagem consultiva" em taxa de agendamento. Mensagem: contexto vende, script afasta.
-5. **Gestão de Objeções** — Gráfico de funil: objeções registradas viram playbook, ignoradas viram perda recorrente.
-6. **Qualificação** — Barras CHAMP/SPIN/Gap Selling vs "feeling". Mensagem: critério claro corta o pipeline inflado.
-7. **(7º card)** — Conferir no código qual é (provavelmente "Otimização contínua / reuniões semanais"). Gráfico de evolução mostrando equipes com ritual semanal x sem ritual.
+Em `src/components/po2/EvolutionModel.tsx`, transformar o `CrescerCycle` (hoje só decorativo + rotação automática):
 
-Cada modal tem:
-- Tag dourada com o número da etapa
-- Título grande + subtítulo
-- Bloco de estatística em destaque (número grande dourado + descrição)
-- Mini gráfico SVG inline (sem libs externas — Recharts já está no projeto e pode ser usado)
-- 2–3 bullets de impacto prático
-- Botão "Quero diagnóstico gratuito" reaproveitando o `DiagnosticDialog`
+- **Texto dos rótulos sempre legível**: rotacionar apenas os círculos das letras na trilha, mas posicionar os rótulos ("Consciência", "Responsabilidade", etc.) na horizontal, fora do círculo, sem rotação que vire o texto de cabeça pra baixo.
+- **Controle do usuário**: parar rotação automática. Botões de seta (← →) abaixo do ciclo + clique direto em cada letra avança/seleciona aquele item. Setas do teclado também navegam quando o ciclo está em foco.
+- **Cada letra clicável**: ao clicar em uma letra (C, R, E, S, C, E, R), abrir card de detalhe abaixo do ciclo (sem modal) explicando o significado daquele item:
+  - **C — Consciência**: enxergar a realidade da operação antes de agir.
+  - **R — Responsabilidade**: assumir o problema, parar de terceirizar a culpa.
+  - **E — Estratégia**: desenhar o plano com ICP, cadência e prioridade.
+  - **S — Sistema**: processo replicável, não esforço heróico.
+  - **C — Constância**: execução diária, sem improviso.
+  - **E — Evolução**: medir, ajustar, repetir.
+  - **R — Resultado**: receita previsível como consequência.
+- Letra selecionada fica destacada (anel dourado mais grosso, brilho).
 
-## Como construir
+### 2) Enquadrar o 7º card "Métricas & Melhoria" (imagem 2)
 
-- Criar `src/components/po2/StepInsightDialog.tsx` com o conteúdo dos 7 insights em um array tipado (`id`, `stat`, `chart`, `bullets`).
-- Editar a seção das 7 etapas no `src/routes/index.tsx`: cada card vira `<button>` que abre o `Dialog` (shadcn) com o conteúdo do step correspondente. Manter aparência atual + leve hover dourado já existente.
-- Gráficos: usar **Recharts** (já é dependência shadcn) com `BarChart` / `PieChart` em paleta `gold` + neutros, sem labels poluentes.
-- Acessibilidade: `<button>` semântico, foco visível dourado, `aria-label`, Esc fecha (Dialog já cobre).
+Em `src/routes/index.tsx`, na grid das 7 etapas (linha 289): hoje o card 07 fica solto na 2ª coluna em lg. Mudar a grid para **3 colunas em lg** com o 7º card centralizado ocupando a coluna do meio na última linha (ou alterar para `md:grid-cols-2 lg:grid-cols-3` + `lg:col-start-2` no 7º), assim os 7 cards ficam visualmente equilibrados em duas linhas (3 + 3 + 1 centralizado) sem o card 07 parecendo deslocado.
+
+### 3) Substituir cases fictícios por cases reais (imagem 3)
+
+Em `src/routes/index.tsx`, função `Cases` (linha 401), trocar o array `cases` por:
+
+1. **Mansão Maromba** — Contato direto com o Diretor Thiago (Toguro). Agenda realizada para fechar parceria. Métrica de destaque: "Parceria" / "Diretor C-Level".
+2. **Comil Ônibus** — Contato direto com diretores sobre uso de IA. Avanço para proposta. Métrica: **+R$ 40.000 MRR** em proposta.
+3. **Kabum** — Agenda com setor financeiro. Métrica: **+R$ 100.000 DIAL** em proposta.
+4. **Volpato** — Agenda sobre tecnologia. Métrica: **+R$ 12.000 MRR** em proposta.
+
+Layout do card de case ajustado para comportar: nome da empresa, contato/decisor alcançado, contexto da conversa, e métrica financeira em destaque dourado. Pequeno selo "Em proposta" / "Parceria" no canto.
+
+Atualizar também o subtítulo da seção para refletir que são empresas reais já prospectadas pelo Matheus.
 
 ## Fora do escopo
 
-- Não puxar notícias reais de API (sem fonte confiável e gratuita garantida; o conteúdo vai ser curado).
-- Não mexer no diagnóstico, cronômetro ou demais seções.
+- Não mexer em diagnóstico, cronômetro, modais de insight ou demais seções.
+- Não adicionar logos das empresas (sem direito de uso confirmado) — somente texto + ícone.
 
 Posso seguir?
