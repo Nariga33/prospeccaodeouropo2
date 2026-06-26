@@ -12,15 +12,17 @@ const levels = [
   { n: "05", icon: Trophy, title: "Resultado", tag: "O que construo", desc: "Receita previsível e crescimento sustentável — consequência, não acaso." },
 ];
 
-const cycle = [
-  "Consciência",
-  "Responsabilidade",
-  "Estratégia",
-  "Sistema",
-  "Constância",
-  "Evolução",
-  "Resultado",
+type CycleItem = { letter: string; label: string; desc: string };
+const cycle: CycleItem[] = [
+  { letter: "C", label: "Consciência", desc: "Enxergar a realidade da operação antes de agir. Diagnóstico honesto do que funciona, do que não funciona e por quê." },
+  { letter: "R", label: "Responsabilidade", desc: "Assumir o problema. Parar de terceirizar a culpa para o mercado, para o lead ou para a sorte." },
+  { letter: "E", label: "Estratégia", desc: "Desenhar o plano com ICP, cadência, abordagem e prioridade. Decisão clara antes da ação." },
+  { letter: "S", label: "Sistema", desc: "Processo replicável e documentado. Operação que funciona sem depender de esforço heróico." },
+  { letter: "C", label: "Constância", desc: "Execução diária com disciplina. Prospecção é regularidade, não pico de motivação." },
+  { letter: "E", label: "Evolução", desc: "Medir, ajustar e repetir. Cada ciclo melhora pitch, ICP e cadência com base em dados reais." },
+  { letter: "R", label: "Resultado", desc: "Receita previsível como consequência do método — não como acaso comercial." },
 ];
+
 
 function JourneyTimeline() {
   return (
