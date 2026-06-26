@@ -401,10 +401,42 @@ function Methodologies() {
 
 function Cases() {
   const cases = [
-    { n: "01", company: "Tech Solutions Ltda.", metric: "+40%", label: "reuniões qualificadas em 3 meses." },
-    { n: "02", company: "Inovação Digital S.A.", metric: "-25%", label: "no CAC e pipeline 2x maior em 6 meses." },
-    { n: "03", company: "Consultoria Estratégica", metric: "3 contas", label: "estratégicas geradas e fechadas em 60 dias." },
-    { n: "04", company: "Indústria 4.0", metric: "+15%", label: "de crescimento em vendas com cadência outbound." },
+    {
+      n: "01",
+      company: "Mansão Maromba",
+      contact: "Diretor Thiago (Toguro)",
+      context: "Contato direto com o diretor. Agenda realizada para fechar parceria.",
+      metric: "Parceria",
+      metricLabel: "agendada com C-Level.",
+      tag: "C-Level",
+    },
+    {
+      n: "02",
+      company: "Comil Ônibus",
+      contact: "Diretoria executiva",
+      context: "Conversa direta com diretores sobre uso de I.A. na operação.",
+      metric: "+R$ 40K",
+      metricLabel: "MRR em proposta avançada.",
+      tag: "Em proposta",
+    },
+    {
+      n: "03",
+      company: "Kabum",
+      contact: "Setor financeiro",
+      context: "Agenda realizada para falar com o setor financeiro.",
+      metric: "+R$ 100K",
+      metricLabel: "DIAL em proposta avançada.",
+      tag: "Em proposta",
+    },
+    {
+      n: "04",
+      company: "Volpato",
+      contact: "Time de tecnologia",
+      context: "Agenda realizada para falar sobre tecnologia.",
+      metric: "+R$ 12K",
+      metricLabel: "MRR em proposta avançada.",
+      tag: "Em proposta",
+    },
   ];
   return (
     <section id="casos" className="border-b border-white/5 bg-surface/40">
@@ -412,28 +444,38 @@ function Cases() {
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-              <span className={goldRule} /> Casos de sucesso
+              <span className={goldRule} /> Casos reais
             </div>
             <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Quem já foi prospectado pela <span className="font-display font-normal italic text-gold">metodologia PO2.</span>
+              Empresas prospectadas pelo <span className="font-display font-normal italic text-gold">Matheus Staruck.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-muted-foreground">Metodologia validada em campo — resultados tangíveis e previsibilidade comercial.</p>
+          <p className="max-w-sm text-muted-foreground">
+            Contatos diretos com decisores, agendas realizadas e propostas em andamento — método validado em campo.
+          </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {cases.map((c) => (
-            <div key={c.n} className="group flex items-center gap-6 rounded-2xl border border-white/10 bg-card/70 p-8 transition-colors hover:border-gold/40">
-              <span className="font-display text-4xl text-muted-foreground/40">{c.n}</span>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 text-sm font-bold text-foreground">
-                  <Building2 className="size-4 text-gold" /> {c.company}
+            <div key={c.n} className="group relative flex flex-col rounded-2xl border border-white/10 bg-card/70 p-7 transition-colors hover:border-gold/40">
+              <div className="mb-5 flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-3xl text-muted-foreground/40">{c.n}</span>
+                  <div className="flex size-10 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
+                    <Building2 className="size-5" />
+                  </div>
                 </div>
-                <p className="mt-3 text-lg">
-                  <span className="font-display text-3xl text-gold">{c.metric}</span>{" "}
-                  <span className="text-muted-foreground">{c.label}</span>
-                </p>
+                <span className="rounded-full border border-gold/30 bg-gold/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-gold">
+                  {c.tag}
+                </span>
               </div>
-              <TrendingUp className="hidden size-6 shrink-0 text-gold/60 transition-transform group-hover:translate-x-1 md:block" />
+              <h3 className="text-xl font-bold text-foreground">{c.company}</h3>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{c.contact}</div>
+              <p className="mt-3 text-sm text-muted-foreground">{c.context}</p>
+              <div className="mt-6 flex items-baseline gap-2 border-t border-white/5 pt-5">
+                <span className="font-display text-3xl text-gold">{c.metric}</span>
+                <span className="text-sm text-muted-foreground">{c.metricLabel}</span>
+                <TrendingUp className="ml-auto size-5 text-gold/60 transition-transform group-hover:translate-x-1" />
+              </div>
             </div>
           ))}
         </div>
@@ -441,6 +483,7 @@ function Cases() {
     </section>
   );
 }
+
 
 function Pricing() {
   const plans = [
