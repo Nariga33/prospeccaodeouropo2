@@ -1,4 +1,6 @@
-import { Brain, Eye, Map as MapIcon, Footprints, Trophy, Infinity as InfinityIcon } from "lucide-react";
+import { useState } from "react";
+import { Brain, Eye, Map as MapIcon, Footprints, Trophy, Infinity as InfinityIcon, ChevronLeft, ChevronRight } from "lucide-react";
+
 
 const goldRule = "inline-block h-px w-10 bg-gold/60";
 
