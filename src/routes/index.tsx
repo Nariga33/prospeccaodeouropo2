@@ -286,7 +286,7 @@ function Method() {
             Do diagnóstico comercial à otimização contínua de pitch, ICP e cadência — com acompanhamento semanal e ajustes baseados em dados reais.
           </p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, idx) => (
             <StepInsightDialog
               key={s.n}
@@ -295,7 +295,7 @@ function Method() {
                 <button
                   type="button"
                   aria-label={`Ver insight da etapa ${s.n} — ${s.t}`}
-                  className={`group relative cursor-pointer rounded-2xl border border-white/10 bg-card/70 p-7 text-left transition-all hover:-translate-y-1 hover:border-gold/40 focus:outline-none focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/40 ${idx === 6 ? "lg:col-start-2" : ""}`}
+                  className={`group relative h-full w-full cursor-pointer rounded-2xl border border-white/10 bg-card/70 p-7 text-left transition-all hover:-translate-y-1 hover:border-gold/40 focus:outline-none focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/40 ${idx === 6 ? "lg:col-start-2" : ""}`}
                 >
                   <div className="mb-6 flex items-center justify-between">
                     <span className="font-display text-3xl text-gold">{s.n}</span>
@@ -313,6 +313,7 @@ function Method() {
             />
           ))}
         </div>
+
 
       </div>
     </section>
