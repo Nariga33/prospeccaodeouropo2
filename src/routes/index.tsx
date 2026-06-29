@@ -68,10 +68,12 @@ function Nav() {
         <a href="#top" className="flex items-center gap-3"><Logo className="h-9 w-auto" /></a>
         <nav className="hidden gap-8 text-sm font-medium text-muted-foreground md:flex">
           <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
+          <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
           <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
+
         <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
       </div>
     </header>
