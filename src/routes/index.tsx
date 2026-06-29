@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import { StepInsightDialog } from "@/components/po2/StepInsightDialog";
+import { Jargon } from "@/components/po2/Jargon";
+import { MethodologyDialog, type Methodology } from "@/components/po2/MethodologyDialog";
+import { CountUp } from "@/hooks/use-count-up";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
-  Filter, BarChart3, Zap, Compass, Brain, ListChecks,
+  Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,11 +48,13 @@ function LandingPage() {
         <Consequences />
         <Thesis />
         <Method />
+        <Mentoria />
         <Pitch />
         <Methodologies />
         <Cases />
         <Pricing />
         <FinalCta />
+
       </main>
       <Footer />
     </div>
@@ -60,10 +68,12 @@ function Nav() {
         <a href="#top" className="flex items-center gap-3"><Logo className="h-9 w-auto" /></a>
         <nav className="hidden gap-8 text-sm font-medium text-muted-foreground md:flex">
           <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
+          <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
           <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
+
         <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
       </div>
     </header>
@@ -90,8 +100,9 @@ function Hero() {
             <span className="font-display font-normal italic text-gold">previsibilidade</span>.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Do primeiro contato à reunião qualificada. Estruturamos sua operação outbound com ICP, cadência, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
+            Do primeiro contato à reunião qualificada. Estruturamos sua operação <Jargon term="Outbound">outbound</Jargon> com <Jargon term="ICP">ICP</Jargon>, <Jargon term="Cadência">cadência</Jargon>, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
           </p>
+
           <div className="mt-10 flex flex-wrap gap-3">
             <DiagnosticDialog trigger={<button className={ctaPrimary}>Realizar o diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
             <a href="#metodo" className={ctaSecondary}>Ver o método PO2</a>
@@ -110,17 +121,18 @@ function Hero() {
             </div>
             <div className="space-y-2">
               <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">Receita gerada</div>
-              <div className="font-display text-6xl text-gold">+R$ 2M</div>
+              <div className="font-display text-6xl text-gold"><CountUp value="+R$ 2M" /></div>
               <div className="text-sm text-muted-foreground">em +30 negócios fechados</div>
             </div>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{v:"+100k",l:"Ligações"},{v:"+5k",l:"Empresas"},{v:"+1k",l:"Agendas"}].map((s) => (
                 <div key={s.l} className="rounded-xl bg-white/5 p-4">
-                  <div className="font-display text-2xl text-foreground">{s.v}</div>
+                  <div className="font-display text-2xl text-foreground"><CountUp value={s.v} /></div>
                   <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{s.l}</div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </div>
@@ -151,10 +163,11 @@ function Founder() {
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3">
             {stats.map((s) => (
               <div key={s.l} className="bg-card/80 p-6">
-                <div className="font-display text-3xl text-gold">{s.v}</div>
+                <div className="font-display text-3xl text-gold"><CountUp value={s.v} /></div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{s.l}</div>
               </div>
             ))}
+
           </div>
         </div>
       </div>
@@ -283,8 +296,9 @@ function Method() {
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            Do diagnóstico comercial à otimização contínua de pitch, ICP e cadência — com acompanhamento semanal e ajustes baseados em dados reais.
+            Do diagnóstico comercial à otimização contínua de <Jargon term="Pitch">pitch</Jargon>, <Jargon term="ICP">ICP</Jargon> e <Jargon term="Cadência">cadência</Jargon> — com acompanhamento semanal e ajustes baseados em dados reais.
           </p>
+
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, idx) => (
@@ -337,8 +351,9 @@ function Pitch() {
           O Pitch de <span className="font-display font-normal italic text-gold">4 Blocos</span> PO2.
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Os primeiros 15 segundos definem se o BDR será visto como vendedor genérico — ou como conversa relevante.
+          Os primeiros 15 segundos definem se o <Jargon term="BDR">BDR</Jargon> será visto como vendedor genérico — ou como conversa relevante.
         </p>
+
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {blocks.map((b) => (
             <div key={b.n} className="rounded-2xl border border-white/10 bg-card/70 p-7">
@@ -362,14 +377,76 @@ function Pitch() {
 }
 
 function Methodologies() {
-  const ms = [
-    { t: "CHAMP", d: "Qualificação com foco em dor e prioridade antes de orçamento." },
-    { t: "Challenger Sale", d: "Provocar uma nova forma de enxergar o problema do cliente." },
-    { t: "LAER", d: "Ouvir, reconhecer, explorar e responder objeções com método." },
-    { t: "SPIN", d: "Perguntas que revelam situação, problema, impacto e necessidade." },
-    { t: "Gap Selling", d: "Conectar cenário atual, desejado e custo do gap." },
-    { t: "BANT", d: "Validar orçamento, autoridade e timing em leads mais maduros." },
+  const ms: Methodology[] = [
+    {
+      t: "CHAMP",
+      d: "Qualificação com foco em dor e prioridade antes de orçamento.",
+      acronym: "Challenges · Authority · Money · Prioritization",
+      summary:
+        "Framework de qualificação que inverte a ordem do BANT: começa pela dor real do cliente, depois valida quem decide, orçamento e prioridade. Foco em entender o problema antes de falar de preço.",
+      when:
+        "Use quando o lead ainda não tem clareza do problema ou quando o seu produto resolve uma dor pouco óbvia. Ideal nas primeiras conversas de descoberta.",
+      example:
+        "Hoje, qual desses três pontos mais impacta o resultado do seu time: volume de leads, qualificação ou conversão final?",
+    },
+    {
+      t: "Challenger Sale",
+      d: "Provocar uma nova forma de enxergar o problema do cliente.",
+      acronym: "Teach · Tailor · Take control",
+      summary:
+        "Vendedor desafia a visão atual do cliente trazendo um insight que ele ainda não enxergou. Não atende pedido — provoca uma nova leitura do problema baseada em dados de mercado.",
+      when:
+        "Use em mercados maduros, com decisores experientes que já receberam dezenas de abordagens iguais. Quando você precisa se diferenciar pela visão, não pelo produto.",
+      example:
+        "A maioria dos times comerciais que olhamos achava que o problema era volume. Em 80% dos casos, era ICP errado. Posso te mostrar como identificar isso na sua operação?",
+    },
+    {
+      t: "LAER",
+      d: "Ouvir, reconhecer, explorar e responder objeções com método.",
+      acronym: "Listen · Acknowledge · Explore · Respond",
+      summary:
+        "Método de tratamento de objeções em quatro passos. Em vez de rebater na hora, o vendedor escuta até o fim, valida a preocupação, explora a raiz e só então responde com argumento direcionado.",
+      when:
+        "Use sempre que surgir objeção real (preço, timing, autoridade). Evita o reflexo de defender o produto e mantém a conversa consultiva.",
+      example:
+        "Entendi sua preocupação com o investimento. Me ajuda a entender — é o valor em si ou o momento da empresa? (explora antes de responder)",
+    },
+    {
+      t: "SPIN",
+      d: "Perguntas que revelam situação, problema, impacto e necessidade.",
+      acronym: "Situation · Problem · Implication · Need-payoff",
+      summary:
+        "Sequência de perguntas criada por Neil Rackham que constrói urgência. Começa mapeando o cenário, identifica problema, amplia o impacto e leva o cliente a verbalizar o ganho da solução.",
+      when:
+        "Use em vendas complexas e consultivas, com ciclo médio/longo. Especialmente forte quando o cliente subestima o custo de não resolver.",
+      example:
+        "Se esse gargalo continuar pelos próximos seis meses, qual o impacto direto no faturamento do trimestre?",
+    },
+    {
+      t: "Gap Selling",
+      d: "Conectar cenário atual, desejado e custo do gap.",
+      acronym: "Estado atual · Estado desejado · Custo do gap",
+      summary:
+        "Metodologia de Keenan que estrutura a venda em torno do gap entre onde o cliente está hoje e onde ele quer chegar. O preço vira consequência do custo de não fechar o gap.",
+      when:
+        "Use quando o cliente reconhece o problema mas não quantifica. Ajuda a transformar 'seria bom resolver' em 'preciso resolver agora'.",
+      example:
+        "Você está hoje em X reuniões/mês e quer chegar em Y. Esse gap representa quanto de receita não realizada por mês?",
+    },
+    {
+      t: "BANT",
+      d: "Validar orçamento, autoridade e timing em leads mais maduros.",
+      acronym: "Budget · Authority · Need · Timing",
+      summary:
+        "Framework clássico criado pela IBM. Qualifica pelo orçamento disponível, autoridade do contato, necessidade clara e prazo de decisão. Eficiente para limpar pipeline rápido.",
+      when:
+        "Use em leads já maduros, em estágios mais avançados do funil, ou para priorizar fila do closer. Não substitui descoberta inicial — complementa.",
+      example:
+        "Para encaixar com nossos planos, faz sentido para mim entender: orçamento previsto, quem mais decide com você e janela de implantação. Podemos passar por esses três?",
+    },
   ];
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<Methodology | null>(null);
   return (
     <section id="metodologias" className="border-b border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-28">
@@ -381,22 +458,139 @@ function Methodologies() {
             Abordagem consultiva, <span className="font-display font-normal italic text-gold">não discurso decorado.</span>
           </h2>
           <p className="mt-5 text-muted-foreground">
-            A PO2 aplica frameworks consagrados conforme o tipo de lead e o estágio comercial — leitura de cenário, não roteiro robótico.
+            A PO2 aplica frameworks consagrados conforme o tipo de <Jargon term="ICP">lead</Jargon> e o estágio comercial — leitura de cenário, não roteiro robótico. Clique em cada metodologia para entender o que é e quando aplicar.
           </p>
         </div>
         <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:grid-cols-2 lg:grid-cols-3">
           {ms.map((m) => (
-            <div key={m.t} className="bg-card/70 p-7">
+            <button
+              key={m.t}
+              type="button"
+              onClick={() => { setActive(m); setOpen(true); }}
+              className="group bg-card/70 p-7 text-left transition-colors hover:bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/40"
+            >
               <div className="font-display text-3xl text-gold">{m.t}</div>
               <p className="mt-3 text-sm text-muted-foreground">{m.d}</p>
-            </div>
+              <span className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.2em] text-gold/70 transition-colors group-hover:text-gold">
+                Ver resumo →
+              </span>
+            </button>
           ))}
         </div>
+        <MethodologyDialog item={active} open={open} onOpenChange={setOpen} />
         <EvolutionModel />
       </div>
     </section>
   );
 }
+
+function Mentoria() {
+  const data = [
+    { name: "Sem ICP", value: 6, bad: true },
+    { name: "Com ICP documentado", value: 19 },
+  ];
+  const entregas = [
+    { icon: ClipboardList, t: "Diagnóstico ao vivo", d: "Mapeamos juntos os gargalos reais da sua operação atual." },
+    { icon: Target, t: "ICP construído junto", d: "Definição do perfil ideal com dados, não no chute." },
+    { icon: Headphones, t: "Scripts e cadência revisados", d: "Pitch, e-mail e cold call ajustados ao seu mercado." },
+    { icon: Activity, t: "Ritual semanal de métricas", d: "Acompanhamento de indicadores e ajuste contínuo de rota." },
+  ];
+  return (
+    <section id="mentoria" className="relative overflow-hidden border-b border-white/5 bg-surface/40">
+      <div className="pointer-events-none absolute right-0 top-0 h-[400px] w-[600px] rounded-full bg-gold/10 blur-[140px]" />
+      <div className="relative mx-auto max-w-7xl px-6 py-28">
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+              <span className={goldRule} /> Mentoria com Matheus Staruck
+            </div>
+            <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
+              Não é curso. É <span className="font-display font-normal italic text-gold">operação</span> que você executa junto.
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              Mentoria prática para fundadores, gestores e times comerciais que querem parar de improvisar e construir uma máquina de <Jargon term="Outbound">prospecção ativa</Jargon> com método, indicadores e melhoria contínua.
+            </p>
+          </div>
+          <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4">
+            <GraduationCap className="size-6 text-gold" />
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">Formato</div>
+              <div className="text-sm text-foreground">1:1 ou em grupo · semanal</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-3xl border border-gold/30 bg-card/70 p-7">
+            <div className="flex flex-wrap items-baseline gap-x-3">
+              <span className="font-display text-6xl text-gold">3,2×</span>
+              <span className="text-sm text-foreground/80">mais reuniões qualificadas em times com <Jargon term="ICP">ICP</Jargon> documentado vs. listas no chute.</span>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-background/40 p-5">
+              <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                Taxa de conversão lead → reunião qualificada
+              </div>
+              <div className="h-56 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
+                    <XAxis dataKey="name" stroke="#C5A059" tick={{ fontSize: 11, fill: "#C5A059" }} interval={0} />
+                    <YAxis stroke="#C5A059" tick={{ fontSize: 11, fill: "#C5A059" }} />
+                    <Tooltip
+                      contentStyle={{ background: "#0e0e10", border: "1px solid rgba(197,160,89,0.3)", borderRadius: 8, fontSize: 12, color: "#fff" }}
+                      cursor={{ fill: "rgba(255,255,255,0.04)" }}
+                      formatter={(v: number) => [`${v}%`, "Conversão"]}
+                    />
+                    <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                      {data.map((d, i) => (
+                        <Cell key={i} fill={d.bad ? "#c0524a" : "#C5A059"} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <ul className="mt-5 space-y-2.5">
+              {[
+                <>Sem <Jargon term="ICP">ICP</Jargon>, ~60% do esforço de prospecção vai para empresas que nunca vão comprar.</>,
+                <>Listas direcionadas reduzem custo por reunião e encurtam o ciclo de venda.</>,
+                <>ICP escrito alinha marketing, <Jargon term="SDR">SDR</Jargon> e closer no mesmo perfil de cliente.</>,
+              ].map((b, i) => (
+                <li key={i} className="flex gap-3 text-sm text-foreground/90">
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            {entregas.map((e) => (
+              <div key={e.t} className="flex gap-5 rounded-2xl border border-white/10 bg-card/70 p-5 transition-colors hover:border-gold/30">
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
+                  <e.icon className="size-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold">{e.t}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{e.d}</p>
+                </div>
+              </div>
+            ))}
+            <DiagnosticDialog
+              trigger={
+                <button className={`${ctaPrimary} mt-2 w-full justify-center`}>
+                  <Calendar className="size-4" /> Quero a mentoria
+                </button>
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 
 function Cases() {
