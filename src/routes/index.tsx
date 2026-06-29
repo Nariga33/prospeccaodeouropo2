@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import { StepInsightDialog } from "@/components/po2/StepInsightDialog";
+import { Jargon } from "@/components/po2/Jargon";
+import { MethodologyDialog, type Methodology } from "@/components/po2/MethodologyDialog";
+import { CountUp } from "@/hooks/use-count-up";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
-  Filter, BarChart3, Zap, Compass, Brain, ListChecks,
+  Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
