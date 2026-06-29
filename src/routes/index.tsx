@@ -162,10 +162,11 @@ function Founder() {
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3">
             {stats.map((s) => (
               <div key={s.l} className="bg-card/80 p-6">
-                <div className="font-display text-3xl text-gold">{s.v}</div>
+                <div className="font-display text-3xl text-gold"><CountUp value={s.v} /></div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{s.l}</div>
               </div>
             ))}
+
           </div>
         </div>
       </div>
