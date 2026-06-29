@@ -120,17 +120,18 @@ function Hero() {
             </div>
             <div className="space-y-2">
               <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">Receita gerada</div>
-              <div className="font-display text-6xl text-gold">+R$ 2M</div>
+              <div className="font-display text-6xl text-gold"><CountUp value="+R$ 2M" /></div>
               <div className="text-sm text-muted-foreground">em +30 negócios fechados</div>
             </div>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {[{v:"+100k",l:"Ligações"},{v:"+5k",l:"Empresas"},{v:"+1k",l:"Agendas"}].map((s) => (
                 <div key={s.l} className="rounded-xl bg-white/5 p-4">
-                  <div className="font-display text-2xl text-foreground">{s.v}</div>
+                  <div className="font-display text-2xl text-foreground"><CountUp value={s.v} /></div>
                   <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{s.l}</div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </div>
