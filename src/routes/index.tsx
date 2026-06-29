@@ -296,8 +296,9 @@ function Method() {
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            Do diagnóstico comercial à otimização contínua de pitch, ICP e cadência — com acompanhamento semanal e ajustes baseados em dados reais.
+            Do diagnóstico comercial à otimização contínua de <Jargon term="Pitch">pitch</Jargon>, <Jargon term="ICP">ICP</Jargon> e <Jargon term="Cadência">cadência</Jargon> — com acompanhamento semanal e ajustes baseados em dados reais.
           </p>
+
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, idx) => (
