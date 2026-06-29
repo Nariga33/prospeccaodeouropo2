@@ -100,8 +100,9 @@ function Hero() {
             <span className="font-display font-normal italic text-gold">previsibilidade</span>.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Do primeiro contato à reunião qualificada. Estruturamos sua operação outbound com ICP, cadência, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
+            Do primeiro contato à reunião qualificada. Estruturamos sua operação <Jargon term="Outbound">outbound</Jargon> com <Jargon term="ICP">ICP</Jargon>, <Jargon term="Cadência">cadência</Jargon>, abordagem consultiva e métricas — para tirar o crescimento do improviso e colocá-lo no painel de controle.
           </p>
+
           <div className="mt-10 flex flex-wrap gap-3">
             <DiagnosticDialog trigger={<button className={ctaPrimary}>Realizar o diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
             <a href="#metodo" className={ctaSecondary}>Ver o método PO2</a>
