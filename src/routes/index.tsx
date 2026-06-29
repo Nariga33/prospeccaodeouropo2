@@ -351,8 +351,9 @@ function Pitch() {
           O Pitch de <span className="font-display font-normal italic text-gold">4 Blocos</span> PO2.
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Os primeiros 15 segundos definem se o BDR será visto como vendedor genérico — ou como conversa relevante.
+          Os primeiros 15 segundos definem se o <Jargon term="BDR">BDR</Jargon> será visto como vendedor genérico — ou como conversa relevante.
         </p>
+
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {blocks.map((b) => (
             <div key={b.n} className="rounded-2xl border border-white/10 bg-card/70 p-7">
