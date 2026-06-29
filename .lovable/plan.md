@@ -1,43 +1,84 @@
-## O que fazer
+## Mudanças na LP
 
-Três ajustes nas seções existentes da landing page:
+### 1) Nova seção "Mentoria" (com gráfico ICP)
 
-### 1) Ciclo C.R.E.S.C.E.R. interativo (imagem 1)
+Adicionar `Mentoria()` em `src/routes/index.tsx`, renderizada entre `Method` e `Pitch`, com ID `#mentoria` e link no nav.
 
-Em `src/components/po2/EvolutionModel.tsx`, transformar o `CrescerCycle` (hoje só decorativo + rotação automática):
+Conteúdo:
+- Eyebrow dourada "Mentoria com Matheus Staruck".
+- Headline: "Não é curso. É operação que você executa junto."
+- Subtítulo curto sobre o programa de mentoria 1:1 / em grupo.
+- Card destaque com **stat** "3,2× mais reuniões qualificadas" + **gráfico de barras** Sem ICP vs Com ICP documentado (Recharts, mesmas cores `GOLD` / `RED` do StepInsightDialog) e os 3 bullets já existentes do insight 01.
+- Bloco lateral com 3-4 entregas da mentoria (ex.: diagnóstico ao vivo, ICP construído junto, scripts revisados, ritual semanal de métricas).
+- CTA dourado abrindo o `DiagnosticDialog`.
 
-- **Texto dos rótulos sempre legível**: rotacionar apenas os círculos das letras na trilha, mas posicionar os rótulos ("Consciência", "Responsabilidade", etc.) na horizontal, fora do círculo, sem rotação que vire o texto de cabeça pra baixo.
-- **Controle do usuário**: parar rotação automática. Botões de seta (← →) abaixo do ciclo + clique direto em cada letra avança/seleciona aquele item. Setas do teclado também navegam quando o ciclo está em foco.
-- **Cada letra clicável**: ao clicar em uma letra (C, R, E, S, C, E, R), abrir card de detalhe abaixo do ciclo (sem modal) explicando o significado daquele item:
-  - **C — Consciência**: enxergar a realidade da operação antes de agir.
-  - **R — Responsabilidade**: assumir o problema, parar de terceirizar a culpa.
-  - **E — Estratégia**: desenhar o plano com ICP, cadência e prioridade.
-  - **S — Sistema**: processo replicável, não esforço heróico.
-  - **C — Constância**: execução diária, sem improviso.
-  - **E — Evolução**: medir, ajustar, repetir.
-  - **R — Resultado**: receita previsível como consequência.
-- Letra selecionada fica destacada (anel dourado mais grosso, brilho).
+### 2) Legendas do gráfico em dourado
 
-### 2) Enquadrar o 7º card "Métricas & Melhoria" (imagem 2)
+Em `StepInsightDialog.tsx`, mudar `XAxis stroke="#666"` / `YAxis stroke="#666"` e os `tick` dos eixos para o dourado `#C5A059`. Aplicar nas três variantes (bars, line; o donut não tem eixos). O mesmo gráfico reaproveitado em Mentoria herda o estilo.
 
-Em `src/routes/index.tsx`, na grid das 7 etapas (linha 289): hoje o card 07 fica solto na 2ª coluna em lg. Mudar a grid para **3 colunas em lg** com o 7º card centralizado ocupando a coluna do meio na última linha (ou alterar para `md:grid-cols-2 lg:grid-cols-3` + `lg:col-start-2` no 7º), assim os 7 cards ficam visualmente equilibrados em duas linhas (3 + 3 + 1 centralizado) sem o card 07 parecendo deslocado.
+### 3) Metodologias clicáveis com resumo
 
-### 3) Substituir cases fictícios por cases reais (imagem 3)
+Em `src/routes/index.tsx`, `Methodologies()`:
+- Adicionar `summary` longo a cada item do array `ms` (3-4 frases por metodologia: o que é, quando aplicar, exemplo de pergunta/ação).
+- Trocar cada `<div>` por `<button>` que abre um `Dialog` (shadcn) ou popover com título + descrição curta + resumo.
+- Implementação leve: um único `MethodologyDialog` controlado por estado local em `Methodologies` exibindo o item selecionado.
 
-Em `src/routes/index.tsx`, função `Cases` (linha 401), trocar o array `cases` por:
+Resumos curtos:
+- **CHAMP**: Challenges, Authority, Money, Prioritization. Qualifica pela dor antes do orçamento.
+- **Challenger Sale**: Ensina, customiza e assume controle — provoca uma nova visão do problema.
+- **LAER**: Listen, Acknowledge, Explore, Respond — método para tratar objeções sem reatividade.
+- **SPIN**: Situation, Problem, Implication, Need-payoff — perguntas que constroem urgência.
+- **Gap Selling**: Vende o gap entre estado atual e desejado, quantificando o custo de não agir.
+- **BANT**: Budget, Authority, Need, Timing — qualificação clássica para leads maduros.
 
-1. **Mansão Maromba** — Contato direto com o Diretor Thiago (Toguro). Agenda realizada para fechar parceria. Métrica de destaque: "Parceria" / "Diretor C-Level".
-2. **Comil Ônibus** — Contato direto com diretores sobre uso de IA. Avanço para proposta. Métrica: **+R$ 40.000 MRR** em proposta.
-3. **Kabum** — Agenda com setor financeiro. Métrica: **+R$ 100.000 DIAL** em proposta.
-4. **Volpato** — Agenda sobre tecnologia. Métrica: **+R$ 12.000 MRR** em proposta.
+### 4) Tooltip de jargão (componente `<Jargon>`)
 
-Layout do card de case ajustado para comportar: nome da empresa, contato/decisor alcançado, contexto da conversa, e métrica financeira em destaque dourado. Pequeno selo "Em proposta" / "Parceria" no canto.
+Novo arquivo `src/components/po2/Jargon.tsx`:
+- Recebe `term` (string) como children.
+- Renderiza o termo + asterisco dourado pequeno (`*` em `text-gold`).
+- No hover/focus/clique mobile, abre `Tooltip` (shadcn) ou `Popover` curto com definição.
+- Dicionário interno `JARGON_DEFINITIONS` com 16 termos:
 
-Atualizar também o subtítulo da seção para refletir que são empresas reais já prospectadas pelo Matheus.
+| Termo | Definição curta |
+|---|---|
+| ICP | Ideal Customer Profile — perfil de cliente que mais compra e melhor retém. |
+| BDR | Business Development Representative — gera reunião com lead frio (outbound). |
+| SDR | Sales Development Representative — qualifica lead já interessado (inbound). |
+| MRR | Monthly Recurring Revenue — receita recorrente mensal. |
+| DIAL | Valor anual de proposta em discussão (Deal In Active Lead). |
+| CAC | Custo de Aquisição de Cliente. |
+| CHAMP | Challenges, Authority, Money, Prioritization. |
+| SPIN | Situation, Problem, Implication, Need-payoff. |
+| BANT | Budget, Authority, Need, Timing. |
+| LAER | Listen, Acknowledge, Explore, Respond. |
+| Gap Selling | Vender o gap entre estado atual e desejado. |
+| Challenger Sale | Provocar nova visão do problema do cliente. |
+| Outbound | Prospecção ativa — você procura o cliente, não espera. |
+| Pipeline | Funil de oportunidades em andamento. |
+| Cadência | Sequência planejada de toques (e-mail, ligação, LinkedIn). |
+| Pitch | Discurso de apresentação inicial. |
+
+- Substituir as ocorrências dos termos nos textos visíveis da LP (Hero, Problem, Consequences, Method, Pitch, Methodologies, Mentoria, Cases) envolvendo em `<Jargon>…</Jargon>` na primeira ocorrência de cada seção (evita poluir). No `Footer` e em sub-bullets de cards, ignorar.
+
+### 5) Painel hero animado (contador)
+
+Em `src/routes/index.tsx`, `Hero()`:
+- Criar hook `useCountUp(target, duration)` em `src/hooks/use-count-up.ts` que, ao entrar no viewport (`IntersectionObserver`), incrementa de 0 até `target` em ~1,5s com easing.
+- Suportar formato: prefixo (`+R$`, `+`), número, sufixo (`M`, `k`).
+- Aplicar a `+R$ 2M`, `+100k`, `+5k`, `+1k`. Mesma lógica também no bloco `Founder` (stats com `+`).
 
 ## Fora do escopo
 
-- Não mexer em diagnóstico, cronômetro, modais de insight ou demais seções.
-- Não adicionar logos das empresas (sem direito de uso confirmado) — somente texto + ícone.
+- Não mexer em diagnóstico, cronômetro, modelo C.R.E.S.C.E.R. ou cases.
+- Não criar admin / backend para os números.
 
-Posso seguir?
+## Detalhes técnicos
+
+Arquivos:
+- editar `src/routes/index.tsx` (nova seção Mentoria, nav, Methodologies clicável, contador, Jargon nas frases)
+- editar `src/components/po2/StepInsightDialog.tsx` (cor dourada nos eixos)
+- criar `src/components/po2/Jargon.tsx` (+ dicionário)
+- criar `src/components/po2/MethodologyDialog.tsx`
+- criar `src/hooks/use-count-up.ts`
+
+Componentes shadcn: `Tooltip` e `Popover` já disponíveis (`src/components/ui/tooltip.tsx`, `popover.tsx`) — usar `Popover` para funcionar bem em mobile.

@@ -264,8 +264,8 @@ function InsightChart({ insight }: { insight: StepInsight }) {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
-          <XAxis dataKey="name" stroke="#666" tick={{ fontSize: 11 }} />
-          <YAxis stroke="#666" tick={{ fontSize: 11 }} />
+          <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
+          <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
           <Tooltip contentStyle={tooltipStyle} />
           <Line
             type="monotone"
@@ -284,8 +284,8 @@ function InsightChart({ insight }: { insight: StepInsight }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
-        <XAxis dataKey="name" stroke="#666" tick={{ fontSize: 11 }} interval={0} />
-        <YAxis stroke="#666" tick={{ fontSize: 11 }} />
+        <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} interval={0} />
+        <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
         <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
         <Bar dataKey="value" radius={[8, 8, 0, 0]}>
           {insight.data.map((d, i) => (
@@ -296,3 +296,4 @@ function InsightChart({ insight }: { insight: StepInsight }) {
     </ResponsiveContainer>
   );
 }
+
