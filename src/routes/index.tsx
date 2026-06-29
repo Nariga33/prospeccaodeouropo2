@@ -48,11 +48,13 @@ function LandingPage() {
         <Consequences />
         <Thesis />
         <Method />
+        <Mentoria />
         <Pitch />
         <Methodologies />
         <Cases />
         <Pricing />
         <FinalCta />
+
       </main>
       <Footer />
     </div>
