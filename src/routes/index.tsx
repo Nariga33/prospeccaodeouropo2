@@ -43,7 +43,6 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
-        <Founder />
         <Problem />
         <Consequences />
         <Thesis />
@@ -51,6 +50,7 @@ function LandingPage() {
         <Mentoria />
         <Pitch />
         <Methodologies />
+        <Founder />
         <Cases />
         <Pricing />
         <FinalCta />
