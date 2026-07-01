@@ -70,6 +70,7 @@ function Nav() {
           <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
           <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
           <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
+          <a href="#fundador" className="transition-colors hover:text-gold">Fundador</a>
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
