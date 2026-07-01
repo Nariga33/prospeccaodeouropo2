@@ -43,7 +43,6 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
-        <Founder />
         <Problem />
         <Consequences />
         <Thesis />
@@ -51,6 +50,7 @@ function LandingPage() {
         <Mentoria />
         <Pitch />
         <Methodologies />
+        <Founder />
         <Cases />
         <Pricing />
         <FinalCta />
@@ -70,6 +70,7 @@ function Nav() {
           <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
           <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
           <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
+          <a href="#fundador" className="transition-colors hover:text-gold">Fundador</a>
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
         </nav>
@@ -150,7 +151,7 @@ function Founder() {
     { v: "+R$2M", l: "Receita gerada" },
   ];
   return (
-    <section className="border-b border-white/5 bg-surface/40">
+    <section id="fundador" className="border-b border-white/5 bg-surface/40">
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid gap-12 lg:grid-cols-[0.5fr_1fr] lg:items-center">
           <div>
