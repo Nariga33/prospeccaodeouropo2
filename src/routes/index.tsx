@@ -12,6 +12,7 @@ import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
   Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
+  ChevronLeft, ChevronRight, Workflow, ShieldQuestion, BookOpen, Repeat,
 } from "lucide-react";
 
 
@@ -490,17 +491,32 @@ function Mentoria() {
     { name: "Sem ICP", value: 6, bad: true },
     { name: "Com ICP documentado", value: 19 },
   ];
-  const entregas = [
-    { icon: ClipboardList, t: "Diagnóstico ao vivo", d: "Mapeamos juntos os gargalos reais da sua operação atual." },
-    { icon: Target, t: "ICP construído junto", d: "Definição do perfil ideal com dados, não no chute." },
-    { icon: Headphones, t: "Scripts e cadência revisados", d: "Pitch, e-mail e cold call ajustados ao seu mercado." },
-    { icon: Activity, t: "Ritual semanal de métricas", d: "Acompanhamento de indicadores e ajuste contínuo de rota." },
+  const slides = [
+    { icon: ClipboardList, t: "Diagnóstico ao vivo", d: "Sessão inicial de imersão na sua operação. Mapeamos funil, cadência atual, indicadores e onde o dinheiro está travando.", entrega: "Relatório de gargalos + plano de 90 dias" },
+    { icon: Target, t: "ICP construído junto", d: "Definimos com dados quem é o cliente ideal: porte, dor, gatilho e canal. Chega de queimar lista fria.", entrega: "Documento de ICP + lista-piloto de 100 contas" },
+    { icon: Headphones, t: "Scripts e cadência revisados", d: "Reescrevemos pitch, e-mail e cold call baseado em SPIN e CHAMP, ajustados ao seu mercado e ticket.", entrega: "Cadência de 12 toques em 21 dias" },
+    { icon: Activity, t: "Ritual semanal de métricas", d: "Encontro semanal para revisar indicadores, ajustar rota e destravar quem está preso. Sem achismo, só dado.", entrega: "Dashboard de KPIs + reunião fixa semanal" },
+    { icon: Workflow, t: "Estruturação de pipeline", d: "Organizamos o funil por estágio, critérios de avanço e SLA por etapa. Cada card sabe o que precisa acontecer para virar receita.", entrega: "Pipeline documentado no seu CRM" },
+    { icon: ShieldQuestion, t: "Treinamento de objeções", d: "Mapeamento das 10 objeções mais comuns do seu mercado e resposta calibrada — do preço ao timing e à concorrência.", entrega: "Playbook de objeções com áudios de referência" },
+    { icon: BookOpen, t: "Playbook de outbound", d: "Manual vivo com ICP, cadência, scripts, objeções e rituais. Onboarding de novo vendedor deixa de depender de você.", entrega: "Playbook em Notion / Google Docs" },
+    { icon: Repeat, t: "Acompanhamento pós-mentoria", d: "60 dias de suporte após o ciclo principal para garantir que a operação se sustenta sem depender do mentor.", entrega: "Reuniões quinzenais + suporte em canal direto" },
   ];
+  const pilares = [
+    { label: "Para quem é", desc: <>Fundadores, gestores e times de <Jargon term="Outbound">prospecção ativa</Jargon> que já vendem, mas dependem de esforço heróico.</> },
+    { label: "Como funciona", desc: "Encontros semanais + tarefas de execução entre sessões + revisão de indicadores." },
+    { label: "O que muda", desc: <>De vendedor artesanal para operação com <Jargon term="ICP">ICP</Jargon>, cadência, script e ritual de métricas.</> },
+  ];
+
+  const [active, setActive] = useState(0);
+  const go = (delta: number) => setActive((p) => (p + delta + slides.length) % slides.length);
+  const current = slides[active];
+  const Icon = current.icon;
+
   return (
     <section id="mentoria" className="relative overflow-hidden border-b border-white/5 bg-surface/40">
       <div className="pointer-events-none absolute right-0 top-0 h-[400px] w-[600px] rounded-full bg-gold/10 blur-[140px]" />
       <div className="relative mx-auto max-w-7xl px-6 py-28">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
               <span className={goldRule} /> Mentoria com Matheus Staruck
@@ -521,7 +537,18 @@ function Mentoria() {
           </div>
         </div>
 
+        {/* Pilares */}
+        <div className="mb-12 grid gap-4 md:grid-cols-3">
+          {pilares.map((p) => (
+            <div key={p.label} className="rounded-2xl border border-white/10 bg-card/60 p-5">
+              <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">{p.label}</div>
+              <p className="mt-2 text-sm text-foreground/90">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Gráfico + bullets */}
           <div className="rounded-3xl border border-gold/30 bg-card/70 p-7">
             <div className="flex flex-wrap items-baseline gap-x-3">
               <span className="font-display text-6xl text-gold">3,2×</span>
@@ -566,21 +593,76 @@ function Mentoria() {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-3">
-            {entregas.map((e) => (
-              <div key={e.t} className="flex gap-5 rounded-2xl border border-white/10 bg-card/70 p-5 transition-colors hover:border-gold/30">
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
-                  <e.icon className="size-5" />
+          {/* Carrossel de entregas */}
+          <div className="flex flex-col gap-4">
+            <div
+              className="relative flex-1 rounded-3xl border border-gold/30 bg-card/70 p-7 outline-none"
+              tabIndex={0}
+              role="group"
+              aria-label="Entregas da mentoria — use as setas para navegar"
+              onKeyDown={(e) => {
+                if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+                if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+              }}
+            >
+              <div className="flex items-center justify-between">
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  O que você recebe
                 </div>
-                <div>
-                  <h3 className="font-bold">{e.t}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.d}</p>
+                <div className="font-display text-sm text-gold/80">
+                  {String(active + 1).padStart(2, "0")} <span className="text-muted-foreground">/ {String(slides.length).padStart(2, "0")}</span>
                 </div>
               </div>
-            ))}
+
+              <div key={active} className="mt-6 animate-fade-in">
+                <div className="flex size-14 items-center justify-center rounded-xl border border-gold/40 bg-gold/10 text-gold">
+                  <Icon className="size-6" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl text-foreground md:text-3xl">{current.t}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{current.d}</p>
+
+                <div className="mt-5 rounded-xl border border-white/10 bg-background/40 p-4">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">Entrega prática</div>
+                  <div className="mt-1 text-sm text-foreground/90">{current.entrega}</div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="Anterior"
+                  className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-card/60 text-gold transition-colors hover:border-gold/40"
+                >
+                  <ChevronLeft className="size-4" />
+                </button>
+
+                <div className="flex flex-wrap justify-center gap-1.5">
+                  {slides.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setActive(i)}
+                      aria-label={`Ir para slide ${i + 1}`}
+                      className={`h-1.5 rounded-full transition-all ${i === active ? "w-6 bg-gold" : "w-1.5 bg-white/20 hover:bg-white/40"}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="Próximo"
+                  className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-card/60 text-gold transition-colors hover:border-gold/40"
+                >
+                  <ChevronRight className="size-4" />
+                </button>
+              </div>
+            </div>
+
             <DiagnosticDialog
               trigger={
-                <button className={`${ctaPrimary} mt-2 w-full justify-center`}>
+                <button className={`${ctaPrimary} w-full justify-center`}>
                   <Calendar className="size-4" /> Quero a mentoria
                 </button>
               }
