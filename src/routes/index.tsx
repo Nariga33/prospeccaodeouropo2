@@ -12,6 +12,7 @@ import {
   Phone, Target, Layers, LineChart, Building2, Users, TrendingUp, Wallet,
   Check, ArrowRight, Sparkles, Search, MessageSquare, Headphones, ShieldCheck,
   Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
+  ChevronLeft, ChevronRight, Workflow, ShieldQuestion, BookOpen, Repeat,
 } from "lucide-react";
 
 
