@@ -51,7 +51,9 @@ function LandingPage() {
         <Thesis />
         <Method />
         <Mentoria />
+        <Eventos />
         <Pitch />
+
         <Methodologies />
         <Founder />
         <Cases />
