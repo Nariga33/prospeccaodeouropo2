@@ -74,7 +74,9 @@ function Nav() {
         <nav className="hidden gap-8 text-sm font-medium text-muted-foreground md:flex">
           <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
           <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
+          <a href="#eventos" className="transition-colors hover:text-gold">Eventos</a>
           <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
+
           <a href="#fundador" className="transition-colors hover:text-gold">Fundador</a>
           <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
           <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
