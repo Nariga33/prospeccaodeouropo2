@@ -1,27 +1,70 @@
-# Mentoria — mais conteúdo + carrossel interativo
+# Página de Eventos PO2 + Painel Admin
 
-Hoje a Mentoria mostra 4 entregas em cards estáticos empilhados à direita do gráfico. Vou expandir para uma narrativa completa da mentoria e transformar essa lista em um **carrossel interativo** com slides mais ricos.
+## 1. Ativar Lovable Cloud
+Habilita auth (email/senha), Postgres e Storage. Criar usuário admin com email definido pelo usuário e senha `mjunhy123` via SQL após provisioning. Signup público desabilitado.
 
-## Mudanças em `src/components/po2/Mentoria` (dentro de `src/routes/index.tsx`)
+## 2. Modelo de dados
 
-### 1. Novo bloco "Sobre a mentoria" (acima do grid)
-Parágrafo curto + 3 chips com pilares:
-- **Para quem é:** fundadores, gestores comerciais e times de <Jargon term="Outbound">prospecção ativa</Jargon> que já vendem mas dependem de esforço heróico.
-- **Como funciona:** encontros semanais + tarefas de execução entre sessões + revisão de indicadores.
-- **O que muda:** de vendedor artesanal para operação com <Jargon term="ICP">ICP</Jargon>, cadência, script e ritual de métricas.
+**`events`**
+- id, slug, title, subtitle, description (texto longo), image_url
+- starts_at, ends_at, is_free bool, price_cents, investment_label
+- meet_url, whatsapp_url, status ('draft'|'published'|'archived'), capacity
+- created_at, updated_at
 
-### 2. Carrossel de "O que você recebe" (substitui a coluna de cards)
-- 8 slides (expandindo os 4 atuais): Diagnóstico ao vivo, ICP construído junto, Scripts e cadência revisados, Ritual semanal de métricas, Estruturação de <Jargon term="Pipeline">pipeline</Jargon>, Treinamento de objeções, Playbook de <Jargon term="Outbound">outbound</Jargon>, Acompanhamento pós-mentoria.
-- Cada slide tem: ícone dourado, título, descrição detalhada (2-3 linhas), e uma linha "Entrega prática" (ex.: "Documento ICP em PDF").
-- Componente client-side com `useState` para índice ativo.
-- Controles: setas ◀ ▶ dourado (mesmo estilo do `EvolutionModel` / `CrescerCycle`), dots clicáveis embaixo, suporte a teclado (←/→).
-- Transição suave com `transition-all duration-300`, um slide visível por vez em mobile e um slide grande + preview do próximo em desktop (`lg:` com opacity reduzida).
-- Contador "03 / 08" em canto superior.
-- Nenhuma nova dependência — só React + Tailwind + lucide-react (ícones já usados).
+**`event_registrations`**
+- id, event_id fk, name, email, whatsapp, created_at
+- unique (event_id, email)
 
-### 3. Ajustes menores
-- Manter gráfico + bullets do lado esquerdo intactos.
-- CTA "Quero a mentoria" fica **abaixo do carrossel**, largura total dentro da coluna direita.
-- Ordem visual final: header → grid (gráfico à esquerda | carrossel + CTA à direita) → bloco "Sobre a mentoria" com os 3 chips vai **acima do grid**, logo depois do header.
+**`user_roles`** (padrão de segurança)
+- enum app_role = ('admin')
+- função has_role security definer
+- seed: matheus como admin
 
-Nenhum outro arquivo é alterado. Sem instalação de pacote. Só edição da função `Mentoria`.
+**RLS + GRANTs**
+- events: SELECT público onde status='published'; mutações só admin.
+- event_registrations: INSERT anon; SELECT só admin.
+- user_roles: SELECT authenticated; gerenciamento só admin.
+
+**Storage bucket** `event-images` (leitura pública, upload só admin).
+
+## 3. Seção pública "Eventos" na home
+Novo componente `<Eventos />` em `src/routes/index.tsx` entre Mentoria e Pitch, com id `#eventos` e link no Nav.
+
+- Server fn `getPublishedEvents` (publishable client server).
+- Cards: imagem, título, data, badge "Gratuito"/preço, resumo, botão "Quero participar".
+- Placeholder "Em breve" se lista vazia.
+- Clique abre Dialog com descrição completa + formulário (nome, email, whatsapp) validado por zod.
+- Ao enviar → `registerForEvent` salva inscrição e retorna { meet_url, whatsapp_url }.
+- Tela de sucesso: botões "Entrar no Google Meet" e "Grupo do WhatsApp".
+
+**Primeiro evento seedado**: Masterclass PO2 — Fundamentos da Prospecção Estratégica, gratuito, com toda a descrição fornecida (5 bullets: BDR, Mentalidade, Metodologias, Abordagens, Passagem de bastão). Meet/WhatsApp em branco até admin preencher; imagem placeholder gerada.
+
+## 4. Painel Admin
+
+Rotas:
+- `src/routes/auth.tsx` — login email/senha, sem signup público.
+- `src/routes/_authenticated/route.tsx` — layout gate managed.
+- `src/routes/_authenticated/admin.tsx` — checa has_role('admin') senão redireciona.
+- `src/routes/_authenticated/admin.eventos.tsx` — lista + CRUD.
+- `src/routes/_authenticated/admin.eventos.$id.tsx` — editor.
+- `src/routes/_authenticated/admin.inscricoes.tsx` — inscrições por evento, exportar CSV.
+
+UI (shadcn): tabela de eventos (status, data, nº inscritos), botões Novo/Editar/Publicar/Arquivar. Formulário completo com upload de imagem para Storage.
+
+## 5. Server functions
+
+`src/lib/events.functions.ts` (públicas):
+- getPublishedEvents, getEventBySlug, registerForEvent (zod).
+
+`src/lib/admin-events.functions.ts` (requireSupabaseAuth + checa admin):
+- listAllEvents, createEvent, updateEvent, deleteEvent, uploadEventImage, listRegistrations, exportRegistrationsCsv.
+
+## 6. Estilo
+Mantém identidade dourada (text-gold, bg preto, Playfair). Cards seguem a linguagem das seções existentes.
+
+## 7. Nav
+Ordem: Método • Mentoria • **Eventos** • Fundador • Cases • Investimento.
+
+## Perguntas pendentes
+- Qual email exato quer usar para o admin `matheusstaruck`? (ex.: matheus@po2.com)
+- Confirmar imagem inicial do primeiro evento: gero uma arte dourada temática ou você envia?
