@@ -14,6 +14,8 @@ import {
   Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
   ChevronLeft, ChevronRight, Workflow, ShieldQuestion, BookOpen, Repeat,
 } from "lucide-react";
+import { Eventos } from "@/components/po2/Eventos";
+
 
 
 export const Route = createFileRoute("/")({
