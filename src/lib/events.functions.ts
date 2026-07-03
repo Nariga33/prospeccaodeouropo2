@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
+import { toWhatsappUrl } from "./whatsapp";
 
 function publicClient() {
   return createClient<Database>(
@@ -20,9 +21,9 @@ export type PublicEvent = {
   image_url: string | null;
   starts_at: string | null;
   ends_at: string | null;
-  is_free: boolean;
-  price_cents: number | null;
-  investment_label: string | null;
+  price_full_cents: number | null;
+  price_promo_cents: number | null;
+  price_note: string | null;
   capacity: number | null;
 };
 
@@ -31,7 +32,7 @@ export const getPublishedEvents = createServerFn({ method: "GET" }).handler(asyn
   const { data, error } = await supabase
     .from("events")
     .select(
-      "id, slug, title, subtitle, description, image_url, starts_at, ends_at, is_free, price_cents, investment_label, capacity",
+      "id, slug, title, subtitle, description, image_url, starts_at, ends_at, price_full_cents, price_promo_cents, price_note, capacity",
     )
     .eq("status", "published")
     .order("starts_at", { ascending: true, nullsFirst: false })
@@ -53,25 +54,71 @@ export const registerForEvent = createServerFn({ method: "POST" })
     const supabase = publicClient();
     const { data: ev, error: evErr } = await supabase
       .from("events")
-      .select("id, meet_url, whatsapp_url, status")
+      .select("id, meet_url, whatsapp_url, status, title, starts_at, ends_at")
       .eq("id", data.eventId)
       .maybeSingle();
     if (evErr) throw new Error(evErr.message);
     if (!ev || ev.status !== "published") throw new Error("Evento indisponível.");
 
-    const { error: insErr } = await supabase.from("event_registrations").insert({
-      event_id: data.eventId,
-      name: data.name,
-      email: data.email,
-      whatsapp: data.whatsapp,
-    });
-    if (insErr && !insErr.message.toLowerCase().includes("duplicate")) {
-      throw new Error(insErr.message);
+    // Insert; if already registered, fetch existing row to return the same token.
+    let registrationId: string | null = null;
+    let certificateToken: string | null = null;
+
+    const { data: inserted, error: insErr } = await supabase
+      .from("event_registrations")
+      .insert({
+        event_id: data.eventId,
+        name: data.name,
+        email: data.email,
+        whatsapp: data.whatsapp,
+      })
+      .select("id, certificate_token")
+      .maybeSingle();
+
+    if (insErr) {
+      if (!insErr.message.toLowerCase().includes("duplicate")) throw new Error(insErr.message);
+    } else if (inserted) {
+      registrationId = inserted.id;
+      certificateToken = inserted.certificate_token;
+    }
+
+    if (!registrationId) {
+      const { data: existing } = await supabase
+        .from("event_registrations")
+        .select("id, certificate_token")
+        .eq("event_id", data.eventId)
+        .eq("email", data.email)
+        .maybeSingle();
+      registrationId = existing?.id ?? null;
+      certificateToken = existing?.certificate_token ?? null;
     }
 
     return {
       ok: true as const,
-      meet_url: ev.meet_url,
-      whatsapp_url: ev.whatsapp_url,
+      registration_id: registrationId,
+      certificate_token: certificateToken,
+      meet_url: toWhatsappUrl(ev.meet_url) ? ev.meet_url : ev.meet_url, // meet not normalized
+      whatsapp_url: toWhatsappUrl(ev.whatsapp_url),
+      event: {
+        title: ev.title,
+        starts_at: ev.starts_at,
+        ends_at: ev.ends_at,
+      },
     };
+  });
+
+// Look up a certificate by token → used by the download form on the site.
+export const findCertificateByEmail = createServerFn({ method: "POST" })
+  .inputValidator((d: unknown) =>
+    z.object({ eventId: z.string().uuid(), email: z.string().trim().toLowerCase().email() }).parse(d),
+  )
+  .handler(async ({ data }) => {
+    const supabase = publicClient();
+    const { data: row } = await supabase
+      .from("event_registrations")
+      .select("certificate_token")
+      .eq("event_id", data.eventId)
+      .eq("email", data.email)
+      .maybeSingle();
+    return { token: row?.certificate_token ?? null };
   });

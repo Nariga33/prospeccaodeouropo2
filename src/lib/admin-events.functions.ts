@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { toWhatsappUrl } from "./whatsapp";
 
 async function assertAdmin(ctx: { supabase: any; userId: string }) {
   const { data, error } = await ctx.supabase.rpc("has_role", {
@@ -37,19 +38,27 @@ export const getEventById = createServerFn({ method: "GET" })
     return row;
   });
 
+const looseUrl = z
+  .string()
+  .trim()
+  .max(1000)
+  .optional()
+  .nullable()
+  .or(z.literal(""));
+
 const eventSchema = z.object({
   slug: z.string().trim().min(2).max(120).regex(/^[a-z0-9-]+$/, "slug: minúsculas, números e hífen"),
   title: z.string().trim().min(2).max(200),
   subtitle: z.string().trim().max(300).optional().nullable(),
-  description: z.string().max(10000).default(""),
-  image_url: z.string().trim().url().max(1000).optional().nullable().or(z.literal("")),
+  description: z.string().max(20000).default(""),
+  image_url: looseUrl,
   starts_at: z.string().optional().nullable().or(z.literal("")),
   ends_at: z.string().optional().nullable().or(z.literal("")),
-  is_free: z.boolean().default(true),
-  price_cents: z.number().int().nonnegative().optional().nullable(),
-  investment_label: z.string().trim().max(80).optional().nullable(),
-  meet_url: z.string().trim().url().max(1000).optional().nullable().or(z.literal("")),
-  whatsapp_url: z.string().trim().url().max(1000).optional().nullable().or(z.literal("")),
+  price_full_cents: z.number().int().nonnegative().optional().nullable(),
+  price_promo_cents: z.number().int().nonnegative().optional().nullable(),
+  price_note: z.string().trim().max(80).optional().nullable(),
+  meet_url: looseUrl,
+  whatsapp_url: looseUrl,
   capacity: z.number().int().positive().optional().nullable(),
   status: z.enum(["draft", "published", "archived"]).default("draft"),
 });
@@ -63,8 +72,12 @@ function normalize(input: any) {
     starts_at: empty(input.starts_at),
     ends_at: empty(input.ends_at),
     meet_url: empty(input.meet_url),
-    whatsapp_url: empty(input.whatsapp_url),
-    investment_label: empty(input.investment_label),
+    whatsapp_url: toWhatsappUrl(input.whatsapp_url),
+    price_note: empty(input.price_note),
+    // Keep is_free in sync so old queries still work
+    is_free:
+      input.price_promo_cents === 0 ||
+      (input.price_full_cents == null && input.price_promo_cents == null),
   };
 }
 
