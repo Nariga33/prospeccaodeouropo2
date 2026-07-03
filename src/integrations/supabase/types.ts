@@ -16,6 +16,8 @@ export type Database = {
     Tables: {
       event_registrations: {
         Row: {
+          certificate_sent_at: string | null
+          certificate_token: string | null
           created_at: string
           email: string
           event_id: string
@@ -24,6 +26,8 @@ export type Database = {
           whatsapp: string | null
         }
         Insert: {
+          certificate_sent_at?: string | null
+          certificate_token?: string | null
           created_at?: string
           email: string
           event_id: string
@@ -32,6 +36,8 @@ export type Database = {
           whatsapp?: string | null
         }
         Update: {
+          certificate_sent_at?: string | null
+          certificate_token?: string | null
           created_at?: string
           email?: string
           event_id?: string
@@ -61,6 +67,9 @@ export type Database = {
           is_free: boolean
           meet_url: string | null
           price_cents: number | null
+          price_full_cents: number | null
+          price_note: string | null
+          price_promo_cents: number | null
           slug: string
           starts_at: string | null
           status: string
@@ -80,6 +89,9 @@ export type Database = {
           is_free?: boolean
           meet_url?: string | null
           price_cents?: number | null
+          price_full_cents?: number | null
+          price_note?: string | null
+          price_promo_cents?: number | null
           slug: string
           starts_at?: string | null
           status?: string
@@ -99,6 +111,9 @@ export type Database = {
           is_free?: boolean
           meet_url?: string | null
           price_cents?: number | null
+          price_full_cents?: number | null
+          price_note?: string | null
+          price_promo_cents?: number | null
           slug?: string
           starts_at?: string | null
           status?: string
