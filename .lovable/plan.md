@@ -1,70 +1,60 @@
-# Página de Eventos PO2 + Painel Admin
+# Eventos PO2 — Convite, Preço, Contagem & Certificado
 
-## 1. Ativar Lovable Cloud
-Habilita auth (email/senha), Postgres e Storage. Criar usuário admin com email definido pelo usuário e senha `mjunhy123` via SQL após provisioning. Signup público desabilitado.
+## 1. WhatsApp — aceitar qualquer formato
+No admin e no `registerForEvent`, normalizar `whatsapp_url`:
+- `https://chat.whatsapp.com/XYZ` → mantém
+- `chat.whatsapp.com/XYZ` (sem https) → prefixa
+- número puro (`5541999999999`) → `https://wa.me/5541999999999`
+- vazio → botão mostra "em breve"
+Substituir o `z.string().url()` por validador tolerante + função `toWhatsappUrl()` compartilhada.
 
-## 2. Modelo de dados
+## 2. Adicionar à agenda
+Ao confirmar inscrição, além do botão do Meet, mostrar:
+- **Google Calendar** (link `https://calendar.google.com/calendar/render?action=TEMPLATE&...` construído no client a partir do evento).
+- **Baixar .ics** (server fn `getEventIcs({eventId})` retorna string ICS; download via blob).
+Mesmos botões também no email de confirmação.
 
-**`events`**
-- id, slug, title, subtitle, description (texto longo), image_url
-- starts_at, ends_at, is_free bool, price_cents, investment_label
-- meet_url, whatsapp_url, status ('draft'|'published'|'archived'), capacity
-- created_at, updated_at
+## 3. Preço com desconto (nunca "gratuito")
+**Migration:** adicionar `price_full_cents integer` e `price_promo_cents integer` em `events`; manter `is_free`/`price_cents` para compat mas parar de usar na UI.
+No admin: dois campos "Valor cheio" e "Valor promocional (cortesia PO2)".
+Na vitrine e no dialog: `R$ 297` (riscado) · **`R$ 0` Cortesia PO2** (ou o valor promo definido). Se apenas um valor existir, mostra só ele.
+Remover badge "Gratuito" e o `<Gift />`.
 
-**`event_registrations`**
-- id, event_id fk, name, email, whatsapp, created_at
-- unique (event_id, email)
+## 4. Convite lindo (redesign do card + dialog)
+Renderizar a descrição como **markdown** (adicionar `react-markdown` + `remark-gfm`) com tipografia caprichada (Instrument Serif nos títulos, hierarquia de seções, bullets dourados, divisor ornamental, selo "Convite oficial PO2").
+Card ganha selo "Vagas limitadas", data em destaque estilo save-the-date, e o dialog vira um convite em duas colunas com: cabeçalho brasão dourado, "Você está convidado(a)", subtítulo, corpo em markdown, seção "O que você vai aprender" (bullets estilizados), preço, e o formulário no lado direito com aparência de RSVP.
+Descrição atual do seed é reformatada em markdown limpo (5 blocos com headings).
 
-**`user_roles`** (padrão de segurança)
-- enum app_role = ('admin')
-- função has_role security definer
-- seed: matheus como admin
+## 5. Contagem regressiva — banner fixo no topo
+Novo componente `<EventCountdownBanner />` renderizado no `__root.tsx` acima do `<Nav>`:
+- Faixa dourada fina (bg preto, borda dourada, texto dourado).
+- Puxa o próximo evento publicado (`starts_at > now()`), mostra `Próximo evento: <título> — 03d 12h 42m 10s`, clique rola para `#eventos`.
+- Ticker por `setInterval(1000)`. Some quando não há evento futuro.
+- Botão "x" fecha durante a sessão (sessionStorage).
 
-**RLS + GRANTs**
-- events: SELECT público onde status='published'; mutações só admin.
-- event_registrations: INSERT anon; SELECT só admin.
-- user_roles: SELECT authenticated; gerenciamento só admin.
+## 6. Certificado PO2
+### Assets necessários (upload do usuário — pendente)
+- Logo PO2 em PNG transparente
+- Assinatura de Matheus em PNG transparente
+Se não enviados, uso a logo já usada no site + gero uma assinatura manuscrita placeholder (Instrument Serif) até você enviar.
 
-**Storage bucket** `event-images` (leitura pública, upload só admin).
+### Geração
+- Server fn `getCertificatePdf({registrationId})` protegido por token (o registration id + email hash) — usa **pdf-lib** (compatível com Worker) para montar PDF A4 paisagem preto, moldura dourada dupla, logo PO2 no topo, título "CERTIFICADO", corpo "Certificamos que **NOME** participou da Masterclass **TÍTULO** com duração de **X horas**, realizada em **DATA**.", assinatura + "Matheus Staruck · PO2".
+- Retorna `application/pdf`.
 
-## 3. Seção pública "Eventos" na home
-Novo componente `<Eventos />` em `src/routes/index.tsx` entre Mentoria e Pitch, com id `#eventos` e link no Nav.
+### Entrega
+- **No site:** após `ends_at`, o card do evento e a página de sucesso mostram botão "Baixar meu certificado" que abre um mini form (email usado na inscrição) → chama a server fn e faz download.
+- **Por email:** cron `pg_cron` horário → rota `/api/public/hooks/send-certificates` procura inscrições de eventos encerrados sem `certificate_sent_at`, envia email com link único de download (assinado) e marca como enviado.
+- **Pré-requisito:** para o envio automático precisamos de **Lovable Emails configurado com um domínio próprio** (ex.: `notify.po2.com`). Se ainda não tiver, monto tudo pronto e deixo o job desligado até você confirmar o domínio — o download manual continua funcionando.
 
-- Server fn `getPublishedEvents` (publishable client server).
-- Cards: imagem, título, data, badge "Gratuito"/preço, resumo, botão "Quero participar".
-- Placeholder "Em breve" se lista vazia.
-- Clique abre Dialog com descrição completa + formulário (nome, email, whatsapp) validado por zod.
-- Ao enviar → `registerForEvent` salva inscrição e retorna { meet_url, whatsapp_url }.
-- Tela de sucesso: botões "Entrar no Google Meet" e "Grupo do WhatsApp".
+### Migration
+- `event_registrations`: adicionar `certificate_sent_at timestamptz`, `certificate_token text unique` (gerado no insert).
 
-**Primeiro evento seedado**: Masterclass PO2 — Fundamentos da Prospecção Estratégica, gratuito, com toda a descrição fornecida (5 bullets: BDR, Mentalidade, Metodologias, Abordagens, Passagem de bastão). Meet/WhatsApp em branco até admin preencher; imagem placeholder gerada.
+## Detalhes técnicos
+- Novos arquivos: `src/components/po2/EventCountdownBanner.tsx`, `src/lib/whatsapp.ts`, `src/lib/ics.ts`, `src/lib/certificate.functions.ts`, `src/routes/api/public/hooks/send-certificates.ts`.
+- Pacotes: `pdf-lib`, `react-markdown`, `remark-gfm`.
+- Editados: `Eventos.tsx` (redesign + calendar + preço), `admin/eventos.tsx` (novos campos + validador WhatsApp), `events.functions.ts` (retornar preços, gerar token), `__root.tsx` (banner), migração SQL.
 
-## 4. Painel Admin
-
-Rotas:
-- `src/routes/auth.tsx` — login email/senha, sem signup público.
-- `src/routes/_authenticated/route.tsx` — layout gate managed.
-- `src/routes/_authenticated/admin.tsx` — checa has_role('admin') senão redireciona.
-- `src/routes/_authenticated/admin.eventos.tsx` — lista + CRUD.
-- `src/routes/_authenticated/admin.eventos.$id.tsx` — editor.
-- `src/routes/_authenticated/admin.inscricoes.tsx` — inscrições por evento, exportar CSV.
-
-UI (shadcn): tabela de eventos (status, data, nº inscritos), botões Novo/Editar/Publicar/Arquivar. Formulário completo com upload de imagem para Storage.
-
-## 5. Server functions
-
-`src/lib/events.functions.ts` (públicas):
-- getPublishedEvents, getEventBySlug, registerForEvent (zod).
-
-`src/lib/admin-events.functions.ts` (requireSupabaseAuth + checa admin):
-- listAllEvents, createEvent, updateEvent, deleteEvent, uploadEventImage, listRegistrations, exportRegistrationsCsv.
-
-## 6. Estilo
-Mantém identidade dourada (text-gold, bg preto, Playfair). Cards seguem a linguagem das seções existentes.
-
-## 7. Nav
-Ordem: Método • Mentoria • **Eventos** • Fundador • Cases • Investimento.
-
-## Perguntas pendentes
-- Qual email exato quer usar para o admin `matheusstaruck`? (ex.: matheus@po2.com)
-- Confirmar imagem inicial do primeiro evento: gero uma arte dourada temática ou você envia?
+## Perguntas
+1. Envia agora **logo PO2** e **assinatura** em PNG transparente? (Sem elas eu uso fallback e você troca depois.)
+2. Confirma que o **domínio de envio de email** para os certificados é `po2.com` (ou outro)? Se preferir, deixo o envio automático como opcional e habilitamos quando o domínio estiver pronto.
