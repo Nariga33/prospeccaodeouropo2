@@ -15,6 +15,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
+import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
 
 const DiagnosticoRoute = DiagnosticoRouteImport.update({
   id: '/diagnostico',
@@ -46,6 +47,12 @@ const AuthenticatedAdminEventosRoute =
     path: '/admin/eventos',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicCertificateTokenRoute =
+  ApiPublicCertificateTokenRouteImport.update({
+    id: '/api/public/certificate/$token',
+    path: '/api/public/certificate/$token',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -60,6 +68,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,6 +78,7 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/certificate/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -85,6 +96,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/certificate/$token'
   id:
     | '__root__'
     | '/'
@@ -93,6 +105,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/certificate/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -101,6 +114,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
+  ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -147,6 +161,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/certificate/$token': {
+      id: '/api/public/certificate/$token'
+      path: '/api/public/certificate/$token'
+      fullPath: '/api/public/certificate/$token'
+      preLoaderRoute: typeof ApiPublicCertificateTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -167,6 +188,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
+  ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

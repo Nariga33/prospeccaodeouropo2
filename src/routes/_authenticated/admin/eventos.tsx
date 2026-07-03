@@ -104,7 +104,13 @@ function AdminEventosPage() {
                         : "bg-yellow-500/15 text-yellow-400"
                       }`}>{e.status}</span>
                     </td>
-                    <td className="p-3">{e.is_free ? "Gratuito" : (e.investment_label ?? "—")}</td>
+                    <td className="p-3">
+                      {e.price_full_cents != null || e.price_promo_cents != null
+                        ? `${e.price_full_cents != null ? `R$ ${(e.price_full_cents/100).toFixed(0)}` : ""}${
+                            e.price_promo_cents != null ? ` → R$ ${(e.price_promo_cents/100).toFixed(0)}` : ""
+                          }`
+                        : "—"}
+                    </td>
                     <td className="p-3">{e.registrations?.[0]?.count ?? 0}</td>
                     <td className="p-3">
                       <div className="flex justify-end gap-2">
@@ -148,9 +154,9 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
     image_url: initial?.image_url ?? "",
     starts_at: initial?.starts_at ? new Date(initial.starts_at).toISOString().slice(0, 16) : "",
     ends_at: initial?.ends_at ? new Date(initial.ends_at).toISOString().slice(0, 16) : "",
-    is_free: initial?.is_free ?? true,
-    price_cents: initial?.price_cents ?? null,
-    investment_label: initial?.investment_label ?? "",
+    price_full_cents: initial?.price_full_cents ?? "",
+    price_promo_cents: initial?.price_promo_cents ?? "",
+    price_note: initial?.price_note ?? "",
     meet_url: initial?.meet_url ?? "",
     whatsapp_url: initial?.whatsapp_url ?? "",
     capacity: initial?.capacity ?? null,
@@ -166,11 +172,20 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
     e.preventDefault();
     setSaving(true);
     try {
+      const toCents = (v: any) => {
+        if (v === "" || v == null) return null;
+        // Accept "297" or "297,00" or "R$ 297,00"
+        const digits = String(v).replace(/[^\d,.-]/g, "").replace(",", ".");
+        const num = Number(digits);
+        if (Number.isNaN(num)) return null;
+        return Math.round(num * 100);
+      };
       const payload = {
         ...form,
         starts_at: form.starts_at ? new Date(form.starts_at).toISOString() : null,
         ends_at: form.ends_at ? new Date(form.ends_at).toISOString() : null,
-        price_cents: form.price_cents === "" || form.price_cents == null ? null : Number(form.price_cents),
+        price_full_cents: toCents(form.price_full_cents),
+        price_promo_cents: toCents(form.price_promo_cents),
         capacity: form.capacity === "" || form.capacity == null ? null : Number(form.capacity),
       };
       if (isEdit) {
@@ -207,12 +222,17 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
           <Field label="Capacidade"><input type="number" value={form.capacity ?? ""} onChange={(e) => set("capacity", e.target.value)} className={inputCls} /></Field>
           <Field label="Início"><input type="datetime-local" value={form.starts_at} onChange={(e) => set("starts_at", e.target.value)} className={inputCls} /></Field>
           <Field label="Fim"><input type="datetime-local" value={form.ends_at} onChange={(e) => set("ends_at", e.target.value)} className={inputCls} /></Field>
-          <Field label="Gratuito?">
-            <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.is_free} onChange={(e) => set("is_free", e.target.checked)} /> Sim, gratuito</label>
+          <Field label="Valor cheio (ex.: 297)">
+            <input value={form.price_full_cents} onChange={(e) => set("price_full_cents", e.target.value)} placeholder="297" className={inputCls} />
           </Field>
-          <Field label="Label de investimento (ex.: R$ 197)"><input value={form.investment_label} onChange={(e) => set("investment_label", e.target.value)} className={inputCls} /></Field>
+          <Field label="Valor promocional (ex.: 0 para cortesia)">
+            <input value={form.price_promo_cents} onChange={(e) => set("price_promo_cents", e.target.value)} placeholder="0" className={inputCls} />
+          </Field>
+          <Field label="Nota de preço (ex.: Cortesia PO2)" full>
+            <input value={form.price_note} onChange={(e) => set("price_note", e.target.value)} placeholder="Cortesia PO2" className={inputCls} />
+          </Field>
           <Field label="Link do Google Meet"><input value={form.meet_url} onChange={(e) => set("meet_url", e.target.value)} placeholder="https://meet.google.com/…" className={inputCls} /></Field>
-          <Field label="Link do grupo WhatsApp"><input value={form.whatsapp_url} onChange={(e) => set("whatsapp_url", e.target.value)} placeholder="https://chat.whatsapp.com/…" className={inputCls} /></Field>
+          <Field label="WhatsApp (link do grupo OU número com DDD)"><input value={form.whatsapp_url} onChange={(e) => set("whatsapp_url", e.target.value)} placeholder="https://chat.whatsapp.com/… ou 5541999999999" className={inputCls} /></Field>
           <Field label="Status">
             <select value={form.status} onChange={(e) => set("status", e.target.value)} className={inputCls}>
               <option value="draft">Rascunho</option>
