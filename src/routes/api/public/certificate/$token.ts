@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createClient } from "@supabase/supabase-js";
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+
 import type { Database } from "@/integrations/supabase/types";
 
 function publicClient() {
@@ -84,6 +84,7 @@ async function buildCertificatePdf(params: {
   startsAt: string | null;
   endsAt: string | null;
 }): Promise<Uint8Array> {
+  const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib");
   const pdf = await PDFDocument.create();
   // A4 landscape (in points): 842 x 595
   const page = pdf.addPage([842, 595]);
