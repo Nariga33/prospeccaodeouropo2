@@ -1,22 +1,38 @@
-## Problema
+## Objetivo
 
-Todas as páginas (inclusive a home) retornam 500 com "This page didn't load". Logs do Worker mostram:
+Na seção **Mentoria**, hoje o gráfico da esquerda ("3,2× mais reuniões qualificadas") é estático. Vou fazê-lo reagir ao slide ativo do carrossel "O que você recebe" à direita — cada entrega passa a mostrar uma métrica própria que ilustra o impacto daquela entrega.
 
-```
-TypeError: Cannot destructure property '__extends' of '__toESM(...).default' as it is undefined.
-```
+## Mudanças
 
-É o erro típico de interop CJS/ESM do `tslib` quando `pdf-lib` é bundleado no SSR do Cloudflare Workers. O import no topo de `src/routes/api/public/certificate/$token.ts` faz o módulo ser carregado junto com a árvore de rotas, quebrando o init do SSR inteiro.
+Arquivo único: `src/routes/index.tsx`, função `Mentoria()`.
 
-## Correção
+1. **Enriquecer cada slide** com um bloco `chart`:
+   - `headline` (ex.: "3,2×")
+   - `subtitle` (a frase de impacto)
+   - `axisLabel` (título do gráfico)
+   - `unit` (`%`, `dias`, `x`, `R$`)
+   - `data`: `[{ name, value, bad? }, ...]` — comparação antes/depois
+   - `bullets`: 3 frases curtas contextuais
 
-1. **Lazy-load `pdf-lib` dentro do handler** de `src/routes/api/public/certificate/$token.ts`:
-   - Remover `import { PDFDocument, StandardFonts, rgb } from "pdf-lib"` do topo.
-   - Dentro da função `buildCertificatePdf` (que só roda em resposta ao GET), fazer `const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib")`.
-   - Isso tira `pdf-lib` do grafo de import do SSR entry — ele só é resolvido quando a rota `/api/public/certificate/*` é de fato chamada.
+   Exemplos por slide:
+   - Diagnóstico ao vivo → tempo até primeiro insight acionável (30 dias → 7 dias)
+   - ICP construído junto → reuniões qualificadas (6% → 19%) *(métrica atual)*
+   - Scripts e cadência → taxa de resposta (4% → 12%)
+   - Ritual semanal → previsibilidade de pipeline (baixa → alta em nº de deals no forecast)
+   - Estruturação de pipeline → ciclo de venda em dias (72 → 41)
+   - Treinamento de objeções → conversão reunião → proposta (18% → 34%)
+   - Playbook de outbound → ramp-up de novo SDR em dias (90 → 30)
+   - Acompanhamento pós-mentoria → retenção do método após 60 dias (%)
 
-2. **Verificar `pdf-lib` em runtime**: se mesmo lazy o Worker reclamar de `tslib` (pdf-lib depende dele), adicionar `optimizeDeps.include: ["pdf-lib", "tslib"]` no `vite.config.ts` para forçar pré-bundle com interop correto. Só aplico se o passo 1 sozinho não resolver.
+2. **Refatorar o painel do gráfico** para ler `slides[active].chart` em vez de constantes fixas:
+   - Headline, subtítulo, título do eixo, bullets e dados do `BarChart` derivam do slide ativo.
+   - Envolver o bloco em `<div key={active} className="animate-fade-in">` para transição suave ao trocar de slide (mesma classe já usada no card da direita).
+   - `Tooltip formatter` usa `chart.unit`.
 
-3. **Validar**: após o deploy, abrir `/` e checar Server Logs — o erro `__extends` deve sumir e a home volta a renderizar. Testar também `/api/public/certificate/<token-válido>` para garantir que o PDF ainda é gerado.
+3. **Sem novos arquivos, sem novas dependências.** Recharts, ícones e `animate-fade-in` já estão em uso.
 
-Nada de UI muda. É só o import que é reorganizado para desbloquear o SSR.
+## Fora de escopo
+
+- Nenhuma mudança em backend, rotas, WhatsApp, certificado, countdown ou admin.
+- Sem redesign do gráfico (continua `BarChart` com 2 colunas antes/depois).
+- Sem alterar o layout geral da seção.
