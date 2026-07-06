@@ -146,7 +146,7 @@ async function buildCertificatePdf(params: {
     thickness: 0.6,
     color: goldSoft,
   });
-  drawCentered("◆", height - 139, 8, helv, gold);
+  drawCentered("*", height - 139, 10, helvBold, gold);
 
   // Title
   drawCentered("CERTIFICADO", height - 190, 40, helvBold, gold);
