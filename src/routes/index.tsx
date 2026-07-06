@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import { StepInsightDialog } from "@/components/po2/StepInsightDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { MethodologyDialog, type Methodology } from "@/components/po2/MethodologyDialog";
+import { Nav } from "@/components/po2/Nav";
+import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
@@ -14,7 +16,6 @@ import {
   Filter, BarChart3, Zap, Compass, Brain, ListChecks, GraduationCap, Calendar, ClipboardList, Activity,
   ChevronLeft, ChevronRight, Workflow, ShieldQuestion, BookOpen, Repeat,
 } from "lucide-react";
-import { Eventos } from "@/components/po2/Eventos";
 
 
 
@@ -51,7 +52,7 @@ function LandingPage() {
         <Thesis />
         <Method />
         <Mentoria />
-        <Eventos />
+        <EventosTeaser />
         <Pitch />
 
         <Methodologies />
@@ -66,25 +67,27 @@ function LandingPage() {
   );
 }
 
-function Nav() {
+function EventosTeaser() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-3"><Logo className="h-9 w-auto" /></a>
-        <nav className="hidden gap-8 text-sm font-medium text-muted-foreground md:flex">
-          <a href="#metodo" className="transition-colors hover:text-gold">Método</a>
-          <a href="#mentoria" className="transition-colors hover:text-gold">Mentoria</a>
-          <a href="#eventos" className="transition-colors hover:text-gold">Eventos</a>
-          <a href="#metodologias" className="transition-colors hover:text-gold">Metodologias</a>
-
-          <a href="#fundador" className="transition-colors hover:text-gold">Fundador</a>
-          <a href="#casos" className="transition-colors hover:text-gold">Resultados</a>
-          <a href="#planos" className="transition-colors hover:text-gold">Planos</a>
-        </nav>
-
-        <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
+    <section id="eventos" className="border-t border-white/5 bg-gradient-to-b from-black to-background py-24">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+          <Sparkles className="size-3" /> Agenda ao vivo
+        </div>
+        <h2 className="mt-4 font-[Instrument_Serif] text-4xl leading-tight md:text-5xl">
+          Masterclasses PO2 ao vivo.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+          Encontros online, íntimos e limitados sobre prospecção B2B. Veja os próximos eventos,
+          inscreva-se e receba link do Meet, agenda e certificado.
+        </p>
+        <div className="mt-8">
+          <Link to="/eventos" className={ctaPrimary}>
+            Ver eventos disponíveis <ArrowRight className="size-4" />
+          </Link>
+        </div>
       </div>
-    </header>
+    </section>
   );
 }
 
@@ -1019,19 +1022,3 @@ function FinalCta() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-white/5 bg-surface/40">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 md:flex-row">
-        <div className="flex items-center gap-4">
-          <Logo className="h-10 w-auto" />
-          <div className="hidden h-8 w-px bg-white/10 md:block" />
-          <p className="text-xs text-muted-foreground">Assessoria de Prospecção B2B · Matheus Staruck</p>
-        </div>
-        <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
-          © {new Date().getFullYear()} PO2 — Prospecção de Ouro 2.0
-        </div>
-      </div>
-    </footer>
-  );
-}
