@@ -1,38 +1,28 @@
 ## Objetivo
 
-Na seção **Mentoria**, hoje o gráfico da esquerda ("3,2× mais reuniões qualificadas") é estático. Vou fazê-lo reagir ao slide ativo do carrossel "O que você recebe" à direita — cada entrega passa a mostrar uma métrica própria que ilustra o impacto daquela entrega.
+Tirar a seção de Eventos da landing page e movê-la para uma rota dedicada `/eventos`, onde o visitante navega os eventos disponíveis e se inscreve. Na LP fica apenas um convite curto que direciona para a nova página.
 
 ## Mudanças
 
-Arquivo único: `src/routes/index.tsx`, função `Mentoria()`.
+### 1. Nova rota `src/routes/eventos.tsx`
+- `createFileRoute("/eventos")` com `head()` próprio (title/description/og específicos de eventos).
+- Estrutura: `<Nav />` + `<main>` com um header curto da página ("Eventos ao vivo PO2") + `<Eventos />` (componente já existente, sem alterações) + `<Footer />`.
+- Reaproveita `Nav` e `Footer` — extrair esses dois componentes de `src/routes/index.tsx` para `src/components/po2/Nav.tsx` e `src/components/po2/Footer.tsx` para poderem ser importados nas duas rotas.
+- No `Nav`, o link "Eventos" passa a ser `<Link to="/eventos">` em vez do âncora `#eventos`. Demais itens continuam como âncoras da home (com `to="/"` + `hash` quando estivermos em outra rota).
 
-1. **Enriquecer cada slide** com um bloco `chart`:
-   - `headline` (ex.: "3,2×")
-   - `subtitle` (a frase de impacto)
-   - `axisLabel` (título do gráfico)
-   - `unit` (`%`, `dias`, `x`, `R$`)
-   - `data`: `[{ name, value, bad? }, ...]` — comparação antes/depois
-   - `bullets`: 3 frases curtas contextuais
+### 2. `src/routes/index.tsx`
+- Remover `<Eventos />` do `<main>` e o import correspondente.
+- Substituir por uma seção curta `EventosTeaser` (novo bloco inline nesta mesma rota) com título, uma linha sobre masterclasses e um CTA `Ver eventos disponíveis` → `<Link to="/eventos">`. Mantém a âncora `#eventos` para o link do menu continuar funcionando na home.
+- Ajustar imports de `Nav`/`Footer` para os novos módulos.
 
-   Exemplos por slide:
-   - Diagnóstico ao vivo → tempo até primeiro insight acionável (30 dias → 7 dias)
-   - ICP construído junto → reuniões qualificadas (6% → 19%) *(métrica atual)*
-   - Scripts e cadência → taxa de resposta (4% → 12%)
-   - Ritual semanal → previsibilidade de pipeline (baixa → alta em nº de deals no forecast)
-   - Estruturação de pipeline → ciclo de venda em dias (72 → 41)
-   - Treinamento de objeções → conversão reunião → proposta (18% → 34%)
-   - Playbook de outbound → ramp-up de novo SDR em dias (90 → 30)
-   - Acompanhamento pós-mentoria → retenção do método após 60 dias (%)
+### 3. Countdown banner
+- `EventCountdownBanner` continua no `__root.tsx` (topo global), então aparece tanto na LP quanto em `/eventos`. Sem mudança.
 
-2. **Refatorar o painel do gráfico** para ler `slides[active].chart` em vez de constantes fixas:
-   - Headline, subtítulo, título do eixo, bullets e dados do `BarChart` derivam do slide ativo.
-   - Envolver o bloco em `<div key={active} className="animate-fade-in">` para transição suave ao trocar de slide (mesma classe já usada no card da direita).
-   - `Tooltip formatter` usa `chart.unit`.
-
-3. **Sem novos arquivos, sem novas dependências.** Recharts, ícones e `animate-fade-in` já estão em uso.
+### 4. Componente `Eventos.tsx`
+- Sem alterações de comportamento. Só perde o `id="eventos"` da LP? Não — mantemos `id="eventos"` para que âncoras antigas continuem funcionando dentro da nova página.
 
 ## Fora de escopo
 
-- Nenhuma mudança em backend, rotas, WhatsApp, certificado, countdown ou admin.
-- Sem redesign do gráfico (continua `BarChart` com 2 colunas antes/depois).
-- Sem alterar o layout geral da seção.
+- Sem mudanças em backend, server functions, migrations, admin, certificado, WhatsApp ou lógica de inscrição.
+- Sem redesign dos cards de evento nem do diálogo de RSVP.
+- Sem SEO/sitemap além do `head()` da nova rota.
