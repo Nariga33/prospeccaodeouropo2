@@ -11,7 +11,7 @@ export function Nav() {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="PO2" className="h-9 w-auto" />
+          <img src={logo} alt="PO2" className="h-11 w-auto" />
         </Link>
         <nav className="hidden gap-8 text-sm font-medium text-muted-foreground md:flex">
           <a href="/#metodo" className="transition-colors hover:text-gold">Método</a>
