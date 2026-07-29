@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { EventCountdownBanner } from "@/components/po2/EventCountdownBanner";
 import { WelcomeGate } from "@/components/po2/WelcomeGate";
+import { WhatsAppFloat } from "@/components/po2/WhatsAppFloat";
 
 
 function NotFoundComponent() {
@@ -129,6 +130,7 @@ function RootComponent() {
       <EventCountdownBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <WhatsAppFloat />
       <Toaster theme="dark" position="top-center" richColors />
     </QueryClientProvider>
   );
