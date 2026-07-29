@@ -10,10 +10,6 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     full: "Business Development Representative",
     desc: "Profissional de prospecção ativa (outbound). Gera reunião com lead frio.",
   },
-  SDR: {
-    full: "Sales Development Representative",
-    desc: "Qualifica leads que já demonstraram interesse (inbound) antes de passar ao closer.",
-  },
   MRR: {
     full: "Monthly Recurring Revenue",
     desc: "Receita recorrente mensal — quanto entra todo mês de forma previsível.",

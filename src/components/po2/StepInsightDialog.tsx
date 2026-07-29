@@ -40,7 +40,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
     bullets: [
       "Sem ICP, ~60% do esforço de prospecção vai para empresas que nunca vão comprar.",
       "Listas direcionadas reduzem custo por reunião e encurtam o ciclo de venda.",
-      "ICP escrito alinha marketing, SDR e closer no mesmo perfil de cliente.",
+      "ICP escrito alinha marketing, BDR e closer no mesmo perfil de cliente.",
     ],
   },
   "02": {
