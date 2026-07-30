@@ -61,12 +61,6 @@ function AdminEventosPage() {
             <h1 className="mt-1 text-xl font-semibold">Eventos PO2 — Admin</h1>
           </div>
           <div className="flex items-center gap-2">
-            <Link
-              to="/admin/cursos"
-              className="rounded-full border border-white/10 px-4 py-2 text-sm"
-            >
-              Ir para Cursos
-            </Link>
             <button
               onClick={() => {
                 setEditing(null);

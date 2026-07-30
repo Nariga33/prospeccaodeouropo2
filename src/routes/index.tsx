@@ -12,7 +12,6 @@ import { MethodologyDialog, type Methodology } from "@/components/po2/Methodolog
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
-import { getPublishedCourses } from "@/lib/courses.functions";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -91,7 +90,6 @@ function LandingPage() {
         <Method />
         <MentoriaTeaser />
         <EventosTeaser />
-        <Cursos />
         <Pitch />
 
         <Methodologies />
@@ -604,92 +602,6 @@ function Method() {
 
           <CadenceMockup />
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Cursos() {
-  const get = useServerFn(getPublishedCourses);
-  const { data: courses, isLoading } = useQuery({
-    queryKey: ["public-courses"],
-    queryFn: () => get(),
-  });
-
-  if (!isLoading && (!courses || courses.length === 0)) return null;
-
-  return (
-    <section id="cursos" className="border-b border-white/5 bg-surface/40">
-      <div className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-              <span className={goldRule} /> Cursos
-            </div>
-            <h2 className="max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Aprenda o método{" "}
-              <span className="font-display font-normal italic text-gold">no seu ritmo.</span>
-            </h2>
-          </div>
-          <p className="max-w-md text-muted-foreground">
-            Conteúdo prático de prospecção B2B para quem quer aplicar o método PO2 dentro de casa.
-          </p>
-        </div>
-
-        {isLoading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="size-4 animate-spin" /> Carregando cursos…
-          </div>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {courses!.map((c) => (
-              <div
-                key={c.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-card/70 transition-all hover:-translate-y-1 hover:border-gold/40"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden bg-black">
-                  {c.image_url ? (
-                    <img
-                      src={c.image_url}
-                      alt={c.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gold/10 to-transparent">
-                      <GraduationCap className="size-10 text-gold/40" />
-                    </div>
-                  )}
-                  {c.platform && (
-                    <span className="absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur">
-                      {c.platform}
-                    </span>
-                  )}
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-lg font-bold">{c.title}</h3>
-                  {c.description && (
-                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{c.description}</p>
-                  )}
-                  {c.link_url ? (
-                    <a
-                      href={c.link_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(197,160,89,0.3)]"
-                    >
-                      {c.cta_label || "Acessar curso"} <ExternalLink className="size-3.5" />
-                    </a>
-                  ) : (
-                    <span className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm font-semibold text-muted-foreground">
-                      Em breve
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );

@@ -15,7 +15,6 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
-import { Route as AuthenticatedAdminCursosRouteImport } from './routes/_authenticated/admin/cursos'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
@@ -49,12 +48,6 @@ const MentoriaRoute = MentoriaRouteImport.update({
   path: '/mentoria',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminCursosRoute =
-  AuthenticatedAdminCursosRouteImport.update({
-    id: '/admin/cursos',
-    path: '/admin/cursos',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const AuthenticatedAdminEventosRoute =
   AuthenticatedAdminEventosRouteImport.update({
     id: '/admin/eventos',
@@ -79,7 +72,6 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
-  '/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -90,7 +82,6 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
-  '/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -103,7 +94,6 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
-  '/_authenticated/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -116,7 +106,6 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
-    | '/admin/cursos'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -127,7 +116,6 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
-    | '/admin/cursos'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -139,7 +127,6 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
-    | '/_authenticated/admin/cursos'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -200,13 +187,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/cursos': {
-      id: '/_authenticated/admin/cursos'
-      path: '/admin/cursos'
-      fullPath: '/admin/cursos'
-      preLoaderRoute: typeof AuthenticatedAdminCursosRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/admin/eventos': {
       id: '/_authenticated/admin/eventos'
       path: '/admin/eventos'
@@ -232,12 +212,10 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminCursosRoute: typeof AuthenticatedAdminCursosRoute
   AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminCursosRoute: AuthenticatedAdminCursosRoute,
   AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
 }
 

@@ -127,48 +127,6 @@ export type Database = {
         }
         Relationships: []
       }
-      courses: {
-        Row: {
-          created_at: string
-          cta_label: string
-          description: string
-          id: string
-          image_url: string | null
-          link_url: string
-          platform: string
-          sort_order: number
-          status: string
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          cta_label?: string
-          description?: string
-          id?: string
-          image_url?: string | null
-          link_url?: string
-          platform?: string
-          sort_order?: number
-          status?: string
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          cta_label?: string
-          description?: string
-          id?: string
-          image_url?: string | null
-          link_url?: string
-          platform?: string
-          sort_order?: number
-          status?: string
-          title?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
       user_roles: {
         Row: {
           created_at: string
