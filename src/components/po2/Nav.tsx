@@ -18,7 +18,7 @@ const ctaPrimary =
 
 const LINKS = [
   { href: "/#metodo", label: "Método" },
-  { href: "/#mentoria", label: "Mentoria" },
+  { href: "/mentoria", label: "Mentoria", isRoute: true },
   { href: "/eventos", label: "Eventos", isRoute: true },
   { href: "/#cursos", label: "Cursos" },
   { href: "/#metodologias", label: "Metodologias" },

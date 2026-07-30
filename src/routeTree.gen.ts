@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
+import { Route as MentoriaRouteImport } from './routes/mentoria'
 import { Route as AuthenticatedAdminCursosRouteImport } from './routes/_authenticated/admin/cursos'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
@@ -41,6 +42,11 @@ const DiagnosticoRoute = DiagnosticoRouteImport.update({
 const EventosRoute = EventosRouteImport.update({
   id: '/eventos',
   path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentoriaRoute = MentoriaRouteImport.update({
+  id: '/mentoria',
+  path: '/mentoria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminCursosRoute =
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/mentoria': typeof MentoriaRoute
   '/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/mentoria': typeof MentoriaRoute
   '/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/mentoria': typeof MentoriaRoute
   '/_authenticated/admin/cursos': typeof AuthenticatedAdminCursosRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/diagnostico'
     | '/eventos'
+    | '/mentoria'
     | '/admin/cursos'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/diagnostico'
     | '/eventos'
+    | '/mentoria'
     | '/admin/cursos'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/diagnostico'
     | '/eventos'
+    | '/mentoria'
     | '/_authenticated/admin/cursos'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
+  MentoriaRoute: typeof MentoriaRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
   ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       path: '/eventos'
       fullPath: '/eventos'
       preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentoria': {
+      id: '/mentoria'
+      path: '/mentoria'
+      fullPath: '/mentoria'
+      preLoaderRoute: typeof MentoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/cursos': {
@@ -230,6 +250,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
+  MentoriaRoute: MentoriaRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
   ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,
 }
