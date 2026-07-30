@@ -1,4 +1,6 @@
 import { ExternalLink, Sparkles } from "lucide-react";
+import clubeNexLogo from "@/assets/partners/clube-nex.png";
+import vendasTeamLogo from "@/assets/partners/vendas-team.png";
 
 const goldRule = "h-px w-12 bg-gold/60";
 
@@ -7,7 +9,8 @@ export function Partners() {
     {
       key: "nex",
       name: "Clube NEX",
-      wordmark: "NEX",
+      logo: clubeNexLogo,
+      logoOnLight: true,
       tag: "Rede & Mentoria",
       url: "https://clubenex.com.br/",
       desc: "Clube fechado de empresários, por aplicação. Encontros semanais, eventos presenciais trimestrais e mentoria entre pares — networking estratégico, não troca de cartão.",
@@ -16,7 +19,8 @@ export function Partners() {
     {
       key: "vendasteam",
       name: "Vendas.team",
-      wordmark: "vendas.team",
+      logo: vendasTeamLogo,
+      logoOnLight: false,
       tag: "Plataforma & Tecnologia",
       url: "https://www.vendas.team/",
       desc: "Plataforma comercial com IA nativa — CRM, cadências, enriquecimento de leads e dashboards num só lugar, do primeiro contato ao fechamento.",
@@ -60,7 +64,15 @@ export function Partners() {
                 <ExternalLink className="size-4 text-muted-foreground transition-colors group-hover:text-gold" />
               </div>
 
-              <div className="mt-6 font-display text-3xl text-foreground">{p.wordmark}</div>
+              <div className="mt-6 flex h-20 items-center">
+                {p.logoOnLight ? (
+                  <div className="flex h-20 items-center rounded-xl bg-white px-5 py-3">
+                    <img src={p.logo} alt={p.name} className="h-14 w-auto object-contain" />
+                  </div>
+                ) : (
+                  <img src={p.logo} alt={p.name} className="h-9 w-auto object-contain" />
+                )}
+              </div>
 
               <p className="mt-4 text-sm text-muted-foreground">{p.desc}</p>
 
