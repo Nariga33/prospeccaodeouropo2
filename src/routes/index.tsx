@@ -217,11 +217,10 @@ function Hero() {
 
 // Indicadores de autoridade — edite os valores livremente conforme os números crescem.
 const AUTHORITY_INDICATORS = [
-  { v: "+30", l: "Empresas atendidas" },
-  { v: "+40", l: "Operações estruturadas" },
-  { v: "+1k", l: "Reuniões geradas" },
-  { v: "+5k", l: "Leads prospectados" },
-  { v: "+200", l: "Horas de mentoria" },
+  { v: "+R$2MM", l: "Receita gerada" },
+  { v: "+5", l: "Anos em operação outbound" },
+  { v: "+100k", l: "Ligações realizadas" },
+  { v: "+10k", l: "Empresas prospectadas" },
 ];
 
 function Founder() {
@@ -284,7 +283,7 @@ function Founder() {
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:grid-cols-4">
           {AUTHORITY_INDICATORS.map((s) => (
             <div key={s.l} className="bg-card/80 p-6">
               <div className="font-display text-3xl text-gold">
