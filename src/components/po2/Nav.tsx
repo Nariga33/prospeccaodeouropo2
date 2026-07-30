@@ -24,6 +24,7 @@ const LINKS = [
   { href: "/#fundador", label: "Sobre" },
   { href: "/#fundador", label: "Fundador" },
   { href: "/#casos", label: "Resultados" },
+  { href: "/#parceiros", label: "Parceiros" },
   { href: "/#planos", label: "Planos" },
 ];
 
