@@ -263,15 +263,18 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
     whatsapp_url: string | null;
     certificate_token: string | null;
   } | null>(null);
+  const [whatsappGateOpen, setWhatsappGateOpen] = useState(false);
 
   const mut = useMutation({
     mutationFn: () => register({ data: { eventId: event.id, name, email, whatsapp } }),
-    onSuccess: (r: any) =>
+    onSuccess: (r: any) => {
       setResult({
         meet_url: r.meet_url,
         whatsapp_url: r.whatsapp_url,
         certificate_token: r.certificate_token,
-      }),
+      });
+      if (r.whatsapp_url) setWhatsappGateOpen(true);
+    },
     onError: (e: any) => toast.error(e.message ?? "Não foi possível inscrever"),
   });
 
@@ -305,6 +308,34 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/85 p-4 backdrop-blur-sm">
+      {whatsappGateOpen && result?.whatsapp_url && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-2xl border border-emerald-500/30 bg-background p-7 text-center shadow-[0_0_80px_rgba(16,185,129,0.15)]">
+            <div className="mx-auto flex size-12 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
+              <MessageCircle className="size-5" />
+            </div>
+            <h4 className="mt-4 font-[Instrument_Serif] text-2xl">Presença confirmada!</h4>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Entra no grupo do WhatsApp pra receber lembretes e avisos desse evento.
+            </p>
+            <a
+              href={result.whatsapp_url}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setWhatsappGateOpen(false)}
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-bold text-black hover:bg-emerald-400"
+            >
+              <MessageCircle className="size-4" /> Entrar no grupo do WhatsApp
+            </a>
+            <button
+              onClick={() => setWhatsappGateOpen(false)}
+              className="mt-3 w-full text-xs font-semibold text-muted-foreground hover:text-foreground"
+            >
+              Já entrei, continuar
+            </button>
+          </div>
+        </div>
+      )}
       <div className="my-8 w-full max-w-4xl overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_80px_rgba(197,160,89,0.15)]">
         <div className="relative">
           <button
