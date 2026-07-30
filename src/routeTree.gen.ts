@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
+import { Route as ParceirosRouteImport } from './routes/parceiros'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
@@ -48,6 +49,11 @@ const MentoriaRoute = MentoriaRouteImport.update({
   path: '/mentoria',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParceirosRoute = ParceirosRouteImport.update({
+  id: '/parceiros',
+  path: '/parceiros',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminEventosRoute =
   AuthenticatedAdminEventosRouteImport.update({
     id: '/admin/eventos',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/parceiros': typeof ParceirosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/parceiros': typeof ParceirosRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/parceiros': typeof ParceirosRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/parceiros'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/parceiros'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/parceiros'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
   MentoriaRoute: typeof MentoriaRoute
+  ParceirosRoute: typeof ParceirosRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
   ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
 }
@@ -187,6 +200,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parceiros': {
+      id: '/parceiros'
+      path: '/parceiros'
+      fullPath: '/parceiros'
+      preLoaderRoute: typeof ParceirosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/eventos': {
       id: '/_authenticated/admin/eventos'
       path: '/admin/eventos'
@@ -229,6 +249,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
   MentoriaRoute: MentoriaRoute,
+  ParceirosRoute: ParceirosRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
   ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,
 }
