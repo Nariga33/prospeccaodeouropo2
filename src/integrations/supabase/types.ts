@@ -65,6 +65,7 @@ export type Database = {
           image_url: string | null
           investment_label: string | null
           is_free: boolean
+          location: string | null
           meet_url: string | null
           price_cents: number | null
           price_full_cents: number | null
@@ -87,6 +88,7 @@ export type Database = {
           image_url?: string | null
           investment_label?: string | null
           is_free?: boolean
+          location?: string | null
           meet_url?: string | null
           price_cents?: number | null
           price_full_cents?: number | null
@@ -109,6 +111,7 @@ export type Database = {
           image_url?: string | null
           investment_label?: string | null
           is_free?: boolean
+          location?: string | null
           meet_url?: string | null
           price_cents?: number | null
           price_full_cents?: number | null
@@ -121,6 +124,48 @@ export type Database = {
           title?: string
           updated_at?: string
           whatsapp_url?: string | null
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          created_at: string
+          cta_label: string
+          description: string
+          id: string
+          image_url: string | null
+          link_url: string
+          platform: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta_label?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          link_url?: string
+          platform?: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta_label?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          link_url?: string
+          platform?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }

@@ -11,12 +11,12 @@ import {
   deleteEvent,
   listRegistrations,
 } from "@/lib/admin-events.functions";
-import {
-  Plus, LogOut, Edit3, Trash2, Users, Copy, Check, Loader2, ArrowLeft,
-} from "lucide-react";
+import { Plus, LogOut, Edit3, Trash2, Users, Copy, Check, Loader2, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/eventos")({
-  head: () => ({ meta: [{ title: "Admin — Eventos PO2" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({
+    meta: [{ title: "Admin — Eventos PO2" }, { name: "robots", content: "noindex" }],
+  }),
   component: AdminEventosPage,
 });
 
@@ -55,12 +55,23 @@ function AdminEventosPage() {
       <header className="border-b border-white/10">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div>
-            <Link to="/" className="text-xs text-muted-foreground hover:text-gold">← Ver site</Link>
+            <Link to="/" className="text-xs text-muted-foreground hover:text-gold">
+              ← Ver site
+            </Link>
             <h1 className="mt-1 text-xl font-semibold">Eventos PO2 — Admin</h1>
           </div>
           <div className="flex items-center gap-2">
+            <Link
+              to="/admin/cursos"
+              className="rounded-full border border-white/10 px-4 py-2 text-sm"
+            >
+              Ir para Cursos
+            </Link>
             <button
-              onClick={() => { setEditing(null); setShowForm(true); }}
+              onClick={() => {
+                setEditing(null);
+                setShowForm(true);
+              }}
               className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-bold text-gold-foreground"
             >
               <Plus className="size-4" /> Novo evento
@@ -77,7 +88,9 @@ function AdminEventosPage() {
 
       <main className="mx-auto max-w-6xl px-6 py-8">
         {isLoading ? (
-          <div className="flex items-center gap-2 text-muted-foreground"><Loader2 className="size-4 animate-spin" /> Carregando…</div>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="size-4 animate-spin" /> Carregando…
+          </div>
         ) : (
           <div className="overflow-hidden rounded-xl border border-white/10">
             <table className="w-full text-sm">
@@ -98,31 +111,64 @@ function AdminEventosPage() {
                       <div className="text-xs text-muted-foreground">{e.slug}</div>
                     </td>
                     <td className="p-3">
-                      <span className={`rounded-full px-2 py-0.5 text-xs ${
-                        e.status === "published" ? "bg-emerald-500/15 text-emerald-400"
-                        : e.status === "archived" ? "bg-white/10 text-muted-foreground"
-                        : "bg-yellow-500/15 text-yellow-400"
-                      }`}>{e.status}</span>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-xs ${
+                          e.status === "published"
+                            ? "bg-emerald-500/15 text-emerald-400"
+                            : e.status === "archived"
+                              ? "bg-white/10 text-muted-foreground"
+                              : "bg-yellow-500/15 text-yellow-400"
+                        }`}
+                      >
+                        {e.status}
+                      </span>
                     </td>
                     <td className="p-3">
                       {e.price_full_cents != null || e.price_promo_cents != null
-                        ? `${e.price_full_cents != null ? `R$ ${(e.price_full_cents/100).toFixed(0)}` : ""}${
-                            e.price_promo_cents != null ? ` → R$ ${(e.price_promo_cents/100).toFixed(0)}` : ""
+                        ? `${e.price_full_cents != null ? `R$ ${(e.price_full_cents / 100).toFixed(0)}` : ""}${
+                            e.price_promo_cents != null
+                              ? ` → R$ ${(e.price_promo_cents / 100).toFixed(0)}`
+                              : ""
                           }`
                         : "—"}
                     </td>
                     <td className="p-3">{e.registrations?.[0]?.count ?? 0}</td>
                     <td className="p-3">
                       <div className="flex justify-end gap-2">
-                        <button onClick={() => setRegsFor(e)} className="rounded-md border border-white/10 p-2" title="Ver inscritos"><Users className="size-4" /></button>
-                        <button onClick={() => { setEditing(e); setShowForm(true); }} className="rounded-md border border-white/10 p-2"><Edit3 className="size-4" /></button>
-                        <button onClick={() => { if (confirm("Remover evento?")) delMut.mutate(e.id); }} className="rounded-md border border-white/10 p-2 text-red-400"><Trash2 className="size-4" /></button>
+                        <button
+                          onClick={() => setRegsFor(e)}
+                          className="rounded-md border border-white/10 p-2"
+                          title="Ver inscritos"
+                        >
+                          <Users className="size-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setEditing(e);
+                            setShowForm(true);
+                          }}
+                          className="rounded-md border border-white/10 p-2"
+                        >
+                          <Edit3 className="size-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (confirm("Remover evento?")) delMut.mutate(e.id);
+                          }}
+                          className="rounded-md border border-white/10 p-2 text-red-400"
+                        >
+                          <Trash2 className="size-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>
                 ))}
                 {(events ?? []).length === 0 && (
-                  <tr><td colSpan={5} className="p-6 text-center text-muted-foreground">Nenhum evento ainda.</td></tr>
+                  <tr>
+                    <td colSpan={5} className="p-6 text-center text-muted-foreground">
+                      Nenhum evento ainda.
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
@@ -133,18 +179,27 @@ function AdminEventosPage() {
       {showForm && (
         <EventFormModal
           initial={editing}
-          onClose={() => { setShowForm(false); setEditing(null); }}
+          onClose={() => {
+            setShowForm(false);
+            setEditing(null);
+          }}
           onSaved={() => qc.invalidateQueries({ queryKey: ["admin-events"] })}
         />
       )}
-      {regsFor && (
-        <RegistrationsModal event={regsFor} onClose={() => setRegsFor(null)} />
-      )}
+      {regsFor && <RegistrationsModal event={regsFor} onClose={() => setRegsFor(null)} />}
     </div>
   );
 }
 
-function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | null; onClose: () => void; onSaved: () => void }) {
+function EventFormModal({
+  initial,
+  onClose,
+  onSaved,
+}: {
+  initial: EventRow | null;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
   const isEdit = !!initial;
   const [form, setForm] = useState<any>(() => ({
     slug: initial?.slug ?? "",
@@ -152,6 +207,7 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
     subtitle: initial?.subtitle ?? "",
     description: initial?.description ?? "",
     image_url: initial?.image_url ?? "",
+    location: initial?.location ?? "",
     starts_at: initial?.starts_at ? new Date(initial.starts_at).toISOString().slice(0, 16) : "",
     ends_at: initial?.ends_at ? new Date(initial.ends_at).toISOString().slice(0, 16) : "",
     price_full_cents: initial?.price_full_cents ?? "",
@@ -166,7 +222,9 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
   const update = useServerFn(updateEvent);
   const [saving, setSaving] = useState(false);
 
-  function set<K extends string>(k: K, v: any) { setForm((f: any) => ({ ...f, [k]: v })); }
+  function set<K extends string>(k: K, v: any) {
+    setForm((f: any) => ({ ...f, [k]: v }));
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -175,7 +233,9 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
       const toCents = (v: any) => {
         if (v === "" || v == null) return null;
         // Accept "297" or "297,00" or "R$ 297,00"
-        const digits = String(v).replace(/[^\d,.-]/g, "").replace(",", ".");
+        const digits = String(v)
+          .replace(/[^\d,.-]/g, "")
+          .replace(",", ".");
         const num = Number(digits);
         if (Number.isNaN(num)) return null;
         return Math.round(num * 100);
@@ -205,36 +265,137 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 p-4">
-      <form onSubmit={submit} className="my-8 w-full max-w-3xl rounded-2xl border border-white/10 bg-background p-6">
+      <form
+        onSubmit={submit}
+        className="my-8 w-full max-w-3xl rounded-2xl border border-white/10 bg-background p-6"
+      >
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">{isEdit ? "Editar evento" : "Novo evento"}</h2>
-          <button type="button" onClick={onClose} className="text-sm text-muted-foreground">Fechar</button>
+          <button type="button" onClick={onClose} className="text-sm text-muted-foreground">
+            Fechar
+          </button>
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <Field label="Título"><input required value={form.title} onChange={(e) => set("title", e.target.value)} className={inputCls} /></Field>
-          <Field label="Slug (URL)"><input required value={form.slug} onChange={(e) => set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))} className={inputCls} /></Field>
-          <Field label="Subtítulo" full><input value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} className={inputCls} /></Field>
-          <Field label="Descrição (aceita markdown simples)" full>
-            <textarea value={form.description} onChange={(e) => set("description", e.target.value)} rows={10} className={inputCls} />
+          <Field label="Título">
+            <input
+              required
+              value={form.title}
+              onChange={(e) => set("title", e.target.value)}
+              className={inputCls}
+            />
           </Field>
-          <Field label="URL da imagem"><input value={form.image_url} onChange={(e) => set("image_url", e.target.value)} placeholder="https://…" className={inputCls} /></Field>
-          <Field label="Capacidade"><input type="number" value={form.capacity ?? ""} onChange={(e) => set("capacity", e.target.value)} className={inputCls} /></Field>
-          <Field label="Início"><input type="datetime-local" value={form.starts_at} onChange={(e) => set("starts_at", e.target.value)} className={inputCls} /></Field>
-          <Field label="Fim"><input type="datetime-local" value={form.ends_at} onChange={(e) => set("ends_at", e.target.value)} className={inputCls} /></Field>
+          <Field label="Slug (URL)">
+            <input
+              required
+              value={form.slug}
+              onChange={(e) =>
+                set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))
+              }
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Subtítulo" full>
+            <input
+              value={form.subtitle}
+              onChange={(e) => set("subtitle", e.target.value)}
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Descrição (aceita markdown simples)" full>
+            <textarea
+              value={form.description}
+              onChange={(e) => set("description", e.target.value)}
+              rows={10}
+              className={inputCls}
+            />
+          </Field>
+          <Field label="URL da imagem">
+            <input
+              value={form.image_url}
+              onChange={(e) => set("image_url", e.target.value)}
+              placeholder="https://…"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Local (ex.: Online — Google Meet, ou endereço presencial)">
+            <input
+              value={form.location}
+              onChange={(e) => set("location", e.target.value)}
+              placeholder="Online — Google Meet"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Capacidade">
+            <input
+              type="number"
+              value={form.capacity ?? ""}
+              onChange={(e) => set("capacity", e.target.value)}
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Início">
+            <input
+              type="datetime-local"
+              value={form.starts_at}
+              onChange={(e) => set("starts_at", e.target.value)}
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Fim">
+            <input
+              type="datetime-local"
+              value={form.ends_at}
+              onChange={(e) => set("ends_at", e.target.value)}
+              className={inputCls}
+            />
+          </Field>
           <Field label="Valor cheio (ex.: 297)">
-            <input value={form.price_full_cents} onChange={(e) => set("price_full_cents", e.target.value)} placeholder="297" className={inputCls} />
+            <input
+              value={form.price_full_cents}
+              onChange={(e) => set("price_full_cents", e.target.value)}
+              placeholder="297"
+              className={inputCls}
+            />
           </Field>
           <Field label="Valor promocional (ex.: 0 para cortesia)">
-            <input value={form.price_promo_cents} onChange={(e) => set("price_promo_cents", e.target.value)} placeholder="0" className={inputCls} />
+            <input
+              value={form.price_promo_cents}
+              onChange={(e) => set("price_promo_cents", e.target.value)}
+              placeholder="0"
+              className={inputCls}
+            />
           </Field>
           <Field label="Nota de preço (ex.: Cortesia PO2)" full>
-            <input value={form.price_note} onChange={(e) => set("price_note", e.target.value)} placeholder="Cortesia PO2" className={inputCls} />
+            <input
+              value={form.price_note}
+              onChange={(e) => set("price_note", e.target.value)}
+              placeholder="Cortesia PO2"
+              className={inputCls}
+            />
           </Field>
-          <Field label="Link do Google Meet"><input value={form.meet_url} onChange={(e) => set("meet_url", e.target.value)} placeholder="https://meet.google.com/…" className={inputCls} /></Field>
-          <Field label="WhatsApp (link do grupo OU número com DDD)"><input value={form.whatsapp_url} onChange={(e) => set("whatsapp_url", e.target.value)} placeholder="https://chat.whatsapp.com/… ou 5541999999999" className={inputCls} /></Field>
+          <Field label="Link do Google Meet">
+            <input
+              value={form.meet_url}
+              onChange={(e) => set("meet_url", e.target.value)}
+              placeholder="https://meet.google.com/…"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="WhatsApp (link do grupo OU número com DDD)">
+            <input
+              value={form.whatsapp_url}
+              onChange={(e) => set("whatsapp_url", e.target.value)}
+              placeholder="https://chat.whatsapp.com/… ou 5541999999999"
+              className={inputCls}
+            />
+          </Field>
           <Field label="Status">
-            <select value={form.status} onChange={(e) => set("status", e.target.value)} className={inputCls}>
+            <select
+              value={form.status}
+              onChange={(e) => set("status", e.target.value)}
+              className={inputCls}
+            >
               <option value="draft">Rascunho</option>
               <option value="published">Publicado</option>
               <option value="archived">Arquivado</option>
@@ -243,8 +404,17 @@ function EventFormModal({ initial, onClose, onSaved }: { initial: EventRow | nul
         </div>
 
         <div className="mt-6 flex justify-end gap-3">
-          <button type="button" onClick={onClose} className="rounded-full border border-white/10 px-4 py-2 text-sm">Cancelar</button>
-          <button disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-sm font-bold text-gold-foreground disabled:opacity-60">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-full border border-white/10 px-4 py-2 text-sm"
+          >
+            Cancelar
+          </button>
+          <button
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-sm font-bold text-gold-foreground disabled:opacity-60"
+          >
             {saving && <Loader2 className="size-4 animate-spin" />} Salvar
           </button>
         </div>
@@ -262,16 +432,24 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
   const [copied, setCopied] = useState(false);
 
   function exportCsv() {
-    const rows = [["nome","email","whatsapp","data"], ...(data ?? []).map((r: any) => [r.name, r.email, r.whatsapp ?? "", r.created_at])];
-    const csv = rows.map((r) => r.map((c: any) => `"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n");
+    const rows = [
+      ["nome", "email", "whatsapp", "data"],
+      ...(data ?? []).map((r: any) => [r.name, r.email, r.whatsapp ?? "", r.created_at]),
+    ];
+    const csv = rows
+      .map((r) => r.map((c: any) => `"${String(c).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `inscricoes-${event.slug}.csv`; a.click();
+    a.download = `inscricoes-${event.slug}.csv`;
+    a.click();
   }
   function copyEmails() {
     const emails = (data ?? []).map((r: any) => r.email).join(", ");
-    navigator.clipboard.writeText(emails); setCopied(true); setTimeout(() => setCopied(false), 1500);
+    navigator.clipboard.writeText(emails);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   }
 
   return (
@@ -279,14 +457,27 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
       <div className="my-8 w-full max-w-3xl rounded-2xl border border-white/10 bg-background p-6">
         <div className="flex items-center justify-between">
           <div>
-            <button onClick={onClose} className="inline-flex items-center gap-1 text-xs text-muted-foreground"><ArrowLeft className="size-3" /> Voltar</button>
+            <button
+              onClick={onClose}
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground"
+            >
+              <ArrowLeft className="size-3" /> Voltar
+            </button>
             <h2 className="mt-1 text-lg font-semibold">Inscrições — {event.title}</h2>
           </div>
           <div className="flex gap-2">
-            <button onClick={copyEmails} className="inline-flex items-center gap-1 rounded-full border border-white/10 px-3 py-1.5 text-xs">
+            <button
+              onClick={copyEmails}
+              className="inline-flex items-center gap-1 rounded-full border border-white/10 px-3 py-1.5 text-xs"
+            >
               {copied ? <Check className="size-3" /> : <Copy className="size-3" />} Copiar emails
             </button>
-            <button onClick={exportCsv} className="rounded-full bg-gold px-3 py-1.5 text-xs font-bold text-gold-foreground">Exportar CSV</button>
+            <button
+              onClick={exportCsv}
+              className="rounded-full bg-gold px-3 py-1.5 text-xs font-bold text-gold-foreground"
+            >
+              Exportar CSV
+            </button>
           </div>
         </div>
         <div className="mt-4 max-h-[60vh] overflow-y-auto rounded-lg border border-white/10">
@@ -297,7 +488,12 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
           ) : (
             <table className="w-full text-sm">
               <thead className="bg-white/5 text-left text-xs uppercase text-muted-foreground">
-                <tr><th className="p-3">Nome</th><th className="p-3">Email</th><th className="p-3">WhatsApp</th><th className="p-3">Data</th></tr>
+                <tr>
+                  <th className="p-3">Nome</th>
+                  <th className="p-3">Email</th>
+                  <th className="p-3">WhatsApp</th>
+                  <th className="p-3">Data</th>
+                </tr>
               </thead>
               <tbody>
                 {(data ?? []).map((r: any) => (
@@ -317,9 +513,18 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
   );
 }
 
-const inputCls = "w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm outline-none focus:border-gold/60";
+const inputCls =
+  "w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm outline-none focus:border-gold/60";
 
-function Field({ label, children, full }: { label: string; children: React.ReactNode; full?: boolean }) {
+function Field({
+  label,
+  children,
+  full,
+}: {
+  label: string;
+  children: React.ReactNode;
+  full?: boolean;
+}) {
   return (
     <div className={full ? "md:col-span-2" : ""}>
       <label className="mb-1 block text-xs font-medium text-muted-foreground">{label}</label>

@@ -38,20 +38,20 @@ export const getEventById = createServerFn({ method: "GET" })
     return row;
   });
 
-const looseUrl = z
-  .string()
-  .trim()
-  .max(1000)
-  .optional()
-  .nullable()
-  .or(z.literal(""));
+const looseUrl = z.string().trim().max(1000).optional().nullable().or(z.literal(""));
 
 const eventSchema = z.object({
-  slug: z.string().trim().min(2).max(120).regex(/^[a-z0-9-]+$/, "slug: minúsculas, números e hífen"),
+  slug: z
+    .string()
+    .trim()
+    .min(2)
+    .max(120)
+    .regex(/^[a-z0-9-]+$/, "slug: minúsculas, números e hífen"),
   title: z.string().trim().min(2).max(200),
   subtitle: z.string().trim().max(300).optional().nullable(),
   description: z.string().max(20000).default(""),
   image_url: looseUrl,
+  location: z.string().trim().max(200).optional().nullable(),
   starts_at: z.string().optional().nullable().or(z.literal("")),
   ends_at: z.string().optional().nullable().or(z.literal("")),
   price_full_cents: z.number().int().nonnegative().optional().nullable(),
@@ -69,6 +69,7 @@ function normalize(input: any) {
     ...input,
     subtitle: empty(input.subtitle),
     image_url: empty(input.image_url),
+    location: empty(input.location),
     starts_at: empty(input.starts_at),
     ends_at: empty(input.ends_at),
     meet_url: empty(input.meet_url),

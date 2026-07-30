@@ -5,11 +5,9 @@ import type { Database } from "@/integrations/supabase/types";
 import { toWhatsappUrl } from "./whatsapp";
 
 function publicClient() {
-  return createClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
-  );
+  return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+  });
 }
 
 export type PublicEvent = {
@@ -19,12 +17,14 @@ export type PublicEvent = {
   subtitle: string | null;
   description: string;
   image_url: string | null;
+  location: string | null;
   starts_at: string | null;
   ends_at: string | null;
   price_full_cents: number | null;
   price_promo_cents: number | null;
   price_note: string | null;
   capacity: number | null;
+  whatsapp_url: string | null;
 };
 
 export const getPublishedEvents = createServerFn({ method: "GET" }).handler(async () => {
@@ -32,7 +32,7 @@ export const getPublishedEvents = createServerFn({ method: "GET" }).handler(asyn
   const { data, error } = await supabase
     .from("events")
     .select(
-      "id, slug, title, subtitle, description, image_url, starts_at, ends_at, price_full_cents, price_promo_cents, price_note, capacity",
+      "id, slug, title, subtitle, description, image_url, location, starts_at, ends_at, price_full_cents, price_promo_cents, price_note, capacity, whatsapp_url",
     )
     .eq("status", "published")
     .order("starts_at", { ascending: true, nullsFirst: false })
@@ -110,7 +110,9 @@ export const registerForEvent = createServerFn({ method: "POST" })
 // Look up a certificate by token → used by the download form on the site.
 export const findCertificateByEmail = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) =>
-    z.object({ eventId: z.string().uuid(), email: z.string().trim().toLowerCase().email() }).parse(d),
+    z
+      .object({ eventId: z.string().uuid(), email: z.string().trim().toLowerCase().email() })
+      .parse(d),
   )
   .handler(async ({ data }) => {
     const supabase = publicClient();

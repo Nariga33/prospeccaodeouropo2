@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useQuery } from "@tanstack/react-query";
 import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
@@ -9,6 +11,7 @@ import { MethodologyDialog, type Methodology } from "@/components/po2/Methodolog
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
+import { getPublishedCourses } from "@/lib/courses.functions";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -21,6 +24,7 @@ import {
   Wallet,
   Check,
   ArrowRight,
+  ExternalLink,
   Sparkles,
   Search,
   MessageSquare,
@@ -42,6 +46,7 @@ import {
   ShieldQuestion,
   BookOpen,
   Repeat,
+  Loader2,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -79,15 +84,16 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
+        <Founder />
         <ProblemVsMethod />
         <Thesis />
         <Method />
         <Mentoria />
         <EventosTeaser />
+        <Cursos />
         <Pitch />
 
         <Methodologies />
-        <Founder />
         <Cases />
         <CostComparison />
         <Pricing />
@@ -209,41 +215,86 @@ function Hero() {
   );
 }
 
+// Indicadores de autoridade — edite os valores livremente conforme os números crescem.
+const AUTHORITY_INDICATORS = [
+  { v: "+30", l: "Empresas atendidas" },
+  { v: "+40", l: "Operações estruturadas" },
+  { v: "+1k", l: "Reuniões geradas" },
+  { v: "+5k", l: "Leads prospectados" },
+  { v: "+200", l: "Horas de mentoria" },
+];
+
 function Founder() {
-  const stats = [
-    { v: "24", l: "Anos de idade" },
-    { v: "+4", l: "Anos em ops outbound" },
-    { v: "+100k", l: "Ligações realizadas" },
-    { v: "+5k", l: "Empresas prospectadas" },
-    { v: "+1k", l: "Agendas qualificadas" },
-    { v: "+R$2M", l: "Receita gerada" },
-  ];
   return (
     <section id="fundador" className="border-b border-white/5 bg-surface/40">
-      <div className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid gap-12 lg:grid-cols-[0.5fr_1fr] lg:items-center">
-          <div>
-            <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-              <span className={goldRule} /> Quem está por trás
-            </div>
-            <h2 className="font-display text-5xl text-foreground">Matheus Staruck</h2>
-            <p className="mt-4 text-muted-foreground">
-              Fundador da PO2. Especialista em operações outbound B2B — método validado em campo,
-              não em teoria.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3">
-            {stats.map((s) => (
-              <div key={s.l} className="bg-card/80 p-6">
-                <div className="font-display text-3xl text-gold">
-                  <CountUp value={s.v} />
-                </div>
-                <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  {s.l}
-                </div>
+      <div className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+          <span className={goldRule} /> Quem está por trás
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          {/* FOTO_MATHEUS: quando tiver a foto, importe-a no topo do arquivo
+              (ex.: import matheusPhoto from "@/assets/matheus-staruck.jpg";)
+              e troque o bloco do placeholder abaixo por:
+              <img src={matheusPhoto} alt="Matheus Staruck" className="h-full w-full object-cover" /> */}
+          <div className="relative">
+            <div className="absolute -inset-4 -z-10 rounded-3xl bg-gold/10 blur-3xl" />
+            <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-black/40">
+              <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-gold/10 via-transparent to-transparent text-center">
+                <Users className="size-12 text-gold/40" />
+                <span className="px-8 text-xs text-muted-foreground">
+                  Foto profissional de Matheus Staruck
+                </span>
               </div>
-            ))}
+            </div>
           </div>
+
+          <div>
+            <h2 className="font-display text-5xl text-foreground">Matheus Staruck</h2>
+            <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
+              Founder &amp; CEO — PO2 Prospecção de Ouro 2.0
+            </p>
+
+            <div className="mt-6 space-y-4 text-muted-foreground">
+              <p>
+                Nasci em Torres, Rio Grande do Sul, mas fui criado em Arroio do Sal. Sou filho de um
+                construtor civil e de uma professora que, ao longo do tempo, se tornou empresária no
+                segmento de eventos — foi acompanhando essa trajetória que aprendi desde cedo sobre
+                relacionamento com clientes, negociação e fechamento de contratos.
+              </p>
+              <p>
+                Meu lado empreendedor começou muito cedo: desde os 12 anos eu buscava maneiras de
+                ganhar dinheiro fazendo pequenos serviços e negociando produtos no Marketplace do
+                Facebook — o "Brick", como a gente chama aqui no sul. Depois vieram os estudos em
+                Tecnologia da Informação e a manutenção de computadores pra conhecidos e familiares,
+                até passar pelo varejo.
+              </p>
+              <p>
+                Foi na Hub7 que mergulhei de vez no universo da prospecção B2B, outbound e
+                desenvolvimento comercial — participando da construção de operações comerciais,
+                estruturação de processos, criação de cadências, treinamento de equipes e
+                negociações estratégicas.
+              </p>
+              <p>
+                Toda essa experiência resultou na criação da PO2, onde hoje ajudo empresas a criarem
+                operações comerciais previsíveis através de metodologia, processos, tecnologia e
+                inteligência comercial.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3 lg:grid-cols-5">
+          {AUTHORITY_INDICATORS.map((s) => (
+            <div key={s.l} className="bg-card/80 p-6">
+              <div className="font-display text-3xl text-gold">
+                <CountUp value={s.v} />
+              </div>
+              <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {s.l}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -558,6 +609,92 @@ function Method() {
 
           <CadenceMockup />
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Cursos() {
+  const get = useServerFn(getPublishedCourses);
+  const { data: courses, isLoading } = useQuery({
+    queryKey: ["public-courses"],
+    queryFn: () => get(),
+  });
+
+  if (!isLoading && (!courses || courses.length === 0)) return null;
+
+  return (
+    <section id="cursos" className="border-b border-white/5 bg-surface/40">
+      <div className="mx-auto max-w-7xl px-6 py-24">
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+              <span className={goldRule} /> Cursos
+            </div>
+            <h2 className="max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
+              Aprenda o método{" "}
+              <span className="font-display font-normal italic text-gold">no seu ritmo.</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-muted-foreground">
+            Conteúdo prático de prospecção B2B para quem quer aplicar o método PO2 dentro de casa.
+          </p>
+        </div>
+
+        {isLoading ? (
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Loader2 className="size-4 animate-spin" /> Carregando cursos…
+          </div>
+        ) : (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {courses!.map((c) => (
+              <div
+                key={c.id}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-card/70 transition-all hover:-translate-y-1 hover:border-gold/40"
+              >
+                <div className="relative aspect-[16/9] overflow-hidden bg-black">
+                  {c.image_url ? (
+                    <img
+                      src={c.image_url}
+                      alt={c.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gold/10 to-transparent">
+                      <GraduationCap className="size-10 text-gold/40" />
+                    </div>
+                  )}
+                  {c.platform && (
+                    <span className="absolute left-3 top-3 rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-gold backdrop-blur">
+                      {c.platform}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-lg font-bold">{c.title}</h3>
+                  {c.description && (
+                    <p className="mt-2 flex-1 text-sm text-muted-foreground">{c.description}</p>
+                  )}
+                  {c.link_url ? (
+                    <a
+                      href={c.link_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(197,160,89,0.3)]"
+                    >
+                      {c.cta_label || "Acessar curso"} <ExternalLink className="size-3.5" />
+                    </a>
+                  ) : (
+                    <span className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm font-semibold text-muted-foreground">
+                      Em breve
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1144,6 +1281,24 @@ function Mentoria() {
                   <ChevronRight className="size-4" />
                 </button>
               </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              {[
+                { icon: Compass, l: "Acompanhamento prático" },
+                { icon: BookOpen, l: "Templates" },
+                { icon: ClipboardList, l: "Materiais complementares" },
+                { icon: Users, l: "Comunidade" },
+                { icon: Calendar, l: "Encontros ao vivo" },
+              ].map((b) => (
+                <div
+                  key={b.l}
+                  className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-card/60 p-4 text-center"
+                >
+                  <b.icon className="size-5 text-gold" />
+                  <span className="text-xs font-semibold text-foreground/85">{b.l}</span>
+                </div>
+              ))}
             </div>
 
             <DiagnosticDialog

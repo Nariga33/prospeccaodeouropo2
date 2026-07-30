@@ -5,7 +5,12 @@ import logo from "@/assets/po2-logo.png";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { PO2_PHONE_DISPLAY, PO2_WHATSAPP_URL } from "@/lib/contact";
 import {
-  Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger,
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 
 const ctaPrimary =
@@ -15,7 +20,9 @@ const LINKS = [
   { href: "/#metodo", label: "Método" },
   { href: "/#mentoria", label: "Mentoria" },
   { href: "/eventos", label: "Eventos", isRoute: true },
+  { href: "/#cursos", label: "Cursos" },
   { href: "/#metodologias", label: "Metodologias" },
+  { href: "/#fundador", label: "Sobre" },
   { href: "/#fundador", label: "Fundador" },
   { href: "/#casos", label: "Resultados" },
   { href: "/#planos", label: "Planos" },
@@ -35,7 +42,7 @@ export function Nav() {
           {LINKS.map((link) =>
             link.isRoute ? (
               <Link
-                key={link.href}
+                key={link.label}
                 to={link.href}
                 className="transition-colors hover:text-gold"
                 activeProps={{ className: "text-gold" }}
@@ -43,7 +50,7 @@ export function Nav() {
                 {link.label}
               </Link>
             ) : (
-              <a key={link.href} href={link.href} className="transition-colors hover:text-gold">
+              <a key={link.label} href={link.href} className="transition-colors hover:text-gold">
                 {link.label}
               </a>
             ),
@@ -52,7 +59,13 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
-            <DiagnosticDialog trigger={<button className={ctaPrimary}>Diagnóstico gratuito <ArrowRight className="size-4" /></button>} />
+            <DiagnosticDialog
+              trigger={
+                <button className={ctaPrimary}>
+                  Diagnóstico gratuito <ArrowRight className="size-4" />
+                </button>
+              }
+            />
           </div>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -64,7 +77,10 @@ export function Nav() {
                 <Menu className="size-5" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="flex w-[85vw] max-w-sm flex-col border-white/10 bg-background sm:max-w-sm">
+            <SheetContent
+              side="right"
+              className="flex w-[85vw] max-w-sm flex-col border-white/10 bg-background sm:max-w-sm"
+            >
               <SheetHeader>
                 <SheetTitle className="text-left">
                   <img src={logo} alt="PO2" className="h-9 w-auto" />
@@ -74,7 +90,7 @@ export function Nav() {
               <nav className="mt-6 flex flex-1 flex-col gap-1 text-base font-medium">
                 {LINKS.map((link) =>
                   link.isRoute ? (
-                    <SheetClose asChild key={link.href}>
+                    <SheetClose asChild key={link.label}>
                       <Link
                         to={link.href}
                         className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
@@ -83,7 +99,7 @@ export function Nav() {
                       </Link>
                     </SheetClose>
                   ) : (
-                    <SheetClose asChild key={link.href}>
+                    <SheetClose asChild key={link.label}>
                       <a
                         href={link.href}
                         className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"

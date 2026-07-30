@@ -20,14 +20,11 @@ import {
   CalendarPlus,
   Download,
   Award,
+  MapPin,
+  MessageCircle,
 } from "lucide-react";
 import { toast } from "sonner";
-import {
-  googleCalendarUrl,
-  buildIcs,
-  downloadIcs,
-  formatPriceCents,
-} from "@/lib/calendar";
+import { googleCalendarUrl, buildIcs, downloadIcs, formatPriceCents } from "@/lib/calendar";
 
 function formatDate(iso: string | null) {
   if (!iso) return "Em breve";
@@ -65,7 +62,10 @@ export function Eventos() {
   const [certFor, setCertFor] = useState<PublicEvent | null>(null);
 
   return (
-    <section id="eventos" className="border-t border-white/5 bg-gradient-to-b from-black to-background py-24">
+    <section
+      id="eventos"
+      className="border-t border-white/5 bg-gradient-to-b from-black to-background py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mx-auto flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
@@ -75,8 +75,8 @@ export function Eventos() {
             Encontros ao vivo com quem vive prospecção todos os dias.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Masterclasses online, íntimas e limitadas. Inscreva-se para receber o link do Meet, adicionar à agenda
-            e garantir seu certificado de participação.
+            Masterclasses online, íntimas e limitadas. Inscreva-se para receber o link do Meet,
+            adicionar à agenda e garantir seu certificado de participação.
           </p>
         </div>
 
@@ -120,10 +120,7 @@ function PriceTag({ event, size = "sm" }: { event: PublicEvent; size?: "sm" | "l
 
   if (!full && !promo) return null;
 
-  const bigCls =
-    size === "lg"
-      ? "text-2xl font-bold text-gold"
-      : "text-sm font-bold text-gold";
+  const bigCls = size === "lg" ? "text-2xl font-bold text-gold" : "text-sm font-bold text-gold";
   const strikeCls =
     size === "lg"
       ? "text-base text-muted-foreground/80 line-through"
@@ -188,6 +185,11 @@ function EventCard({
         {event.subtitle && (
           <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{event.subtitle}</p>
         )}
+        {event.location && (
+          <div className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
+            <MapPin className="size-3 text-gold" /> {event.location}
+          </div>
+        )}
 
         <div className="mt-4 flex items-center gap-2">
           <button
@@ -196,6 +198,17 @@ function EventCard({
           >
             Quero participar <ExternalLink className="size-3" />
           </button>
+          {event.whatsapp_url && (
+            <a
+              href={event.whatsapp_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Solicitar informações via WhatsApp"
+              className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/5 px-3 py-2 text-xs font-semibold text-gold hover:bg-gold/10"
+            >
+              <MessageCircle className="size-3.5" />
+            </a>
+          )}
           {past && (
             <button
               onClick={onCertificate}
@@ -217,7 +230,8 @@ function InvitationHeader({ event }: { event: PublicEvent }) {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.15),transparent_60%)]" />
       <div className="relative">
         <div className="mx-auto mb-4 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">
-          <span className="h-px w-8 bg-gold/50" /> Convite oficial PO2 <span className="h-px w-8 bg-gold/50" />
+          <span className="h-px w-8 bg-gold/50" /> Convite oficial PO2{" "}
+          <span className="h-px w-8 bg-gold/50" />
         </div>
         <p className="font-[Instrument_Serif] text-xl italic text-white/70">
           Você está convidado(a) para a
@@ -225,12 +239,15 @@ function InvitationHeader({ event }: { event: PublicEvent }) {
         <h3 className="mt-1 font-[Instrument_Serif] text-3xl leading-tight text-white md:text-4xl">
           {event.title}
         </h3>
-        {event.subtitle && (
-          <p className="mt-3 text-sm text-gold/90">{event.subtitle}</p>
-        )}
+        {event.subtitle && <p className="mt-3 text-sm text-gold/90">{event.subtitle}</p>}
         <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-black/40 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
           <Calendar className="size-3.5 text-gold" /> {formatDate(event.starts_at)}
         </div>
+        {event.location && (
+          <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-black/40 px-4 py-1.5 text-xs text-white/80 backdrop-blur">
+            <MapPin className="size-3.5 text-gold" /> {event.location}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -316,9 +333,7 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
                 <div className="flex items-center gap-1 text-gold">
                   <Users2 className="size-3" /> Vagas limitadas
                 </div>
-                {event.capacity && (
-                  <div className="mt-1">Máx. {event.capacity} participantes</div>
-                )}
+                {event.capacity && <div className="mt-1">Máx. {event.capacity} participantes</div>}
               </div>
             </div>
           </div>
@@ -440,7 +455,8 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
                         <Award className="size-3.5" /> Seu certificado
                       </div>
                       <p className="mt-1 text-muted-foreground">
-                        Após o término do evento, seu certificado ficará disponível para download aqui.
+                        Após o término do evento, seu certificado ficará disponível para download
+                        aqui.
                       </p>
                       {isPast(event.ends_at) && (
                         <a
@@ -497,9 +513,7 @@ function CertificateDialog({ event, onClose }: { event: PublicEvent; onClose: ()
         </button>
         <Award className="mx-auto size-8 text-gold" />
         <h3 className="mt-3 font-[Instrument_Serif] text-2xl">Baixar meu certificado</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {event.title}
-        </p>
+        <p className="mt-1 text-sm text-muted-foreground">{event.title}</p>
         <form onSubmit={submit} className="mt-6 space-y-3">
           <input
             required
