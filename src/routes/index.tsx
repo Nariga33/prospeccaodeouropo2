@@ -13,6 +13,7 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
 import { OutboundHub } from "@/components/po2/OutboundHub";
+import { Testimonials } from "@/components/po2/Testimonials";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -99,6 +100,7 @@ function LandingPage() {
 
         <Methodologies />
         <Cases />
+        <Testimonials />
         <ParceirosTeaser />
         <CostComparison />
         <FinalCta />
