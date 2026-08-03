@@ -50,7 +50,7 @@ export function OutboundHub() {
           <div className="relative mx-auto flex items-center justify-center">
             <svg
               viewBox={`0 0 ${size} ${size}`}
-              className="h-[420px] w-[420px] max-w-full overflow-visible"
+              className="aspect-square w-full max-w-[420px] overflow-visible"
             >
               <defs>
                 <radialGradient id="po2HubGlow" cx="50%" cy="50%" r="50%">

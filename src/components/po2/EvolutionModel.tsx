@@ -129,7 +129,7 @@ function JourneyMindMap() {
       >
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="h-[380px] w-[380px] max-w-full overflow-visible"
+          className="aspect-square w-full max-w-[380px] overflow-visible"
         >
           <defs>
             <radialGradient id="po2JourneyGlow" cx="50%" cy="50%" r="50%">
@@ -312,7 +312,7 @@ function CrescerCycle() {
       >
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="h-[380px] w-[380px] max-w-full overflow-visible"
+          className="aspect-square w-full max-w-[380px] overflow-visible"
         >
           <defs>
             <radialGradient id="po2CycleGlow" cx="50%" cy="50%" r="50%">

@@ -358,16 +358,19 @@ function ProblemVsMethod() {
         </blockquote>
 
         <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
-          <div className="grid grid-cols-2 border-b border-white/10 bg-white/5 text-[11px] font-bold uppercase tracking-[0.25em]">
+          <div className="grid grid-cols-1 border-b border-white/10 bg-white/5 text-[11px] font-bold uppercase tracking-[0.25em] sm:grid-cols-2">
             <div className="flex items-center gap-2 px-6 py-4 text-red-400/80">
               <span className="size-1.5 rounded-full bg-red-400/70" /> Sem método
             </div>
-            <div className="flex items-center gap-2 border-l border-white/10 px-6 py-4 text-gold">
+            <div className="flex items-center gap-2 border-t border-white/10 px-6 py-4 text-gold sm:border-l sm:border-t-0">
               <span className="size-1.5 rounded-full bg-gold" /> Com PO2
             </div>
           </div>
           {rows.map((r) => (
-            <div key={r.bad} className="grid grid-cols-2 border-b border-white/5 last:border-b-0">
+            <div
+              key={r.bad}
+              className="grid grid-cols-1 border-b border-white/5 last:border-b-0 sm:grid-cols-2"
+            >
               <div className="flex gap-4 bg-card/40 p-6">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-red-400/20 bg-red-400/5 text-red-400/80">
                   <r.badIcon className="size-5" />
@@ -377,7 +380,7 @@ function ProblemVsMethod() {
                   <p className="mt-1 text-sm text-muted-foreground">{r.badDesc}</p>
                 </div>
               </div>
-              <div className="flex gap-4 border-l border-white/10 bg-card/70 p-6">
+              <div className="flex gap-4 border-t border-white/10 bg-card/70 p-6 sm:border-l sm:border-t-0">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
                   <r.goodIcon className="size-5" />
                 </div>
