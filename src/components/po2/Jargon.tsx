@@ -10,6 +10,26 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     full: "Business Development Representative",
     desc: "Profissional de prospecção ativa (outbound). Gera reunião com lead frio.",
   },
+  SDR: {
+    full: "Sales Development Representative",
+    desc: "Profissional de qualificação inbound. Recebe o lead que já demonstrou interesse e decide se está pronto pro closer.",
+  },
+  MQL: {
+    full: "Marketing Qualified Lead",
+    desc: "Lead que engajou com marketing (baixou material, se inscreveu, visitou páginas-chave) mas ainda não foi validado por vendas.",
+  },
+  PQL: {
+    full: "Product Qualified Lead",
+    desc: "Lead que já usou o produto (trial, freemium) e demonstrou intenção de compra pelo comportamento de uso.",
+  },
+  SAL: {
+    full: "Sales Accepted Lead",
+    desc: "Lead que o SDR validou e o time de vendas aceitou trabalhar — passou no filtro mínimo de fit.",
+  },
+  SQL: {
+    full: "Sales Qualified Lead",
+    desc: "Lead qualificado e pronto pra proposta — já validado por critério (BANT, CHAMP) e com reunião agendada.",
+  },
   MRR: {
     full: "Monthly Recurring Revenue",
     desc: "Receita recorrente mensal — quanto entra todo mês de forma previsível.",
@@ -72,10 +92,7 @@ export function Jargon({ term, children }: JargonProps) {
           <span className="ml-0.5 align-super text-[0.6em] font-bold text-gold">*</span>
         </button>
       </PopoverTrigger>
-      <PopoverContent
-        side="top"
-        className="max-w-xs border-gold/30 bg-card text-foreground"
-      >
+      <PopoverContent side="top" className="max-w-xs border-gold/30 bg-card text-foreground">
         <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
           {term}
           {def.full ? ` · ${def.full}` : ""}

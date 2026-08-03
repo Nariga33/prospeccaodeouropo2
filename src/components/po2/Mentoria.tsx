@@ -77,7 +77,8 @@ export function Mentoria() {
           </>,
           <>Listas direcionadas reduzem custo por reunião e encurtam o ciclo.</>,
           <>
-            ICP escrito alinha marketing, <Jargon term="BDR">BDR</Jargon> e closer no mesmo perfil.
+            ICP escrito alinha marketing, <Jargon term="BDR">BDR</Jargon>/
+            <Jargon term="SDR">SDR</Jargon> e closer no mesmo perfil.
           </>,
         ],
       },
@@ -175,10 +176,11 @@ export function Mentoria() {
         headline: "-67%",
         subtitle: (
           <>
-            no ramp-up de um novo <Jargon term="BDR">BDR</Jargon> com playbook estruturado.
+            no ramp-up de um novo <Jargon term="BDR">BDR</Jargon> ou <Jargon term="SDR">SDR</Jargon>{" "}
+            com playbook estruturado.
           </>
         ),
-        axisLabel: "Dias até novo BDR bater meta",
+        axisLabel: "Dias até novo BDR/SDR bater meta",
         unit: " dias",
         data: [
           { name: "Sem playbook", value: 90, bad: true },
@@ -218,8 +220,9 @@ export function Mentoria() {
       label: "Para quem é",
       desc: (
         <>
-          Fundadores, gestores e times de <Jargon term="Outbound">prospecção ativa</Jargon> que já
-          vendem, mas dependem de esforço heróico.
+          Fundadores, gestores e times de <Jargon term="Outbound">prospecção ativa</Jargon> ou{" "}
+          qualificação inbound (<Jargon term="SDR">SDR</Jargon>) que já vendem, mas dependem de
+          esforço heróico.
         </>
       ),
     },
@@ -264,8 +267,8 @@ export function Mentoria() {
             <p className="mt-5 text-muted-foreground">
               Mentoria prática para fundadores, gestores e times comerciais que querem parar de
               improvisar e construir uma máquina de{" "}
-              <Jargon term="Outbound">prospecção ativa</Jargon> com método, indicadores e melhoria
-              contínua.
+              <Jargon term="Outbound">prospecção ativa</Jargon> ou qualificação inbound com método,
+              indicadores e melhoria contínua.
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">

@@ -16,6 +16,7 @@ import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
+import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
@@ -54,6 +55,11 @@ const ParceirosRoute = ParceirosRouteImport.update({
   path: '/parceiros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SdrRoute = SdrRouteImport.update({
+  id: '/sdr',
+  path: '/sdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminEventosRoute =
   AuthenticatedAdminEventosRouteImport.update({
     id: '/admin/eventos',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
   '/parceiros': typeof ParceirosRoute
+  '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
   '/parceiros': typeof ParceirosRoute
+  '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
   '/parceiros': typeof ParceirosRoute
+  '/sdr': typeof SdrRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/eventos'
     | '/mentoria'
     | '/parceiros'
+    | '/sdr'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/eventos'
     | '/mentoria'
     | '/parceiros'
+    | '/sdr'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/eventos'
     | '/mentoria'
     | '/parceiros'
+    | '/sdr'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/certificate/$token'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   EventosRoute: typeof EventosRoute
   MentoriaRoute: typeof MentoriaRoute
   ParceirosRoute: typeof ParceirosRoute
+  SdrRoute: typeof SdrRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
   ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
 }
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ParceirosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sdr': {
+      id: '/sdr'
+      path: '/sdr'
+      fullPath: '/sdr'
+      preLoaderRoute: typeof SdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/eventos': {
       id: '/_authenticated/admin/eventos'
       path: '/admin/eventos'
@@ -250,6 +270,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventosRoute: EventosRoute,
   MentoriaRoute: MentoriaRoute,
   ParceirosRoute: ParceirosRoute,
+  SdrRoute: SdrRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
   ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,
 }
