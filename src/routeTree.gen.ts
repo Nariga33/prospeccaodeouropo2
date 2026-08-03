@@ -20,6 +20,7 @@ import { Route as ParceirosRouteImport } from './routes/parceiros'
 import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
+import { Route as ApiPublicPlaybookPdfRouteImport } from './routes/api/public/playbook-pdf'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const ApiPublicBootstrapAdminRoute = ApiPublicBootstrapAdminRouteImport.update({
   path: '/api/public/bootstrap-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPlaybookPdfRoute = ApiPublicPlaybookPdfRouteImport.update({
+  id: '/api/public/playbook-pdf',
+  path: '/api/public/playbook-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicCertificateTokenRoute =
   ApiPublicCertificateTokenRouteImport.update({
     id: '/api/public/certificate/$token',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRoutesById {
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/sdr': typeof SdrRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
   '/api/public/certificate/$token': typeof ApiPublicCertificateTokenRoute
 }
 export interface FileRouteTypes {
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/playbook-pdf'
     | '/api/public/certificate/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/playbook-pdf'
     | '/api/public/certificate/$token'
   id:
     | '__root__'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
+    | '/api/public/playbook-pdf'
     | '/api/public/certificate/$token'
   fileRoutesById: FileRoutesById
 }
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   ParceirosRoute: typeof ParceirosRoute
   SdrRoute: typeof SdrRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
+  ApiPublicPlaybookPdfRoute: typeof ApiPublicPlaybookPdfRoute
   ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
 }
 
@@ -261,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBootstrapAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/playbook-pdf': {
+      id: '/api/public/playbook-pdf'
+      path: '/api/public/playbook-pdf'
+      fullPath: '/api/public/playbook-pdf'
+      preLoaderRoute: typeof ApiPublicPlaybookPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/certificate/$token': {
       id: '/api/public/certificate/$token'
       path: '/api/public/certificate/$token'
@@ -293,6 +313,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParceirosRoute: ParceirosRoute,
   SdrRoute: SdrRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
+  ApiPublicPlaybookPdfRoute: ApiPublicPlaybookPdfRoute,
   ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,
 }
 export const routeTree = rootRouteImport

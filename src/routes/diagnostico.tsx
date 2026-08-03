@@ -38,7 +38,7 @@ interface Question {
   options: Option[];
 }
 
-type RoleKey = "bdr" | "sdr" | "inside_sales" | "closer";
+type RoleKey = "bdr" | "sdr" | "inside_sales" | "closer" | "empresario";
 
 interface RoleInfo {
   key: RoleKey;
@@ -48,6 +48,12 @@ interface RoleInfo {
 }
 
 const ROLES: RoleInfo[] = [
+  {
+    key: "empresario",
+    label: "Empresário / Founder",
+    sublabel: "Visão completa",
+    desc: "Radiografia da operação inteira — BDR, SDR e Closer numa visão só, com relatório em PDF.",
+  },
   {
     key: "bdr",
     label: "BDR",
@@ -74,7 +80,7 @@ const ROLES: RoleInfo[] = [
   },
 ];
 
-const QUESTIONS_BY_ROLE: Record<RoleKey, Question[]> = {
+const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
   bdr: [
     {
       title: "Você tem um Perfil Ideal de Cliente definido por escrito?",
@@ -445,130 +451,141 @@ const QUESTIONS_BY_ROLE: Record<RoleKey, Question[]> = {
   ],
 };
 
+const QUESTIONS_BY_ROLE: Record<RoleKey, Question[]> = {
+  ...BASE_QUESTIONS,
+  empresario: [
+    ...BASE_QUESTIONS.bdr.slice(0, 5),
+    ...BASE_QUESTIONS.sdr.slice(0, 5),
+    ...BASE_QUESTIONS.closer.slice(0, 5),
+  ],
+};
+
 interface PlaybookTier {
   title: string;
   items: string[];
 }
 
-const PLAYBOOKS: Record<RoleKey, { baixa: PlaybookTier; media: PlaybookTier; alta: PlaybookTier }> =
-  {
-    bdr: {
-      baixa: {
-        title: "Playbook: sair do improviso",
-        items: [
-          "Escreva o ICP em uma página — 3 critérios de empresa, 2 cargos-alvo, 1 dor central.",
-          "Defina uma cadência simples de 4 toques (e-mail, LinkedIn, ligação, WhatsApp) em 7 dias.",
-          "Crie um roteiro de abertura de 15 segundos e treine com o time antes da próxima leva de ligações.",
-          "Abra uma planilha (ou CRM) só pra registrar objeções recebidas — comece hoje.",
-        ],
-      },
-      media: {
-        title: "Playbook: fechar as lacunas",
-        items: [
-          "Audite sua cadência atual — meça taxa de resposta por canal e corte o que não converte.",
-          "Padronize o critério de qualificação em uma etapa objetiva (CHAMP ou BANT).",
-          "Implemente uma reunião semanal fixa de 30 min só pra revisar números do funil.",
-          "Documente as 5 objeções mais comuns e a resposta padrão de cada uma.",
-        ],
-      },
-      alta: {
-        title: "Playbook: otimização fina",
-        items: [
-          "Teste variações de abertura (A/B) por segmento de ICP e meça impacto na taxa de agendamento.",
-          "Automatize o handoff pro closer com contexto completo, sem perder tempo em transição.",
-          "Crie um dashboard vivo de indicadores por vendedor, revisado semanalmente.",
-          "Comece a testar expansão de ICP adjacente — sua base está madura pra isso.",
-        ],
-      },
+const PLAYBOOKS: Record<
+  Exclude<RoleKey, "empresario">,
+  { baixa: PlaybookTier; media: PlaybookTier; alta: PlaybookTier }
+> = {
+  bdr: {
+    baixa: {
+      title: "Playbook: sair do improviso",
+      items: [
+        "Escreva o ICP em uma página — 3 critérios de empresa, 2 cargos-alvo, 1 dor central.",
+        "Defina uma cadência simples de 4 toques (e-mail, LinkedIn, ligação, WhatsApp) em 7 dias.",
+        "Crie um roteiro de abertura de 15 segundos e treine com o time antes da próxima leva de ligações.",
+        "Abra uma planilha (ou CRM) só pra registrar objeções recebidas — comece hoje.",
+      ],
     },
-    sdr: {
-      baixa: {
-        title: "Playbook: sair do improviso",
-        items: [
-          "Defina um SLA simples: responder todo lead novo em até 15 minutos.",
-          "Escreva um roteiro básico de qualificação — 4 perguntas que definem se o lead vale a pena.",
-          "Combine com vendas um critério mínimo de handoff (o que precisa saber antes de aceitar o lead).",
-          "Comece a registrar, mesmo que numa planilha, o motivo de cada lead desqualificado.",
-        ],
-      },
-      media: {
-        title: "Playbook: fechar as lacunas",
-        items: [
-          "Implemente lead scoring básico — combine 2-3 critérios de fit com 1-2 de comportamento.",
-          "Crie uma cadência de nutrição de 3 toques pra leads que não estão prontos ainda.",
-          "Estruture o handoff com um formulário/checklist fixo pro closer, não depende de memória.",
-          "Marque uma reunião quinzenal com marketing pra revisar qualidade do lead que chega.",
-        ],
-      },
-      alta: {
-        title: "Playbook: otimização fina",
-        items: [
-          "Automatize o lead scoring dentro do CRM, com atualização em tempo real.",
-          "Teste reduzir seu SLA de resposta ainda mais — cada minuto a menos aumenta conversão.",
-          "Crie um dashboard de conversão por estágio (Lead→MQL→SAL→SQL→Venda) revisado semanalmente.",
-          "Comece a segmentar cadências de nutrição por motivo de não-conversão.",
-        ],
-      },
+    media: {
+      title: "Playbook: fechar as lacunas",
+      items: [
+        "Audite sua cadência atual — meça taxa de resposta por canal e corte o que não converte.",
+        "Padronize o critério de qualificação em uma etapa objetiva (CHAMP ou BANT).",
+        "Implemente uma reunião semanal fixa de 30 min só pra revisar números do funil.",
+        "Documente as 5 objeções mais comuns e a resposta padrão de cada uma.",
+      ],
     },
-    inside_sales: {
-      baixa: {
-        title: "Playbook: sair do improviso",
-        items: [
-          "Escreva um roteiro de descoberta com 5 perguntas fixas pra toda reunião.",
-          "Escolha um framework de qualificação (BANT é o mais simples pra começar) e aplique sempre.",
-          "Toda proposta sai com data de retorno combinada — sem exceção.",
-          "Crie um lembrete fixo de follow-up 48h depois de cada reunião.",
-        ],
-      },
-      media: {
-        title: "Playbook: fechar as lacunas",
-        items: [
-          "Documente as 5 objeções mais comuns em proposta e a resposta padrão de cada uma.",
-          "Padronize os estágios do seu funil no CRM — defina o que precisa acontecer em cada um.",
-          "Implemente uma cadência fixa de follow-up (não deixar proposta esfriar sem contato).",
-          "Meça seu ciclo médio de vendas nas últimas 10 negociações fechadas.",
-        ],
-      },
-      alta: {
-        title: "Playbook: otimização fina",
-        items: [
-          "Analise onde o funil mais perde conversão (reunião→proposta ou proposta→fechamento) e foque ali.",
-          "Teste reduzir seu ciclo de vendas com gatilhos de urgência genuínos (não pressão artificial).",
-          "Crie um playbook de negociação por perfil de cliente (preço-sensível vs. urgência-sensível).",
-          "Compartilhe seus melhores roteiros com o time — vire referência interna.",
-        ],
-      },
+    alta: {
+      title: "Playbook: otimização fina",
+      items: [
+        "Teste variações de abertura (A/B) por segmento de ICP e meça impacto na taxa de agendamento.",
+        "Automatize o handoff pro closer com contexto completo, sem perder tempo em transição.",
+        "Crie um dashboard vivo de indicadores por vendedor, revisado semanalmente.",
+        "Comece a testar expansão de ICP adjacente — sua base está madura pra isso.",
+      ],
     },
-    closer: {
-      baixa: {
-        title: "Playbook: sair do improviso",
-        items: [
-          "Escreva as etapas do seu processo de fechamento, do 'interesse confirmado' até a assinatura.",
-          "Defina uma margem de negociação clara antes de entrar em qualquer call de fechamento.",
-          "Documente as 3 objeções finais mais recorrentes (preço, prazo, autoridade) com resposta pronta.",
-          "Crie um checklist simples de onboarding pra não perder nada na entrega.",
-        ],
-      },
-      media: {
-        title: "Playbook: fechar as lacunas",
-        items: [
-          "Implemente uma cadência de follow-up pra propostas paradas há mais de 5 dias.",
-          "Padronize o processo de contrato e onboarding — elimine retrabalho na entrega.",
-          "Meça sua taxa de conversão proposta→fechamento nas últimas 10 negociações.",
-          "Alinhe com o time de qualificação o que precisa vir junto no handoff pra você fechar mais rápido.",
-        ],
-      },
-      alta: {
-        title: "Playbook: otimização fina",
-        items: [
-          "Analise seu ciclo médio de fechamento por segmento de cliente e ataque o mais lento.",
-          "Crie playbooks de negociação diferentes por perfil (preço-sensível vs. urgência-sensível).",
-          "Documente seus melhores contornos de objeção e treine o restante do time com eles.",
-          "Teste ajustar sua margem de negociação com base em dados reais de fechamento, não instinto.",
-        ],
-      },
+  },
+  sdr: {
+    baixa: {
+      title: "Playbook: sair do improviso",
+      items: [
+        "Defina um SLA simples: responder todo lead novo em até 15 minutos.",
+        "Escreva um roteiro básico de qualificação — 4 perguntas que definem se o lead vale a pena.",
+        "Combine com vendas um critério mínimo de handoff (o que precisa saber antes de aceitar o lead).",
+        "Comece a registrar, mesmo que numa planilha, o motivo de cada lead desqualificado.",
+      ],
     },
-  };
+    media: {
+      title: "Playbook: fechar as lacunas",
+      items: [
+        "Implemente lead scoring básico — combine 2-3 critérios de fit com 1-2 de comportamento.",
+        "Crie uma cadência de nutrição de 3 toques pra leads que não estão prontos ainda.",
+        "Estruture o handoff com um formulário/checklist fixo pro closer, não depende de memória.",
+        "Marque uma reunião quinzenal com marketing pra revisar qualidade do lead que chega.",
+      ],
+    },
+    alta: {
+      title: "Playbook: otimização fina",
+      items: [
+        "Automatize o lead scoring dentro do CRM, com atualização em tempo real.",
+        "Teste reduzir seu SLA de resposta ainda mais — cada minuto a menos aumenta conversão.",
+        "Crie um dashboard de conversão por estágio (Lead→MQL→SAL→SQL→Venda) revisado semanalmente.",
+        "Comece a segmentar cadências de nutrição por motivo de não-conversão.",
+      ],
+    },
+  },
+  inside_sales: {
+    baixa: {
+      title: "Playbook: sair do improviso",
+      items: [
+        "Escreva um roteiro de descoberta com 5 perguntas fixas pra toda reunião.",
+        "Escolha um framework de qualificação (BANT é o mais simples pra começar) e aplique sempre.",
+        "Toda proposta sai com data de retorno combinada — sem exceção.",
+        "Crie um lembrete fixo de follow-up 48h depois de cada reunião.",
+      ],
+    },
+    media: {
+      title: "Playbook: fechar as lacunas",
+      items: [
+        "Documente as 5 objeções mais comuns em proposta e a resposta padrão de cada uma.",
+        "Padronize os estágios do seu funil no CRM — defina o que precisa acontecer em cada um.",
+        "Implemente uma cadência fixa de follow-up (não deixar proposta esfriar sem contato).",
+        "Meça seu ciclo médio de vendas nas últimas 10 negociações fechadas.",
+      ],
+    },
+    alta: {
+      title: "Playbook: otimização fina",
+      items: [
+        "Analise onde o funil mais perde conversão (reunião→proposta ou proposta→fechamento) e foque ali.",
+        "Teste reduzir seu ciclo de vendas com gatilhos de urgência genuínos (não pressão artificial).",
+        "Crie um playbook de negociação por perfil de cliente (preço-sensível vs. urgência-sensível).",
+        "Compartilhe seus melhores roteiros com o time — vire referência interna.",
+      ],
+    },
+  },
+  closer: {
+    baixa: {
+      title: "Playbook: sair do improviso",
+      items: [
+        "Escreva as etapas do seu processo de fechamento, do 'interesse confirmado' até a assinatura.",
+        "Defina uma margem de negociação clara antes de entrar em qualquer call de fechamento.",
+        "Documente as 3 objeções finais mais recorrentes (preço, prazo, autoridade) com resposta pronta.",
+        "Crie um checklist simples de onboarding pra não perder nada na entrega.",
+      ],
+    },
+    media: {
+      title: "Playbook: fechar as lacunas",
+      items: [
+        "Implemente uma cadência de follow-up pra propostas paradas há mais de 5 dias.",
+        "Padronize o processo de contrato e onboarding — elimine retrabalho na entrega.",
+        "Meça sua taxa de conversão proposta→fechamento nas últimas 10 negociações.",
+        "Alinhe com o time de qualificação o que precisa vir junto no handoff pra você fechar mais rápido.",
+      ],
+    },
+    alta: {
+      title: "Playbook: otimização fina",
+      items: [
+        "Analise seu ciclo médio de fechamento por segmento de cliente e ataque o mais lento.",
+        "Crie playbooks de negociação diferentes por perfil (preço-sensível vs. urgência-sensível).",
+        "Documente seus melhores contornos de objeção e treine o restante do time com eles.",
+        "Teste ajustar sua margem de negociação com base em dados reais de fechamento, não instinto.",
+      ],
+    },
+  },
+};
 
 interface Lead {
   nome: string;
@@ -587,7 +604,7 @@ function DiagnosticoPage() {
   const [lead, setLead] = useState<Lead | null>(null);
   const [role, setRole] = useState<RoleKey | null>(null);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(10).fill(null));
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -628,8 +645,37 @@ function DiagnosticoPage() {
   const maxScore = total * 2;
   const pct = Math.round((score / maxScore) * 100);
 
-  const tierKey: "baixa" | "media" | "alta" = pct >= 75 ? "alta" : pct >= 45 ? "media" : "baixa";
-  const playbook = role ? PLAYBOOKS[role][tierKey] : null;
+  const tierOf = (p: number): "baixa" | "media" | "alta" =>
+    p >= 75 ? "alta" : p >= 45 ? "media" : "baixa";
+  const tierKey = tierOf(pct);
+  const playbook = role && role !== "empresario" ? PLAYBOOKS[role][tierKey] : null;
+
+  const empresarioSections = useMemo(() => {
+    if (role !== "empresario") return null;
+    const segs: { key: "bdr" | "sdr" | "closer"; label: string }[] = [
+      { key: "bdr", label: "BDR (Outbound)" },
+      { key: "sdr", label: "SDR (Inbound)" },
+      { key: "closer", label: "Closer (Fechamento)" },
+    ];
+    return segs.map((s, idx) => {
+      const start = idx * 5;
+      const subAnswers = answers.slice(start, start + 5);
+      const subScore = subAnswers.reduce<number>(
+        (sum, a, i) => sum + (a !== null ? QUESTIONS[start + i].options[a].score : 0),
+        0,
+      );
+      const subPct = Math.round((subScore / 10) * 100);
+      const subTier = tierOf(subPct);
+      return {
+        key: s.key,
+        label: s.label,
+        score: subScore,
+        pct: subPct,
+        tier: subTier,
+        playbook: PLAYBOOKS[s.key][subTier],
+      };
+    });
+  }, [role, answers, QUESTIONS]);
 
   const verdict = useMemo(() => {
     if (pct >= 75)
@@ -885,6 +931,48 @@ function DiagnosticoPage() {
               </div>
             </div>
 
+            {empresarioSections && (
+              <div className="mt-8 space-y-4">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  <ClipboardCheck className="size-3.5" /> Radiografia por função
+                </div>
+                {empresarioSections.map((s) => (
+                  <div
+                    key={s.key}
+                    className="rounded-2xl border border-white/10 bg-background/50 p-6"
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h4 className="font-display text-xl text-foreground">{s.label}</h4>
+                      <span
+                        className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${
+                          s.tier === "alta"
+                            ? "border-gold/40 bg-gold/10 text-gold"
+                            : s.tier === "media"
+                              ? "border-amber-400/30 text-amber-300"
+                              : "border-red-400/30 text-red-300"
+                        }`}
+                      >
+                        {s.pct}% de maturidade
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold text-gold">{s.playbook.title}</p>
+                    <ul className="mt-3 space-y-2">
+                      {s.playbook.items.map((item, i) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2 text-xs text-muted-foreground"
+                        >
+                          <span className="mt-0.5 text-gold">{i + 1}.</span> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+
+                <PlaybookPdfButton lead={lead} sections={empresarioSections} />
+              </div>
+            )}
+
             {playbook && (
               <div className="mt-8 rounded-2xl border border-gold/40 bg-background/60 p-6">
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
@@ -926,6 +1014,78 @@ function DiagnosticoPage() {
       <footer className="py-10 text-center text-xs text-muted-foreground">
         Diagnóstico PO2 · Prospecção de Ouro 2.0
       </footer>
+    </div>
+  );
+}
+
+function PlaybookPdfButton({
+  lead,
+  sections,
+}: {
+  lead: Lead;
+  sections: {
+    label: string;
+    pct: number;
+    playbook: { title: string; items: string[] };
+  }[];
+}) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function download() {
+    setLoading(true);
+    setError(false);
+    try {
+      const res = await fetch("/api/public/playbook-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: lead.nome,
+          sections: sections.map((s) => ({
+            label: s.label,
+            pct: s.pct,
+            playbookTitle: s.playbook.title,
+            items: s.playbook.items,
+          })),
+        }),
+      });
+      if (!res.ok) throw new Error("Falha ao gerar PDF");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "playbook-po2.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div>
+      <button
+        onClick={download}
+        disabled={loading}
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-6 py-3.5 text-sm font-bold text-gold transition-all hover:bg-gold/20 disabled:opacity-60"
+      >
+        {loading ? (
+          "Gerando PDF…"
+        ) : (
+          <>
+            <ClipboardCheck className="size-4" /> Baixar playbook em PDF
+          </>
+        )}
+      </button>
+      {error && (
+        <p className="mt-2 text-center text-xs text-red-300">
+          Não foi possível gerar o PDF agora — tenta de novo em alguns segundos.
+        </p>
+      )}
     </div>
   );
 }
