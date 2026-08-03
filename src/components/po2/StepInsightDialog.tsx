@@ -231,6 +231,8 @@ function InsightChart({ insight }: { insight: StepInsight }) {
     fontSize: 12,
     color: "#fff",
   };
+  const tooltipLabelStyle = { color: "#fff", fontWeight: 600, marginBottom: 4 };
+  const tooltipItemStyle = { color: "#fff" };
 
   if (insight.chart === "donut") {
     return (
@@ -253,6 +255,8 @@ function InsightChart({ insight }: { insight: StepInsight }) {
           </Pie>
           <Tooltip
             contentStyle={tooltipStyle}
+            labelStyle={tooltipLabelStyle}
+            itemStyle={tooltipItemStyle}
             formatter={(v: number, n: string) => [`${v}%`, n]}
           />
         </PieChart>
@@ -266,7 +270,7 @@ function InsightChart({ insight }: { insight: StepInsight }) {
         <LineChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
           <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
           <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
-          <Tooltip contentStyle={tooltipStyle} />
+          <Tooltip contentStyle={tooltipStyle} labelStyle={tooltipLabelStyle} itemStyle={tooltipItemStyle} />
           <Line
             type="monotone"
             dataKey="value"
@@ -286,7 +290,7 @@ function InsightChart({ insight }: { insight: StepInsight }) {
       <BarChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
         <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} interval={0} />
         <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
-        <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
+        <Tooltip contentStyle={tooltipStyle} labelStyle={tooltipLabelStyle} itemStyle={tooltipItemStyle} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
         <Bar dataKey="value" radius={[8, 8, 0, 0]}>
           {insight.data.map((d, i) => (
             <Cell key={i} fill={d.bad ? RED : GOLD} />

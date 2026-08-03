@@ -332,6 +332,8 @@ export function Mentoria() {
                           fontSize: 12,
                           color: "#fff",
                         }}
+                        labelStyle={{ color: "#fff", fontWeight: 600, marginBottom: 4 }}
+                        itemStyle={{ color: "#fff" }}
                         cursor={{ fill: "rgba(255,255,255,0.04)" }}
                         formatter={(v: number) => [`${v}${chart.unit}`, "Valor"]}
                       />
