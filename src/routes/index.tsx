@@ -92,7 +92,6 @@ function LandingPage() {
         <Founder />
         <ProblemVsMethod />
         <OutboundHub />
-        <Thesis />
         <Method />
         <MentoriaTeaser />
         <EventosTeaser />
@@ -101,7 +100,6 @@ function LandingPage() {
         <Methodologies />
         <Cases />
         <Testimonials />
-        <ParceirosTeaser />
         <CostComparison />
         <FinalCta />
       </main>
@@ -353,7 +351,13 @@ function ProblemVsMethod() {
           acontece no improviso — e a conta chega em pipeline fraco e CAC alto.
         </p>
 
-        <div className="mt-12 overflow-hidden rounded-2xl border border-white/10">
+        <blockquote className="mt-10 max-w-3xl border-l-2 border-gold/50 pl-6 font-display text-xl italic leading-snug text-foreground/90 md:text-2xl">
+          "Outbound não é sobre ligar mais. É sobre{" "}
+          <em className="not-italic text-gold">ligar melhor</em>, para as pessoas certas, com a
+          mensagem certa, no momento certo — e com controle dos números."
+        </blockquote>
+
+        <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
           <div className="grid grid-cols-2 border-b border-white/10 bg-white/5 text-[11px] font-bold uppercase tracking-[0.25em]">
             <div className="flex items-center gap-2 px-6 py-4 text-red-400/80">
               <span className="size-1.5 rounded-full bg-red-400/70" /> Sem método
@@ -385,27 +389,6 @@ function ProblemVsMethod() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-function Thesis() {
-  return (
-    <section className="relative overflow-hidden border-b border-white/5">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.08),transparent_60%)]" />
-      <div className="mx-auto max-w-5xl px-6 py-32 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-gold">
-          <Sparkles className="size-3" /> A Tese PO2
-        </div>
-        <blockquote className="font-display text-3xl leading-tight text-foreground md:text-5xl">
-          "Outbound não é sobre ligar mais. É sobre <em className="text-gold">ligar melhor</em>,
-          para as pessoas certas, com a mensagem certa, no momento certo — e com controle dos
-          números."
-        </blockquote>
-        <p className="mt-10 text-base text-muted-foreground">
-          Prospecção não é dom. É processo, repetição inteligente e melhoria contínua.
-        </p>
       </div>
     </section>
   );
@@ -903,31 +886,6 @@ function Cases() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ParceirosTeaser() {
-  return (
-    <section id="parceiros" className="border-b border-white/5 bg-surface/40 py-20">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-          <Handshake className="size-3" /> Parceiros
-        </div>
-        <h2 className="mt-4 font-[Instrument_Serif] text-4xl leading-tight md:text-5xl">
-          A PO2 estrutura o método.{" "}
-          <span className="italic text-gold">Eles completam o resto.</span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Indicações de confiança pra quem quer ir além do método — rede pra crescer e plataforma
-          pra executar em escala.
-        </p>
-        <div className="mt-8">
-          <Link to="/parceiros" className={ctaPrimary}>
-            Conhecer os parceiros <ArrowRight className="size-4" />
-          </Link>
         </div>
       </div>
     </section>
