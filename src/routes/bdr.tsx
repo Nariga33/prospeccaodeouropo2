@@ -1,0 +1,92 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/po2/Nav";
+import { Footer } from "@/components/po2/Footer";
+import { BdrMethod } from "@/components/po2/BdrMethod";
+import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
+import { Jargon } from "@/components/po2/Jargon";
+import { ArrowRight, Target } from "lucide-react";
+
+export const Route = createFileRoute("/bdr")({
+  head: () => ({
+    meta: [
+      { title: "BDR & Outbound — PO2 | Prospecção Ativa" },
+      {
+        name: "description",
+        content:
+          "Método de 7 etapas para estruturar operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
+      },
+      { property: "og:title", content: "BDR & Outbound — PO2" },
+      {
+        property: "og:description",
+        content:
+          "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa.",
+      },
+      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/bdr" },
+    ],
+    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/bdr" }],
+  }),
+  component: BdrPage,
+});
+
+const ctaPrimary =
+  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+
+function BdrPage() {
+  return (
+    <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
+      <Nav />
+      <main>
+        <section className="relative overflow-hidden border-b border-white/5">
+          <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gold/10 blur-[140px]" />
+          <div className="relative mx-auto max-w-4xl px-6 py-20 text-center">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+              <Target className="size-3" /> BDR & Outbound
+            </div>
+            <h1 className="mt-4 font-[Instrument_Serif] text-5xl leading-tight md:text-6xl">
+              Topo de funil não é sorte. <span className="italic text-gold">É método.</span>
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Estruturação de operação outbound e treinamento de <Jargon term="BDR">BDR</Jargon> —
+              do ICP à reunião agendada, com o mesmo rigor de processo que a PO2 aplica na
+              qualificação inbound.
+            </p>
+            <div className="mt-8">
+              <DiagnosticDialog
+                trigger={
+                  <button className={ctaPrimary}>
+                    Diagnóstico gratuito <ArrowRight className="size-4" />
+                  </button>
+                }
+              />
+            </div>
+          </div>
+        </section>
+
+        <BdrMethod />
+
+        <section className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.1),transparent_60%)]" />
+          <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+            <h2 className="font-display text-4xl text-foreground md:text-5xl">
+              Sua prospecção ativa já gera{" "}
+              <span className="italic text-gold">o volume que devia?</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+              Diagnóstico gratuito pra mapear onde sua operação de BDR está travando.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <DiagnosticDialog
+                trigger={
+                  <button className={ctaPrimary}>
+                    Quero o diagnóstico <ArrowRight className="size-4" />
+                  </button>
+                }
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}

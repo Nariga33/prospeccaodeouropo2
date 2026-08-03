@@ -12,8 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BdrRouteImport } from './routes/bdr'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
+import { Route as InsideSalesRouteImport } from './routes/inside-sales'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
 import { Route as MetodologiasRouteImport } from './routes/metodologias'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
@@ -37,6 +39,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BdrRoute = BdrRouteImport.update({
+  id: '/bdr',
+  path: '/bdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiagnosticoRoute = DiagnosticoRouteImport.update({
   id: '/diagnostico',
   path: '/diagnostico',
@@ -45,6 +52,11 @@ const DiagnosticoRoute = DiagnosticoRouteImport.update({
 const EventosRoute = EventosRouteImport.update({
   id: '/eventos',
   path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsideSalesRoute = InsideSalesRouteImport.update({
+  id: '/inside-sales',
+  path: '/inside-sales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MentoriaRoute = MentoriaRouteImport.update({
@@ -93,8 +105,10 @@ const ApiPublicCertificateTokenRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/bdr': typeof BdrRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/inside-sales': typeof InsideSalesRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -107,8 +121,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/bdr': typeof BdrRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/inside-sales': typeof InsideSalesRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -123,8 +139,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/bdr': typeof BdrRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
+  '/inside-sales': typeof InsideSalesRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -139,8 +157,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/bdr'
     | '/diagnostico'
     | '/eventos'
+    | '/inside-sales'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -153,8 +173,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/bdr'
     | '/diagnostico'
     | '/eventos'
+    | '/inside-sales'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -168,8 +190,10 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/bdr'
     | '/diagnostico'
     | '/eventos'
+    | '/inside-sales'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -184,8 +208,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  BdrRoute: typeof BdrRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
+  InsideSalesRoute: typeof InsideSalesRoute
   MentoriaRoute: typeof MentoriaRoute
   MetodologiasRoute: typeof MetodologiasRoute
   ParceirosRoute: typeof ParceirosRoute
@@ -218,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bdr': {
+      id: '/bdr'
+      path: '/bdr'
+      fullPath: '/bdr'
+      preLoaderRoute: typeof BdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/diagnostico': {
       id: '/diagnostico'
       path: '/diagnostico'
@@ -230,6 +263,13 @@ declare module '@tanstack/react-router' {
       path: '/eventos'
       fullPath: '/eventos'
       preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inside-sales': {
+      id: '/inside-sales'
+      path: '/inside-sales'
+      fullPath: '/inside-sales'
+      preLoaderRoute: typeof InsideSalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentoria': {
@@ -306,8 +346,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  BdrRoute: BdrRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
+  InsideSalesRoute: InsideSalesRoute,
   MentoriaRoute: MentoriaRoute,
   MetodologiasRoute: MetodologiasRoute,
   ParceirosRoute: ParceirosRoute,
