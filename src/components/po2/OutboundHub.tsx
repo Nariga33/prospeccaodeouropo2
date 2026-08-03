@@ -25,11 +25,11 @@ const CHANNELS = [
 const STEP_DELAY_MS = 260;
 
 export function OutboundHub() {
-  const size = 560;
+  const size = 680;
   const cx = size / 2;
   const cy = size / 2;
-  const rOrbit = 220;
-  const rNode = 50;
+  const rOrbit = 270;
+  const rNode = 58;
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(0);
@@ -78,7 +78,7 @@ export function OutboundHub() {
           <div ref={wrapRef} className="relative mx-auto flex items-center justify-center">
             <svg
               viewBox={`0 0 ${size} ${size}`}
-              className="aspect-square w-full max-w-[560px] overflow-visible"
+              className="aspect-square w-full max-w-[680px] overflow-visible"
             >
               <defs>
                 <radialGradient id="po2HubGlow" cx="50%" cy="50%" r="50%">
@@ -118,10 +118,10 @@ export function OutboundHub() {
                 );
               })}
 
-              <circle cx={cx} cy={cy} r={80} fill="#0F1115" stroke="#C5A059" strokeWidth="2" />
-              <foreignObject x={cx - 48} y={cy - 48} width={96} height={96}>
+              <circle cx={cx} cy={cy} r={98} fill="#0F1115" stroke="#C5A059" strokeWidth="2" />
+              <foreignObject x={cx - 58} y={cy - 58} width={116} height={116}>
                 <div className="flex h-full w-full items-center justify-center">
-                  <img src={logo} alt="PO2" className="h-14 w-auto object-contain" />
+                  <img src={logo} alt="PO2" className="h-16 w-auto object-contain" />
                 </div>
               </foreignObject>
 
