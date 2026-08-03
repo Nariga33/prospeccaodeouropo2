@@ -1,13 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { Jargon } from "@/components/po2/Jargon";
 
 const STAGES = [
-  {
-    label: "Visitante",
-    width: 100,
-    bg: "#15171b",
-    border: "rgba(197,160,89,0.15)",
-    text: "#9a9a9a",
-  },
+  { label: "Visitante", width: 100, bg: "#15171b", border: "rgba(197,160,89,0.15)", text: "#9a9a9a" },
   { label: "Lead", width: 82, bg: "#241f18", border: "rgba(197,160,89,0.25)", text: "#c9c4ba" },
   {
     label: "MQL / PQL",
@@ -22,18 +17,47 @@ const STAGES = [
   { label: "Sale", width: 16, bg: "#C5A059", border: "#C5A059", text: "#1a1208" },
 ];
 
+const STEP_DELAY_MS = 220;
+
 export function SdrFunnel() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || started.current) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            STAGES.forEach((_, i) => {
+              setTimeout(() => setVisibleCount((v) => Math.max(v, i + 1)), i * STEP_DELAY_MS);
+            });
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-1.5">
-      {STAGES.map((s) => (
+    <div ref={containerRef} className="mx-auto flex w-full max-w-xl flex-col items-center gap-1.5">
+      {STAGES.map((s, i) => (
         <div
           key={s.label}
-          className="relative flex h-16 items-center justify-center text-center transition-transform hover:scale-[1.02]"
+          className="relative flex h-16 items-center justify-center text-center transition-all duration-500 ease-out hover:scale-[1.02]"
           style={{
             width: `${s.width}%`,
             background: s.bg,
             border: `1px solid ${s.border}`,
             clipPath: "polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%)",
+            opacity: i < visibleCount ? 1 : 0,
+            transform: i < visibleCount ? "translateY(0)" : "translateY(-14px)",
           }}
         >
           {s.split ? (
