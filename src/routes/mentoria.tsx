@@ -3,6 +3,7 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { Mentoria } from "@/components/po2/Mentoria";
 import { RodaComercial } from "@/components/po2/RodaComercial";
+import { MentoriaOffer } from "@/components/po2/MentoriaOffer";
 
 export const Route = createFileRoute("/mentoria")({
   head: () => ({
@@ -33,6 +34,7 @@ function MentoriaPage() {
       <main>
         <Mentoria />
         <RodaComercial />
+        <MentoriaOffer />
       </main>
       <Footer />
     </div>
