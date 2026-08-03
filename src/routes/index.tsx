@@ -59,7 +59,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Prospecção ativa com método, inteligência e previsibilidade. Do primeiro contato à reunião qualificada.",
+          "Sua máquina comercial completa: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade — do topo ao fundo do funil.",
       },
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
@@ -146,19 +146,22 @@ function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold/70 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
             </span>
-            Assessoria de Prospecção B2B
+            Assessoria Comercial Full Funnel
           </div>
           <h1 className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Prospecção ativa com{" "}
+            Sua máquina comercial completa, com{" "}
             <span className="font-display font-normal italic text-gold">método</span>,{" "}
             <span className="font-display font-normal italic text-gold">inteligência</span> e{" "}
             <span className="font-display font-normal italic text-gold">previsibilidade</span>.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Do primeiro contato à reunião qualificada. Estruturamos sua operação{" "}
-            <Jargon term="Outbound">outbound</Jargon> com <Jargon term="ICP">ICP</Jargon>,{" "}
-            <Jargon term="Cadência">cadência</Jargon>, abordagem consultiva e métricas — para tirar
-            o crescimento do improviso e colocá-lo no painel de controle.
+            Do topo ao fundo do funil: <Jargon term="LDR">LDR</Jargon>/
+            <Jargon term="BDR">BDR</Jargon> na <Jargon term="Outbound">prospecção ativa</Jargon>,{" "}
+            <Jargon term="SDR">SDR</Jargon> na qualificação inbound,{" "}
+            <Jargon term="Inside Sales">Inside Sales</Jargon> conduzindo e{" "}
+            <Jargon term="Closer">Closer</Jargon> fechando — tudo estruturado como uma operação só,
+            com <Jargon term="ICP">ICP</Jargon>, <Jargon term="Cadência">cadência</Jargon> e
+            métricas em cada etapa.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
