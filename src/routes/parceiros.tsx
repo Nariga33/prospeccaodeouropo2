@@ -12,7 +12,9 @@ export const Route = createFileRoute("/parceiros")({
         content:
           "Indicações de confiança da PO2: Clube NEX (rede e mentoria entre empresários) e Vendas.team (plataforma comercial com IA nativa).",
       },
+      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/parceiros" },
     ],
+    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/parceiros" }],
   }),
   component: ParceirosPage,
 });

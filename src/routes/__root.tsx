@@ -15,7 +15,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { EventCountdownBanner } from "@/components/po2/EventCountdownBanner";
 import { WelcomeGate } from "@/components/po2/WelcomeGate";
 import { WhatsAppFloat } from "@/components/po2/WhatsAppFloat";
-
+import { PO2_EMAIL, PO2_INSTAGRAM_URL, PO2_LINKEDIN_URL, PO2_PHONE_DISPLAY } from "@/lib/contact";
 
 function NotFoundComponent() {
   return (
@@ -83,22 +83,74 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B" },
-      { name: "description", content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade." },
+      {
+        name: "description",
+        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+      },
       { name: "author", content: "PO2 — Matheus Staruck" },
-      { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B" },
-      { property: "og:description", content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade." },
+      {
+        property: "og:title",
+        content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B",
+      },
+      {
+        property: "og:description",
+        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B" },
-      { name: "twitter:description", content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea" },
+      {
+        name: "twitter:title",
+        content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B",
+      },
+      {
+        name: "twitter:description",
+        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea",
+      },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "PO2 — Prospecção de Ouro 2.0",
+          alternateName: "PO2",
+          description:
+            "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade — ICP, cadência multicanal, cold call consultiva e gestão de indicadores.",
+          url: "https://www.prospeccaodeouropo2.com/",
+          telephone: `+55${PO2_PHONE_DISPLAY.replace(/[^\d]/g, "")}`,
+          email: PO2_EMAIL,
+          areaServed: "BR",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Porto Alegre",
+            addressRegion: "RS",
+            addressCountry: "BR",
+          },
+          founder: {
+            "@type": "Person",
+            name: "Matheus Staruck",
+            jobTitle: "Founder & CEO",
+          },
+          sameAs: [PO2_LINKEDIN_URL, PO2_INSTAGRAM_URL],
+        },
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -109,7 +161,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
@@ -135,4 +187,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

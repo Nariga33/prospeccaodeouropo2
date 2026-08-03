@@ -1,6 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Check, AlertTriangle, Minus, ArrowLeft, ArrowRight, Phone, Sparkles, Timer } from "lucide-react";
+import {
+  Check,
+  AlertTriangle,
+  Minus,
+  ArrowLeft,
+  ArrowRight,
+  Phone,
+  Sparkles,
+  Timer,
+} from "lucide-react";
 import logo from "@/assets/po2-logo.png";
 
 export const Route = createFileRoute("/diagnostico")({
@@ -8,7 +17,9 @@ export const Route = createFileRoute("/diagnostico")({
     meta: [
       { title: "Diagnóstico gratuito · PO2" },
       { name: "description", content: "10 perguntas para mapear sua máquina de prospecção ativa." },
+      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/diagnostico" },
     ],
+    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/diagnostico" }],
   }),
   component: DiagnosticoPage,
 });
@@ -16,8 +27,15 @@ export const Route = createFileRoute("/diagnostico")({
 const WHATSAPP_NUMBER = "5551989218827";
 
 type Score = 2 | 1 | 0;
-interface Option { label: string; score: Score }
-interface Question { title: string; helper: string; options: Option[] }
+interface Option {
+  label: string;
+  score: Score;
+}
+interface Question {
+  title: string;
+  helper: string;
+  options: Option[];
+}
 
 const QUESTIONS: Question[] = [
   {
@@ -113,16 +131,24 @@ const QUESTIONS: Question[] = [
 ];
 
 interface Lead {
-  nome: string; email: string; telefone: string; faturamento: string; plan?: string;
-  ticket?: string; metaContratos?: string; ticketValor?: number; metaValor?: number;
+  nome: string;
+  email: string;
+  telefone: string;
+  faturamento: string;
+  plan?: string;
+  ticket?: string;
+  metaContratos?: string;
+  ticketValor?: number;
+  metaValor?: number;
 }
-
 
 function DiagnosticoPage() {
   const navigate = useNavigate();
   const [lead, setLead] = useState<Lead | null>(null);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(QUESTIONS.length).fill(null));
+  const [answers, setAnswers] = useState<(number | null)[]>(() =>
+    Array(QUESTIONS.length).fill(null),
+  );
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -131,7 +157,11 @@ function DiagnosticoPage() {
       navigate({ to: "/" });
       return;
     }
-    try { setLead(JSON.parse(raw)); } catch { navigate({ to: "/" }); }
+    try {
+      setLead(JSON.parse(raw));
+    } catch {
+      navigate({ to: "/" });
+    }
   }, [navigate]);
 
   const total = QUESTIONS.length;
@@ -148,16 +178,31 @@ function DiagnosticoPage() {
   }
 
   const score = useMemo(
-    () => answers.reduce<number>((sum, a, i) => sum + (a !== null ? QUESTIONS[i].options[a].score : 0), 0),
+    () =>
+      answers.reduce<number>(
+        (sum, a, i) => sum + (a !== null ? QUESTIONS[i].options[a].score : 0),
+        0,
+      ),
     [answers],
   );
   const maxScore = total * 2;
   const pct = Math.round((score / maxScore) * 100);
 
   const verdict = useMemo(() => {
-    if (pct >= 75) return { tag: "Operação madura", desc: "Sua máquina de prospecção tem fundamentos sólidos. O próximo salto é otimização fina e escala." };
-    if (pct >= 45) return { tag: "Operação em construção", desc: "Você tem peças importantes, mas a previsibilidade ainda escapa. Hora de fechar lacunas críticas." };
-    return { tag: "Operação no improviso", desc: "A prospecção depende de esforço pessoal, não de método. Estruturar agora destrava receita rápido." };
+    if (pct >= 75)
+      return {
+        tag: "Operação madura",
+        desc: "Sua máquina de prospecção tem fundamentos sólidos. O próximo salto é otimização fina e escala.",
+      };
+    if (pct >= 45)
+      return {
+        tag: "Operação em construção",
+        desc: "Você tem peças importantes, mas a previsibilidade ainda escapa. Hora de fechar lacunas críticas.",
+      };
+    return {
+      tag: "Operação no improviso",
+      desc: "A prospecção depende de esforço pessoal, não de método. Estruturar agora destrava receita rápido.",
+    };
   }, [pct]);
 
   const moneyGap = useMemo(() => {
@@ -171,7 +216,6 @@ function DiagnosticoPage() {
 
   const fmt = (n: number) =>
     n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
-
 
   function buildWhatsAppUrl() {
     if (!lead) return "#";
@@ -210,21 +254,30 @@ function DiagnosticoPage() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="border-b border-white/5">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
-          <a href="/"><img src={logo} alt="PO2" className="h-8 w-auto" /></a>
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Diagnóstico</span>
+          <a href="/">
+            <img src={logo} alt="PO2" className="h-8 w-auto" />
+          </a>
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+            Diagnóstico
+          </span>
         </div>
       </header>
 
       <main className="mx-auto max-w-3xl px-6 py-12">
         <div className="mb-10">
           <h1 className="font-display text-4xl leading-tight text-foreground md:text-5xl">
-            Quanto sua empresa <span className="text-gold">deixa de faturar</span> dependendo só de leads de marketing?
+            Quanto sua empresa <span className="text-gold">deixa de faturar</span> dependendo só de
+            leads de marketing?
           </h1>
           <p className="mt-4 text-muted-foreground">
-            Responda 10 perguntas e receba um diagnóstico estratégico da sua máquina de prospecção ativa — com a leitura honesta de onde está o gargalo e o caminho para virar o jogo.
+            Responda 10 perguntas e receba um diagnóstico estratégico da sua máquina de prospecção
+            ativa — com a leitura honesta de onde está o gargalo e o caminho para virar o jogo.
           </p>
           <div className="mt-6 h-1 w-full overflow-hidden rounded-full bg-white/5">
-            <div className="h-full bg-gold transition-all duration-500" style={{ width: `${progress}%` }} />
+            <div
+              className="h-full bg-gold transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            />
           </div>
         </div>
 
@@ -240,7 +293,12 @@ function DiagnosticoPage() {
               {q.options.map((opt, i) => {
                 const selected = answers[step] === i;
                 const Icon = opt.score === 2 ? Check : opt.score === 1 ? Minus : AlertTriangle;
-                const tone = opt.score === 2 ? "text-gold border-gold/40" : opt.score === 1 ? "text-amber-300 border-amber-400/30" : "text-red-300 border-red-400/30";
+                const tone =
+                  opt.score === 2
+                    ? "text-gold border-gold/40"
+                    : opt.score === 1
+                      ? "text-amber-300 border-amber-400/30"
+                      : "text-red-300 border-red-400/30";
                 return (
                   <button
                     key={i}
@@ -248,7 +306,9 @@ function DiagnosticoPage() {
                     className={`group flex w-full items-center justify-between gap-4 rounded-xl border bg-background/40 px-5 py-4 text-left transition-all hover:border-gold/40 hover:bg-background/70 ${selected ? "border-gold bg-gold/5" : "border-white/10"}`}
                   >
                     <span className="text-sm font-medium text-foreground">{opt.label}</span>
-                    <span className={`flex size-7 shrink-0 items-center justify-center rounded-full border ${tone}`}>
+                    <span
+                      className={`flex size-7 shrink-0 items-center justify-center rounded-full border ${tone}`}
+                    >
                       <Icon className="size-3.5" />
                     </span>
                   </button>
@@ -264,7 +324,9 @@ function DiagnosticoPage() {
               >
                 <ArrowLeft className="size-3.5" /> Voltar
               </button>
-              <span className="text-muted-foreground">Escolha a opção mais sincera — o diagnóstico depende disso.</span>
+              <span className="text-muted-foreground">
+                Escolha a opção mais sincera — o diagnóstico depende disso.
+              </span>
             </div>
           </div>
         ) : (
@@ -272,7 +334,9 @@ function DiagnosticoPage() {
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
               <Sparkles className="size-3" /> Diagnóstico pronto
             </div>
-            <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">{verdict.tag}.</h2>
+            <h2 className="mt-5 font-display text-4xl text-foreground md:text-5xl">
+              {verdict.tag}.
+            </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">{verdict.desc}</p>
 
             <CountdownBanner nome={lead.nome} />
@@ -283,11 +347,14 @@ function DiagnosticoPage() {
                   Quanto você está deixando de faturar
                 </div>
                 <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="font-display text-5xl text-gold md:text-6xl">{fmt(moneyGap.gapMensal)}</span>
+                  <span className="font-display text-5xl text-gold md:text-6xl">
+                    {fmt(moneyGap.gapMensal)}
+                  </span>
                   <span className="text-sm text-muted-foreground">por mês</span>
                 </div>
                 <div className="mt-1 text-sm text-foreground/80">
-                  Até <span className="font-bold text-gold">{fmt(moneyGap.gapAnual)}</span> por ano que não entram no caixa.
+                  Até <span className="font-bold text-gold">{fmt(moneyGap.gapAnual)}</span> por ano
+                  que não entram no caixa.
                 </div>
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
                   <MiniStat label="Ticket médio" value={fmt(moneyGap.ticket)} />
@@ -295,25 +362,35 @@ function DiagnosticoPage() {
                   <MiniStat label="Potencial mensal" value={fmt(moneyGap.potencialMensal)} />
                 </div>
                 <p className="mt-4 text-xs text-muted-foreground">
-                  Cálculo: ticket médio × meta de novos contratos × lacuna de maturidade da operação ({100 - pct}%).
+                  Cálculo: ticket médio × meta de novos contratos × lacuna de maturidade da operação
+                  ({100 - pct}%).
                 </p>
               </div>
             )}
 
-
-
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Pontuação</div>
-                <div className="mt-2 font-display text-4xl text-gold">{score}<span className="text-xl text-muted-foreground">/{maxScore}</span></div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  Pontuação
+                </div>
+                <div className="mt-2 font-display text-4xl text-gold">
+                  {score}
+                  <span className="text-xl text-muted-foreground">/{maxScore}</span>
+                </div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Maturidade</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  Maturidade
+                </div>
                 <div className="mt-2 font-display text-4xl text-gold">{pct}%</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Próximo passo</div>
-                <div className="mt-2 text-sm text-foreground">Conversa de 30 min com o time PO2.</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                  Próximo passo
+                </div>
+                <div className="mt-2 text-sm text-foreground">
+                  Conversa de 30 min com o time PO2.
+                </div>
               </div>
             </div>
 
@@ -342,7 +419,9 @@ function DiagnosticoPage() {
 function MiniStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-card/40 p-3">
-      <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+        {label}
+      </div>
       <div className="mt-1 font-display text-xl text-foreground">{value}</div>
     </div>
   );
@@ -376,14 +455,20 @@ function CountdownBanner({ nome }: { nome: string }) {
   const firstName = nome.trim().split(" ")[0] || "você";
 
   return (
-    <div className={`mt-6 overflow-hidden rounded-2xl border p-5 ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/40 bg-background/60"}`}>
+    <div
+      className={`mt-6 overflow-hidden rounded-2xl border p-5 ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/40 bg-background/60"}`}
+    >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className={`inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] ${expired ? "text-red-300" : "text-gold"}`}>
-            <Timer className="size-3.5" /> {expired ? "Oportunidade expirada" : "Janela exclusiva aberta"}
+          <div
+            className={`inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] ${expired ? "text-red-300" : "text-gold"}`}
+          >
+            <Timer className="size-3.5" />{" "}
+            {expired ? "Oportunidade expirada" : "Janela exclusiva aberta"}
           </div>
           <p className="mt-2 text-sm text-foreground">
-            {firstName}, você acaba de receber um <span className="font-bold text-gold">diagnóstico gratuito com Matheus Staruck</span>.
+            {firstName}, você acaba de receber um{" "}
+            <span className="font-bold text-gold">diagnóstico gratuito com Matheus Staruck</span>.
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {expired
@@ -393,9 +478,13 @@ function CountdownBanner({ nome }: { nome: string }) {
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <TimeBox value={hh} label="hrs" expired={expired} />
-          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>:</span>
+          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>
+            :
+          </span>
           <TimeBox value={mm} label="min" expired={expired} />
-          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>:</span>
+          <span className={`font-display text-2xl ${expired ? "text-red-300" : "text-gold"}`}>
+            :
+          </span>
           <TimeBox value={ss} label="seg" expired={expired} />
         </div>
       </div>
@@ -405,10 +494,17 @@ function CountdownBanner({ nome }: { nome: string }) {
 
 function TimeBox({ value, label, expired }: { value: string; label: string; expired: boolean }) {
   return (
-    <div className={`min-w-[54px] rounded-lg border px-2 py-1.5 text-center ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/30 bg-gold/5"}`}>
-      <div className={`font-display text-2xl tabular-nums ${expired ? "text-red-200" : "text-gold"}`}>{value}</div>
-      <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">{label}</div>
+    <div
+      className={`min-w-[54px] rounded-lg border px-2 py-1.5 text-center ${expired ? "border-red-500/40 bg-red-500/10" : "border-gold/30 bg-gold/5"}`}
+    >
+      <div
+        className={`font-display text-2xl tabular-nums ${expired ? "text-red-200" : "text-gold"}`}
+      >
+        {value}
+      </div>
+      <div className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground">
+        {label}
+      </div>
     </div>
   );
 }
-

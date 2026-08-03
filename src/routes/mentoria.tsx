@@ -18,7 +18,9 @@ export const Route = createFileRoute("/mentoria")({
         content:
           "Mentoria prática para fundadores, gestores e times comerciais construírem uma máquina de prospecção ativa.",
       },
+      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/mentoria" },
     ],
+    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/mentoria" }],
   }),
   component: MentoriaPage,
 });
