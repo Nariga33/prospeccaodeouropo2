@@ -9,6 +9,7 @@ import {
   Phone,
   Sparkles,
   Timer,
+  ClipboardCheck,
 } from "lucide-react";
 import logo from "@/assets/po2-logo.png";
 
@@ -37,98 +38,537 @@ interface Question {
   options: Option[];
 }
 
-const QUESTIONS: Question[] = [
+type RoleKey = "bdr" | "sdr" | "inside_sales" | "closer";
+
+interface RoleInfo {
+  key: RoleKey;
+  label: string;
+  sublabel: string;
+  desc: string;
+}
+
+const ROLES: RoleInfo[] = [
   {
-    title: "Você tem um Perfil Ideal de Cliente definido por escrito?",
-    helper: "Quais empresas, cargos e dores você quer atingir.",
-    options: [
-      { label: "Sim, documentado e usado por todo o time", score: 2 },
-      { label: "Tenho na cabeça, mas nada formalizado", score: 1 },
-      { label: "Não, prospectamos qualquer empresa", score: 0 },
-    ],
+    key: "bdr",
+    label: "BDR",
+    sublabel: "Outbound",
+    desc: "Prospecção ativa — gera reunião com lead frio.",
   },
   {
-    title: "Sua equipe estuda o cliente antes de cada contato?",
-    helper: "Pesquisar a empresa, o decisor e o momento dele.",
-    options: [
-      { label: "Sempre — temos um roteiro de preparação", score: 2 },
-      { label: "Às vezes, depende do vendedor", score: 1 },
-      { label: "Nunca, vamos direto para o contato", score: 0 },
-    ],
+    key: "sdr",
+    label: "SDR",
+    sublabel: "Inbound",
+    desc: "Qualifica quem já demonstrou interesse (marketing).",
   },
   {
-    title: "Vocês usam vários canais de forma organizada?",
-    helper: "E-mail, LinkedIn, ligação e WhatsApp em sequência planejada.",
-    options: [
-      { label: "Sim, com sequência definida e medida", score: 2 },
-      { label: "Usamos os canais, mas sem ordem clara", score: 1 },
-      { label: "Cada vendedor faz do seu jeito", score: 0 },
-    ],
+    key: "inside_sales",
+    label: "Inside Sales",
+    sublabel: "Condução",
+    desc: "Reunião, proposta e negociação remota.",
   },
   {
-    title: "Como são as ligações de prospecção?",
-    helper: "Conversa com contexto x script decorado.",
-    options: [
-      { label: "Consultivas, com perguntas e diagnóstico", score: 2 },
-      { label: "Depende do vendedor — mistura os dois", score: 1 },
-      { label: "Script decorado, sem leitura do cliente", score: 0 },
-    ],
-  },
-  {
-    title: "Vocês registram e trabalham as objeções recebidas?",
-    helper: "Mapear o motivo real do 'não' e ajustar o discurso.",
-    options: [
-      { label: "Sim, temos uma lista viva de objeções", score: 2 },
-      { label: "Conversamos em reunião, sem registro", score: 1 },
-      { label: "Não tratamos objeções de forma estruturada", score: 0 },
-    ],
-  },
-  {
-    title: "Existe um padrão para qualificar os leads?",
-    helper: "Critérios claros para saber se vale avançar.",
-    options: [
-      { label: "Sim, critérios padronizados por etapa", score: 2 },
-      { label: "Conhecemos, mas aplicamos solto", score: 1 },
-      { label: "Não temos critérios definidos", score: 0 },
-    ],
-  },
-  {
-    title: "Vocês acompanham números em cada etapa do funil?",
-    helper: "Volume, conexão, agendamento e conversão por canal.",
-    options: [
-      { label: "Sim, indicadores revistos toda semana", score: 2 },
-      { label: "Olhamos números soltos, sem rotina", score: 1 },
-      { label: "Não temos clareza dos números", score: 0 },
-    ],
-  },
-  {
-    title: "Os primeiros 15 segundos do contato têm um roteiro?",
-    helper: "Abertura, contexto, diagnóstico e próximo passo.",
-    options: [
-      { label: "Sim, treinamos e revisamos a abordagem", score: 2 },
-      { label: "Existe, mas cada um adapta como quer", score: 1 },
-      { label: "Não temos abordagem padrão", score: 0 },
-    ],
-  },
-  {
-    title: "Vocês usam sistema de vendas (CRM) e automações?",
-    helper: "Ferramentas que sustentam a operação no dia a dia.",
-    options: [
-      { label: "Sim, bem integrado e disciplinado", score: 2 },
-      { label: "Temos CRM, mas pouco organizado", score: 1 },
-      { label: "Trabalhamos em planilhas soltas", score: 0 },
-    ],
-  },
-  {
-    title: "Existe uma reunião semanal para revisar e melhorar?",
-    helper: "Ajustar perfil de cliente, abordagem e números.",
-    options: [
-      { label: "Sim, ritual fixo com plano de ação", score: 2 },
-      { label: "Acontece de vez em quando", score: 1 },
-      { label: "Não revisamos, apenas executamos", score: 0 },
-    ],
+    key: "closer",
+    label: "Closer",
+    sublabel: "Fechamento",
+    desc: "Negociação final e fechamento de contrato.",
   },
 ];
+
+const QUESTIONS_BY_ROLE: Record<RoleKey, Question[]> = {
+  bdr: [
+    {
+      title: "Você tem um Perfil Ideal de Cliente definido por escrito?",
+      helper: "Quais empresas, cargos e dores você quer atingir.",
+      options: [
+        { label: "Sim, documentado e usado por todo o time", score: 2 },
+        { label: "Tenho na cabeça, mas nada formalizado", score: 1 },
+        { label: "Não, prospectamos qualquer empresa", score: 0 },
+      ],
+    },
+    {
+      title: "Sua equipe estuda o cliente antes de cada contato?",
+      helper: "Pesquisar a empresa, o decisor e o momento dele.",
+      options: [
+        { label: "Sempre — temos um roteiro de preparação", score: 2 },
+        { label: "Às vezes, depende do vendedor", score: 1 },
+        { label: "Nunca, vamos direto para o contato", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês usam vários canais de forma organizada?",
+      helper: "E-mail, LinkedIn, ligação e WhatsApp em sequência planejada.",
+      options: [
+        { label: "Sim, com sequência definida e medida", score: 2 },
+        { label: "Usamos os canais, mas sem ordem clara", score: 1 },
+        { label: "Cada vendedor faz do seu jeito", score: 0 },
+      ],
+    },
+    {
+      title: "Como são as ligações de prospecção?",
+      helper: "Conversa com contexto x script decorado.",
+      options: [
+        { label: "Consultivas, com perguntas e diagnóstico", score: 2 },
+        { label: "Depende do vendedor — mistura os dois", score: 1 },
+        { label: "Script decorado, sem leitura do cliente", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês registram e trabalham as objeções recebidas?",
+      helper: "Mapear o motivo real do 'não' e ajustar o discurso.",
+      options: [
+        { label: "Sim, temos uma lista viva de objeções", score: 2 },
+        { label: "Conversamos em reunião, sem registro", score: 1 },
+        { label: "Não tratamos objeções de forma estruturada", score: 0 },
+      ],
+    },
+    {
+      title: "Existe um padrão para qualificar os leads?",
+      helper: "Critérios claros para saber se vale avançar.",
+      options: [
+        { label: "Sim, critérios padronizados por etapa", score: 2 },
+        { label: "Conhecemos, mas aplicamos solto", score: 1 },
+        { label: "Não temos critérios definidos", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês acompanham números em cada etapa do funil?",
+      helper: "Volume, conexão, agendamento e conversão por canal.",
+      options: [
+        { label: "Sim, indicadores revistos toda semana", score: 2 },
+        { label: "Olhamos números soltos, sem rotina", score: 1 },
+        { label: "Não temos clareza dos números", score: 0 },
+      ],
+    },
+    {
+      title: "Os primeiros 15 segundos do contato têm um roteiro?",
+      helper: "Abertura, contexto, diagnóstico e próximo passo.",
+      options: [
+        { label: "Sim, treinamos e revisamos a abordagem", score: 2 },
+        { label: "Existe, mas cada um adapta como quer", score: 1 },
+        { label: "Não temos abordagem padrão", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês usam sistema de vendas (CRM) e automações?",
+      helper: "Ferramentas que sustentam a operação no dia a dia.",
+      options: [
+        { label: "Sim, bem integrado e disciplinado", score: 2 },
+        { label: "Temos CRM, mas pouco organizado", score: 1 },
+        { label: "Trabalhamos em planilhas soltas", score: 0 },
+      ],
+    },
+    {
+      title: "Existe uma reunião semanal para revisar e melhorar?",
+      helper: "Ajustar perfil de cliente, abordagem e números.",
+      options: [
+        { label: "Sim, ritual fixo com plano de ação", score: 2 },
+        { label: "Acontece de vez em quando", score: 1 },
+        { label: "Não revisamos, apenas executamos", score: 0 },
+      ],
+    },
+  ],
+  sdr: [
+    {
+      title: "Existe um critério de lead scoring definido?",
+      helper: "Pontuação por perfil (fit) e comportamento (intenção).",
+      options: [
+        { label: "Sim, documentado e usado por marketing e vendas", score: 2 },
+        { label: "Existe uma noção, mas não é formal", score: 1 },
+        { label: "Não, tratamos todo lead do mesmo jeito", score: 0 },
+      ],
+    },
+    {
+      title: "Qual o tempo médio de resposta a um lead novo?",
+      helper: "Velocidade é o maior preditor de conversão inbound.",
+      options: [
+        { label: "Minutos — temos SLA definido e cumprido", score: 2 },
+        { label: "Algumas horas, sem meta formal", score: 1 },
+        { label: "Um dia ou mais, sem controle", score: 0 },
+      ],
+    },
+    {
+      title: "A qualificação por chamada ou chat segue um roteiro?",
+      helper: "Consultivo, não interrogatório.",
+      options: [
+        { label: "Sim, roteiro claro e treinado", score: 2 },
+        { label: "Existe, mas cada SDR adapta", score: 1 },
+        { label: "Não, cada conversa é diferente", score: 0 },
+      ],
+    },
+    {
+      title: "Existe critério claro pra passar de MQL/PQL para SAL?",
+      helper: "Filtro mínimo de fit antes de vendas aceitar o lead.",
+      options: [
+        { label: "Sim, critério objetivo e respeitado", score: 2 },
+        { label: "Existe, mas é flexível demais", score: 1 },
+        { label: "Não, passamos tudo pra frente", score: 0 },
+      ],
+    },
+    {
+      title: "O handoff pro closer é estruturado?",
+      helper: "Cliente não deveria repetir a própria história.",
+      options: [
+        { label: "Sim, contexto completo é registrado e passado", score: 2 },
+        { label: "Passamos o nome e pouco mais", score: 1 },
+        { label: "Não existe processo — o closer se vira", score: 0 },
+      ],
+    },
+    {
+      title: "Existe cadência de nutrição pra quem não está pronto?",
+      helper: "Reengajamento de leads frios, sem descartar cedo demais.",
+      options: [
+        { label: "Sim, cadência estruturada e automatizada", score: 2 },
+        { label: "Fazemos de vez em quando, sem rotina", score: 1 },
+        { label: "Não, quem não fecha na hora é descartado", score: 0 },
+      ],
+    },
+    {
+      title: "Objeções de quem já demonstrou interesse são documentadas?",
+      helper: "Contexto muda a resposta — mapear o padrão ajuda.",
+      options: [
+        { label: "Sim, lista viva e usada no treinamento", score: 2 },
+        { label: "Conversamos informalmente sobre isso", score: 1 },
+        { label: "Não registramos nada", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês acompanham a conversão por estágio do funil?",
+      helper: "Lead → MQL → SAL → SQL → Venda, toda semana.",
+      options: [
+        { label: "Sim, dashboard revisto semanalmente", score: 2 },
+        { label: "Olhamos números soltos, sem rotina", score: 1 },
+        { label: "Não temos clareza dos números", score: 0 },
+      ],
+    },
+    {
+      title: "Marketing e vendas usam o mesmo CRM, integrado?",
+      helper: "Sem planilha paralela nem retrabalho.",
+      options: [
+        { label: "Sim, integração completa e confiável", score: 2 },
+        { label: "Existe integração, mas falha ou é manual", score: 1 },
+        { label: "Cada time usa sua própria ferramenta", score: 0 },
+      ],
+    },
+    {
+      title: "Existe reunião semanal entre marketing e vendas?",
+      helper: "Alinhar qualidade de lead, critério e gargalos.",
+      options: [
+        { label: "Sim, ritual fixo com plano de ação", score: 2 },
+        { label: "Acontece de vez em quando", score: 1 },
+        { label: "Não, os times não conversam sobre isso", score: 0 },
+      ],
+    },
+  ],
+  inside_sales: [
+    {
+      title: "As reuniões seguem um roteiro de descoberta?",
+      helper: "Perguntas estruturadas, não uma apresentação de slide solta.",
+      options: [
+        { label: "Sim, roteiro claro e treinado com o time", score: 2 },
+        { label: "Existe, mas cada vendedor adapta bastante", score: 1 },
+        { label: "Não, cada reunião é do jeito que der", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês usam um critério de qualificação na call (BANT/CHAMP/SPIN)?",
+      helper: "Saber se vale investir tempo em proposta.",
+      options: [
+        { label: "Sim, aplicado de forma consistente", score: 2 },
+        { label: "Conhecemos o critério, mas aplicamos solto", score: 1 },
+        { label: "Não usamos nenhum framework", score: 0 },
+      ],
+    },
+    {
+      title: "As propostas saem com prazo e próximos passos claros?",
+      helper: "Sem 'te mando e você vê com calma'.",
+      options: [
+        { label: "Sim, sempre com data de retorno combinada", score: 2 },
+        { label: "Às vezes, depende do vendedor", score: 1 },
+        { label: "Raramente — a proposta vai e some", score: 0 },
+      ],
+    },
+    {
+      title: "Existe follow-up sistemático pós-reunião?",
+      helper: "Cadência de retorno, não só 'fico no aguardo'.",
+      options: [
+        { label: "Sim, cadência definida e cumprida", score: 2 },
+        { label: "Fazemos, mas sem rotina fixa", score: 1 },
+        { label: "Não, quem não responde é esquecido", score: 0 },
+      ],
+    },
+    {
+      title: "Existe playbook de objeções (preço, prazo, concorrência)?",
+      helper: "Resposta pensada, não improvisada na hora.",
+      options: [
+        { label: "Sim, documentado e usado no treinamento", score: 2 },
+        { label: "Trocamos ideia informalmente sobre isso", score: 1 },
+        { label: "Não, cada um responde do seu jeito", score: 0 },
+      ],
+    },
+    {
+      title: "O forecast do pipeline é confiável?",
+      helper: "Estágios bem definidos, sem 'quase fechado' eterno.",
+      options: [
+        { label: "Sim, estágios claros e revisados", score: 2 },
+        { label: "Existe, mas often não bate com a realidade", score: 1 },
+        { label: "Não temos forecast estruturado", score: 0 },
+      ],
+    },
+    {
+      title: "O CRM é atualizado a cada interação?",
+      helper: "Sem retrabalho nem informação perdida.",
+      options: [
+        { label: "Sim, disciplina alta, dado confiável", score: 2 },
+        { label: "Atualizamos, mas com atraso ou falha", score: 1 },
+        { label: "Trabalhamos soltos, fora do CRM", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês acompanham a taxa reunião → proposta → fechamento?",
+      helper: "Saber onde o funil realmente trava.",
+      options: [
+        { label: "Sim, métrica revisada toda semana", score: 2 },
+        { label: "Olhamos de vez em quando", score: 1 },
+        { label: "Não temos essa visão", score: 0 },
+      ],
+    },
+    {
+      title: "O ciclo médio de vendas é medido?",
+      helper: "Do primeiro contato até o fechamento.",
+      options: [
+        { label: "Sim, medimos e buscamos reduzir", score: 2 },
+        { label: "Temos uma ideia, sem medir de fato", score: 1 },
+        { label: "Não sabemos qual é o ciclo médio", score: 0 },
+      ],
+    },
+    {
+      title: "Existe reunião semanal de revisão de pipeline?",
+      helper: "Ritual pra destravar negociações paradas.",
+      options: [
+        { label: "Sim, ritual fixo com plano de ação", score: 2 },
+        { label: "Acontece de vez em quando", score: 1 },
+        { label: "Não revisamos pipeline em grupo", score: 0 },
+      ],
+    },
+  ],
+  closer: [
+    {
+      title: "Existe um roteiro estruturado de fechamento?",
+      helper: "Não é 'vamos ver o que o cliente decide'.",
+      options: [
+        { label: "Sim, etapas claras até a assinatura", score: 2 },
+        { label: "Existe uma ideia geral, sem estrutura", score: 1 },
+        { label: "Não, cada fechamento é diferente", score: 0 },
+      ],
+    },
+    {
+      title: "Vocês sabem identificar quando é hora de fechar ou nutrir mais?",
+      helper: "Critério, não instinto.",
+      options: [
+        { label: "Sim, sinais claros e usados pelo time", score: 2 },
+        { label: "Temos uma noção, mas é subjetivo", score: 1 },
+        { label: "Não, decidimos no improviso", score: 0 },
+      ],
+    },
+    {
+      title: "Objeções finais (preço, urgência, autoridade) estão documentadas?",
+      helper: "Resposta pensada antes da negociação esquentar.",
+      options: [
+        { label: "Sim, playbook vivo e usado no time", score: 2 },
+        { label: "Trocamos experiência informalmente", score: 1 },
+        { label: "Não, cada closer resolve do seu jeito", score: 0 },
+      ],
+    },
+    {
+      title: "Propostas paradas recebem follow-up ativo?",
+      helper: "Não deixar esfriar até o cliente esquecer.",
+      options: [
+        { label: "Sim, cadência de reengajamento definida", score: 2 },
+        { label: "Fazemos, mas sem rotina", score: 1 },
+        { label: "Não, quem não responde fica parado", score: 0 },
+      ],
+    },
+    {
+      title: "Existe margem de negociação definida (desconto, condições)?",
+      helper: "Sem decisão de improviso durante a call.",
+      options: [
+        { label: "Sim, política clara de até onde ceder", score: 2 },
+        { label: "Existe um teto informal", score: 1 },
+        { label: "Não, cada closer negocia como acha melhor", score: 0 },
+      ],
+    },
+    {
+      title: "Contrato e onboarding do cliente seguem um processo padrão?",
+      helper: "Do 'sim' à entrega, sem espaço pra ruído.",
+      options: [
+        { label: "Sim, processo documentado e replicável", score: 2 },
+        { label: "Existe, mas com falhas frequentes", score: 1 },
+        { label: "Não, cada venda vira uma reinvenção", score: 0 },
+      ],
+    },
+    {
+      title: "A taxa de conversão proposta → fechamento é acompanhada?",
+      helper: "Saber se o problema é volume ou conversão.",
+      options: [
+        { label: "Sim, métrica revisada toda semana", score: 2 },
+        { label: "Olhamos de vez em quando", score: 1 },
+        { label: "Não temos essa visão", score: 0 },
+      ],
+    },
+    {
+      title: "O ciclo médio de fechamento é medido?",
+      helper: "Da proposta enviada até a assinatura.",
+      options: [
+        { label: "Sim, medimos e buscamos reduzir", score: 2 },
+        { label: "Temos uma ideia, sem medir de fato", score: 1 },
+        { label: "Não sabemos qual é o ciclo médio", score: 0 },
+      ],
+    },
+    {
+      title: "O CRM reflete o estágio real da negociação?",
+      helper: "Sem 'na minha cabeça está quase fechado'.",
+      options: [
+        { label: "Sim, atualizado a cada contato relevante", score: 2 },
+        { label: "Atualizamos, mas com atraso", score: 1 },
+        { label: "Não, o CRM não reflete a realidade", score: 0 },
+      ],
+    },
+    {
+      title: "Existe reunião semanal de revisão de forecast?",
+      helper: "Ritual pra destravar negociações críticas.",
+      options: [
+        { label: "Sim, ritual fixo com plano de ação", score: 2 },
+        { label: "Acontece de vez em quando", score: 1 },
+        { label: "Não revisamos forecast em grupo", score: 0 },
+      ],
+    },
+  ],
+};
+
+interface PlaybookTier {
+  title: string;
+  items: string[];
+}
+
+const PLAYBOOKS: Record<RoleKey, { baixa: PlaybookTier; media: PlaybookTier; alta: PlaybookTier }> =
+  {
+    bdr: {
+      baixa: {
+        title: "Playbook: sair do improviso",
+        items: [
+          "Escreva o ICP em uma página — 3 critérios de empresa, 2 cargos-alvo, 1 dor central.",
+          "Defina uma cadência simples de 4 toques (e-mail, LinkedIn, ligação, WhatsApp) em 7 dias.",
+          "Crie um roteiro de abertura de 15 segundos e treine com o time antes da próxima leva de ligações.",
+          "Abra uma planilha (ou CRM) só pra registrar objeções recebidas — comece hoje.",
+        ],
+      },
+      media: {
+        title: "Playbook: fechar as lacunas",
+        items: [
+          "Audite sua cadência atual — meça taxa de resposta por canal e corte o que não converte.",
+          "Padronize o critério de qualificação em uma etapa objetiva (CHAMP ou BANT).",
+          "Implemente uma reunião semanal fixa de 30 min só pra revisar números do funil.",
+          "Documente as 5 objeções mais comuns e a resposta padrão de cada uma.",
+        ],
+      },
+      alta: {
+        title: "Playbook: otimização fina",
+        items: [
+          "Teste variações de abertura (A/B) por segmento de ICP e meça impacto na taxa de agendamento.",
+          "Automatize o handoff pro closer com contexto completo, sem perder tempo em transição.",
+          "Crie um dashboard vivo de indicadores por vendedor, revisado semanalmente.",
+          "Comece a testar expansão de ICP adjacente — sua base está madura pra isso.",
+        ],
+      },
+    },
+    sdr: {
+      baixa: {
+        title: "Playbook: sair do improviso",
+        items: [
+          "Defina um SLA simples: responder todo lead novo em até 15 minutos.",
+          "Escreva um roteiro básico de qualificação — 4 perguntas que definem se o lead vale a pena.",
+          "Combine com vendas um critério mínimo de handoff (o que precisa saber antes de aceitar o lead).",
+          "Comece a registrar, mesmo que numa planilha, o motivo de cada lead desqualificado.",
+        ],
+      },
+      media: {
+        title: "Playbook: fechar as lacunas",
+        items: [
+          "Implemente lead scoring básico — combine 2-3 critérios de fit com 1-2 de comportamento.",
+          "Crie uma cadência de nutrição de 3 toques pra leads que não estão prontos ainda.",
+          "Estruture o handoff com um formulário/checklist fixo pro closer, não depende de memória.",
+          "Marque uma reunião quinzenal com marketing pra revisar qualidade do lead que chega.",
+        ],
+      },
+      alta: {
+        title: "Playbook: otimização fina",
+        items: [
+          "Automatize o lead scoring dentro do CRM, com atualização em tempo real.",
+          "Teste reduzir seu SLA de resposta ainda mais — cada minuto a menos aumenta conversão.",
+          "Crie um dashboard de conversão por estágio (Lead→MQL→SAL→SQL→Venda) revisado semanalmente.",
+          "Comece a segmentar cadências de nutrição por motivo de não-conversão.",
+        ],
+      },
+    },
+    inside_sales: {
+      baixa: {
+        title: "Playbook: sair do improviso",
+        items: [
+          "Escreva um roteiro de descoberta com 5 perguntas fixas pra toda reunião.",
+          "Escolha um framework de qualificação (BANT é o mais simples pra começar) e aplique sempre.",
+          "Toda proposta sai com data de retorno combinada — sem exceção.",
+          "Crie um lembrete fixo de follow-up 48h depois de cada reunião.",
+        ],
+      },
+      media: {
+        title: "Playbook: fechar as lacunas",
+        items: [
+          "Documente as 5 objeções mais comuns em proposta e a resposta padrão de cada uma.",
+          "Padronize os estágios do seu funil no CRM — defina o que precisa acontecer em cada um.",
+          "Implemente uma cadência fixa de follow-up (não deixar proposta esfriar sem contato).",
+          "Meça seu ciclo médio de vendas nas últimas 10 negociações fechadas.",
+        ],
+      },
+      alta: {
+        title: "Playbook: otimização fina",
+        items: [
+          "Analise onde o funil mais perde conversão (reunião→proposta ou proposta→fechamento) e foque ali.",
+          "Teste reduzir seu ciclo de vendas com gatilhos de urgência genuínos (não pressão artificial).",
+          "Crie um playbook de negociação por perfil de cliente (preço-sensível vs. urgência-sensível).",
+          "Compartilhe seus melhores roteiros com o time — vire referência interna.",
+        ],
+      },
+    },
+    closer: {
+      baixa: {
+        title: "Playbook: sair do improviso",
+        items: [
+          "Escreva as etapas do seu processo de fechamento, do 'interesse confirmado' até a assinatura.",
+          "Defina uma margem de negociação clara antes de entrar em qualquer call de fechamento.",
+          "Documente as 3 objeções finais mais recorrentes (preço, prazo, autoridade) com resposta pronta.",
+          "Crie um checklist simples de onboarding pra não perder nada na entrega.",
+        ],
+      },
+      media: {
+        title: "Playbook: fechar as lacunas",
+        items: [
+          "Implemente uma cadência de follow-up pra propostas paradas há mais de 5 dias.",
+          "Padronize o processo de contrato e onboarding — elimine retrabalho na entrega.",
+          "Meça sua taxa de conversão proposta→fechamento nas últimas 10 negociações.",
+          "Alinhe com o time de qualificação o que precisa vir junto no handoff pra você fechar mais rápido.",
+        ],
+      },
+      alta: {
+        title: "Playbook: otimização fina",
+        items: [
+          "Analise seu ciclo médio de fechamento por segmento de cliente e ataque o mais lento.",
+          "Crie playbooks de negociação diferentes por perfil (preço-sensível vs. urgência-sensível).",
+          "Documente seus melhores contornos de objeção e treine o restante do time com eles.",
+          "Teste ajustar sua margem de negociação com base em dados reais de fechamento, não instinto.",
+        ],
+      },
+    },
+  };
 
 interface Lead {
   nome: string;
@@ -145,10 +585,9 @@ interface Lead {
 function DiagnosticoPage() {
   const navigate = useNavigate();
   const [lead, setLead] = useState<Lead | null>(null);
+  const [role, setRole] = useState<RoleKey | null>(null);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() =>
-    Array(QUESTIONS.length).fill(null),
-  );
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(10).fill(null));
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -164,6 +603,7 @@ function DiagnosticoPage() {
     }
   }, [navigate]);
 
+  const QUESTIONS = role ? QUESTIONS_BY_ROLE[role] : QUESTIONS_BY_ROLE.bdr;
   const total = QUESTIONS.length;
   const progress = ((finished ? total : step) / total) * 100;
 
@@ -183,10 +623,13 @@ function DiagnosticoPage() {
         (sum, a, i) => sum + (a !== null ? QUESTIONS[i].options[a].score : 0),
         0,
       ),
-    [answers],
+    [answers, QUESTIONS],
   );
   const maxScore = total * 2;
   const pct = Math.round((score / maxScore) * 100);
+
+  const tierKey: "baixa" | "media" | "alta" = pct >= 75 ? "alta" : pct >= 45 ? "media" : "baixa";
+  const playbook = role ? PLAYBOOKS[role][tierKey] : null;
 
   const verdict = useMemo(() => {
     if (pct >= 75)
@@ -219,6 +662,7 @@ function DiagnosticoPage() {
 
   function buildWhatsAppUrl() {
     if (!lead) return "#";
+    const roleInfo = ROLES.find((r) => r.key === role);
     const lines = [
       "Olá! Acabei de concluir o diagnóstico PO2.",
       "",
@@ -227,6 +671,7 @@ function DiagnosticoPage() {
       `Telefone: ${lead.telefone}`,
       `Faturamento: ${lead.faturamento}`,
     ];
+    if (roleInfo) lines.push(`Perfil: ${roleInfo.label} (${roleInfo.sublabel})`);
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
     if (moneyGap.potencialMensal > 0) {
       lines.push(
@@ -247,6 +692,52 @@ function DiagnosticoPage() {
   }
 
   if (!lead) return null;
+
+  if (!role) {
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <header className="border-b border-white/5">
+          <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
+            <a href="/">
+              <img src={logo} alt="PO2" className="h-8 w-auto" />
+            </a>
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+              Diagnóstico
+            </span>
+          </div>
+        </header>
+        <main className="mx-auto max-w-3xl px-6 py-16">
+          <h1 className="font-display text-4xl leading-tight text-foreground md:text-5xl">
+            Qual é o seu <span className="text-gold">papel na operação</span>?
+          </h1>
+          <p className="mt-4 text-muted-foreground">
+            O diagnóstico e o playbook são diferentes pra cada função — escolhe o que mais se parece
+            com o que você faz hoje.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {ROLES.map((r) => (
+              <button
+                key={r.key}
+                onClick={() => setRole(r.key)}
+                className="group rounded-2xl border border-white/10 bg-card/70 p-6 text-left transition-all hover:-translate-y-1 hover:border-gold/40"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-2xl text-foreground">{r.label}</span>
+                  <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gold">
+                    {r.sublabel}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">{r.desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.2em] text-gold/70 transition-colors group-hover:text-gold">
+                  Escolher →
+                </span>
+              </button>
+            ))}
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   const q = QUESTIONS[step];
 
@@ -393,6 +884,29 @@ function DiagnosticoPage() {
                 </div>
               </div>
             </div>
+
+            {playbook && (
+              <div className="mt-8 rounded-2xl border border-gold/40 bg-background/60 p-6">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  <ClipboardCheck className="size-3.5" /> Seu playbook ·{" "}
+                  {ROLES.find((r) => r.key === role)?.label}
+                </div>
+                <h3 className="mt-3 font-display text-2xl text-foreground">{playbook.title}</h3>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Passos priorizados pra sua faixa de maturidade atual ({pct}%). Comece pelo topo.
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {playbook.items.map((item, i) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-[11px] font-bold text-gold">
+                        {i + 1}
+                      </span>
+                      <span className="text-sm text-foreground/90">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <a
               href={buildWhatsAppUrl()}
