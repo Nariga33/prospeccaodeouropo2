@@ -30,9 +30,9 @@ export function Footer() {
             <Link to="/eventos" className="transition-colors hover:text-gold">
               Eventos
             </Link>
-            <a href="/#planos" className="transition-colors hover:text-gold">
-              Planos
-            </a>
+            <Link to="/parceiros" className="transition-colors hover:text-gold">
+              Parceiros
+            </Link>
           </div>
 
           <div className="flex flex-col gap-2 text-sm">

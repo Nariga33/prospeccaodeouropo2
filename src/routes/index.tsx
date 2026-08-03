@@ -12,6 +12,7 @@ import { MethodologyDialog, type Methodology } from "@/components/po2/Methodolog
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
+import { OutboundHub } from "@/components/po2/OutboundHub";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -89,6 +90,7 @@ function LandingPage() {
         <Hero />
         <Founder />
         <ProblemVsMethod />
+        <OutboundHub />
         <Thesis />
         <Method />
         <MentoriaTeaser />
@@ -99,7 +101,6 @@ function LandingPage() {
         <Cases />
         <ParceirosTeaser />
         <CostComparison />
-        <Pricing />
         <FinalCta />
       </main>
       <Footer />
@@ -1037,118 +1038,6 @@ function CostComparison() {
             contratar o plano PO2 Growth. Podem variar por região, senioridade e negociação — use
             como comparativo, não como orçamento fechado.
           </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  const plans = [
-    {
-      name: "PO2 Core",
-      tag: "Organizar",
-      duration: "1 mês",
-      price: "R$ 8.000",
-      highlight: false,
-      features: [
-        "Diagnóstico comercial",
-        "ICP e personas",
-        "Playbook de prospecção",
-        "Scripts e cadências (base)",
-        "Listas direcionais",
-        "Treinamento BDR — 1 encontro",
-        "Acompanhamento pontual",
-      ],
-    },
-    {
-      name: "PO2 Growth",
-      tag: "Rodar",
-      duration: "3 meses",
-      price: "R$ 12.000",
-      highlight: true,
-      features: [
-        "Tudo do Core",
-        "Scripts e cadências completos",
-        "Construção de listas",
-        "Treinamento BDR recorrente",
-        "Acompanhamento semanal",
-        "Gestão de indicadores",
-        "Otimização de pitch",
-        "Dashboard comercial básico",
-      ],
-    },
-    {
-      name: "PO2 Enterprise",
-      tag: "Escalar",
-      duration: "6 meses",
-      price: "R$ 45.000",
-      highlight: false,
-      features: [
-        "Tudo do Growth",
-        "Scripts e cadências avançados",
-        "Treinamento contínuo",
-        "Acompanhamento estratégico semanal",
-        "Dashboard comercial completo",
-        "Otimização contínua de pitch e ICP",
-      ],
-    },
-  ];
-  return (
-    <section id="planos" className="border-b border-white/5">
-      <div className="mx-auto max-w-7xl px-6 py-28">
-        <div className="mb-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-            <span className={goldRule} /> Planos & Investimento <span className={goldRule} />
-          </div>
-          <h2 className="mx-auto max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-            Três níveis para sua{" "}
-            <span className="font-display font-normal italic text-gold">maturidade comercial.</span>
-          </h2>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {plans.map((p) => (
-            <div
-              key={p.name}
-              className={`relative flex flex-col rounded-3xl border p-8 ${p.highlight ? "border-gold/50 bg-gradient-to-b from-gold/10 to-card/80 shadow-[0_0_60px_-15px_rgba(197,160,89,0.4)]" : "border-white/10 bg-card/70"}`}
-            >
-              {p.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold-foreground">
-                  Mais escolhido
-                </div>
-              )}
-              <div className="flex items-baseline justify-between">
-                <h3 className="font-display text-3xl text-foreground">{p.name}</h3>
-                <span className="rounded-full border border-gold/30 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-gold">
-                  {p.tag}
-                </span>
-              </div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                Duração · {p.duration}
-              </div>
-              <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-5xl text-gold">{p.price}</span>
-              </div>
-              <ul className="mt-8 flex-1 space-y-3">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <Check className="mt-0.5 size-4 shrink-0 text-gold" />
-                    <span className="text-foreground/85">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <DiagnosticDialog
-                plan={p.name}
-                trigger={
-                  <button
-                    className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all ${p.highlight ? "bg-gold text-gold-foreground hover:shadow-[0_0_40px_rgba(197,160,89,0.45)]" : "border border-white/10 bg-white/5 text-foreground hover:bg-white/10"}`}
-                  >
-                    Realizar o diagnóstico gratuito <ArrowRight className="size-4" />
-                  </button>
-                }
-              />
-            </div>
-          ))}
         </div>
       </div>
     </section>

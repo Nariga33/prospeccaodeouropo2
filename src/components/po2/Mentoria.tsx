@@ -268,13 +268,23 @@ export function Mentoria() {
               contínua.
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4">
-            <GraduationCap className="size-6 text-gold" />
-            <div>
-              <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
-                Formato
+          <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+            <div className="flex items-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4">
+              <GraduationCap className="size-6 text-gold" />
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  Formato
+                </div>
+                <div className="text-sm text-foreground">1:1 ou em grupo · semanal</div>
               </div>
-              <div className="text-sm text-foreground">1:1 ou em grupo · semanal</div>
+            </div>
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-card/70 px-5 py-4">
+              <div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                  Individual
+                </div>
+                <div className="font-display text-2xl text-foreground">R$ 497</div>
+              </div>
             </div>
           </div>
         </div>
