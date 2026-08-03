@@ -22,7 +22,6 @@ const LINKS = [
   { href: "/eventos", label: "Eventos", isRoute: true },
   { href: "/#metodologias", label: "Metodologias" },
   { href: "/#fundador", label: "Sobre" },
-  { href: "/#fundador", label: "Fundador" },
   { href: "/#casos", label: "Resultados" },
   { href: "/parceiros", label: "Parceiros", isRoute: true },
   { href: "/#planos", label: "Planos" },
