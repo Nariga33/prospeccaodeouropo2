@@ -686,15 +686,24 @@ function Cases() {
 function CostComparison() {
   const stack = [
     {
-      label: "Salário + encargos (CLT, júnior)",
-      note: "Piso + FGTS, INSS, 13º, férias",
-      value: "R$ 6.500",
+      label: "Time de prospecção (BDR + SDR, CLT júnior)",
+      note: "Piso + FGTS, INSS, 13º, férias — 2 posições",
+      value: "R$ 13.000",
     },
-    { label: "Ferramentas", note: "CRM, enriquecimento de dados, discador", value: "R$ 900" },
     {
-      label: "Tempo de gestor treinando",
-      note: "Supervisão, script, onboarding",
-      value: "R$ 1.200",
+      label: "Closer / vendedor sênior",
+      note: "Salário + encargos + comissão base",
+      value: "R$ 12.000",
+    },
+    {
+      label: "Gestão comercial (dedicação parcial)",
+      note: "Liderança, processo, acompanhamento",
+      value: "R$ 10.000",
+    },
+    {
+      label: "Ferramentas + recrutamento",
+      note: "CRM, discador, enriquecimento, contratação",
+      value: "R$ 5.000",
     },
   ];
   return (
@@ -705,11 +714,12 @@ function CostComparison() {
             <span className={goldRule} /> Custo real <span className={goldRule} />
           </div>
           <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-            Montar um <span className="font-display font-normal italic text-gold">BDR interno</span>{" "}
-            custa mais do que parece.
+            Montar um{" "}
+            <span className="font-display font-normal italic text-gold">Time Comercial</span> custa
+            mais do que parece.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            Sem contar os 60 a 90 dias de ramp-up em que o BDR ainda não bate meta — tempo em que o
+            Sem contar os 60 a 90 dias de ramp-up em que o time ainda não bate meta — tempo em que o
             CAC sobe e o pipeline continua fraco.
           </p>
         </div>
@@ -720,7 +730,7 @@ function CostComparison() {
               Montar sozinho
             </div>
             <div className="mb-6 text-sm text-muted-foreground">
-              Contratação + estrutura própria · 1 BDR
+              Contratação + estrutura própria · time completo
             </div>
             <div className="space-y-4">
               {stack.map((s) => (
@@ -740,7 +750,7 @@ function CostComparison() {
               <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
                 Total / mês
               </span>
-              <span className="font-display text-4xl text-foreground">R$ 8.600</span>
+              <span className="font-display text-4xl text-foreground">R$ 40.000</span>
             </div>
           </div>
 
@@ -756,7 +766,7 @@ function CostComparison() {
               Com a PO2
             </div>
             <div className="mb-6 text-sm text-muted-foreground">
-              Plano PO2 Growth · operação rodando em 3 meses
+              Operação estruturada e rodando em 3 meses
             </div>
             <ul className="space-y-3">
               {[
@@ -773,20 +783,20 @@ function CostComparison() {
             </ul>
             <div className="mt-6 flex items-center justify-between border-t border-gold/20 pt-5">
               <span className="text-sm font-bold uppercase tracking-widest text-gold">
-                Equivalente / mês
+                A partir de / mês
               </span>
-              <span className="font-display text-4xl text-gold">R$ 4.000</span>
+              <span className="font-display text-4xl text-gold">R$ 8.000</span>
             </div>
           </div>
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-2 text-center">
           <div className="font-display text-2xl text-gold">
-            Economia de ~53% no mês, sem os 90 dias às cegas.
+            Economia de ~80% no mês, sem os 90 dias às cegas.
           </div>
           <p className="max-w-xl text-xs text-muted-foreground">
-            Valores de referência (jun/2026) para estimar o custo de estruturar um BDR interno vs.
-            contratar o plano PO2 Growth. Podem variar por região, senioridade e negociação — use
+            Valores de referência (jun/2026) para estimar o custo de estruturar um time comercial
+            interno vs. contratar a PO2. Podem variar por região, senioridade e negociação — use
             como comparativo, não como orçamento fechado.
           </p>
         </div>
