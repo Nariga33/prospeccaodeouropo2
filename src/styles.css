@@ -73,3 +73,17 @@
   .po2-cycle-spin { animation: none; }
 }
 
+@keyframes po2-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.po2-marquee {
+  animation: po2-marquee 48s linear infinite;
+}
+.po2-marquee:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .po2-marquee { animation: none; }
+}
+

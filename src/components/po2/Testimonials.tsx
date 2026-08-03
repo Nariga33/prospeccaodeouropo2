@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const goldRule = "h-px w-12 bg-gold/60";
 
@@ -68,40 +67,49 @@ const TESTIMONIALS = [
     name: "Gabriel Moraes",
     role: "BDR",
     quote:
-      "Antes da mentoria da PO2 eu fazia ligações sem estratégia e dependia muito da sorte. Hoje consigo estruturar minhas abordagens, quebrar objeções com segurança e conduzir conversas muito mais qualificadas. Em menos de dois meses aumentei significativamente o número de reuniões agendadas e minha confiança em cada ligação.",
+      "Antes da mentoria da PO2 eu fazia ligações sem estratégia e dependia muito da sorte. Hoje consigo estruturar minhas abordagens, quebrar objeções com segurança e conduzir conversas muito mais qualificadas.",
   },
   {
     name: "Vinícius Ferreira",
     role: "BDR",
     quote:
-      "A mentoria mudou completamente minha forma de enxergar prospecção. Aprendi a estudar o cliente, personalizar abordagens e construir cadências que realmente geram respostas. O acompanhamento individual e os feedbacks práticos aceleraram muito minha evolução. Hoje me sinto preparado para gerar resultados consistentes em qualquer operação outbound.",
+      "A mentoria mudou completamente minha forma de enxergar prospecção. Aprendi a estudar o cliente, personalizar abordagens e construir cadências que realmente geram respostas.",
   },
 ];
 
+function initials(name: string) {
+  const parts = name.trim().split(" ");
+  return ((parts[0]?.[0] ?? "") + (parts[parts.length - 1]?.[0] ?? "")).toUpperCase();
+}
+
+function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+  return (
+    <div className="flex w-[320px] shrink-0 flex-col rounded-2xl border border-white/10 bg-card/70 p-6 md:w-[360px]">
+      <div className="flex items-center gap-0.5">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star key={i} className="size-3.5 fill-gold text-gold" />
+        ))}
+      </div>
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-foreground/85">"{t.quote}"</p>
+      <div className="mt-6 flex items-center gap-3 border-t border-white/5 pt-4">
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/10 font-display text-sm text-gold">
+          {initials(t.name)}
+        </div>
+        <div>
+          <div className="text-sm font-bold text-foreground">{t.name}</div>
+          <div className="text-xs text-muted-foreground">{t.role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Testimonials() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    if (paused) return;
-    timerRef.current = setInterval(() => {
-      setActive((p) => (p + 1) % TESTIMONIALS.length);
-    }, 6000);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [paused]);
-
-  const go = (delta: number) => {
-    setActive((p) => (p + delta + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
-
-  const current = TESTIMONIALS[active];
+  const track = [...TESTIMONIALS, ...TESTIMONIALS];
 
   return (
-    <section className="border-b border-white/5">
-      <div className="mx-auto max-w-5xl px-6 py-24">
+    <section className="border-b border-white/5 py-24">
+      <div className="mx-auto max-w-7xl px-6">
         <div className="mb-12 text-center">
           <div className="mb-4 inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
             <span className={goldRule} /> Depoimentos <span className={goldRule} />
@@ -111,61 +119,15 @@ export function Testimonials() {
             <span className="font-display font-normal italic text-gold">método.</span>
           </h2>
         </div>
+      </div>
 
-        <div
-          className="relative rounded-3xl border border-gold/20 bg-card/70 p-8 md:p-14"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <Quote className="size-9 text-gold/30" />
-
-          <p
-            key={active}
-            className="mt-6 min-h-[140px] text-balance font-[Instrument_Serif] text-xl leading-relaxed text-foreground/90 md:text-2xl"
-          >
-            "{current.quote}"
-          </p>
-
-          <div className="mt-8 flex items-center justify-between gap-4">
-            <div>
-              <div className="font-display text-lg text-gold">{current.name}</div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                {current.role}
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                aria-label="Depoimento anterior"
-                className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-black/30 text-gold transition-colors hover:border-gold/40"
-              >
-                <ChevronLeft className="size-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                aria-label="Próximo depoimento"
-                className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-black/30 text-gold transition-colors hover:border-gold/40"
-              >
-                <ChevronRight className="size-4" />
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-1.5">
-            {TESTIMONIALS.map((t, i) => (
-              <button
-                key={t.name}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={`Ir para depoimento de ${t.name}`}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === active ? "w-6 bg-gold" : "w-1.5 bg-white/20 hover:bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-32" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-32" />
+        <div className="po2-marquee flex w-max gap-5 px-6">
+          {track.map((t, i) => (
+            <TestimonialCard key={`${t.name}-${i}`} t={t} />
+          ))}
         </div>
       </div>
     </section>
