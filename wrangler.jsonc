@@ -1,0 +1,13 @@
+// Variáveis públicas do Supabase (não sensíveis — a anon/publishable key é
+// feita pra ser pública, protegida por Row Level Security). Ficam aqui,
+// versionadas no Git, para nunca dependerem só do que está salvo manualmente
+// no dashboard da Cloudflare (que já resetou/sumiu mais de uma vez).
+// A SUPABASE_SERVICE_ROLE_KEY continua só como Secret no dashboard da
+// Cloudflare — essa sim é sensível e nunca deve ir para o repositório.
+{
+  "vars": {
+    "SUPABASE_URL": "https://ioaxymmkqojwrsojxtmw.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvYXh5bW1rcW9qd3Jzb2p4dG13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUzNDE2MTEsImV4cCI6MjEwMDkxNzYxMX0.uH05vCtEvfc2qjNrFXxn2xmwQxQN0E95AoOCRRnSRyw",
+    "SUPABASE_PROJECT_ID": "ioaxymmkqojwrsojxtmw"
+  }
+}
