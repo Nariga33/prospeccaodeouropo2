@@ -21,7 +21,7 @@ const LINKS = [
   { href: "/mentoria", label: "Mentoria", isRoute: true },
   { href: "/sdr", label: "SDR", isRoute: true },
   { href: "/eventos", label: "Eventos", isRoute: true },
-  { href: "/#metodologias", label: "Metodologias" },
+  { href: "/metodologias", label: "Metodologias", isRoute: true },
   { href: "/#fundador", label: "Sobre" },
   { href: "/#casos", label: "Resultados" },
   { href: "/parceiros", label: "Parceiros", isRoute: true },

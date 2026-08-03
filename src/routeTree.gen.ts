@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
+import { Route as MetodologiasRouteImport } from './routes/metodologias'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
 import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
@@ -48,6 +49,11 @@ const EventosRoute = EventosRouteImport.update({
 const MentoriaRoute = MentoriaRouteImport.update({
   id: '/mentoria',
   path: '/mentoria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiasRoute = MetodologiasRouteImport.update({
+  id: '/metodologias',
+  path: '/metodologias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParceirosRoute = ParceirosRouteImport.update({
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/mentoria': typeof MentoriaRoute
+  '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/metodologias'
     | '/parceiros'
     | '/sdr'
     | '/admin/eventos'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/metodologias'
     | '/parceiros'
     | '/sdr'
     | '/admin/eventos'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/mentoria'
+    | '/metodologias'
     | '/parceiros'
     | '/sdr'
     | '/_authenticated/admin/eventos'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
   MentoriaRoute: typeof MentoriaRoute
+  MetodologiasRoute: typeof MetodologiasRoute
   ParceirosRoute: typeof ParceirosRoute
   SdrRoute: typeof SdrRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       path: '/mentoria'
       fullPath: '/mentoria'
       preLoaderRoute: typeof MentoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologias': {
+      id: '/metodologias'
+      path: '/metodologias'
+      fullPath: '/metodologias'
+      preLoaderRoute: typeof MetodologiasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parceiros': {
@@ -269,6 +289,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
   MentoriaRoute: MentoriaRoute,
+  MetodologiasRoute: MetodologiasRoute,
   ParceirosRoute: ParceirosRoute,
   SdrRoute: SdrRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
