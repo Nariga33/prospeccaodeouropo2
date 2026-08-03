@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { Mentoria } from "@/components/po2/Mentoria";
+import { RodaComercial } from "@/components/po2/RodaComercial";
 
 export const Route = createFileRoute("/mentoria")({
   head: () => ({
@@ -31,6 +32,7 @@ function MentoriaPage() {
       <Nav />
       <main>
         <Mentoria />
+        <RodaComercial />
       </main>
       <Footer />
     </div>
