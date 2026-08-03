@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
@@ -624,6 +624,33 @@ function Pitch() {
       d: "Conduzir para uma conversa simples, sem pressão.",
     },
   ];
+
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el || started.current) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            blocks.forEach((_, i) => {
+              setTimeout(() => setVisibleCount((v) => Math.max(v, i + 1)), i * 1000);
+            });
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.3 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className="border-b border-white/5 bg-surface/40">
       <div className="mx-auto max-w-7xl px-6 py-28">
@@ -639,9 +666,16 @@ function Pitch() {
           vendedor genérico — ou como conversa relevante.
         </p>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {blocks.map((b) => (
-            <div key={b.n} className="rounded-2xl border border-white/10 bg-card/70 p-7">
+        <div ref={gridRef} className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {blocks.map((b, i) => (
+            <div
+              key={b.n}
+              className="rounded-2xl border border-white/10 bg-card/70 p-7 transition-all duration-700 ease-out"
+              style={{
+                opacity: i < visibleCount ? 1 : 0,
+                transform: i < visibleCount ? "translateY(0)" : "translateY(24px)",
+              }}
+            >
               <span className="font-display text-3xl text-gold">{b.n}</span>
               <div className="mt-6 flex size-10 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
                 <b.icon className="size-5" />
