@@ -10,6 +10,10 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     full: "Business Development Representative",
     desc: "Profissional de prospecção ativa (outbound). Gera reunião com lead frio.",
   },
+  LDR: {
+    full: "Lead Development Representative",
+    desc: "Primeiro contato do funil — identifica e qualifica minimamente o lead antes de passar pro BDR/SDR.",
+  },
   SDR: {
     full: "Sales Development Representative",
     desc: "Profissional de qualificação inbound. Recebe o lead que já demonstrou interesse e decide se está pronto pro closer.",
@@ -70,6 +74,12 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
   },
   Pitch: {
     desc: "Discurso de apresentação inicial — os primeiros segundos da abordagem.",
+  },
+  "Inside Sales": {
+    desc: "Conduz a reunião, monta proposta e negocia remotamente — a ponte entre qualificação e fechamento.",
+  },
+  Closer: {
+    desc: "Fecha o negócio — negociação final, contrato e handoff pro onboarding do cliente.",
   },
 };
 

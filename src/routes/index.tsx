@@ -173,6 +173,22 @@ function Hero() {
               Ver o método PO2
             </a>
           </div>
+
+          <div className="mt-10">
+            <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+              Cobertura full funnel
+            </div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              {["LDR", "BDR", "SDR", "Inside Sales", "Closer"].map((r, i, arr) => (
+                <div key={r} className="flex items-center gap-1.5">
+                  <span className="rounded-full border border-gold/25 bg-gold/5 px-3 py-1.5 text-xs font-bold text-gold">
+                    <Jargon term={r}>{r}</Jargon>
+                  </span>
+                  {i < arr.length - 1 && <ArrowRight className="size-3 text-gold/40" />}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="relative">
           <div className="absolute -inset-4 -z-10 rounded-3xl bg-gold/10 blur-3xl" />
