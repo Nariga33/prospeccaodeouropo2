@@ -29,7 +29,7 @@ export function OutboundHub() {
   const cx = size / 2;
   const cy = size / 2;
   const rOrbit = 430;
-  const rNode = 88;
+  const rNode = 140;
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(0);
@@ -149,9 +149,9 @@ export function OutboundHub() {
                     stroke="rgba(197,160,89,0.5)"
                     strokeWidth="1.5"
                   />
-                  <foreignObject x={x - 22} y={y - 22} width={44} height={44}>
+                  <foreignObject x={x - 35} y={y - 35} width={70} height={70}>
                     <div className="flex h-full w-full items-center justify-center">
-                      <Icon size={35} color="#C5A059" />
+                      <Icon size={56} color="#C5A059" />
                     </div>
                   </foreignObject>
                   <text
