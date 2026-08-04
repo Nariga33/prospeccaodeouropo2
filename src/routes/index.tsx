@@ -12,6 +12,7 @@ import { MethodologyDialog, type Methodology } from "@/components/po2/Methodolog
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
+import { HeroLivePanel } from "@/components/po2/HeroLivePanel";
 import { FullFunnelOverview } from "@/components/po2/FullFunnelOverview";
 import { Testimonials } from "@/components/po2/Testimonials";
 import { ServicesShowcase } from "@/components/po2/ServicesShowcase";
@@ -195,46 +196,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="relative">
-          <div className="absolute -inset-4 -z-10 rounded-3xl bg-gold/10 blur-3xl" />
-          <div className="rounded-3xl border border-white/10 bg-card/80 p-8 shadow-2xl shadow-black/40 backdrop-blur">
-            <div className="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-                Painel · Resultado acumulado
-              </span>
-              <div className="flex gap-1">
-                <span className="size-2 rounded-full bg-red-500/50" />
-                <span className="size-2 rounded-full bg-amber-500/50" />
-                <span className="size-2 rounded-full bg-emerald-500/50" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-                Receita gerada
-              </div>
-              <div className="font-display text-6xl text-gold">
-                <CountUp value="+R$ 2M" />
-              </div>
-              <div className="text-sm text-muted-foreground">em +30 negócios fechados</div>
-            </div>
-            <div className="mt-8 grid grid-cols-3 gap-3">
-              {[
-                { v: "+100k", l: "Ligações" },
-                { v: "+5k", l: "Empresas" },
-                { v: "+1k", l: "Agendas" },
-              ].map((s) => (
-                <div key={s.l} className="rounded-xl bg-white/5 p-4">
-                  <div className="font-display text-2xl text-foreground">
-                    <CountUp value={s.v} />
-                  </div>
-                  <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroLivePanel />
       </div>
     </section>
   );
