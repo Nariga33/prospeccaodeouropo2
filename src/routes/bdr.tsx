@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { BdrMethod } from "@/components/po2/BdrMethod";
+import { BdrFunnel } from "@/components/po2/BdrFunnel";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Target } from "lucide-react";
@@ -59,6 +60,28 @@ function BdrPage() {
                 }
               />
             </div>
+          </div>
+        </section>
+
+        <section className="border-b border-white/5 bg-surface/40">
+          <div className="mx-auto max-w-7xl px-6 py-24">
+            <div className="mb-12 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+                <span className="h-px w-12 bg-gold/60" /> O funil outbound
+                <span className="h-px w-12 bg-gold/60" />
+              </div>
+              <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
+                Da pesquisa à agenda —{" "}
+                <span className="font-display font-normal italic text-gold">
+                  sem depender de sorte.
+                </span>
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+                Cada etapa prepara a próxima — abordagem sem pesquisa é chute, e sequência sem
+                abordagem certa é insistência vazia.
+              </p>
+            </div>
+            <BdrFunnel />
           </div>
         </section>
 
