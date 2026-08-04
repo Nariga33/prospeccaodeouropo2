@@ -1,53 +1,71 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
-import {
-  Megaphone,
-  Brain,
-  Headset,
-  Target,
-  Trophy,
-  RotateCcw,
-  ArrowDown,
-  ArrowRight,
-} from "lucide-react";
+import { Megaphone, Brain, Headset, Target, Trophy, RotateCcw, ArrowRight } from "lucide-react";
 
 const goldRule = "h-px w-12 bg-gold/60";
 
 const ctaPrimary =
   "inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
 
-function FunnelBox({
-  icon: Icon,
-  label,
-  href,
-  tone = "dark",
-}: {
-  icon: React.ComponentType<{ className?: string }>;
+interface FNode {
+  key: string;
+  icon: React.ComponentType<{ size?: number; color?: string }>;
   label: string;
+  x: number;
+  y: number;
+  r: number;
   href?: string;
-  tone?: "dark" | "gold";
-}) {
-  const content = (
-    <div
-      className={`flex items-center justify-center gap-2.5 rounded-xl border px-6 py-4 text-sm font-bold transition-all ${
-        tone === "gold"
-          ? "border-gold bg-gold text-gold-foreground hover:shadow-[0_0_30px_rgba(197,160,89,0.35)]"
-          : "border-white/15 bg-card/80 text-foreground hover:border-gold/40"
-      }`}
-    >
-      <Icon className="size-4.5" /> {label}
-    </div>
-  );
-  return href ? (
-    <Link to={href} className="block">
-      {content}
-    </Link>
-  ) : (
-    content
-  );
+  tier: 0 | 1 | 2;
 }
 
+const NODES: FNode[] = [
+  { key: "marketing", icon: Megaphone, label: "Marketing", x: 175, y: 70, r: 62, tier: 0 },
+  {
+    key: "inteligencia",
+    icon: Brain,
+    label: "Inteligência Comercial",
+    x: 425,
+    y: 70,
+    r: 62,
+    tier: 0,
+  },
+  { key: "sdr", icon: Headset, label: "SDR", x: 130, y: 320, r: 62, href: "/sdr", tier: 1 },
+  { key: "bdr", icon: Target, label: "BDR", x: 470, y: 320, r: 62, href: "/bdr", tier: 1 },
+  { key: "closer", icon: Trophy, label: "Closer", x: 300, y: 540, r: 78, href: "/closer", tier: 2 },
+];
+
+const STEP_DELAY_MS = 260;
+
 export function FullFunnelOverview() {
+  const size = { w: 600, h: 660 };
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [loopVisible, setLoopVisible] = useState(false);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || started.current) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            NODES.forEach((_, i) => {
+              setTimeout(() => setVisibleCount((v) => Math.max(v, i + 1)), i * STEP_DELAY_MS);
+            });
+            setTimeout(() => setLoopVisible(true), NODES.length * STEP_DELAY_MS + 300);
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section className="border-b border-white/5 bg-surface/40">
       <div className="mx-auto max-w-6xl px-6 py-24">
@@ -67,28 +85,148 @@ export function FullFunnelOverview() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="flex flex-col items-center gap-3">
-            <div className="grid w-full grid-cols-2 gap-3">
-              <FunnelBox icon={Megaphone} label="Marketing" />
-              <FunnelBox icon={Brain} label="Inteligência Comercial" />
-            </div>
-            <ArrowDown className="size-5 text-gold/50" />
+        <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+          <div ref={wrapRef} className="relative mx-auto flex justify-center">
+            <svg
+              viewBox={`0 0 ${size.w} ${size.h}`}
+              className="aspect-[600/660] w-full max-w-[560px] overflow-visible"
+            >
+              <defs>
+                <radialGradient id="funnelGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="rgba(197,160,89,0.18)" />
+                  <stop offset="100%" stopColor="rgba(197,160,89,0)" />
+                </radialGradient>
+              </defs>
+              <circle cx={300} cy={330} r={310} fill="url(#funnelGlow)" />
 
-            <div className="w-full rounded-2xl border border-dashed border-gold/25 p-3">
-              <div className="mb-2 text-center text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
-                Pré-venda
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <FunnelBox icon={Headset} label="SDR" href="/sdr" tone="gold" />
-                <FunnelBox icon={Target} label="BDR" href="/bdr" tone="gold" />
-              </div>
-            </div>
-            <ArrowDown className="size-5 text-gold/50" />
+              {/* Linhas de fluxo tier a tier */}
+              <line
+                x1={175}
+                y1={132}
+                x2={130}
+                y2={258}
+                stroke="rgba(197,160,89,0.3)"
+                strokeWidth={1.5}
+              />
+              <line
+                x1={425}
+                y1={132}
+                x2={470}
+                y2={258}
+                stroke="rgba(197,160,89,0.3)"
+                strokeWidth={1.5}
+              />
+              <line
+                x1={130}
+                y1={382}
+                x2={280}
+                y2={470}
+                stroke="rgba(197,160,89,0.3)"
+                strokeWidth={1.5}
+              />
+              <line
+                x1={470}
+                y1={382}
+                x2={320}
+                y2={470}
+                stroke="rgba(197,160,89,0.3)"
+                strokeWidth={1.5}
+              />
 
-            <div className="w-full">
-              <FunnelBox icon={Trophy} label="Closer — Fechamento" href="/closer" tone="gold" />
-            </div>
+              {/* Loop de feedback: do Closer de volta pro Marketing */}
+              <path
+                d="M 380 555 C 560 480, 560 150, 420 75"
+                fill="none"
+                stroke="#C5A059"
+                strokeWidth={2}
+                strokeDasharray="6 8"
+                style={{
+                  opacity: loopVisible ? 0.85 : 0,
+                  transition: "opacity 0.8s ease-out",
+                }}
+              />
+              <polygon
+                points="405,60 425,72 407,84"
+                fill="#C5A059"
+                style={{ opacity: loopVisible ? 0.85 : 0, transition: "opacity 0.8s ease-out" }}
+              />
+              <text
+                x={560}
+                y={310}
+                textAnchor="middle"
+                fontSize="12"
+                fontWeight="700"
+                letterSpacing="0.1em"
+                fill="#C5A059"
+                transform="rotate(90 560 310)"
+                style={{ opacity: loopVisible ? 1 : 0, transition: "opacity 0.8s ease-out" }}
+              >
+                FEEDBACK DE MERCADO
+              </text>
+
+              {NODES.map((n, i) => {
+                const Icon = n.icon;
+                const visible = i < visibleCount;
+                const fill = n.tier === 2 ? "#C5A059" : "#0F1115";
+                const iconColor = n.tier === 2 ? "#1a1208" : "#C5A059";
+                const stroke = n.tier === 2 ? "#C5A059" : "rgba(197,160,89,0.55)";
+                const content = (
+                  <g
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? "scale(1)" : "scale(0.5)",
+                      transformOrigin: `${n.x}px ${n.y}px`,
+                      transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+                      cursor: n.href ? "pointer" : "default",
+                    }}
+                  >
+                    <circle
+                      cx={n.x}
+                      cy={n.y}
+                      r={n.r}
+                      fill={fill}
+                      stroke={stroke}
+                      strokeWidth={n.tier === 2 ? 2.5 : 1.8}
+                    />
+                    <foreignObject x={n.x - 16} y={n.y - 16} width={32} height={32}>
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Icon size={26} color={iconColor} />
+                      </div>
+                    </foreignObject>
+                    <text
+                      x={n.x}
+                      y={n.y + n.r + 22}
+                      textAnchor="middle"
+                      fontSize="13"
+                      fontWeight="700"
+                      fill="rgba(230,225,215,0.9)"
+                    >
+                      {n.label}
+                    </text>
+                  </g>
+                );
+                return n.href ? (
+                  <Link key={n.key} to={n.href}>
+                    {content}
+                  </Link>
+                ) : (
+                  <g key={n.key}>{content}</g>
+                );
+              })}
+
+              <text
+                x={300}
+                y={230}
+                textAnchor="middle"
+                fontSize="11"
+                fontWeight="700"
+                letterSpacing="0.2em"
+                fill="rgba(197,160,89,0.6)"
+                style={{ opacity: visibleCount >= 4 ? 1 : 0, transition: "opacity 0.5s" }}
+              >
+                PRÉ-VENDA
+              </text>
+            </svg>
           </div>
 
           <div className="rounded-3xl border border-gold/30 bg-gradient-to-b from-gold/10 to-card/80 p-8">
