@@ -95,8 +95,6 @@ function LandingPage() {
         <ProblemVsMethod />
         <OutboundHub />
         <ServicesShowcase />
-        <BdrTeaser />
-        <MentoriaTeaser />
         <EventosTeaser />
         <Pitch />
 
@@ -176,9 +174,9 @@ function Hero() {
                 </button>
               }
             />
-            <a href="#metodo" className={ctaSecondary}>
+            <Link to="/bdr" className={ctaSecondary}>
               Ver o método PO2
-            </a>
+            </Link>
           </div>
 
           <div className="mt-10">
@@ -429,30 +427,6 @@ function ProblemVsMethod() {
   );
 }
 
-function BdrTeaser() {
-  return (
-    <section id="metodo" className="border-b border-white/5 bg-surface/40 py-20">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-          <Target className="size-3" /> BDR & Outbound
-        </div>
-        <h2 className="mt-4 font-[Instrument_Serif] text-4xl leading-tight md:text-5xl">
-          O método de <span className="italic text-gold">7 etapas</span> que vira receita.
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          De ICP e listas até métricas por canal — o passo a passo completo de prospecção ativa, com
-          cadência multicanal e cold call consultiva.
-        </p>
-        <div className="mt-8">
-          <Link to="/bdr" className={ctaPrimary}>
-            Ver o método BDR <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Pitch() {
   const blocks = [
     {
@@ -546,34 +520,6 @@ function Pitch() {
             A abordagem da PO2 vende <em className="text-gold">diagnóstico</em> antes de vender
             solução.
           </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MentoriaTeaser() {
-  return (
-    <section
-      id="mentoria"
-      className="border-b border-white/5 bg-gradient-to-b from-black to-background py-24"
-    >
-      <div className="mx-auto max-w-4xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-          <GraduationCap className="size-3" /> Mentoria com Matheus Staruck
-        </div>
-        <h2 className="mt-4 font-[Instrument_Serif] text-4xl leading-tight md:text-5xl">
-          Não é curso. É <span className="italic text-gold">operação</span> que você executa junto.
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Mentoria prática para fundadores, gestores e times comerciais que querem parar de
-          improvisar e construir uma máquina de prospecção ativa com método, indicadores e melhoria
-          contínua.
-        </p>
-        <div className="mt-8">
-          <Link to="/mentoria" className={ctaPrimary}>
-            Conhecer a mentoria <ArrowRight className="size-4" />
-          </Link>
         </div>
       </div>
     </section>

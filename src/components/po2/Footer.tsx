@@ -24,9 +24,9 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-            <a href="/#metodo" className="transition-colors hover:text-gold">
+            <Link to="/bdr" className="transition-colors hover:text-gold">
               Método
-            </a>
+            </Link>
             <Link to="/eventos" className="transition-colors hover:text-gold">
               Eventos
             </Link>
