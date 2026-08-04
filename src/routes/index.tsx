@@ -13,6 +13,13 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
 import { HeroLivePanel } from "@/components/po2/HeroLivePanel";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { FullFunnelOverview } from "@/components/po2/FullFunnelOverview";
 import { Testimonials } from "@/components/po2/Testimonials";
 import { ServicesShowcase } from "@/components/po2/ServicesShowcase";
@@ -288,33 +295,49 @@ function ProblemVsMethod() {
       badIcon: Target,
       bad: "Sem ICP",
       badDesc: "Listas feitas no chute, sem critério de qualificação.",
+      badLong:
+        "Sem ICP documentado, cada etapa trata todo contato do mesmo jeito — seja o BDR ligando frio ou o SDR respondendo um lead novo. Empresas que nunca comprariam recebem o mesmo esforço das que fechariam rápido, e isso só fica claro quando já é tarde.",
       goodIcon: LineChart,
       good: "ICP documentado",
       goodDesc: "Pipeline previsível, com esforço direcionado para quem compra.",
+      goodLong:
+        "Com ICP escrito e compartilhado entre marketing, pré-venda e closer, cada etapa do funil sabe exatamente quem vale o esforço. O pipeline fica mais enxuto — mas muito mais previsível.",
     },
     {
       badIcon: MessageSquare,
       bad: "Abordagem genérica",
       badDesc: "Mensagem igual para todo mundo — sem contexto.",
+      badLong:
+        "A mesma mensagem genérica vai pra todo mundo, outbound ou inbound. O lead sente que está recebendo spam, mesmo quando o produto poderia resolver o problema real dele — e a taxa de resposta paga o preço.",
       goodIcon: Users,
       good: "Abordagem consultiva",
       goodDesc: "Reuniões com decisores certos — não leads errados.",
+      goodLong:
+        "Cada abordagem nasce do contexto real do lead — empresa, cargo, momento. A reunião que acontece já começa validada, porque quem está do outro lado sentiu que foi entendido antes de ser abordado.",
     },
     {
       badIcon: Layers,
       bad: "Cadência sem estratégia",
       badDesc: "Sequência sem narrativa, sem progressão comercial.",
+      badLong:
+        "Sequência de contato sem lógica — um e-mail aqui, uma ligação ali, sem narrativa entre os toques. O lead recebe estímulos desconexos e não entende por que continua sendo procurado.",
       goodIcon: Wallet,
       good: "Cadência estruturada",
       goodDesc: "Time comercial produtivo, CAC mais baixo.",
+      goodLong:
+        "Cada canal — e-mail, LinkedIn, ligação, WhatsApp — entra numa ordem que conta uma história, reforçando a mesma mensagem sob ângulos diferentes até a resposta acontecer.",
     },
     {
       badIcon: BarChart3,
       bad: "Número sem análise",
       badDesc: "Time ocupado, mas sem saber o que converte.",
+      badLong:
+        "O time está sempre ocupado — ligando, respondendo, negociando — mas ninguém sabe dizer com clareza o que está funcionando e o que está só queimando tempo.",
       goodIcon: ShieldCheck,
       good: "Ritual de métricas",
       goodDesc: "Decisão com dado — a empresa deixa de ser refém do acaso comercial.",
+      goodLong:
+        "Métrica revisada toda semana, por etapa do funil, revela exatamente onde está o gargalo — lista ruim, abordagem fraca ou negociação sem critério. A decisão vira dado, não achismo.",
     },
   ];
   return (
@@ -324,68 +347,111 @@ function ProblemVsMethod() {
           <span className={goldRule} /> Antes e depois da PO2
         </div>
         <h2 className="max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-          Outbound não falha por falta de esforço.{" "}
+          Sua operação comercial não falha por falta de esforço.{" "}
           <span className="font-display font-normal italic text-gold">
             Falha por falta de método.
           </span>
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Empresas com bons produtos e vendedores continuam sem previsibilidade porque a prospecção
-          acontece no improviso — e a conta chega em pipeline fraco e CAC alto.
+          Empresas com bons produtos e vendedores continuam sem previsibilidade porque cada etapa —
+          do primeiro contato ao fechamento — acontece no improviso. A conta chega em pipeline fraco
+          e CAC alto.
         </p>
 
         <blockquote className="mt-10 max-w-3xl border-l-2 border-gold/50 pl-6 font-display text-xl italic leading-snug text-foreground/90 md:text-2xl">
-          "Outbound não é sobre ligar mais. É sobre{" "}
-          <em className="not-italic text-gold">ligar melhor</em>, para as pessoas certas, com a
-          mensagem certa, no momento certo — e com controle dos números."
+          "Vender mais não é sobre fazer mais contato. É sobre fazer o contato{" "}
+          <em className="not-italic text-gold">certo</em>, com a pessoa certa, no momento certo — em
+          qualquer etapa do funil, com controle dos números."
         </blockquote>
 
-        <div className="mt-14 space-y-4">
+        <p className="mt-4 text-xs text-muted-foreground">
+          Clique em cada linha pra ver em detalhe.
+        </p>
+
+        <div className="mt-8 space-y-4">
           {rows.map((r) => (
-            <div
-              key={r.bad}
-              className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-card/40 transition-all hover:border-gold/30 hover:shadow-[0_8px_40px_-12px_rgba(197,160,89,0.25)] sm:grid-cols-2"
-            >
-              <div className="flex items-start gap-4 p-7 sm:pr-10">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-red-400/20 bg-gradient-to-br from-red-400/10 to-transparent text-red-400/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                  <r.badIcon className="size-5" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400/70">
-                    Sem método
-                  </div>
-                  <h3 className="mt-1 font-bold text-foreground/85">{r.bad}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {r.badDesc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 border-t border-white/10 bg-gradient-to-br from-gold/[0.06] to-transparent p-7 sm:border-l sm:border-t-0 sm:pl-10">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-gold/30 bg-gradient-to-br from-gold/20 to-gold/5 text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-                  <r.goodIcon className="size-5" />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
-                    Com PO2
-                  </div>
-                  <h3 className="mt-1 font-bold text-foreground">{r.good}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {r.goodDesc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 sm:flex">
-                <span className="flex size-9 items-center justify-center rounded-full border border-gold/40 bg-background text-gold shadow-[0_0_0_6px_rgba(15,17,21,1)] transition-transform group-hover:scale-110">
-                  <ArrowRight className="size-4" />
-                </span>
-              </div>
-            </div>
+            <BeforeAfterDialog key={r.bad} row={r} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+interface PVMRow {
+  badIcon: React.ComponentType<{ className?: string }>;
+  bad: string;
+  badDesc: string;
+  badLong: string;
+  goodIcon: React.ComponentType<{ className?: string }>;
+  good: string;
+  goodDesc: string;
+  goodLong: string;
+}
+
+function BeforeAfterDialog({ row: r }: { row: PVMRow }) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          className="group relative grid w-full grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-card/40 text-left transition-all hover:border-gold/30 hover:shadow-[0_8px_40px_-12px_rgba(197,160,89,0.25)] sm:grid-cols-2"
+        >
+          <div className="flex items-start gap-4 p-7 sm:pr-10">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-red-400/20 bg-gradient-to-br from-red-400/10 to-transparent text-red-400/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <r.badIcon className="size-5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400/70">
+                Sem método
+              </div>
+              <h3 className="mt-1 font-bold text-foreground/85">{r.bad}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{r.badDesc}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4 border-t border-white/10 bg-gradient-to-br from-gold/[0.06] to-transparent p-7 sm:border-l sm:border-t-0 sm:pl-10">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-gold/30 bg-gradient-to-br from-gold/20 to-gold/5 text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <r.goodIcon className="size-5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+                Com PO2
+              </div>
+              <h3 className="mt-1 font-bold text-foreground">{r.good}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{r.goodDesc}</p>
+            </div>
+          </div>
+
+          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 sm:flex">
+            <span className="flex size-9 items-center justify-center rounded-full border border-gold/40 bg-background text-gold shadow-[0_0_0_6px_rgba(15,17,21,1)] transition-transform group-hover:scale-110">
+              <ArrowRight className="size-4" />
+            </span>
+          </div>
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-h-[88vh] max-w-xl overflow-y-auto border-white/10 bg-card text-foreground">
+        <DialogHeader>
+          <DialogTitle className="font-display text-3xl text-foreground">
+            {r.bad} <span className="text-muted-foreground">→</span> {r.good}
+          </DialogTitle>
+        </DialogHeader>
+        <div className="mt-2 space-y-4">
+          <div className="rounded-2xl border border-red-400/20 bg-red-400/5 p-5">
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400/80">
+              Como era
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/85">{r.badLong}</p>
+          </div>
+          <div className="rounded-2xl border border-gold/30 bg-gold/5 p-5">
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+              Como fica com a PO2
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/90">{r.goodLong}</p>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
