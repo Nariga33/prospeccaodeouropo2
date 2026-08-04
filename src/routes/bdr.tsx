@@ -4,6 +4,7 @@ import { Footer } from "@/components/po2/Footer";
 import { BdrMethod } from "@/components/po2/BdrMethod";
 import { BdrFunnel } from "@/components/po2/BdrFunnel";
 import { BdrColdCallFramework } from "@/components/po2/BdrColdCallFramework";
+import { OutboundHub } from "@/components/po2/OutboundHub";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Target } from "lucide-react";
@@ -89,6 +90,8 @@ function BdrPage() {
         <BdrColdCallFramework />
 
         <BdrMethod />
+
+        <OutboundHub />
 
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.1),transparent_60%)]" />

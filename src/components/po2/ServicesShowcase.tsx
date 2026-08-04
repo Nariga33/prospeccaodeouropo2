@@ -12,6 +12,11 @@ const SERVICES = [
     tag: "Outbound",
     title: "Prospecção ativa",
     desc: "ICP, cadência multicanal e cold call consultiva — do primeiro contato ao agendamento, sem depender de indicação.",
+    pains: [
+      "Ligações sem retorno e taxa de conexão baixa",
+      "Listas genéricas, sem critério de qualificação",
+      "Pipeline que não enche, mesmo com esforço alto",
+    ],
     href: "/bdr",
   },
   {
@@ -21,6 +26,11 @@ const SERVICES = [
     tag: "Inbound",
     title: "Qualificação de leads",
     desc: "Lead scoring, SLA de resposta rápida e handoff estruturado — de quem já demonstrou interesse até o closer.",
+    pains: [
+      "Lead chega e demora horas pra ser respondido",
+      "MQL vira SQL raramente — filtro fraco",
+      "Handoff sem contexto, cliente repete a história",
+    ],
     href: "/sdr",
   },
   {
@@ -30,6 +40,11 @@ const SERVICES = [
     tag: "Condução",
     title: "Reunião e proposta",
     desc: "A ponte entre qualificação e fechamento — condução da reunião, proposta com prazo e negociação remota.",
+    pains: [
+      "Reunião não avança pra proposta concreta",
+      "Follow-up que não acontece, negócio esfria",
+      "Ciclo de venda que não anda",
+    ],
     href: "/inside-sales",
   },
   {
@@ -39,6 +54,11 @@ const SERVICES = [
     tag: "Fechamento",
     title: "Negociação final",
     desc: "Objeções finais, margem definida e onboarding padrão — fechar não é sorte, é processo repetível.",
+    pains: [
+      "Proposta parada, sem cadência de reengajamento",
+      "Negociação sem critério, margem perdida no improviso",
+      "Fechamento que demora mais do que devia",
+    ],
     href: "/closer",
   },
   {
@@ -48,6 +68,11 @@ const SERVICES = [
     tag: "Acompanhamento",
     title: "Operação executada junto",
     desc: "Não é curso gravado — é acompanhamento prático com Matheus Staruck, correção de rota entre sessões.",
+    pains: [
+      "Time sabe a teoria, mas não executa direito",
+      "Curso gravado que ninguém termina",
+      "Falta alguém pra corrigir rota em tempo real",
+    ],
     href: "/mentoria",
   },
 ];
@@ -108,6 +133,16 @@ export function ServicesShowcase() {
             <div>
               <h3 className="font-display text-3xl text-foreground">{current.title}</h3>
               <p className="mt-3 text-muted-foreground">{current.desc}</p>
+
+              <div className="mt-5 space-y-2">
+                {current.pains.map((pain) => (
+                  <div key={pain} className="flex items-start gap-2 text-sm">
+                    <span className="mt-1 size-1.5 shrink-0 rounded-full bg-red-400/70" />
+                    <span className="text-foreground/75">{pain}</span>
+                  </div>
+                ))}
+              </div>
+
               <Link
                 to={current.href}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"

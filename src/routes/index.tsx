@@ -12,7 +12,7 @@ import { MethodologyDialog, type Methodology } from "@/components/po2/Methodolog
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
-import { OutboundHub } from "@/components/po2/OutboundHub";
+import { FullFunnelOverview } from "@/components/po2/FullFunnelOverview";
 import { Testimonials } from "@/components/po2/Testimonials";
 import { ServicesShowcase } from "@/components/po2/ServicesShowcase";
 import { Faq } from "@/components/po2/Faq";
@@ -93,7 +93,7 @@ function LandingPage() {
         <Hero />
         <Founder />
         <ProblemVsMethod />
-        <OutboundHub />
+        <FullFunnelOverview />
         <ServicesShowcase />
         <EventosTeaser />
         <Pitch />
