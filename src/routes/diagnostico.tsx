@@ -589,6 +589,7 @@ const PLAYBOOKS: Record<
 
 interface Lead {
   nome: string;
+  cargo?: string;
   email: string;
   telefone: string;
   faturamento: string;
@@ -650,6 +651,14 @@ function DiagnosticoPage() {
   const tierKey = tierOf(pct);
   const playbook = role && role !== "empresario" ? PLAYBOOKS[role][tierKey] : null;
 
+  const dores = useMemo(
+    () =>
+      QUESTIONS.map((q, i) => ({ q, i, a: answers[i] })).filter(
+        ({ a, q }) => a !== null && q.options[a].score === 0,
+      ),
+    [QUESTIONS, answers],
+  );
+
   const empresarioSections = useMemo(() => {
     if (role !== "empresario") return null;
     const segs: { key: "bdr" | "sdr" | "closer"; label: string }[] = [
@@ -709,14 +718,13 @@ function DiagnosticoPage() {
   function buildWhatsAppUrl() {
     if (!lead) return "#";
     const roleInfo = ROLES.find((r) => r.key === role);
-    const lines = [
-      "Olá! Acabei de concluir o diagnóstico PO2.",
-      "",
-      `Nome: ${lead.nome}`,
+    const lines = ["Olá! Acabei de concluir o diagnóstico PO2.", "", `Nome: ${lead.nome}`];
+    if (lead.cargo) lines.push(`Cargo: ${lead.cargo}`);
+    lines.push(
       `E-mail: ${lead.email}`,
       `Telefone: ${lead.telefone}`,
       `Faturamento: ${lead.faturamento}`,
-    ];
+    );
     if (roleInfo) lines.push(`Perfil: ${roleInfo.label} (${roleInfo.sublabel})`);
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
     if (moneyGap.potencialMensal > 0) {
@@ -727,7 +735,14 @@ function DiagnosticoPage() {
         `Gap mensal estimado: ${fmt(moneyGap.gapMensal)}  |  Anual: ${fmt(moneyGap.gapAnual)}`,
       );
     }
-    lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`, "", "Respostas:");
+    lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`);
+
+    if (dores.length > 0) {
+      lines.push("", "Dores identificadas (respostas com maior gap):");
+      dores.forEach(({ q }) => lines.push(`- ${q.title}`));
+    }
+
+    lines.push("", "Respostas completas:");
 
     QUESTIONS.forEach((q, i) => {
       const a = answers[i];
@@ -990,6 +1005,26 @@ function DiagnosticoPage() {
                         {i + 1}
                       </span>
                       <span className="text-sm text-foreground/90">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {dores.length > 0 && (
+              <div className="mt-8 rounded-2xl border border-red-400/30 bg-red-400/5 p-6">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-red-300">
+                  <AlertTriangle className="size-3.5" /> Dores identificadas
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Onde suas respostas apontaram maior gap — é por aqui que o time PO2 vai começar a
+                  conversa.
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {dores.map(({ q }) => (
+                    <li key={q.title} className="flex items-start gap-2 text-sm">
+                      <span className="mt-0.5 text-red-300">•</span>
+                      <span className="text-foreground/90">{q.title}</span>
                     </li>
                   ))}
                 </ul>

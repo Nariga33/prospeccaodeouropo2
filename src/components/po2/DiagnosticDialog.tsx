@@ -3,18 +3,26 @@ import { z } from "zod";
 import { ArrowRight, Phone } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import {
-  Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-
-
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(100),
+  cargo: z.string().trim().min(2, "Informe seu cargo").max(80),
   email: z.string().trim().email("E-mail inválido").max(255),
   telefone: z.string().trim().min(8, "Telefone inválido").max(20),
   faturamento: z.string().min(1, "Selecione uma faixa"),
@@ -39,7 +47,12 @@ interface Props {
 }
 
 function parseNumber(v: string): number {
-  const n = Number(v.replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", "."));
+  const n = Number(
+    v
+      .replace(/[^\d,.-]/g, "")
+      .replace(/\./g, "")
+      .replace(",", "."),
+  );
   return Number.isFinite(n) ? n : 0;
 }
 
@@ -47,7 +60,13 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<FormData>({
-    nome: "", email: "", telefone: "", faturamento: "", ticket: "", metaContratos: "",
+    nome: "",
+    cargo: "",
+    email: "",
+    telefone: "",
+    faturamento: "",
+    ticket: "",
+    metaContratos: "",
   });
   const [errors, setErrors] = useState<Errors>({});
 
@@ -76,11 +95,17 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
     };
     sessionStorage.setItem("po2-lead", JSON.stringify(payload));
     setOpen(false);
-    setData({ nome: "", email: "", telefone: "", faturamento: "", ticket: "", metaContratos: "" });
+    setData({
+      nome: "",
+      cargo: "",
+      email: "",
+      telefone: "",
+      faturamento: "",
+      ticket: "",
+      metaContratos: "",
+    });
     navigate({ to: "/diagnostico" });
   }
-
-
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -106,6 +131,15 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               placeholder="Seu nome completo"
               className="border-white/10 bg-background/60"
               maxLength={100}
+            />
+          </Field>
+          <Field label="Cargo" error={errors.cargo}>
+            <Input
+              value={data.cargo}
+              onChange={(e) => update("cargo", e.target.value)}
+              placeholder="Ex.: CEO, Diretor Comercial, BDR..."
+              className="border-white/10 bg-background/60"
+              maxLength={80}
             />
           </Field>
           <Field label="E-mail" error={errors.email}>
@@ -135,7 +169,9 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               </SelectTrigger>
               <SelectContent className="border-white/10 bg-card">
                 {FATURAMENTO.map((f) => (
-                  <SelectItem key={f} value={f}>{f}</SelectItem>
+                  <SelectItem key={f} value={f}>
+                    {f}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -166,7 +202,6 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
             Quanto você quer fechar por mês via prospecção ativa.
           </p>
 
-
           <button
             type="submit"
             className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
@@ -185,7 +220,9 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
 function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <Label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{label}</Label>
+      <Label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        {label}
+      </Label>
       {children}
       {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
