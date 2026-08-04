@@ -21,6 +21,7 @@ const LINKS = [
   { href: "/mentoria", label: "Mentoria", isRoute: true },
   { href: "/sdr", label: "SDR", isRoute: true },
   { href: "/inside-sales", label: "Inside Sales", isRoute: true },
+  { href: "/closer", label: "Closer", isRoute: true },
   { href: "/eventos", label: "Eventos", isRoute: true },
   { href: "/metodologias", label: "Metodologias", isRoute: true },
   { href: "/#fundador", label: "Sobre" },

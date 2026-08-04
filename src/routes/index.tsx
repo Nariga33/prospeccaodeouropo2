@@ -14,6 +14,8 @@ import { Footer } from "@/components/po2/Footer";
 import { CountUp } from "@/hooks/use-count-up";
 import { OutboundHub } from "@/components/po2/OutboundHub";
 import { Testimonials } from "@/components/po2/Testimonials";
+import { ServicesShowcase } from "@/components/po2/ServicesShowcase";
+import { Faq } from "@/components/po2/Faq";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -92,6 +94,7 @@ function LandingPage() {
         <Founder />
         <ProblemVsMethod />
         <OutboundHub />
+        <ServicesShowcase />
         <BdrTeaser />
         <MentoriaTeaser />
         <EventosTeaser />
@@ -101,6 +104,7 @@ function LandingPage() {
         <Cases />
         <Testimonials />
         <CostComparison />
+        <Faq />
         <FinalCta />
       </main>
       <Footer />

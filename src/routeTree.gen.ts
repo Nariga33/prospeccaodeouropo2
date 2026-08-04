@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BdrRouteImport } from './routes/bdr'
+import { Route as CloserRouteImport } from './routes/closer'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as InsideSalesRouteImport } from './routes/inside-sales'
@@ -43,6 +44,11 @@ const AuthRoute = AuthRouteImport.update({
 const BdrRoute = BdrRouteImport.update({
   id: '/bdr',
   path: '/bdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CloserRoute = CloserRouteImport.update({
+  id: '/closer',
+  path: '/closer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DiagnosticoRoute = DiagnosticoRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/bdr'
+    | '/closer'
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
@@ -184,6 +194,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/bdr'
+    | '/closer'
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/bdr'
+    | '/closer'
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
@@ -221,6 +233,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   BdrRoute: typeof BdrRoute
+  CloserRoute: typeof CloserRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
   InsideSalesRoute: typeof InsideSalesRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/bdr'
       fullPath: '/bdr'
       preLoaderRoute: typeof BdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/closer': {
+      id: '/closer'
+      path: '/closer'
+      fullPath: '/closer'
+      preLoaderRoute: typeof CloserRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/diagnostico': {
@@ -367,6 +387,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   BdrRoute: BdrRoute,
+  CloserRoute: CloserRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
   InsideSalesRoute: InsideSalesRoute,
