@@ -376,37 +376,46 @@ function ProblemVsMethod() {
           mensagem certa, no momento certo — e com controle dos números."
         </blockquote>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
-          <div className="grid grid-cols-1 border-b border-white/10 bg-white/5 text-[11px] font-bold uppercase tracking-[0.25em] sm:grid-cols-2">
-            <div className="flex items-center gap-2 px-6 py-4 text-red-400/80">
-              <span className="size-1.5 rounded-full bg-red-400/70" /> Sem método
-            </div>
-            <div className="flex items-center gap-2 border-t border-white/10 px-6 py-4 text-gold sm:border-l sm:border-t-0">
-              <span className="size-1.5 rounded-full bg-gold" /> Com PO2
-            </div>
-          </div>
+        <div className="mt-14 space-y-4">
           {rows.map((r) => (
             <div
               key={r.bad}
-              className="grid grid-cols-1 border-b border-white/5 last:border-b-0 sm:grid-cols-2"
+              className="group relative grid grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-card/40 transition-all hover:border-gold/30 hover:shadow-[0_8px_40px_-12px_rgba(197,160,89,0.25)] sm:grid-cols-2"
             >
-              <div className="flex gap-4 bg-card/40 p-6">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-red-400/20 bg-red-400/5 text-red-400/80">
+              <div className="flex items-start gap-4 p-7 sm:pr-10">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-red-400/20 bg-gradient-to-br from-red-400/10 to-transparent text-red-400/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                   <r.badIcon className="size-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-foreground/90">{r.bad}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{r.badDesc}</p>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400/70">
+                    Sem método
+                  </div>
+                  <h3 className="mt-1 font-bold text-foreground/85">{r.bad}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {r.badDesc}
+                  </p>
                 </div>
               </div>
-              <div className="flex gap-4 border-t border-white/10 bg-card/70 p-6 sm:border-l sm:border-t-0">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-gold/20 bg-gold/10 text-gold">
+
+              <div className="flex items-start gap-4 border-t border-white/10 bg-gradient-to-br from-gold/[0.06] to-transparent p-7 sm:border-l sm:border-t-0 sm:pl-10">
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-gold/30 bg-gradient-to-br from-gold/20 to-gold/5 text-gold shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
                   <r.goodIcon className="size-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold">{r.good}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{r.goodDesc}</p>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+                    Com PO2
+                  </div>
+                  <h3 className="mt-1 font-bold text-foreground">{r.good}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {r.goodDesc}
+                  </p>
                 </div>
+              </div>
+
+              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 sm:flex">
+                <span className="flex size-9 items-center justify-center rounded-full border border-gold/40 bg-background text-gold shadow-[0_0_0_6px_rgba(15,17,21,1)] transition-transform group-hover:scale-110">
+                  <ArrowRight className="size-4" />
+                </span>
               </div>
             </div>
           ))}
