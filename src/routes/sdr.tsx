@@ -3,6 +3,7 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { SdrFunnel } from "@/components/po2/SdrFunnel";
 import { SdrMethod } from "@/components/po2/SdrMethod";
+import { InboundHub } from "@/components/po2/InboundHub";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Headset } from "lucide-react";
@@ -86,6 +87,8 @@ function SdrPage() {
         </section>
 
         <SdrMethod />
+
+        <InboundHub />
 
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.1),transparent_60%)]" />

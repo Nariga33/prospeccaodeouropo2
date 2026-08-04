@@ -520,8 +520,10 @@ function Pitch() {
           PO2.
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Os primeiros 15 segundos definem se o <Jargon term="BDR">BDR</Jargon> será visto como
-          vendedor genérico — ou como conversa relevante.
+          Os primeiros 15 segundos definem se quem está do outro lado —{" "}
+          <Jargon term="BDR">BDR</Jargon>, <Jargon term="SDR">SDR</Jargon> ou{" "}
+          <Jargon term="Inside Sales">Inside Sales</Jargon> — será visto como vendedor genérico ou
+          como conversa relevante.
         </p>
 
         <div ref={gridRef} className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
