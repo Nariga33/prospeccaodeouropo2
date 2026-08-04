@@ -20,25 +20,34 @@ interface FNode {
 }
 
 const NODES: FNode[] = [
-  { key: "marketing", icon: Megaphone, label: "Marketing", x: 175, y: 70, r: 62, tier: 0 },
+  { key: "marketing", icon: Megaphone, label: "Marketing", x: 195, y: 100, r: 80, tier: 0 },
   {
     key: "inteligencia",
     icon: Brain,
     label: "Inteligência Comercial",
-    x: 425,
-    y: 70,
-    r: 62,
+    x: 505,
+    y: 100,
+    r: 80,
     tier: 0,
   },
-  { key: "sdr", icon: Headset, label: "SDR", x: 130, y: 320, r: 62, href: "/sdr", tier: 1 },
-  { key: "bdr", icon: Target, label: "BDR", x: 470, y: 320, r: 62, href: "/bdr", tier: 1 },
-  { key: "closer", icon: Trophy, label: "Closer", x: 300, y: 540, r: 78, href: "/closer", tier: 2 },
+  { key: "sdr", icon: Headset, label: "SDR", x: 140, y: 400, r: 80, href: "/sdr", tier: 1 },
+  { key: "bdr", icon: Target, label: "BDR", x: 560, y: 400, r: 80, href: "/bdr", tier: 1 },
+  {
+    key: "closer",
+    icon: Trophy,
+    label: "Closer",
+    x: 350,
+    y: 670,
+    r: 100,
+    href: "/closer",
+    tier: 2,
+  },
 ];
 
 const STEP_DELAY_MS = 260;
 
 export function FullFunnelOverview() {
-  const size = { w: 600, h: 660 };
+  const size = { w: 700, h: 800 };
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(0);
   const [loopVisible, setLoopVisible] = useState(false);
@@ -85,11 +94,11 @@ export function FullFunnelOverview() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-center">
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div ref={wrapRef} className="relative mx-auto flex justify-center">
             <svg
               viewBox={`0 0 ${size.w} ${size.h}`}
-              className="aspect-[600/660] w-full max-w-[560px] overflow-visible"
+              className="aspect-[700/800] w-full max-w-[680px] overflow-visible"
             >
               <defs>
                 <radialGradient id="funnelGlow" cx="50%" cy="50%" r="50%">
@@ -97,68 +106,68 @@ export function FullFunnelOverview() {
                   <stop offset="100%" stopColor="rgba(197,160,89,0)" />
                 </radialGradient>
               </defs>
-              <circle cx={300} cy={330} r={310} fill="url(#funnelGlow)" />
+              <circle cx={350} cy={400} r={380} fill="url(#funnelGlow)" />
 
-              {/* Linhas de fluxo tier a tier */}
+              {/* Linhas de fluxo tier a tier (centro a centro — os círculos cobrem as pontas) */}
               <line
-                x1={175}
-                y1={132}
-                x2={130}
-                y2={258}
+                x1={195}
+                y1={100}
+                x2={140}
+                y2={400}
                 stroke="rgba(197,160,89,0.3)"
                 strokeWidth={1.5}
               />
               <line
-                x1={425}
-                y1={132}
-                x2={470}
-                y2={258}
+                x1={505}
+                y1={100}
+                x2={560}
+                y2={400}
                 stroke="rgba(197,160,89,0.3)"
                 strokeWidth={1.5}
               />
               <line
-                x1={130}
-                y1={382}
-                x2={280}
-                y2={470}
+                x1={140}
+                y1={400}
+                x2={350}
+                y2={670}
                 stroke="rgba(197,160,89,0.3)"
                 strokeWidth={1.5}
               />
               <line
-                x1={470}
-                y1={382}
-                x2={320}
-                y2={470}
+                x1={560}
+                y1={400}
+                x2={350}
+                y2={670}
                 stroke="rgba(197,160,89,0.3)"
                 strokeWidth={1.5}
               />
 
-              {/* Loop de feedback: do Closer de volta pro Marketing */}
+              {/* Loop de feedback: do Closer de volta pro Marketing/Inteligência */}
               <path
-                d="M 380 555 C 560 480, 560 150, 420 75"
+                d="M 445 685 C 700 580, 700 210, 500 110"
                 fill="none"
                 stroke="#C5A059"
-                strokeWidth={2}
-                strokeDasharray="6 8"
+                strokeWidth={2.5}
+                strokeDasharray="7 9"
                 style={{
                   opacity: loopVisible ? 0.85 : 0,
                   transition: "opacity 0.8s ease-out",
                 }}
               />
               <polygon
-                points="405,60 425,72 407,84"
+                points="480,92 508,108 483,127"
                 fill="#C5A059"
                 style={{ opacity: loopVisible ? 0.85 : 0, transition: "opacity 0.8s ease-out" }}
               />
               <text
-                x={560}
-                y={310}
+                x={690}
+                y={400}
                 textAnchor="middle"
-                fontSize="12"
+                fontSize="16"
                 fontWeight="700"
-                letterSpacing="0.1em"
+                letterSpacing="0.12em"
                 fill="#C5A059"
-                transform="rotate(90 560 310)"
+                transform="rotate(90 690 400)"
                 style={{ opacity: loopVisible ? 1 : 0, transition: "opacity 0.8s ease-out" }}
               >
                 FEEDBACK DE MERCADO
@@ -186,18 +195,18 @@ export function FullFunnelOverview() {
                       r={n.r}
                       fill={fill}
                       stroke={stroke}
-                      strokeWidth={n.tier === 2 ? 2.5 : 1.8}
+                      strokeWidth={n.tier === 2 ? 3 : 2}
                     />
-                    <foreignObject x={n.x - 16} y={n.y - 16} width={32} height={32}>
+                    <foreignObject x={n.x - 22} y={n.y - 22} width={44} height={44}>
                       <div className="flex h-full w-full items-center justify-center">
-                        <Icon size={26} color={iconColor} />
+                        <Icon size={34} color={iconColor} />
                       </div>
                     </foreignObject>
                     <text
                       x={n.x}
-                      y={n.y + n.r + 22}
+                      y={n.y + n.r + 28}
                       textAnchor="middle"
-                      fontSize="13"
+                      fontSize="18"
                       fontWeight="700"
                       fill="rgba(230,225,215,0.9)"
                     >
@@ -215,13 +224,13 @@ export function FullFunnelOverview() {
               })}
 
               <text
-                x={300}
-                y={230}
+                x={350}
+                y={275}
                 textAnchor="middle"
-                fontSize="11"
+                fontSize="14"
                 fontWeight="700"
-                letterSpacing="0.2em"
-                fill="rgba(197,160,89,0.6)"
+                letterSpacing="0.25em"
+                fill="rgba(197,160,89,0.65)"
                 style={{ opacity: visibleCount >= 4 ? 1 : 0, transition: "opacity 0.5s" }}
               >
                 PRÉ-VENDA
