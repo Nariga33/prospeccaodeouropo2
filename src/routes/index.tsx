@@ -65,11 +65,11 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B" },
+      { title: "PO2 — Assessoria de Prospecção B2B em Porto Alegre, RS" },
       {
         name: "description",
         content:
-          "Sua máquina comercial completa: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade — do topo ao fundo do funil.",
+          "Assessoria de prospecção B2B em Porto Alegre (RS), atendendo todo o Brasil: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade.",
       },
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
@@ -77,6 +77,62 @@ export const Route = createFileRoute("/")({
         content: "Outbound com método. +R$2M gerados, +100k ligações, +1k agendas qualificadas.",
       },
       { property: "og:url", content: "https://www.prospeccaodeouropo2.com/" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Pra que tamanho de empresa a PO2 é indicada?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Empresas B2B que já vendem, mas dependem de esforço individual pra gerar oportunidade — de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Já tenho time comercial. Por que contratar a PO2?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "A PO2 não substitui o time — estrutura o método que ele executa: ICP, cadência, script e métricas. Time sem processo vende menos do que poderia, independente do tamanho.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Como a PO2 funciona pro meu segmento?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "O método se adapta ao ciclo de venda e ao ICP do negócio. O diagnóstico gratuito mapeia isso antes de qualquer proposta.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O que diferencia a PO2 de uma consultoria comum?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Não entrega só um relatório — participa da execução, com acompanhamento prático e correção de rota junto com o time.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Quanto tempo leva pra aparecer resultado com a PO2?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Depende da maturidade da operação. A maioria dos clientes vê um fluxo mais previsível de oportunidades entre 60 e 90 dias de implementação do método.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "A PO2 garante resultado de vendas?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Não promete número de vendas — isso depende de fatores fora do controle da consultoria, como produto, preço e mercado. O que garante é a estruturação do método. Na Mentoria, especificamente, há garantia de 7 dias.",
+              },
+            },
+          ],
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/" }],
   }),

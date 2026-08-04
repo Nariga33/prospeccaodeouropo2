@@ -24,6 +24,28 @@ export const Route = createFileRoute("/sdr")({
           "O mesmo rigor de método que a PO2 aplica no outbound, agora para qualificação inbound.",
       },
       { property: "og:url", content: "https://www.prospeccaodeouropo2.com/sdr" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Assessoria de qualificação inbound (SDR)",
+          name: "SDR & Inbound — PO2",
+          description:
+            "Estruturação de operação inbound e qualificação de SDR: lead scoring, SLA de resposta, funil MQL/PQL/SAL/SQL.",
+          provider: {
+            "@type": "ProfessionalService",
+            name: "PO2 — Prospecção de Ouro 2.0",
+            areaServed: "Brasil",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Porto Alegre",
+              addressRegion: "RS",
+              addressCountry: "BR",
+            },
+          },
+          areaServed: "BR",
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/sdr" }],
   }),

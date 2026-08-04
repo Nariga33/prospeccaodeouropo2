@@ -23,6 +23,28 @@ export const Route = createFileRoute("/inside-sales")({
           "A ponte entre qualificação e fechamento — reunião, proposta e negociação com método.",
       },
       { property: "og:url", content: "https://www.prospeccaodeouropo2.com/inside-sales" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Assessoria de Inside Sales",
+          name: "Inside Sales — PO2",
+          description:
+            "Estruturação de Inside Sales: descoberta, qualificação, proposta com prazo, follow-up sistemático e forecast de pipeline.",
+          provider: {
+            "@type": "ProfessionalService",
+            name: "PO2 — Prospecção de Ouro 2.0",
+            areaServed: "Brasil",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Porto Alegre",
+              addressRegion: "RS",
+              addressCountry: "BR",
+            },
+          },
+          areaServed: "BR",
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/inside-sales" }],
   }),

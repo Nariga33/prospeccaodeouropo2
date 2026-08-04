@@ -22,6 +22,28 @@ export const Route = createFileRoute("/closer")({
           "Fechar não é sorte — é processo. O mesmo rigor de método em toda a operação comercial.",
       },
       { property: "og:url", content: "https://www.prospeccaodeouropo2.com/closer" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Assessoria de fechamento comercial (Closer)",
+          name: "Closer — PO2",
+          description:
+            "Método de negociação e fechamento: objeções finais, margem de negociação, onboarding e métricas de conversão.",
+          provider: {
+            "@type": "ProfessionalService",
+            name: "PO2 — Prospecção de Ouro 2.0",
+            areaServed: "Brasil",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Porto Alegre",
+              addressRegion: "RS",
+              addressCountry: "BR",
+            },
+          },
+          areaServed: "BR",
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/closer" }],
   }),

@@ -25,6 +25,28 @@ export const Route = createFileRoute("/bdr")({
           "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa.",
       },
       { property: "og:url", content: "https://www.prospeccaodeouropo2.com/bdr" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Assessoria de prospecção outbound (BDR)",
+          name: "BDR & Outbound — PO2",
+          description:
+            "Estruturação de operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
+          provider: {
+            "@type": "ProfessionalService",
+            name: "PO2 — Prospecção de Ouro 2.0",
+            areaServed: "Brasil",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Porto Alegre",
+              addressRegion: "RS",
+              addressCountry: "BR",
+            },
+          },
+          areaServed: "BR",
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/bdr" }],
   }),
