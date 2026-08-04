@@ -1,0 +1,23 @@
+Semana;Ligações;Conexões;Taxa de Conexão;Reuniões Agendadas;Taxa de Agendamento;Propostas Enviadas;Fechamentos;Taxa de Conversão;Receita Gerada;Observações
+01;;;;;;;;;;
+02;;;;;;;;;;
+03;;;;;;;;;;
+04;;;;;;;;;;
+05;;;;;;;;;;
+06;;;;;;;;;;
+07;;;;;;;;;;
+08;;;;;;;;;;
+09;;;;;;;;;;
+10;;;;;;;;;;
+11;;;;;;;;;;
+12;;;;;;;;;;
+;;;;;;;;;;;
+Média;;;;;;;;;;
+Total;;;;;;;;;;
+;;;;;;;;;;;
+Como usar;;;;;;;;;;
+"Taxa de Conexão = Conexões / Ligações";;;;;;;;;;
+"Taxa de Agendamento = Reuniões Agendadas / Conexões";;;;;;;;;;
+"Taxa de Conversão = Fechamentos / Propostas Enviadas";;;;;;;;;;
+"Preencha toda sexta-feira, no fim do dia, com os números da semana.";;;;;;;;;;
+"Modelo PO2 — www.prospeccaodeouropo2.com";;;;;;;;;;

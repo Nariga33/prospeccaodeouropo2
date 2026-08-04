@@ -26,6 +26,7 @@ const LINKS = [
   { href: "/#fundador", label: "Sobre" },
   { href: "/#casos", label: "Resultados" },
   { href: "/parceiros", label: "Parceiros", isRoute: true },
+  { href: "/materiais", label: "Materiais", isRoute: true },
 ];
 
 export function Nav() {

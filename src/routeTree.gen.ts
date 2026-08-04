@@ -16,6 +16,7 @@ import { Route as BdrRouteImport } from './routes/bdr'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as InsideSalesRouteImport } from './routes/inside-sales'
+import { Route as MateriaisRouteImport } from './routes/materiais'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
 import { Route as MetodologiasRouteImport } from './routes/metodologias'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
@@ -57,6 +58,11 @@ const EventosRoute = EventosRouteImport.update({
 const InsideSalesRoute = InsideSalesRouteImport.update({
   id: '/inside-sales',
   path: '/inside-sales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MateriaisRoute = MateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MentoriaRoute = MentoriaRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
+  '/materiais': typeof MateriaisRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
+  '/materiais': typeof MateriaisRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
   '/inside-sales': typeof InsideSalesRoute
+  '/materiais': typeof MateriaisRoute
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
+    | '/materiais'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
+    | '/materiais'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/diagnostico'
     | '/eventos'
     | '/inside-sales'
+    | '/materiais'
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
@@ -212,6 +224,7 @@ export interface RootRouteChildren {
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
   InsideSalesRoute: typeof InsideSalesRoute
+  MateriaisRoute: typeof MateriaisRoute
   MentoriaRoute: typeof MentoriaRoute
   MetodologiasRoute: typeof MetodologiasRoute
   ParceirosRoute: typeof ParceirosRoute
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       path: '/inside-sales'
       fullPath: '/inside-sales'
       preLoaderRoute: typeof InsideSalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/materiais': {
+      id: '/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof MateriaisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentoria': {
@@ -350,6 +370,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
   InsideSalesRoute: InsideSalesRoute,
+  MateriaisRoute: MateriaisRoute,
   MentoriaRoute: MentoriaRoute,
   MetodologiasRoute: MetodologiasRoute,
   ParceirosRoute: ParceirosRoute,
