@@ -3,6 +3,7 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { BdrMethod } from "@/components/po2/BdrMethod";
 import { BdrFunnel } from "@/components/po2/BdrFunnel";
+import { BdrColdCallFramework } from "@/components/po2/BdrColdCallFramework";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Target } from "lucide-react";
@@ -84,6 +85,8 @@ function BdrPage() {
             <BdrFunnel />
           </div>
         </section>
+
+        <BdrColdCallFramework />
 
         <BdrMethod />
 
