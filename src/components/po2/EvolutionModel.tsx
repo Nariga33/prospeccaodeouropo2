@@ -90,10 +90,10 @@ const cycle: CycleItem[] = [
 ];
 
 function JourneyMindMap() {
-  const size = 380;
+  const size = 600;
   const cx = size / 2;
   const cy = size / 2;
-  const r = 150;
+  const r = 235;
   const [active, setActive] = useState(0);
   const current = levels[active];
   const CurrentIcon = current.icon;
@@ -129,7 +129,7 @@ function JourneyMindMap() {
       >
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="aspect-square w-full max-w-[380px] overflow-visible"
+          className="aspect-square w-full max-w-[600px] overflow-visible"
         >
           <defs>
             <radialGradient id="po2JourneyGlow" cx="50%" cy="50%" r="50%">
@@ -161,8 +161,8 @@ function JourneyMindMap() {
             const angle = (i / levels.length) * Math.PI * 2 - Math.PI / 2;
             const x = cx + Math.cos(angle) * r;
             const y = cy + Math.sin(angle) * r;
-            const lx = cx + Math.cos(angle) * (r + 42);
-            const ly = cy + Math.sin(angle) * (r + 42);
+            const lx = cx + Math.cos(angle) * (r + 65);
+            const ly = cy + Math.sin(angle) * (r + 65);
             const isActive = i === active;
             const Icon = l.icon;
             return (
@@ -170,7 +170,7 @@ function JourneyMindMap() {
                 <circle
                   cx={x}
                   cy={y}
-                  r="26"
+                  r="42"
                   fill={isActive ? "#1a1208" : "#0F1115"}
                   stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
                   strokeWidth={isActive ? 2.5 : 1.5}
@@ -179,19 +179,19 @@ function JourneyMindMap() {
                   }
                 />
                 <foreignObject
-                  x={x - 10}
-                  y={y - 10}
-                  width={20}
-                  height={20}
+                  x={x - 16}
+                  y={y - 16}
+                  width={32}
+                  height={32}
                   className="pointer-events-none"
                 >
-                  <Icon size={20} color={isActive ? "#C5A059" : "rgba(230,225,215,0.8)"} />
+                  <Icon size={32} color={isActive ? "#C5A059" : "rgba(230,225,215,0.8)"} />
                 </foreignObject>
                 <text
                   x={lx}
                   y={ly + 4}
                   textAnchor="middle"
-                  fontSize="11"
+                  fontSize="17"
                   fontWeight="600"
                   fill={isActive ? "#C5A059" : "rgba(230,225,215,0.85)"}
                   className="pointer-events-none select-none"
@@ -203,11 +203,11 @@ function JourneyMindMap() {
           })}
         </svg>
         <div className="pointer-events-none absolute flex flex-col items-center text-center">
-          <span className="flex size-14 items-center justify-center rounded-full border border-gold/40 bg-background text-gold">
-            <MapIcon className="size-6" />
+          <span className="flex size-20 items-center justify-center rounded-full border border-gold/40 bg-background text-gold">
+            <MapIcon className="size-8" />
           </span>
-          <div className="mt-2 font-display text-base text-foreground">Modelo PO2</div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+          <div className="mt-2 font-display text-xl text-foreground">Modelo PO2</div>
+          <div className="text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
             Do pensamento à receita
           </div>
         </div>
@@ -270,10 +270,10 @@ function JourneyMindMap() {
 }
 
 function CrescerCycle() {
-  const size = 380;
+  const size = 600;
   const cx = size / 2;
   const cy = size / 2;
-  const r = 135;
+  const r = 210;
   const [active, setActive] = useState(0);
   const current = cycle[active];
 
@@ -312,7 +312,7 @@ function CrescerCycle() {
       >
         <svg
           viewBox={`0 0 ${size} ${size}`}
-          className="aspect-square w-full max-w-[380px] overflow-visible"
+          className="aspect-square w-full max-w-[600px] overflow-visible"
         >
           <defs>
             <radialGradient id="po2CycleGlow" cx="50%" cy="50%" r="50%">
@@ -334,8 +334,8 @@ function CrescerCycle() {
             const angle = (i / cycle.length) * Math.PI * 2 - Math.PI / 2;
             const x = cx + Math.cos(angle) * r;
             const y = cy + Math.sin(angle) * r;
-            const lx = cx + Math.cos(angle) * (r + 42);
-            const ly = cy + Math.sin(angle) * (r + 42);
+            const lx = cx + Math.cos(angle) * (r + 65);
+            const ly = cy + Math.sin(angle) * (r + 65);
             const isActive = i === active;
             return (
               <g
@@ -346,7 +346,7 @@ function CrescerCycle() {
                 <circle
                   cx={x}
                   cy={y}
-                  r="24"
+                  r="42"
                   fill={isActive ? "#1a1208" : "#0F1115"}
                   stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
                   strokeWidth={isActive ? 2.5 : 1.5}
@@ -358,7 +358,7 @@ function CrescerCycle() {
                   x={x}
                   y={y + 6}
                   textAnchor="middle"
-                  fontSize="18"
+                  fontSize="28"
                   fontWeight="700"
                   fill="#C5A059"
                   className="pointer-events-none select-none"
@@ -369,7 +369,7 @@ function CrescerCycle() {
                   x={lx}
                   y={ly + 4}
                   textAnchor="middle"
-                  fontSize="11"
+                  fontSize="17"
                   fontWeight="600"
                   fill={isActive ? "#C5A059" : "rgba(230,225,215,0.85)"}
                   className="pointer-events-none select-none"
@@ -381,11 +381,11 @@ function CrescerCycle() {
           })}
         </svg>
         <div className="pointer-events-none absolute flex flex-col items-center text-center">
-          <span className="flex size-14 items-center justify-center rounded-full border border-gold/40 bg-background text-gold">
-            <InfinityIcon className="size-6" />
+          <span className="flex size-20 items-center justify-center rounded-full border border-gold/40 bg-background text-gold">
+            <InfinityIcon className="size-8" />
           </span>
-          <div className="mt-2 font-display text-base text-foreground">Ciclo PO2</div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+          <div className="mt-2 font-display text-xl text-foreground">Ciclo PO2</div>
+          <div className="text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
             Repetir é evoluir
           </div>
         </div>
@@ -456,7 +456,7 @@ export function EvolutionModel() {
         </p>
       </div>
 
-      <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+      <div className="space-y-24">
         <JourneyMindMap />
         <CrescerCycle />
       </div>
