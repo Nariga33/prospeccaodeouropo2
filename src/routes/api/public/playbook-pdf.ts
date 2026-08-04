@@ -52,7 +52,32 @@ function slugify(s: string) {
   );
 }
 
-async function buildPlaybookPdf(body: RequestBody): Promise<Uint8Array> {
+// Fontes padrão (WinAnsi) não sabem desenhar setas, bullets, emoji, etc.
+// Troca por equivalentes ASCII simples pra nunca quebrar a geração do PDF.
+function sanitizeForPdf(text: string): string {
+  return (
+    text
+      .replace(/[\u2192\u2794\u27A1]/g, ">") // → ➔ ➡
+      .replace(/[\u2190]/g, "<") // ←
+      .replace(/[\u2022\u25CF\u25E6]/g, "-") // • ● ◦
+      .replace(/[\u2018\u2019]/g, "'") // ' '
+      .replace(/[\u201C\u201D]/g, '"') // " "
+      .replace(/[\u2026]/g, "...") // …
+      // eslint-disable-next-line no-control-regex
+      .replace(/[^\u0000-\u017F\u20AC\u2013\u2014\u2018\u2019\u201C\u201D]/g, "")
+  );
+}
+
+async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
+  const body: RequestBody = {
+    name: sanitizeForPdf(rawBody.name),
+    sections: rawBody.sections.map((s) => ({
+      label: sanitizeForPdf(s.label),
+      pct: s.pct,
+      playbookTitle: sanitizeForPdf(s.playbookTitle),
+      items: s.items.map(sanitizeForPdf),
+    })),
+  };
   const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib");
   const pdf = await PDFDocument.create();
 

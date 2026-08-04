@@ -4,11 +4,9 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 
 function publicClient() {
-  return createClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
-  );
+  return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+  });
 }
 
 function formatDatePt(iso: string | null): string {
@@ -32,6 +30,22 @@ function durationLabel(startsAt: string | null, endsAt: string | null): string {
     return m > 0 ? `${h}h${String(m).padStart(2, "0")}` : `${h}h`;
   }
   return `${mins} min`;
+}
+
+// Fontes padrão (WinAnsi) não sabem desenhar setas, bullets, emoji, etc.
+// Troca por equivalentes ASCII simples pra nunca quebrar a geração do PDF.
+function sanitizeForPdf(text: string): string {
+  return (
+    text
+      .replace(/[\u2192\u2794\u27A1]/g, ">")
+      .replace(/[\u2190]/g, "<")
+      .replace(/[\u2022\u25CF\u25E6]/g, "-")
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2026]/g, "...")
+      // eslint-disable-next-line no-control-regex
+      .replace(/[^\u0000-\u017F\u20AC\u2013\u2014\u2018\u2019\u201C\u201D]/g, "")
+  );
 }
 
 export const Route = createFileRoute("/api/public/certificate/$token")({
@@ -60,8 +74,8 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
         }
 
         const pdfBytes = await buildCertificatePdf({
-          name: reg.name,
-          eventTitle: ev.title,
+          name: sanitizeForPdf(reg.name),
+          eventTitle: sanitizeForPdf(ev.title),
           startsAt: ev.starts_at,
           endsAt: ev.ends_at,
         });
@@ -118,13 +132,7 @@ async function buildCertificatePdf(params: {
   drawFrame(30, 0.6, goldSoft);
 
   // Top: PO2 monogram
-  const drawCentered = (
-    text: string,
-    y: number,
-    size: number,
-    font = helv,
-    color = white,
-  ) => {
+  const drawCentered = (text: string, y: number, size: number, font = helv, color = white) => {
     const w = font.widthOfTextAtSize(text, size);
     page.drawText(text, { x: (width - w) / 2, y, size, font, color });
   };
@@ -181,15 +189,13 @@ async function buildCertificatePdf(params: {
   const line1 = "participou da masterclass";
   drawCentered(line1, height - 360, 12, helv, white);
 
-  const titleClean = params.eventTitle.length > 80
-    ? params.eventTitle.slice(0, 77) + "…"
-    : params.eventTitle;
+  const titleClean =
+    params.eventTitle.length > 80 ? params.eventTitle.slice(0, 77) + "…" : params.eventTitle;
   drawCentered(`" ${titleClean} "`, height - 385, 15, times, gold);
 
-  const meta = [
-    duration ? `com duração de ${duration}` : "",
-    date ? `realizada em ${date}` : "",
-  ].filter(Boolean).join(" · ");
+  const meta = [duration ? `com duração de ${duration}` : "", date ? `realizada em ${date}` : ""]
+    .filter(Boolean)
+    .join(" · ");
   if (meta) drawCentered(meta, height - 412, 11, helv, white);
 
   // Signature

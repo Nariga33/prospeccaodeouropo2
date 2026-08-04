@@ -522,7 +522,7 @@ const PLAYBOOKS: Record<
       items: [
         "Automatize o lead scoring dentro do CRM, com atualização em tempo real.",
         "Teste reduzir seu SLA de resposta ainda mais — cada minuto a menos aumenta conversão.",
-        "Crie um dashboard de conversão por estágio (Lead→MQL→SAL→SQL→Venda) revisado semanalmente.",
+        "Crie um dashboard de conversão por estágio (Lead > MQL > SAL > SQL > Venda) revisado semanalmente.",
         "Comece a segmentar cadências de nutrição por motivo de não-conversão.",
       ],
     },
@@ -549,7 +549,7 @@ const PLAYBOOKS: Record<
     alta: {
       title: "Playbook: otimização fina",
       items: [
-        "Analise onde o funil mais perde conversão (reunião→proposta ou proposta→fechamento) e foque ali.",
+        "Analise onde o funil mais perde conversão (reunião > proposta ou proposta > fechamento) e foque ali.",
         "Teste reduzir seu ciclo de vendas com gatilhos de urgência genuínos (não pressão artificial).",
         "Crie um playbook de negociação por perfil de cliente (preço-sensível vs. urgência-sensível).",
         "Compartilhe seus melhores roteiros com o time — vire referência interna.",
@@ -571,7 +571,7 @@ const PLAYBOOKS: Record<
       items: [
         "Implemente uma cadência de follow-up pra propostas paradas há mais de 5 dias.",
         "Padronize o processo de contrato e onboarding — elimine retrabalho na entrega.",
-        "Meça sua taxa de conversão proposta→fechamento nas últimas 10 negociações.",
+        "Meça sua taxa de conversão proposta > fechamento nas últimas 10 negociações.",
         "Alinhe com o time de qualificação o que precisa vir junto no handoff pra você fechar mais rápido.",
       ],
     },
