@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CloserMethod } from "@/components/po2/CloserMethod";
+import { GapSection } from "@/components/po2/GapSection";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Trophy } from "lucide-react";
@@ -83,6 +84,16 @@ function CloserPage() {
             </div>
           </div>
         </section>
+
+        <GapSection
+          kicker="O problema real"
+          title="Negociação de preço"
+          titleEm="quando o gap nunca foi quantificado."
+          problemTitle="Desconto vira a única ferramenta de fechamento"
+          problemText="Sem o custo de continuar no estado atual quantificado em dinheiro, o lead só enxerga um número: o preço da proposta. Qualquer concorrente mais barato parece uma escolha óbvia — porque ninguém mostrou o que o problema já está custando todo mês."
+          solutionTitle="Fechar em cima do gap, não do desconto"
+          solutionText="O Closer PO2 negocia com o custo do problema calculado desde a discovery — o valor de continuar como está, comparado ao investimento pra mudar. A conversa deixa de ser sobre preço e passa a ser sobre risco de adiar a decisão."
+        />
 
         <CloserMethod />
 

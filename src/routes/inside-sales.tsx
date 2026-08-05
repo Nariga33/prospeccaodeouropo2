@@ -3,6 +3,7 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { InsideSalesMethod } from "@/components/po2/InsideSalesMethod";
 import { InsideSalesPipeline } from "@/components/po2/InsideSalesPipeline";
+import { GapSection } from "@/components/po2/GapSection";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Handshake } from "lucide-react";
@@ -84,6 +85,16 @@ function InsideSalesPage() {
             </div>
           </div>
         </section>
+
+        <GapSection
+          kicker="O problema real"
+          title="Demonstração de produto"
+          titleEm="não fecha negócio."
+          problemTitle="Discovery vira apresentação de slide"
+          problemText="A reunião começa com o vendedor mostrando feature atrás de feature. O lead assiste educadamente e nunca mais responde — porque em nenhum momento ficou claro pra ele o tamanho do problema que está deixando de resolver, em dinheiro ou tempo."
+          solutionTitle="Os 4 blocos de discovery do Gap Selling"
+          solutionText="A condução da PO2 segue a lógica de Keenan: estado atual, estado futuro, impacto do problema e causa raiz — nessa ordem, antes de qualquer proposta. O lead sai da reunião entendendo o custo de continuar como está, não uma lista de funcionalidades."
+        />
 
         <section className="border-b border-white/5 bg-surface/40">
           <div className="mx-auto max-w-7xl px-6 py-24">

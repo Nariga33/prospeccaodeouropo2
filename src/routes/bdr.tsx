@@ -5,6 +5,7 @@ import { BdrMethod } from "@/components/po2/BdrMethod";
 import { BdrFunnel } from "@/components/po2/BdrFunnel";
 import { BdrColdCallFramework } from "@/components/po2/BdrColdCallFramework";
 import { OutboundHub } from "@/components/po2/OutboundHub";
+import { GapSection } from "@/components/po2/GapSection";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Target } from "lucide-react";
@@ -87,7 +88,17 @@ function BdrPage() {
           </div>
         </section>
 
-        <section className="border-b border-white/5 bg-surface/40">
+        <GapSection
+          kicker="O problema real"
+          title="Mensagem sobre produto"
+          titleEm="não gera reunião."
+          problemTitle="Cadência que fala de você, não do lead"
+          problemText="A maioria das cadências de outbound abre falando da empresa, do produto, do 'nós ajudamos empresas como a sua'. O lead nunca leu a segunda linha — porque nada ali provou que você entende o problema dele antes de tentar vender algo."
+          solutionTitle="Gap Prospecting: o problema antes do pitch"
+          solutionText="A PO2 estrutura cada abordagem em cima do Gap Prospecting — nomeia o problema específico do lead, com dado real do cenário dele, antes de qualquer menção a produto. A reunião nasce da urgência do problema, não da insistência do vendedor."
+        />
+
+        <section id="funil-bdr" className="border-b border-white/5 bg-surface/40">
           <div className="mx-auto max-w-7xl px-6 py-24">
             <div className="mb-12 text-center">
               <div className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">

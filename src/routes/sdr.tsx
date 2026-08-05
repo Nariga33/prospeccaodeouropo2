@@ -4,6 +4,7 @@ import { Footer } from "@/components/po2/Footer";
 import { SdrFunnel } from "@/components/po2/SdrFunnel";
 import { SdrMethod } from "@/components/po2/SdrMethod";
 import { InboundHub } from "@/components/po2/InboundHub";
+import { GapSection } from "@/components/po2/GapSection";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Headset } from "lucide-react";
@@ -85,6 +86,16 @@ function SdrPage() {
             </div>
           </div>
         </section>
+
+        <GapSection
+          kicker="O problema real"
+          title="Reunião marcada"
+          titleEm="com quem não tem dor de verdade."
+          problemTitle="Qualificação por checklist de produto"
+          problemText="'Você usa CRM? Tem orçamento?' — perguntas técnicas que confirmam se o lead cabe no produto, mas nunca revelam se ele tem um problema real que dói o suficiente pra mudar. Reunião acontece, closer descobre no meio da call que não tinha gap nenhum."
+          solutionTitle="Gap Selling na qualificação: estado atual x estado futuro"
+          solutionText="O SDR da PO2 qualifica mapeando o gap — onde o lead está hoje, onde ele quer chegar, e o tamanho real dessa distância. Só passa pro closer quem tem um problema mensurável, não quem só respondeu 'sim' pras perguntas certas."
+        />
 
         <section className="border-b border-white/5 bg-surface/40">
           <div className="mx-auto max-w-7xl px-6 py-24">
