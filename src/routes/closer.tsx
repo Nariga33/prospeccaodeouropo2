@@ -3,6 +3,8 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { CloserMethod } from "@/components/po2/CloserMethod";
 import { GapSection } from "@/components/po2/GapSection";
+import { CloserCallPains } from "@/components/po2/CloserCallPains";
+import { PitchCognitivo } from "@/components/po2/PitchCognitivo";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { Jargon } from "@/components/po2/Jargon";
 import { ArrowRight, Trophy } from "lucide-react";
@@ -14,7 +16,7 @@ export const Route = createFileRoute("/closer")({
       {
         name: "description",
         content:
-          "Método de 7 etapas para Closer: roteiro de fechamento, critério de avanço, objeções finais, margem de negociação, onboarding e métricas de conversão.",
+          "Método de 9 etapas para Closer: qualificação pré-call, roteiro de fechamento, objeções finais, margem de negociação, onboarding e métricas de conversão.",
       },
       { property: "og:title", content: "Closer — PO2" },
       {
@@ -95,7 +97,11 @@ function CloserPage() {
           solutionText="O Closer PO2 negocia com o custo do problema calculado desde a discovery — o valor de continuar como está, comparado ao investimento pra mudar. A conversa deixa de ser sobre preço e passa a ser sobre risco de adiar a decisão."
         />
 
+        <CloserCallPains />
+
         <CloserMethod />
+
+        <PitchCognitivo />
 
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.1),transparent_60%)]" />

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import {
+  Search,
+  MessageCircleQuestion,
   ClipboardList,
   Gauge,
   ShieldCheck,
@@ -13,18 +15,37 @@ const goldRule = "h-px w-12 bg-gold/60";
 
 const CLOSER_PHASES = [
   {
+    key: "qualificacao",
+    label: "Qualificação",
+    tagline: "Antes da call, não durante",
+    steps: [
+      {
+        n: "01",
+        icon: Search,
+        t: "Contexto Antes da Call",
+        d: "Perfil, histórico com SDR/BDR e dor mapeada revisados antes de entrar — a call não começa descobrindo quem é o lead.",
+      },
+      {
+        n: "02",
+        icon: MessageCircleQuestion,
+        t: "Custo da Inação Calculado",
+        d: "O que o problema já custa por mês, em número — não em 'seria bom resolver'. É isso que sustenta o preço depois.",
+      },
+    ],
+  },
+  {
     key: "fechamento",
     label: "Fechamento",
     tagline: "Do interesse confirmado à decisão",
     steps: [
       {
-        n: "01",
+        n: "03",
         icon: ClipboardList,
         t: "Roteiro de Fechamento",
         d: "Etapas claras do 'interesse confirmado' até a assinatura — não é 'vamos ver o que o cliente decide'.",
       },
       {
-        n: "02",
+        n: "04",
         icon: Gauge,
         t: "Critério de Avanço",
         d: "Sinais objetivos pra saber quando fechar ou continuar nutrindo — não é instinto.",
@@ -37,19 +58,19 @@ const CLOSER_PHASES = [
     tagline: "Segurança na hora de discutir preço e prazo",
     steps: [
       {
-        n: "03",
+        n: "05",
         icon: ShieldCheck,
         t: "Objeções Finais",
         d: "Preço, prazo e autoridade — resposta pensada antes da negociação esquentar.",
       },
       {
-        n: "04",
+        n: "06",
         icon: Percent,
         t: "Margem Definida",
         d: "Até onde ceder decidido antes da call — sem decisão de improviso.",
       },
       {
-        n: "05",
+        n: "07",
         icon: Repeat,
         t: "Follow-up Ativo",
         d: "Proposta parada recebe cadência de reengajamento — não fica esfriando.",
@@ -62,13 +83,13 @@ const CLOSER_PHASES = [
     tagline: "Do 'sim' à entrega, sem ruído",
     steps: [
       {
-        n: "06",
+        n: "08",
         icon: FileCheck,
         t: "Onboarding Padrão",
         d: "Contrato e entrega seguem processo replicável — não reinventa a cada venda.",
       },
       {
-        n: "07",
+        n: "09",
         icon: BarChart3,
         t: "Métricas de Fechamento",
         d: "Taxa proposta → fechamento e ciclo médio, acompanhados toda semana.",
@@ -90,8 +111,8 @@ export function CloserMethod() {
               <span className={goldRule} /> O Método
             </div>
             <h2 className="max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Da negociação ao contrato —{" "}
-              <span className="font-display font-normal italic text-gold">7 etapas</span> sem deixar
+              Da qualificação ao contrato —{" "}
+              <span className="font-display font-normal italic text-gold">9 etapas</span> sem deixar
               dinheiro na mesa.
             </h2>
           </div>
