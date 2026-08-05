@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/integrations/supabase/types";
+import { SimplePdf } from "@/lib/simple-pdf";
 
 function publicClient() {
   return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
@@ -33,7 +34,6 @@ function durationLabel(startsAt: string | null, endsAt: string | null): string {
 }
 
 // Fontes padrão (WinAnsi) não sabem desenhar setas, bullets, emoji, etc.
-// Troca por equivalentes ASCII simples pra nunca quebrar a geração do PDF.
 function sanitizeForPdf(text: string): string {
   return (
     text
@@ -87,7 +87,7 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
 
         let pdfBytes: Uint8Array;
         try {
-          pdfBytes = await buildCertificatePdf({
+          pdfBytes = buildCertificatePdf({
             name: sanitizeForPdf(reg.name),
             eventTitle: sanitizeForPdf(ev.title),
             startsAt: ev.starts_at,
@@ -98,7 +98,7 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
               : "Matheus Staruck",
             signatureTitle: ev.certificate_signature_title
               ? sanitizeForPdf(ev.certificate_signature_title)
-              : "Fundador PO2",
+              : "Fundador · PO2",
           });
         } catch (err) {
           const msg = err instanceof Error ? err.message : String(err);
@@ -118,128 +118,66 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
   },
 });
 
-async function buildCertificatePdf(params: CertParams): Promise<Uint8Array> {
-  const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib");
-  const pdf = await PDFDocument.create();
-
-  // Paisagem (landscape), em pontos — mesmas constantes fixas, sem chamar page.getSize()
+function buildCertificatePdf(params: CertParams): Uint8Array {
   const PAGE_W = 842;
   const PAGE_H = 595;
-  const page = pdf.addPage([PAGE_W, PAGE_H]);
+  const pdf = new SimplePdf(PAGE_W, PAGE_H);
 
-  const helv = await pdf.embedFont(StandardFonts.Helvetica);
-  const helvBold = await pdf.embedFont(StandardFonts.HelveticaBold);
-  const times = await pdf.embedFont(StandardFonts.TimesRomanItalic);
+  const black: [number, number, number] = [0.04, 0.04, 0.06];
+  const gold: [number, number, number] = [0.78, 0.62, 0.29];
+  const goldSoft: [number, number, number] = [0.55, 0.44, 0.22];
+  const white: [number, number, number] = [0.98, 0.96, 0.92];
 
-  const black = rgb(0.04, 0.04, 0.06);
-  const gold = rgb(0.78, 0.62, 0.29);
-  const goldSoft = rgb(0.55, 0.44, 0.22);
-  const white = rgb(0.98, 0.96, 0.92);
+  // Fundo + moldura dupla
+  pdf.fillRect(0, 0, PAGE_W, PAGE_H, black);
+  pdf.strokeRect(22, 22, PAGE_W - 44, PAGE_H - 44, gold, 1.5);
+  pdf.strokeRect(30, 30, PAGE_W - 60, PAGE_H - 60, goldSoft, 0.6);
 
-  function drawCentered(text: string, y: number, size: number, font = helv, color = white) {
-    const w = font.widthOfTextAtSize(text, size);
-    page.drawText(text, { x: (PAGE_W - w) / 2, y, size, font, color });
-  }
-
-  function drawFrame() {
-    page.drawRectangle({ x: 0, y: 0, width: PAGE_W, height: PAGE_H, color: black });
-    page.drawRectangle({
-      x: 22,
-      y: 22,
-      width: PAGE_W - 44,
-      height: PAGE_H - 44,
-      borderColor: gold,
-      borderWidth: 1.5,
-    });
-    page.drawRectangle({
-      x: 30,
-      y: 30,
-      width: PAGE_W - 60,
-      height: PAGE_H - 60,
-      borderColor: goldSoft,
-      borderWidth: 0.6,
-    });
-  }
-
-  drawFrame();
-
-  drawCentered("PO2", PAGE_H - 90, 44, helvBold, gold);
-  drawCentered("PROSPECÇÃO DE OURO 2.0", PAGE_H - 112, 9, helv, goldSoft);
+  pdf.drawCentered("PO2", PAGE_H - 90, 44, "F2", gold);
+  pdf.drawCentered("PROSPECÇÃO DE OURO 2.0", PAGE_H - 112, 9, "F1", goldSoft);
 
   const centerX = PAGE_W / 2;
-  page.drawLine({
-    start: { x: centerX - 120, y: PAGE_H - 135 },
-    end: { x: centerX - 20, y: PAGE_H - 135 },
-    thickness: 0.6,
-    color: goldSoft,
-  });
-  page.drawLine({
-    start: { x: centerX + 20, y: PAGE_H - 135 },
-    end: { x: centerX + 120, y: PAGE_H - 135 },
-    thickness: 0.6,
-    color: goldSoft,
-  });
-  drawCentered("*", PAGE_H - 139, 10, helvBold, gold);
+  pdf.drawLine(centerX - 120, PAGE_H - 135, centerX - 20, PAGE_H - 135, goldSoft, 0.6);
+  pdf.drawLine(centerX + 20, PAGE_H - 135, centerX + 120, PAGE_H - 135, goldSoft, 0.6);
+  pdf.drawCentered("*", PAGE_H - 139, 10, "F2", gold);
 
-  drawCentered("CERTIFICADO", PAGE_H - 190, 40, helvBold, gold);
-  drawCentered("de participacao", PAGE_H - 220, 14, times, white);
+  pdf.drawCentered("CERTIFICADO", PAGE_H - 190, 40, "F2", gold);
+  pdf.drawCentered("de participação", PAGE_H - 220, 14, "F3", white);
 
-  drawCentered("Certificamos que", PAGE_H - 275, 12, helv, white);
+  pdf.drawCentered("Certificamos que", PAGE_H - 275, 12, "F1", white);
 
   const nameSize = 32;
   const displayName = params.name.toUpperCase();
-  const nameW = times.widthOfTextAtSize(displayName, nameSize);
+  const nameW = pdf.estimateWidth(displayName, nameSize, "F3");
   const nameX = (PAGE_W - nameW) / 2;
-  page.drawText(displayName, {
-    x: nameX,
-    y: PAGE_H - 320,
-    size: nameSize,
-    font: times,
-    color: white,
-  });
-  page.drawLine({
-    start: { x: nameX, y: PAGE_H - 328 },
-    end: { x: nameX + nameW, y: PAGE_H - 328 },
-    thickness: 0.7,
-    color: gold,
-  });
+  pdf.drawText(displayName, nameX, PAGE_H - 320, nameSize, "F3", white);
+  pdf.drawLine(nameX, PAGE_H - 328, nameX + nameW, PAGE_H - 328, gold, 0.7);
 
   const duration = durationLabel(params.startsAt, params.endsAt);
   const date = formatDatePt(params.startsAt);
-  drawCentered("participou da masterclass", PAGE_H - 360, 12, helv, white);
+  pdf.drawCentered("participou da masterclass", PAGE_H - 360, 12, "F1", white);
 
   const titleClean =
     params.eventTitle.length > 80 ? params.eventTitle.slice(0, 77) + "..." : params.eventTitle;
-  drawCentered(`" ${titleClean} "`, PAGE_H - 385, 15, times, gold);
+  pdf.drawCentered(`" ${titleClean} "`, PAGE_H - 385, 15, "F3", gold);
 
   const metaParts: string[] = [];
-  if (duration) metaParts.push(`com duracao de ${duration}`);
+  if (duration) metaParts.push(`com duração de ${duration}`);
   if (date) metaParts.push(`realizada em ${date}`);
-  const meta = metaParts.join("  -  ");
-  if (meta) drawCentered(meta, PAGE_H - 412, 11, helv, white);
+  const meta = metaParts.join("  ·  ");
+  if (meta) pdf.drawCentered(meta, PAGE_H - 412, 11, "F1", white);
 
   const sigY = 100;
   const sigX = PAGE_W / 2;
-  page.drawLine({
-    start: { x: sigX - 110, y: sigY },
-    end: { x: sigX + 110, y: sigY },
-    thickness: 0.6,
-    color: goldSoft,
-  });
+  pdf.drawLine(sigX - 110, sigY, sigX + 110, sigY, goldSoft, 0.6);
   const sigName = params.signatureName;
   const sigSize = 22;
-  const sigW = times.widthOfTextAtSize(sigName, sigSize);
-  page.drawText(sigName, {
-    x: sigX - sigW / 2,
-    y: sigY + 10,
-    size: sigSize,
-    font: times,
-    color: white,
-  });
-  drawCentered(params.signatureTitle, sigY - 15, 9, helv, goldSoft);
+  const sigW = pdf.estimateWidth(sigName, sigSize, "F3");
+  pdf.drawText(sigName, sigX - sigW / 2, sigY + 10, sigSize, "F3", white);
+  pdf.drawCentered(params.signatureTitle, sigY - 15, 9, "F1", goldSoft);
 
-  drawCentered("prospeccaoodeouropo2.com/verificar-certificado", 52, 8, helv, goldSoft);
-  drawCentered(`Codigo de verificacao: ${params.token}`, 38, 7, helv, goldSoft);
+  pdf.drawCentered("prospeccaoodeouropo2.com/verificar-certificado", 52, 8, "F1", goldSoft);
+  pdf.drawCentered(`Código de verificação: ${params.token}`, 38, 7, "F1", goldSoft);
 
   return pdf.save();
 }
