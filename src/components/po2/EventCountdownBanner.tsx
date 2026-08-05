@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { getPublishedEvents } from "@/lib/events.functions";
 import { Calendar, X } from "lucide-react";
 
 const STORAGE_KEY = "po2-countdown-dismissed";
+const BANNER_HEIGHT_VAR = "--po2-banner-h";
 
 function useCountdown(target: string | null) {
   const [now, setNow] = useState(() => Date.now());
@@ -48,12 +49,37 @@ export function EventCountdownBanner() {
   }, [nextEvent?.id]);
 
   const cd = useCountdown(nextEvent?.starts_at ?? null);
-  if (!nextEvent || !cd || dismissed) return null;
+  const visible = Boolean(nextEvent && cd && !dismissed);
+  const barRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (!visible) {
+      document.documentElement.style.setProperty(BANNER_HEIGHT_VAR, "0px");
+      return;
+    }
+    const el = barRef.current;
+    if (!el) return;
+    const setHeight = () =>
+      document.documentElement.style.setProperty(BANNER_HEIGHT_VAR, `${el.offsetHeight}px`);
+    setHeight();
+    const ro = new ResizeObserver(setHeight);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      document.documentElement.style.setProperty(BANNER_HEIGHT_VAR, "0px");
+    };
+  }, [visible]);
+
+  if (!visible || !nextEvent || !cd) return null;
 
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <div className="sticky top-0 z-[60] border-b border-gold/30 bg-black/95 backdrop-blur-xl">
+    <div
+      ref={barRef}
+      className="sticky top-0 z-[60] border-b border-gold/30 bg-black/95 backdrop-blur-xl"
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2 text-[11px] md:text-xs">
         <a
           href="#eventos"

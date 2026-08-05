@@ -43,7 +43,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-[var(--po2-banner-h,0px)] z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link to="/" className="flex shrink-0 items-center">
           <img src={logo} alt="PO2" className="h-12 w-auto" />
