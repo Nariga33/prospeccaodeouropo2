@@ -144,7 +144,6 @@ async function buildCertificatePdf(params: {
       height: height - inset * 2,
       borderColor: color,
       borderWidth: thickness,
-      color: undefined,
     });
   };
   drawFrame(22, 1.5, gold);
