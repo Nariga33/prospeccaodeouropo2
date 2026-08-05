@@ -211,6 +211,8 @@ function EventFormModal({
     whatsapp_url: initial?.whatsapp_url ?? "",
     capacity: initial?.capacity ?? null,
     status: initial?.status ?? "draft",
+    certificate_signature_name: initial?.certificate_signature_name ?? "",
+    certificate_signature_title: initial?.certificate_signature_title ?? "",
   }));
   const create = useServerFn(createEvent);
   const update = useServerFn(updateEvent);
@@ -394,6 +396,22 @@ function EventFormModal({
               <option value="published">Publicado</option>
               <option value="archived">Arquivado</option>
             </select>
+          </Field>
+          <Field label="Assinatura do certificado (nome)">
+            <input
+              value={form.certificate_signature_name}
+              onChange={(e) => set("certificate_signature_name", e.target.value)}
+              placeholder="Matheus Staruck"
+              className={inputCls}
+            />
+          </Field>
+          <Field label="Assinatura do certificado (cargo)">
+            <input
+              value={form.certificate_signature_title}
+              onChange={(e) => set("certificate_signature_title", e.target.value)}
+              placeholder="Fundador · PO2"
+              className={inputCls}
+            />
           </Field>
         </div>
 

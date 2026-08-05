@@ -61,6 +61,8 @@ const eventSchema = z.object({
   whatsapp_url: looseUrl,
   capacity: z.number().int().positive().optional().nullable(),
   status: z.enum(["draft", "published", "archived"]).default("draft"),
+  certificate_signature_name: z.string().trim().max(120).optional().nullable(),
+  certificate_signature_title: z.string().trim().max(120).optional().nullable(),
 });
 
 function normalize(input: any) {
@@ -75,6 +77,8 @@ function normalize(input: any) {
     meet_url: empty(input.meet_url),
     whatsapp_url: toWhatsappUrl(input.whatsapp_url),
     price_note: empty(input.price_note),
+    certificate_signature_name: empty(input.certificate_signature_name),
+    certificate_signature_title: empty(input.certificate_signature_title),
     // Keep is_free in sync so old queries still work
     is_free:
       input.price_promo_cents === 0 ||

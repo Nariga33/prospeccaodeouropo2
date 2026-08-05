@@ -160,6 +160,9 @@ function EventCard({
           src={cover}
           alt=""
           loading="lazy"
+          onError={(e) => {
+            if (e.currentTarget.src !== defaultCover) e.currentTarget.src = defaultCover;
+          }}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

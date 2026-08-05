@@ -58,6 +58,8 @@ export type Database = {
       events: {
         Row: {
           capacity: number | null
+          certificate_signature_name: string | null
+          certificate_signature_title: string | null
           created_at: string
           description: string
           ends_at: string | null
@@ -81,6 +83,8 @@ export type Database = {
         }
         Insert: {
           capacity?: number | null
+          certificate_signature_name?: string | null
+          certificate_signature_title?: string | null
           created_at?: string
           description?: string
           ends_at?: string | null
@@ -104,6 +108,8 @@ export type Database = {
         }
         Update: {
           capacity?: number | null
+          certificate_signature_name?: string | null
+          certificate_signature_title?: string | null
           created_at?: string
           description?: string
           ends_at?: string | null

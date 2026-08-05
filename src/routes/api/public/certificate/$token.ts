@@ -58,7 +58,9 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
         const supabase = publicClient();
         const { data: reg, error } = await supabase
           .from("event_registrations")
-          .select("id, name, event_id, events(title, starts_at, ends_at, status)")
+          .select(
+            "id, name, event_id, events(title, starts_at, ends_at, status, certificate_signature_name, certificate_signature_title)",
+          )
           .eq("certificate_token", token)
           .maybeSingle();
 
@@ -78,6 +80,13 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
           eventTitle: sanitizeForPdf(ev.title),
           startsAt: ev.starts_at,
           endsAt: ev.ends_at,
+          token,
+          signatureName: ev.certificate_signature_name
+            ? sanitizeForPdf(ev.certificate_signature_name)
+            : "Matheus Staruck",
+          signatureTitle: ev.certificate_signature_title
+            ? sanitizeForPdf(ev.certificate_signature_title)
+            : "Fundador · PO2",
         });
 
         return new Response(pdfBytes as unknown as BodyInit, {
@@ -97,6 +106,9 @@ async function buildCertificatePdf(params: {
   eventTitle: string;
   startsAt: string | null;
   endsAt: string | null;
+  token: string;
+  signatureName: string;
+  signatureTitle: string;
 }): Promise<Uint8Array> {
   const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib");
   const pdf = await PDFDocument.create();
@@ -207,7 +219,7 @@ async function buildCertificatePdf(params: {
     thickness: 0.6,
     color: goldSoft,
   });
-  const sigName = "Matheus Staruck";
+  const sigName = params.signatureName;
   const sigSize = 22;
   const sigW = times.widthOfTextAtSize(sigName, sigSize);
   page.drawText(sigName, {
@@ -217,10 +229,11 @@ async function buildCertificatePdf(params: {
     font: times,
     color: white,
   });
-  drawCentered("Fundador · PO2", sigY - 15, 9, helv, goldSoft);
+  drawCentered(params.signatureTitle, sigY - 15, 9, helv, goldSoft);
 
-  // Footer id
-  drawCentered("prospeccaoodeouropo2.com", 45, 8, helv, goldSoft);
+  // Footer id + código de verificação
+  drawCentered("prospeccaoodeouropo2.com/verificar-certificado", 52, 8, helv, goldSoft);
+  drawCentered(`Código de verificação: ${params.token}`, 38, 7, helv, goldSoft);
 
   const bytes = await pdf.save();
   return bytes;
