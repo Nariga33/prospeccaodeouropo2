@@ -3,7 +3,7 @@ import { CountUp } from "@/hooks/use-count-up";
 
 export function HeroLivePanel() {
   const [closed, setClosed] = useState(false);
-  const [ligacoes, setLigacoes] = useState(100);
+  const [ligacoes, setLigacoes] = useState(200);
   const startedTicking = useRef(false);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export function HeroLivePanel() {
             </div>
           </div>
           {[
-            { v: "+5k", l: "Empresas" },
+            { v: "+10k", l: "Empresas" },
             { v: "+1k", l: "Agendas" },
           ].map((s) => (
             <div key={s.l} className="rounded-xl bg-white/5 p-4">

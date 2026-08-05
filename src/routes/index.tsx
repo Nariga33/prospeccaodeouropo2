@@ -74,7 +74,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
         property: "og:description",
-        content: "Outbound com método. +R$2M gerados, +100k ligações, +1k agendas qualificadas.",
+        content: "Outbound com método. +R$2M gerados, +200k ligações, +10k empresas prospectadas.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/" },
       {
@@ -269,7 +269,7 @@ function Hero() {
 const AUTHORITY_INDICATORS = [
   { v: "+R$2MM", l: "Receita gerada" },
   { v: "+5", l: "Anos em operação outbound" },
-  { v: "+100k", l: "Ligações realizadas" },
+  { v: "+200k", l: "Ligações realizadas" },
   { v: "+10k", l: "Empresas prospectadas" },
 ];
 
