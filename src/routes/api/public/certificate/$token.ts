@@ -75,19 +75,26 @@ export const Route = createFileRoute("/api/public/certificate/$token")({
           });
         }
 
-        const pdfBytes = await buildCertificatePdf({
-          name: sanitizeForPdf(reg.name),
-          eventTitle: sanitizeForPdf(ev.title),
-          startsAt: ev.starts_at,
-          endsAt: ev.ends_at,
-          token,
-          signatureName: ev.certificate_signature_name
-            ? sanitizeForPdf(ev.certificate_signature_name)
-            : "Matheus Staruck",
-          signatureTitle: ev.certificate_signature_title
-            ? sanitizeForPdf(ev.certificate_signature_title)
-            : "Fundador · PO2",
-        });
+        let pdfBytes: Uint8Array;
+        try {
+          pdfBytes = await buildCertificatePdf({
+            name: sanitizeForPdf(reg.name),
+            eventTitle: sanitizeForPdf(ev.title),
+            startsAt: ev.starts_at,
+            endsAt: ev.ends_at,
+            token,
+            signatureName: ev.certificate_signature_name
+              ? sanitizeForPdf(ev.certificate_signature_name)
+              : "Matheus Staruck",
+            signatureTitle: ev.certificate_signature_title
+              ? sanitizeForPdf(ev.certificate_signature_title)
+              : "Fundador PO2",
+          });
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : String(err);
+          console.error("Erro ao gerar certificado PDF:", msg);
+          return new Response(`Erro ao gerar o certificado: ${msg}`, { status: 500 });
+        }
 
         return new Response(pdfBytes as unknown as BodyInit, {
           headers: {
