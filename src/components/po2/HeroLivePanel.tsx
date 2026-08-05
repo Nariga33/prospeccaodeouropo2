@@ -1,18 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 import { CountUp } from "@/hooks/use-count-up";
 
+const LIGACOES_MIN = 100;
+const LIGACOES_MAX = 200;
+const AGENDAS_MIN = 1;
+const AGENDAS_MAX = 5;
+
 export function HeroLivePanel() {
   const [closed, setClosed] = useState(false);
-  const [ligacoes, setLigacoes] = useState(200);
+  const [ligacoes, setLigacoes] = useState(LIGACOES_MIN);
+  const [agendas, setAgendas] = useState(AGENDAS_MIN);
   const startedTicking = useRef(false);
 
   useEffect(() => {
     if (startedTicking.current) return;
     startedTicking.current = true;
-    const timer = setInterval(() => {
-      setLigacoes((v) => v + Math.floor(Math.random() * 3) + 1);
-    }, 3200);
-    return () => clearInterval(timer);
+
+    const ligTimer = setInterval(() => {
+      setLigacoes((v) =>
+        v >= LIGACOES_MAX ? LIGACOES_MIN : v + Math.floor(Math.random() * 3) + 1,
+      );
+    }, 2400);
+
+    const agTimer = setInterval(() => {
+      setAgendas((v) => (v >= AGENDAS_MAX ? AGENDAS_MIN : v + 1));
+    }, 4200);
+
+    return () => {
+      clearInterval(ligTimer);
+      clearInterval(agTimer);
+    };
   }, []);
 
   if (closed) {
@@ -73,19 +90,22 @@ export function HeroLivePanel() {
               Ligações
             </div>
           </div>
-          {[
-            { v: "+10k", l: "Empresas" },
-            { v: "+1k", l: "Agendas" },
-          ].map((s) => (
-            <div key={s.l} className="rounded-xl bg-white/5 p-4">
-              <div className="font-display text-2xl text-foreground">
-                <CountUp value={s.v} />
-              </div>
-              <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                {s.l}
-              </div>
+          <div className="rounded-xl bg-white/5 p-4">
+            <div className="font-display text-2xl text-foreground">
+              <CountUp value="+10k" />
             </div>
-          ))}
+            <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+              Empresas
+            </div>
+          </div>
+          <div className="rounded-xl bg-white/5 p-4">
+            <div className="font-display text-2xl text-foreground">
+              +{agendas.toLocaleString("pt-BR")}k
+            </div>
+            <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+              Agendas
+            </div>
+          </div>
         </div>
       </div>
     </div>
