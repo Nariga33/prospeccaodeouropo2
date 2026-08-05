@@ -12,4 +12,15 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    resolve: {
+      dedupe: ["tslib"],
+    },
+    optimizeDeps: {
+      include: ["tslib"],
+    },
+    ssr: {
+      noExternal: ["tslib", "pdf-lib"],
+    },
+  },
 });
