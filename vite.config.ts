@@ -13,14 +13,8 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    resolve: {
-      dedupe: ["tslib"],
-    },
-    optimizeDeps: {
-      include: ["tslib"],
-    },
     ssr: {
-      noExternal: ["tslib", "pdf-lib"],
+      noExternal: ["pdf-lib"],
     },
   },
 });
