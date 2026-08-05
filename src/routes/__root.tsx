@@ -124,7 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           alternateName: "PO2",
           description:
             "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade — ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul.",
-          url: "https://www.prospeccaodeouropo2.com/",
+          url: "https://www.prospeccaoodeouropo2.com/",
           telephone: `+55${PO2_PHONE_DISPLAY.replace(/[^\d]/g, "")}`,
           email: PO2_EMAIL,
           areaServed: [

@@ -76,7 +76,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Outbound com método. +R$2M gerados, +100k ligações, +1k agendas qualificadas.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -134,7 +134,7 @@ export const Route = createFileRoute("/")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/" }],
   }),
   component: LandingPage,
 });

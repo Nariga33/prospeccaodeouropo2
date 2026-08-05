@@ -24,7 +24,7 @@ export const Route = createFileRoute("/sdr")({
         content:
           "O mesmo rigor de método que a PO2 aplica no outbound, agora para qualificação inbound.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/sdr" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/sdr" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/sdr")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/sdr" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/sdr" }],
   }),
   component: SdrPage,
 });

@@ -13,9 +13,9 @@ export const Route = createFileRoute("/materiais")({
         content:
           "Guia gratuito de estruturação e contratação de BDR, SDR e Closer, e planilha de acompanhamento semanal de vendas.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/materiais" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/materiais" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/materiais" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/materiais" }],
   }),
   component: MateriaisPage,
 });

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/inside-sales")({
         content:
           "A ponte entre qualificação e fechamento — reunião, proposta e negociação com método.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/inside-sales" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/inside-sales" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/inside-sales")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/inside-sales" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/inside-sales" }],
   }),
   component: InsideSalesPage,
 });

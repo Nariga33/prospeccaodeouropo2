@@ -18,9 +18,9 @@ export const Route = createFileRoute("/eventos")({
         property: "og:description",
         content: "Masterclasses online de prospecção B2B com Matheus Staruck. Vagas limitadas.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/eventos" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/eventos" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/eventos" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/eventos" }],
   }),
   component: EventosPage,
 });

@@ -18,9 +18,9 @@ export const Route = createFileRoute("/diagnostico")({
     meta: [
       { title: "Diagnóstico gratuito · PO2" },
       { name: "description", content: "10 perguntas para mapear sua máquina de prospecção ativa." },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/diagnostico" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/diagnostico" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/diagnostico" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/diagnostico" }],
   }),
   component: DiagnosticoPage,
 });

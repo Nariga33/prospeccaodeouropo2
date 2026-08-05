@@ -25,7 +25,7 @@ export const Route = createFileRoute("/bdr")({
         content:
           "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/bdr" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/bdr" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/bdr")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/bdr" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/bdr" }],
   }),
   component: BdrPage,
 });

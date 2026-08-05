@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /auth
 Disallow: /api/
 
-Sitemap: https://www.prospeccaodeouropo2.com/sitemap.xml
+Sitemap: https://www.prospeccaoodeouropo2.com/sitemap.xml

@@ -24,7 +24,7 @@ export const Route = createFileRoute("/closer")({
         content:
           "Fechar não é sorte — é processo. O mesmo rigor de método em toda a operação comercial.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/closer" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/closer" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/closer")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/closer" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/closer" }],
   }),
   component: CloserPage,
 });

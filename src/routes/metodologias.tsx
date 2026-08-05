@@ -18,9 +18,9 @@ export const Route = createFileRoute("/metodologias")({
         content:
           "Antes da técnica, a transformação — o Modelo PO2 de Evolução Comercial explicado a fundo.",
       },
-      { property: "og:url", content: "https://www.prospeccaodeouropo2.com/metodologias" },
+      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/metodologias" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaodeouropo2.com/metodologias" }],
+    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/metodologias" }],
   }),
   component: MetodologiasPage,
 });
