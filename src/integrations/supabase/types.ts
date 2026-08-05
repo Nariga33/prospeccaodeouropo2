@@ -127,6 +127,66 @@ export type Database = {
         }
         Relationships: []
       }
+      diagnostic_leads: {
+        Row: {
+          answers: Json | null
+          cargo: string | null
+          created_at: string
+          email: string
+          faturamento: string | null
+          id: string
+          max_score: number | null
+          meta_contratos: string | null
+          nome: string
+          pct: number | null
+          plan: string | null
+          role: string | null
+          score: number | null
+          status: string
+          telefone: string
+          ticket: string | null
+          updated_at: string
+        }
+        Insert: {
+          answers?: Json | null
+          cargo?: string | null
+          created_at?: string
+          email: string
+          faturamento?: string | null
+          id?: string
+          max_score?: number | null
+          meta_contratos?: string | null
+          nome: string
+          pct?: number | null
+          plan?: string | null
+          role?: string | null
+          score?: number | null
+          status?: string
+          telefone: string
+          ticket?: string | null
+          updated_at?: string
+        }
+        Update: {
+          answers?: Json | null
+          cargo?: string | null
+          created_at?: string
+          email?: string
+          faturamento?: string | null
+          id?: string
+          max_score?: number | null
+          meta_contratos?: string | null
+          nome?: string
+          pct?: number | null
+          plan?: string | null
+          role?: string | null
+          score?: number | null
+          status?: string
+          telefone?: string
+          ticket?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       material_leads: {
         Row: {
           created_at: string

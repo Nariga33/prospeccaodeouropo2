@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { updateDiagnosticLead } from "@/lib/diagnostic-leads.functions";
 import {
   Check,
   AlertTriangle,
@@ -602,11 +604,16 @@ interface Lead {
 
 function DiagnosticoPage() {
   const navigate = useNavigate();
+  const updateLead = useServerFn(updateDiagnosticLead);
   const [lead, setLead] = useState<Lead | null>(null);
   const [role, setRole] = useState<RoleKey | null>(null);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [finished, setFinished] = useState(false);
+
+  function leadId(): string | null {
+    return typeof window !== "undefined" ? sessionStorage.getItem("po2-lead-id") : null;
+  }
 
   useEffect(() => {
     const raw = typeof window !== "undefined" ? sessionStorage.getItem("po2-lead") : null;
@@ -630,8 +637,29 @@ function DiagnosticoPage() {
     next[step] = optionIdx;
     setAnswers(next);
     setTimeout(() => {
-      if (step < total - 1) setStep(step + 1);
-      else setFinished(true);
+      if (step < total - 1) {
+        setStep(step + 1);
+      } else {
+        setFinished(true);
+        const id = leadId();
+        if (id) {
+          const finalScore = next.reduce<number>(
+            (sum, a, i) => sum + (a !== null ? QUESTIONS[i].options[a].score : 0),
+            0,
+          );
+          const finalMax = total * 2;
+          updateLead({
+            data: {
+              id,
+              score: finalScore,
+              maxScore: finalMax,
+              pct: Math.round((finalScore / finalMax) * 100),
+              answers: next,
+              status: "completed_quiz",
+            },
+          }).catch(() => {});
+        }
+      }
     }, 220);
   }
 
@@ -779,7 +807,15 @@ function DiagnosticoPage() {
             {ROLES.map((r) => (
               <button
                 key={r.key}
-                onClick={() => setRole(r.key)}
+                onClick={() => {
+                  setRole(r.key);
+                  const id = leadId();
+                  if (id) {
+                    updateLead({ data: { id, role: r.key, status: "started_quiz" } }).catch(
+                      () => {},
+                    );
+                  }
+                }}
                 className="group rounded-2xl border border-white/10 bg-card/70 p-6 text-left transition-all hover:-translate-y-1 hover:border-gold/40"
               >
                 <div className="flex items-center justify-between">
@@ -1035,6 +1071,12 @@ function DiagnosticoPage() {
               href={buildWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                const id = leadId();
+                if (id) {
+                  updateLead({ data: { id, status: "clicked_whatsapp" } }).catch(() => {});
+                }
+              }}
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
             >
               <Phone className="size-4" /> Falar com o time PO2 <ArrowRight className="size-4" />

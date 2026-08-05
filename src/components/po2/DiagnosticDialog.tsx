@@ -2,6 +2,8 @@ import { useState, type ReactNode } from "react";
 import { z } from "zod";
 import { ArrowRight, Phone } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { createDiagnosticLead } from "@/lib/diagnostic-leads.functions";
 import {
   Dialog,
   DialogContent,
@@ -58,6 +60,7 @@ function parseNumber(v: string): number {
 
 export function DiagnosticDialog({ trigger, plan }: Props) {
   const navigate = useNavigate();
+  const createLead = useServerFn(createDiagnosticLead);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<FormData>({
     nome: "",
@@ -75,7 +78,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
     setErrors((e) => ({ ...e, [key]: undefined }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
@@ -94,6 +97,12 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
       metaValor: parseNumber(parsed.data.metaContratos),
     };
     sessionStorage.setItem("po2-lead", JSON.stringify(payload));
+    try {
+      const { id } = await createLead({ data: { ...parsed.data, plan } });
+      sessionStorage.setItem("po2-lead-id", id);
+    } catch {
+      // Não bloqueia o fluxo se o registro falhar — a pessoa segue pro diagnóstico normalmente.
+    }
     setOpen(false);
     setData({
       nome: "",
