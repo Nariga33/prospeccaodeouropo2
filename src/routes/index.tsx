@@ -155,18 +155,35 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
-        <Founder />
+
+        {/* PROBLEMA — dor real, antes/depois */}
         <ProblemVsMethod />
+
+        {/* SOLUÇÃO / MÉTODO — o funil completo e as 5 frentes */}
         <FullFunnelOverview />
         <ServicesShowcase />
-        <EventosTeaser />
-        <Pitch />
-
         <MetodologiasTeaser />
+
+        {/* COMO — o passo a passo aplicado na prática */}
+        <Pitch />
+        <EventosTeaser />
+
+        {/* QUEM ESTÁ POR TRÁS — autoridade, depois que a dor já fisgou */}
+        <Founder />
+
+        {/* CASES */}
         <Cases />
+
+        {/* AVALIAÇÕES */}
         <Testimonials />
+
+        {/* Investimento — justifica o valor antes do CTA final */}
         <CostComparison />
+
+        {/* Dúvidas — quebra objeção antes da decisão */}
         <Faq />
+
+        {/* CTA */}
         <FinalCta />
       </main>
       <Footer />
