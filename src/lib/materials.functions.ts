@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
+import { sendToWebhook } from "@/lib/webhook";
 
 function publicClient() {
   return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
@@ -27,5 +28,6 @@ export const submitMaterialLead = createServerFn({ method: "POST" })
       material: data.material,
     });
     if (error) throw new Error(error.message);
+    await sendToWebhook("material_form", data);
     return { ok: true as const };
   });

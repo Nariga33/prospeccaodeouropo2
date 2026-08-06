@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import { toWhatsappUrl } from "./whatsapp";
+import { sendToWebhook } from "@/lib/webhook";
 
 function publicClient() {
   return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
@@ -80,6 +81,13 @@ export const registerForEvent = createServerFn({ method: "POST" })
     } else if (inserted) {
       registrationId = inserted.id;
       certificateToken = inserted.certificate_token;
+      await sendToWebhook("evento_form", {
+        eventId: data.eventId,
+        eventTitle: ev.title,
+        name: data.name,
+        email: data.email,
+        whatsapp: data.whatsapp,
+      });
     }
 
     if (!registrationId) {
