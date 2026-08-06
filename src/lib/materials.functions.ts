@@ -29,9 +29,9 @@ export const submitMaterialLead = createServerFn({ method: "POST" })
     });
     if (error) throw new Error(error.message);
     await sendToWebhook("material_form", {
-      nome: data.name,
+      name: data.name,
       email: data.email,
-      telefone: data.whatsapp || "",
+      phone: data.whatsapp || "",
       material: data.material,
     });
     return { ok: true as const };

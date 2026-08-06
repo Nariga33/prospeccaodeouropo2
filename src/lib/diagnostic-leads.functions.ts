@@ -41,7 +41,13 @@ export const createDiagnosticLead = createServerFn({ method: "POST" })
       .select("id")
       .single();
     if (error) throw new Error(error.message);
-    await sendToWebhook("diagnostico_form", { id: row.id, ...data });
+    await sendToWebhook("diagnostico_form", {
+      ...data,
+      name: data.nome,
+      email: data.email,
+      phone: data.telefone,
+      id: row.id,
+    });
     return { id: row.id as string };
   });
 
