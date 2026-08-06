@@ -28,6 +28,11 @@ export const submitMaterialLead = createServerFn({ method: "POST" })
       material: data.material,
     });
     if (error) throw new Error(error.message);
-    await sendToWebhook("material_form", data);
+    await sendToWebhook("material_form", {
+      nome: data.name,
+      email: data.email,
+      telefone: data.whatsapp || "",
+      material: data.material,
+    });
     return { ok: true as const };
   });

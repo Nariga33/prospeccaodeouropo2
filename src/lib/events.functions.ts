@@ -82,11 +82,11 @@ export const registerForEvent = createServerFn({ method: "POST" })
       registrationId = inserted.id;
       certificateToken = inserted.certificate_token;
       await sendToWebhook("evento_form", {
+        nome: data.name,
+        email: data.email,
+        telefone: data.whatsapp,
         eventId: data.eventId,
         eventTitle: ev.title,
-        name: data.name,
-        email: data.email,
-        whatsapp: data.whatsapp,
       });
     }
 

@@ -15,7 +15,7 @@ export async function sendToWebhook(event: string, data: Record<string, unknown>
         event,
         source: "prospeccaoodeouropo2.com",
         timestamp: new Date().toISOString(),
-        data,
+        ...data,
       }),
     });
     if (!res.ok) {
