@@ -7,7 +7,7 @@ const WEBHOOK_URL = "https://api.4send.me/api/webhooks/ingest/bl0keq34ljaJpb7c";
  */
 export async function sendToWebhook(event: string, data: Record<string, unknown>) {
   try {
-    await fetch(WEBHOOK_URL, {
+    const res = await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -17,6 +17,14 @@ export async function sendToWebhook(event: string, data: Record<string, unknown>
         data,
       }),
     });
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error(
+        `Webhook 4send recusou (${event}): status ${res.status} — ${body.slice(0, 500)}`,
+      );
+    } else {
+      console.log(`Webhook 4send OK (${event}): status ${res.status}`);
+    }
   } catch (err) {
     console.error(`Falha ao enviar webhook (${event}):`, err instanceof Error ? err.message : err);
   }
