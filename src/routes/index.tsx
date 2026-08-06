@@ -23,6 +23,9 @@ import {
 import { FullFunnelOverview } from "@/components/po2/FullFunnelOverview";
 import { Testimonials } from "@/components/po2/Testimonials";
 import { ServicesShowcase } from "@/components/po2/ServicesShowcase";
+import { WhoItsFor } from "@/components/po2/WhoItsFor";
+import { ThePlan } from "@/components/po2/ThePlan";
+import { RiskReduction } from "@/components/po2/RiskReduction";
 import { Faq } from "@/components/po2/Faq";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
@@ -164,9 +167,15 @@ function LandingPage() {
         <ServicesShowcase />
         <MetodologiasTeaser />
 
+        {/* Qualificação — pra quem é (e pra quem não é) */}
+        <WhoItsFor />
+
         {/* COMO — o passo a passo aplicado na prática */}
         <Pitch />
         <EventosTeaser />
+
+        {/* O Plano — o que acontece depois do sim */}
+        <ThePlan />
 
         {/* QUEM ESTÁ POR TRÁS — autoridade, depois que a dor já fisgou */}
         <Founder />
@@ -179,6 +188,9 @@ function LandingPage() {
 
         {/* Investimento — justifica o valor antes do CTA final */}
         <CostComparison />
+
+        {/* Redução de risco — reforça garantia antes da decisão */}
+        <RiskReduction />
 
         {/* Dúvidas — quebra objeção antes da decisão */}
         <Faq />
