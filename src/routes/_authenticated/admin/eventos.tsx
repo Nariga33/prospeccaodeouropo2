@@ -59,6 +59,12 @@ function AdminEventosPage() {
               ← Ver site
             </Link>
             <h1 className="mt-1 text-xl font-semibold">Eventos PO2 — Admin</h1>
+            <a
+              href="/admin/diagnostico"
+              className="mt-1 inline-block text-xs text-muted-foreground hover:text-gold"
+            >
+              Ir para Leads do Diagnóstico →
+            </a>
           </div>
           <div className="flex items-center gap-2">
             <button

@@ -23,6 +23,7 @@ import { Route as MetodologiasRouteImport } from './routes/metodologias'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
 import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as VerificarCertificadoRouteImport } from './routes/verificar-certificado'
+import { Route as AuthenticatedAdminDiagnosticoRouteImport } from './routes/_authenticated/admin/diagnostico'
 import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
 import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 import { Route as ApiPublicPlaybookPdfRouteImport } from './routes/api/public/playbook-pdf'
@@ -97,6 +98,12 @@ const VerificarCertificadoRoute = VerificarCertificadoRouteImport.update({
   path: '/verificar-certificado',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminDiagnosticoRoute =
+  AuthenticatedAdminDiagnosticoRouteImport.update({
+    id: '/admin/diagnostico',
+    path: '/admin/diagnostico',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminEventosRoute =
   AuthenticatedAdminEventosRouteImport.update({
     id: '/admin/eventos',
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
+  '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
@@ -153,6 +161,7 @@ export interface FileRoutesByTo {
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
+  '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
@@ -174,6 +183,7 @@ export interface FileRoutesById {
   '/parceiros': typeof ParceirosRoute
   '/sdr': typeof SdrRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
+  '/_authenticated/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
   '/api/public/playbook-pdf': typeof ApiPublicPlaybookPdfRoute
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/sdr'
     | '/verificar-certificado'
+    | '/admin/diagnostico'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/playbook-pdf'
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/sdr'
     | '/verificar-certificado'
+    | '/admin/diagnostico'
     | '/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/playbook-pdf'
@@ -234,6 +246,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/sdr'
     | '/verificar-certificado'
+    | '/_authenticated/admin/diagnostico'
     | '/_authenticated/admin/eventos'
     | '/api/public/bootstrap-admin'
     | '/api/public/playbook-pdf'
@@ -360,6 +373,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VerificarCertificadoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/diagnostico': {
+      id: '/_authenticated/admin/diagnostico'
+      path: '/admin/diagnostico'
+      fullPath: '/admin/diagnostico'
+      preLoaderRoute: typeof AuthenticatedAdminDiagnosticoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/eventos': {
       id: '/_authenticated/admin/eventos'
       path: '/admin/eventos'
@@ -392,10 +412,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminDiagnosticoRoute: typeof AuthenticatedAdminDiagnosticoRoute
   AuthenticatedAdminEventosRoute: typeof AuthenticatedAdminEventosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminDiagnosticoRoute: AuthenticatedAdminDiagnosticoRoute,
   AuthenticatedAdminEventosRoute: AuthenticatedAdminEventosRoute,
 }
 
