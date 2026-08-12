@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { listDiagnosticLeads, deleteDiagnosticLead } from "@/lib/admin-leads.functions";
@@ -14,12 +14,43 @@ export const Route = createFileRoute("/_authenticated/admin/diagnostico")({
   component: AdminDiagnosticoPage,
 });
 
-const statusLabel: Record<string, string> = {
-  form_only: "Só preencheu o formulário",
-  started_quiz: "Começou o quiz",
-  completed_quiz: "Completou o quiz",
-  clicked_whatsapp: "Clicou no WhatsApp",
+// Quantidade de perguntas do quiz por cargo (pra calcular "parou na pergunta X de Y").
+const TOTAL_QUESTIONS: Record<string, number> = {
+  bdr: 10,
+  sdr: 10,
+  inside_sales: 10,
+  closer: 10,
+  empresario: 15,
 };
+
+const roleLabel: Record<string, string> = {
+  bdr: "BDR",
+  sdr: "SDR",
+  inside_sales: "Inside Sales",
+  closer: "Closer",
+  empresario: "Empresário/Founder",
+};
+
+function progressInfo(r: any): { text: string; done: boolean } {
+  if (r.status === "clicked_whatsapp") {
+    return { text: "Finalizou e chamou no WhatsApp", done: true };
+  }
+  if (r.status === "completed_quiz") {
+    return { text: "Completou o quiz, mas não chamou no WhatsApp", done: true };
+  }
+  if (r.status === "started_quiz") {
+    const total = r.role ? (TOTAL_QUESTIONS[r.role] ?? null) : null;
+    const answered = Array.isArray(r.answers)
+      ? r.answers.filter((a: any) => a !== null && a !== undefined).length
+      : 0;
+    const cargo = r.role ? (roleLabel[r.role] ?? r.role) : null;
+    const where = total
+      ? `Parou na pergunta ${Math.min(answered + 1, total)} de ${total}`
+      : "Começou o quiz e abandonou";
+    return { text: cargo ? `${where} (${cargo})` : where, done: false };
+  }
+  return { text: "Preencheu o formulário e não abriu o quiz", done: false };
+}
 
 function AdminDiagnosticoPage() {
   const qc = useQueryClient();
@@ -30,6 +61,7 @@ function AdminDiagnosticoPage() {
     queryFn: () => list(),
   });
   const [copied, setCopied] = useState(false);
+  const [filter, setFilter] = useState<"all" | "pending" | "done">("all");
 
   const del = useServerFn(deleteDiagnosticLead);
   const delMut = useMutation({
@@ -46,9 +78,20 @@ function AdminDiagnosticoPage() {
     nav({ to: "/auth", replace: true });
   }
 
+  const rows = useMemo(() => {
+    const all = leads ?? [];
+    if (filter === "all") return all;
+    return all.filter((r: any) => progressInfo(r).done === (filter === "done"));
+  }, [leads, filter]);
+
+  const pendingCount = useMemo(
+    () => (leads ?? []).filter((r: any) => !progressInfo(r).done).length,
+    [leads],
+  );
+
   function exportCsv() {
-    const rows = [
-      ["nome", "email", "telefone", "cargo", "faturamento", "pontuacao", "status", "data"],
+    const csvRows = [
+      ["nome", "email", "telefone", "cargo", "faturamento", "pontuacao", "onde_parou", "data"],
       ...(leads ?? []).map((r: any) => [
         r.nome,
         r.email,
@@ -56,11 +99,11 @@ function AdminDiagnosticoPage() {
         r.cargo ?? "",
         r.faturamento ?? "",
         r.pct != null ? `${r.pct}%` : "",
-        statusLabel[r.status] ?? r.status,
+        progressInfo(r).text,
         new Date(r.created_at).toLocaleString("pt-BR"),
       ]),
     ];
-    const csv = rows
+    const csv = csvRows
       .map((r) => r.map((c: any) => `"${String(c).replace(/"/g, '""')}"`).join(","))
       .join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
@@ -117,6 +160,18 @@ function AdminDiagnosticoPage() {
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-8">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          <FilterButton active={filter === "all"} onClick={() => setFilter("all")}>
+            Todos ({(leads ?? []).length})
+          </FilterButton>
+          <FilterButton active={filter === "pending"} onClick={() => setFilter("pending")}>
+            Não terminaram ({pendingCount})
+          </FilterButton>
+          <FilterButton active={filter === "done"} onClick={() => setFilter("done")}>
+            Terminaram ({(leads ?? []).length - pendingCount})
+          </FilterButton>
+        </div>
+
         {isLoading ? (
           <div className="flex items-center gap-2 text-muted-foreground">
             <Loader2 className="size-4 animate-spin" /> Carregando…
@@ -129,57 +184,74 @@ function AdminDiagnosticoPage() {
                   <th className="p-3">Nome</th>
                   <th className="p-3">Telefone</th>
                   <th className="p-3">Email</th>
-                  <th className="p-3">Cargo</th>
                   <th className="p-3">Pontuação</th>
-                  <th className="p-3">Status</th>
+                  <th className="p-3">Onde parou / Status</th>
                   <th className="p-3">Data</th>
                   <th className="p-3 text-right">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {(leads ?? []).map((r: any) => (
-                  <tr key={r.id} className="border-t border-white/5">
-                    <td className="p-3 font-medium">{r.nome}</td>
-                    <td className="p-3">
-                      <a
-                        href={`https://wa.me/55${String(r.telefone).replace(/\D/g, "")}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-gold hover:underline"
-                      >
-                        {r.telefone}
-                      </a>
-                    </td>
-                    <td className="p-3">{r.email}</td>
-                    <td className="p-3">{r.cargo ?? "—"}</td>
-                    <td className="p-3">{r.pct != null ? `${r.pct}%` : "—"}</td>
-                    <td className="p-3">
-                      <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs">
-                        {statusLabel[r.status] ?? r.status}
-                      </span>
-                    </td>
-                    <td className="p-3 text-xs text-muted-foreground">
-                      {new Date(r.created_at).toLocaleString("pt-BR")}
-                    </td>
-                    <td className="p-3">
-                      <div className="flex justify-end">
-                        <button
-                          onClick={() => {
-                            if (confirm("Remover esse lead?")) delMut.mutate(r.id);
-                          }}
-                          className="rounded-md border border-white/10 p-2 text-red-400"
-                          title="Remover"
+                {rows.map((r: any) => {
+                  const progress = progressInfo(r);
+                  return (
+                    <tr
+                      key={r.id}
+                      className={`border-t border-white/5 ${
+                        !progress.done ? "border-l-2 border-l-amber-500/50" : ""
+                      }`}
+                    >
+                      <td className="p-3 font-medium">
+                        {r.nome}
+                        {r.cargo && <div className="text-xs text-muted-foreground">{r.cargo}</div>}
+                      </td>
+                      <td className="p-3">
+                        <a
+                          href={`https://wa.me/55${String(r.telefone).replace(/\D/g, "")}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-gold hover:underline"
                         >
-                          <Trash2 className="size-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-                {(leads ?? []).length === 0 && (
+                          {r.telefone}
+                        </a>
+                      </td>
+                      <td className="p-3">{r.email}</td>
+                      <td className="p-3">{r.pct != null ? `${r.pct}%` : "—"}</td>
+                      <td className="p-3">
+                        <span
+                          className={`inline-block rounded-full px-2 py-0.5 text-xs ${
+                            progress.done
+                              ? "bg-emerald-500/15 text-emerald-400"
+                              : "bg-amber-500/15 text-amber-400"
+                          }`}
+                        >
+                          {progress.text}
+                        </span>
+                      </td>
+                      <td className="p-3 text-xs text-muted-foreground">
+                        {new Date(r.created_at).toLocaleString("pt-BR")}
+                      </td>
+                      <td className="p-3">
+                        <div className="flex justify-end">
+                          <button
+                            onClick={() => {
+                              if (confirm("Remover esse lead?")) delMut.mutate(r.id);
+                            }}
+                            className="rounded-md border border-white/10 p-2 text-red-400"
+                            title="Remover"
+                          >
+                            <Trash2 className="size-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {rows.length === 0 && (
                   <tr>
-                    <td colSpan={8} className="p-6 text-center text-muted-foreground">
-                      Ninguém entrou no diagnóstico ainda.
+                    <td colSpan={7} className="p-6 text-center text-muted-foreground">
+                      {filter === "all"
+                        ? "Ninguém entrou no diagnóstico ainda."
+                        : "Nenhum lead nesse filtro."}
                     </td>
                   </tr>
                 )}
@@ -189,5 +261,28 @@ function AdminDiagnosticoPage() {
         )}
       </main>
     </div>
+  );
+}
+
+function FilterButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+        active
+          ? "border-gold bg-gold/15 text-gold"
+          : "border-white/10 text-muted-foreground hover:text-foreground"
+      }`}
+    >
+      {children}
+    </button>
   );
 }

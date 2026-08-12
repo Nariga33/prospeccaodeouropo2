@@ -636,12 +636,19 @@ function DiagnosticoPage() {
     const next = [...answers];
     next[step] = optionIdx;
     setAnswers(next);
+    const id = leadId();
     setTimeout(() => {
       if (step < total - 1) {
         setStep(step + 1);
+        // Salva o progresso a cada resposta — assim dá pra ver, no admin,
+        // exatamente em qual pergunta a pessoa parou caso ela abandone.
+        if (id && role) {
+          updateLead({
+            data: { id, role, answers: next, status: "started_quiz" },
+          }).catch(() => {});
+        }
       } else {
         setFinished(true);
-        const id = leadId();
         if (id) {
           const finalScore = next.reduce<number>(
             (sum, a, i) => sum + (a !== null ? QUESTIONS[i].options[a].score : 0),
