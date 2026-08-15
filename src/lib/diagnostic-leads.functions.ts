@@ -1,13 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { sendToWebhook } from "@/lib/webhook";
 
-function publicClient() {
-  return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
+// Roda 100% server-side (nunca vai pro bundle do navegador) — usa a service role
+// pra poder gravar E ler de volta o id (.select().single()) sem depender de RLS/GRANT
+// pro papel anônimo, que nunca teve permissão de SELECT nessa tabela.
+async function adminClient() {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  return supabaseAdmin;
 }
 
 const createSchema = z.object({
@@ -24,7 +25,7 @@ const createSchema = z.object({
 export const createDiagnosticLead = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => createSchema.parse(d))
   .handler(async ({ data }) => {
-    const supabase = publicClient();
+    const supabase = await adminClient();
     const { data: row, error } = await supabase
       .from("diagnostic_leads")
       .insert({
@@ -40,7 +41,10 @@ export const createDiagnosticLead = createServerFn({ method: "POST" })
       })
       .select("id")
       .single();
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error("[diagnostic_leads] falha ao criar lead:", error.message);
+      throw new Error(error.message);
+    }
     await sendToWebhook("diagnostico_form", {
       ...data,
       name: data.nome,
@@ -64,7 +68,7 @@ const updateSchema = z.object({
 export const updateDiagnosticLead = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => updateSchema.parse(d))
   .handler(async ({ data }) => {
-    const supabase = publicClient();
+    const supabase = await adminClient();
     const patch: Database["public"]["Tables"]["diagnostic_leads"]["Update"] = {
       status: data.status,
       updated_at: new Date().toISOString(),
@@ -76,6 +80,9 @@ export const updateDiagnosticLead = createServerFn({ method: "POST" })
     if (data.answers !== undefined) patch.answers = data.answers as never;
 
     const { error } = await supabase.from("diagnostic_leads").update(patch).eq("id", data.id);
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error("[diagnostic_leads] falha ao atualizar lead:", error.message);
+      throw new Error(error.message);
+    }
     return { ok: true as const };
   });
