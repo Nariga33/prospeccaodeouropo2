@@ -189,6 +189,12 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18373667171');`,
       },
+      {
+        children: `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"6a7f4d2ab9f7e2000c6d443b"})},
+document.head.appendChild(o)}initApollo();`,
+      },
     ],
   }),
   shellComponent: RootShell,
