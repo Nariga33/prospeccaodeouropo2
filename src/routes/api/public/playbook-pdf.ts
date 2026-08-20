@@ -26,15 +26,28 @@ export const Route = createFileRoute("/api/public/playbook-pdf")({
           return new Response("Dados incompletos", { status: 400 });
         }
 
-        const pdfBytes = await buildPlaybookPdf(body);
+        try {
+          const pdfBytes = await buildPlaybookPdf(body);
 
-        return new Response(pdfBytes as unknown as BodyInit, {
-          headers: {
-            "Content-Type": "application/pdf",
-            "Content-Disposition": `attachment; filename="playbook-po2-${slugify(body.name)}.pdf"`,
-            "Cache-Control": "no-store",
-          },
-        });
+          return new Response(pdfBytes as unknown as BodyInit, {
+            headers: {
+              "Content-Type": "application/pdf",
+              "Content-Disposition": `attachment; filename="playbook-po2-${slugify(body.name)}.pdf"`,
+              "Cache-Control": "no-store",
+            },
+          });
+        } catch (err) {
+          // Loga completo pro painel de Logs da Cloudflare e devolve o motivo
+          // real no corpo (só a mensagem do erro, nada sensível) pra dar pra
+          // diagnosticar sem precisar de acesso ao dashboard.
+          const message = err instanceof Error ? err.message : String(err);
+          const stack = err instanceof Error ? err.stack : undefined;
+          console.error("[playbook-pdf] falha ao gerar PDF:", message, stack);
+          return new Response(JSON.stringify({ error: message }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" },
+          });
+        }
       },
     },
   },

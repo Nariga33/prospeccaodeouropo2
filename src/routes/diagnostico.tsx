@@ -1133,7 +1133,17 @@ function PlaybookPdfButton({
           })),
         }),
       });
-      if (!res.ok) throw new Error("Falha ao gerar PDF");
+      if (!res.ok) {
+        let detail = "";
+        try {
+          const j = (await res.json()) as { error?: string };
+          detail = j?.error ?? "";
+        } catch {
+          // resposta não era JSON, segue sem detalhe
+        }
+        console.error("[playbook-pdf] falha ao gerar PDF:", res.status, detail);
+        throw new Error(detail || "Falha ao gerar PDF");
+      }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
