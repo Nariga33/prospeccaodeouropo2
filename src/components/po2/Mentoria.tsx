@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
-import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
+import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { Jargon } from "@/components/po2/Jargon";
 import {
   ClipboardList,
@@ -22,6 +22,7 @@ import {
   Workflow,
   ShieldQuestion,
   Repeat,
+  MessageCircle,
 } from "lucide-react";
 
 const goldRule = "h-px w-12 bg-gold/60";
@@ -469,13 +470,14 @@ export function Mentoria() {
               ))}
             </div>
 
-            <DiagnosticDialog
-              trigger={
-                <button className={`${ctaPrimary} w-full justify-center`}>
-                  <Calendar className="size-4" /> Quero a mentoria
-                </button>
-              }
-            />
+            <a
+              href={PO2_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${ctaPrimary} w-full justify-center`}
+            >
+              <MessageCircle className="size-4" /> Quero minha vaga na mentoria
+            </a>
           </div>
         </div>
       </div>

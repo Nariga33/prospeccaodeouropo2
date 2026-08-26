@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { Mentoria } from "@/components/po2/Mentoria";
-import { RodaComercial } from "@/components/po2/RodaComercial";
 import { MentoriaOffer } from "@/components/po2/MentoriaOffer";
 import { GapSection } from "@/components/po2/GapSection";
 
@@ -70,7 +69,6 @@ function MentoriaPage() {
           solutionTitle="Gap Selling e Gap Prospecting aplicados na prática"
           solutionText="A Mentoria não ensina teoria isolada — corrige a operação real do aluno, sessão a sessão, aplicando a lógica de diagnóstico de Keenan em cima das ligações, reuniões e negociações que já estão acontecendo."
         />
-        <RodaComercial />
         <MentoriaOffer />
       </main>
       <Footer />
