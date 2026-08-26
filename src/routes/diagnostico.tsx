@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { updateDiagnosticLead } from "@/lib/diagnostic-leads.functions";
 import {
@@ -12,6 +12,7 @@ import {
   Sparkles,
   Timer,
   ClipboardCheck,
+  GraduationCap,
 } from "lucide-react";
 import logo from "@/assets/po2-logo.png";
 
@@ -620,6 +621,69 @@ const FATURAMENTO_OPTIONS = [
   "Acima de R$ 1 milhão/mês",
 ];
 
+function OperationalContextCard({
+  onSubmit,
+}: {
+  onSubmit: (v: { faturamento: string; ticket: string; metaContratos: string }) => void;
+}) {
+  const [agendas, setAgendas] = useState("");
+  const [oportunidades, setOportunidades] = useState("");
+  const canSubmit = agendas.trim() !== "" && oportunidades.trim() !== "";
+
+  return (
+    <div className="rounded-3xl border border-white/10 bg-card/70 p-8 shadow-2xl shadow-black/30">
+      <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold">Quase lá</div>
+      <h2 className="mt-3 font-display text-3xl text-foreground">
+        Só mais 2 perguntinhas sobre sua operação.
+      </h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Isso ajuda a medir sua eficiência real, do jeito que você mesmo acompanha — sem isso, o
+        diagnóstico fica só qualitativo.
+      </p>
+
+      <div className="mt-8 grid grid-cols-2 gap-3">
+        <div className="space-y-1.5">
+          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Agendas marcadas/semana
+          </label>
+          <input
+            inputMode="numeric"
+            value={agendas}
+            onChange={(e) => setAgendas(e.target.value)}
+            placeholder="Ex.: 8"
+            className="w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2.5 text-sm text-foreground"
+            maxLength={6}
+          />
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Viram oportunidade real
+          </label>
+          <input
+            inputMode="numeric"
+            value={oportunidades}
+            onChange={(e) => setOportunidades(e.target.value)}
+            placeholder="Ex.: 3"
+            className="w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2.5 text-sm text-foreground"
+            maxLength={6}
+          />
+        </div>
+      </div>
+      <p className="mt-3 text-[10px] text-muted-foreground">
+        Das agendas que você marca, quantas de fato avançam no funil — não só "aconteceram".
+      </p>
+
+      <button
+        disabled={!canSubmit}
+        onClick={() => onSubmit({ faturamento: "", ticket: agendas, metaContratos: oportunidades })}
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        Continuar diagnóstico <ArrowRight className="size-4" />
+      </button>
+    </div>
+  );
+}
+
 function BusinessContextCard({
   onSubmit,
 }: {
@@ -705,11 +769,49 @@ function BusinessContextCard({
   );
 }
 
+function guessRoleFromCargo(cargo: string): RoleKey | null {
+  const c = cargo
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+  const rules: { role: RoleKey; keywords: string[] }[] = [
+    {
+      role: "empresario",
+      keywords: [
+        "ceo",
+        "founder",
+        "fundador",
+        "co-founder",
+        "cofundador",
+        "socio",
+        "dono",
+        "proprietari",
+        "diretor",
+        "director",
+        "head de vendas",
+        "head comercial",
+        "vp de vendas",
+        "presidente",
+      ],
+    },
+    { role: "closer", keywords: ["closer", "fechamento", "account executive", " ae "] },
+    { role: "inside_sales", keywords: ["inside sales", "inside-sales"] },
+    { role: "sdr", keywords: ["sdr"] },
+    { role: "bdr", keywords: ["bdr", "hunter", "prospeccao ativa", "prospector"] },
+  ];
+  const matches = rules.filter((r) => r.keywords.some((k) => c.includes(k)));
+  // Só auto-preenche quando o cargo aponta claramente pra um papel só —
+  // em caso de ambiguidade, deixa a pessoa escolher.
+  if (matches.length === 1) return matches[0].role;
+  return null;
+}
+
 function DiagnosticoPage() {
   const navigate = useNavigate();
   const updateLead = useServerFn(updateDiagnosticLead);
   const [lead, setLead] = useState<Lead | null>(null);
   const [role, setRole] = useState<RoleKey | null>(null);
+  const [roleGuessed, setRoleGuessed] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [finished, setFinished] = useState(false);
@@ -717,6 +819,17 @@ function DiagnosticoPage() {
 
   function leadId(): string | null {
     return typeof window !== "undefined" ? sessionStorage.getItem("po2-lead-id") : null;
+  }
+
+  function selectRole(key: RoleKey, guessed = false) {
+    setRole(key);
+    setRoleGuessed(guessed);
+    const id = leadId();
+    if (id) {
+      updateLead({ data: { id, role: key, status: "started_quiz" } }).catch((err) =>
+        console.error("[diagnostic] falha ao atualizar lead:", err),
+      );
+    }
   }
 
   function handleContextSubmit(v: { faturamento: string; ticket: string; metaContratos: string }) {
@@ -750,10 +863,18 @@ function DiagnosticoPage() {
       return;
     }
     try {
-      setLead(JSON.parse(raw));
+      const parsed: Lead = JSON.parse(raw);
+      setLead(parsed);
+      // Evita perguntar de novo o que a pessoa já disse — se o cargo digitado
+      // no formulário aponta claramente pra um papel só, começa direto por ele.
+      if (parsed.cargo) {
+        const guess = guessRoleFromCargo(parsed.cargo);
+        if (guess) selectRole(guess, true);
+      }
     } catch {
       navigate({ to: "/" });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
   const QUESTIONS = role ? QUESTIONS_BY_ROLE[role] : QUESTIONS_BY_ROLE.bdr;
@@ -887,12 +1008,17 @@ function DiagnosticoPage() {
     if (lead.faturamento) lines.push(`Faturamento: ${lead.faturamento}`);
     if (roleInfo) lines.push(`Perfil: ${roleInfo.label} (${roleInfo.sublabel})`);
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
-    if (moneyGap.potencialMensal > 0) {
+    if (role === "empresario" && moneyGap.potencialMensal > 0) {
       lines.push(
         `Ticket médio: ${fmt(moneyGap.ticket)}`,
         `Meta de contratos/mês: ${moneyGap.meta}`,
         `Potencial mensal: ${fmt(moneyGap.potencialMensal)}`,
         `Gap mensal estimado: ${fmt(moneyGap.gapMensal)}  |  Anual: ${fmt(moneyGap.gapAnual)}`,
+      );
+    } else if (role !== "empresario" && lead.ticket) {
+      lines.push(
+        `Agendas marcadas/semana: ${lead.ticket}`,
+        `Viram oportunidade real: ${lead.metaContratos ?? "—"}`,
       );
     }
     lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`);
@@ -939,15 +1065,7 @@ function DiagnosticoPage() {
             {ROLES.map((r) => (
               <button
                 key={r.key}
-                onClick={() => {
-                  setRole(r.key);
-                  const id = leadId();
-                  if (id) {
-                    updateLead({ data: { id, role: r.key, status: "started_quiz" } }).catch(
-                      () => {},
-                    );
-                  }
-                }}
+                onClick={() => selectRole(r.key)}
                 className="group rounded-2xl border border-white/10 bg-card/70 p-6 text-left transition-all hover:-translate-y-1 hover:border-gold/40"
               >
                 <div className="flex items-center justify-between">
@@ -999,11 +1117,36 @@ function DiagnosticoPage() {
               style={{ width: `${progress}%` }}
             />
           </div>
+          {roleGuessed && !finished && (
+            <p className="mt-3 text-xs text-muted-foreground">
+              Pelo seu cargo, identificamos o perfil{" "}
+              <span className="font-semibold text-gold">
+                {ROLES.find((r) => r.key === role)?.label}
+              </span>
+              .{" "}
+              <button
+                onClick={() => {
+                  setRole(null);
+                  setRoleGuessed(false);
+                  setStep(0);
+                  setAnswers(Array(15).fill(null));
+                  setContextCaptured(false);
+                }}
+                className="font-semibold text-gold underline underline-offset-2 hover:text-gold/80"
+              >
+                Não é isso? Trocar perfil
+              </button>
+            </p>
+          )}
         </div>
 
         {!finished ? (
           step === 1 && !contextCaptured ? (
-            <BusinessContextCard onSubmit={handleContextSubmit} />
+            role === "empresario" ? (
+              <BusinessContextCard onSubmit={handleContextSubmit} />
+            ) : (
+              <OperationalContextCard onSubmit={handleContextSubmit} />
+            )
           ) : (
             <div className="rounded-3xl border border-white/10 bg-card/70 p-8 shadow-2xl shadow-black/30">
               <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
@@ -1065,7 +1208,7 @@ function DiagnosticoPage() {
 
             <CountdownBanner nome={lead.nome} />
 
-            {moneyGap.potencialMensal > 0 && (
+            {role === "empresario" && moneyGap.potencialMensal > 0 && (
               <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
                 <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
                   Quanto você está deixando de faturar
@@ -1088,6 +1231,25 @@ function DiagnosticoPage() {
                 <p className="mt-4 text-xs text-muted-foreground">
                   Cálculo: ticket médio × meta de novos contratos × lacuna de maturidade da operação
                   ({100 - pct}%).
+                </p>
+              </div>
+            )}
+
+            {role !== "empresario" && lead.ticket && (
+              <div className="mt-8 overflow-hidden rounded-2xl border border-gold/40 bg-background/60 p-6">
+                <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
+                  Sua eficiência operacional
+                </div>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <MiniStat label="Agendas marcadas/semana" value={`${lead.ticket}`} />
+                  <MiniStat
+                    label="Viram oportunidade real"
+                    value={`${lead.metaContratos ?? "—"}`}
+                  />
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Com {pct}% de maturidade, uma parte real dessas agendas está sendo desperdiçada
+                  por falta de processo — não de esforço.
                 </p>
               </div>
             )}
@@ -1226,25 +1388,61 @@ function DiagnosticoPage() {
               </div>
             )}
 
-            <a
-              href={buildWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                const id = leadId();
-                if (id) {
-                  updateLead({ data: { id, status: "clicked_whatsapp" } }).catch((err) =>
-                    console.error("[diagnostic] falha ao atualizar lead:", err),
-                  );
-                }
-              }}
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
-            >
-              <Phone className="size-4" /> Falar com o time PO2 <ArrowRight className="size-4" />
-            </a>
-            <p className="mt-4 text-xs text-muted-foreground">
-              Vamos te enviar a leitura completa diretamente pelo nosso canal de atendimento.
-            </p>
+            {role === "empresario" ? (
+              <>
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    const id = leadId();
+                    if (id) {
+                      updateLead({ data: { id, status: "clicked_whatsapp" } }).catch((err) =>
+                        console.error("[diagnostic] falha ao atualizar lead:", err),
+                      );
+                    }
+                  }}
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
+                >
+                  <Phone className="size-4" /> Falar com o time PO2{" "}
+                  <ArrowRight className="size-4" />
+                </a>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Vamos te enviar a leitura completa diretamente pelo nosso canal de atendimento.
+                </p>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/mentoria"
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
+                >
+                  <GraduationCap className="size-4" /> Quero evoluir com a Mentoria PO2{" "}
+                  <ArrowRight className="size-4" />
+                </Link>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Esse é o caminho pra sair do improviso na prática, com acompanhamento — não pra
+                  decisão da empresa, mas pra sua evolução como{" "}
+                  {ROLES.find((r) => r.key === role)?.label}.
+                </p>
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    const id = leadId();
+                    if (id) {
+                      updateLead({ data: { id, status: "clicked_whatsapp" } }).catch((err) =>
+                        console.error("[diagnostic] falha ao atualizar lead:", err),
+                      );
+                    }
+                  }}
+                  className="mt-3 inline-block text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
+                >
+                  Ou prefiro falar com o time PO2 sobre minha empresa
+                </a>
+              </>
+            )}
           </div>
         )}
       </main>
