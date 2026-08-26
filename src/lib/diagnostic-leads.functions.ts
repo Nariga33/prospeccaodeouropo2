@@ -62,6 +62,9 @@ const updateSchema = z.object({
   maxScore: z.number().int().min(0).optional(),
   pct: z.number().int().min(0).max(100).optional(),
   answers: z.unknown().optional(),
+  faturamento: z.string().trim().max(80).optional(),
+  ticket: z.string().trim().max(40).optional(),
+  metaContratos: z.string().trim().max(40).optional(),
   status: z.enum(["form_only", "started_quiz", "completed_quiz", "clicked_whatsapp"]),
 });
 
@@ -78,6 +81,9 @@ export const updateDiagnosticLead = createServerFn({ method: "POST" })
     if (data.maxScore !== undefined) patch.max_score = data.maxScore;
     if (data.pct !== undefined) patch.pct = data.pct;
     if (data.answers !== undefined) patch.answers = data.answers as never;
+    if (data.faturamento !== undefined) patch.faturamento = data.faturamento;
+    if (data.ticket !== undefined) patch.ticket = data.ticket;
+    if (data.metaContratos !== undefined) patch.meta_contratos = data.metaContratos;
 
     const { error } = await supabase.from("diagnostic_leads").update(patch).eq("id", data.id);
     if (error) {

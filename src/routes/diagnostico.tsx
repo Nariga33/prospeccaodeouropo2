@@ -594,12 +594,115 @@ interface Lead {
   cargo?: string;
   email: string;
   telefone: string;
-  faturamento: string;
+  faturamento?: string;
   plan?: string;
   ticket?: string;
   metaContratos?: string;
   ticketValor?: number;
   metaValor?: number;
+}
+
+function parseNumber(v: string): number {
+  const n = Number(
+    v
+      .replace(/[^\d,.-]/g, "")
+      .replace(/\./g, "")
+      .replace(",", "."),
+  );
+  return Number.isFinite(n) ? n : 0;
+}
+
+const FATURAMENTO_OPTIONS = [
+  "Até R$ 50 mil/mês",
+  "R$ 50 mil – R$ 200 mil/mês",
+  "R$ 200 mil – R$ 500 mil/mês",
+  "R$ 500 mil – R$ 1 milhão/mês",
+  "Acima de R$ 1 milhão/mês",
+];
+
+function BusinessContextCard({
+  onSubmit,
+}: {
+  onSubmit: (v: { faturamento: string; ticket: string; metaContratos: string }) => void;
+}) {
+  const [faturamento, setFaturamento] = useState("");
+  const [ticket, setTicket] = useState("");
+  const [metaContratos, setMetaContratos] = useState("");
+  const canSubmit = faturamento !== "" && ticket.trim() !== "" && metaContratos.trim() !== "";
+
+  return (
+    <div className="rounded-3xl border border-white/10 bg-card/70 p-8 shadow-2xl shadow-black/30">
+      <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold">Quase lá</div>
+      <h2 className="mt-3 font-display text-3xl text-foreground">
+        Só mais 2 perguntinhas de contexto.
+      </h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Isso é o que transforma seu resultado num número em R$ — sem isso, o diagnóstico fica só
+        qualitativo.
+      </p>
+
+      <div className="mt-8 space-y-4">
+        <div className="space-y-1.5">
+          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Faturamento mensal
+          </label>
+          <select
+            value={faturamento}
+            onChange={(e) => setFaturamento(e.target.value)}
+            className="w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2.5 text-sm text-foreground"
+          >
+            <option value="" disabled>
+              Selecione a faixa
+            </option>
+            {FATURAMENTO_OPTIONS.map((f) => (
+              <option key={f} value={f}>
+                {f}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              Ticket médio (R$)
+            </label>
+            <input
+              inputMode="decimal"
+              value={ticket}
+              onChange={(e) => setTicket(e.target.value)}
+              placeholder="Ex.: 5.000"
+              className="w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2.5 text-sm text-foreground"
+              maxLength={15}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              Novos contratos/mês
+            </label>
+            <input
+              inputMode="numeric"
+              value={metaContratos}
+              onChange={(e) => setMetaContratos(e.target.value)}
+              placeholder="Ex.: 5"
+              className="w-full rounded-lg border border-white/10 bg-background/60 px-3 py-2.5 text-sm text-foreground"
+              maxLength={6}
+            />
+          </div>
+        </div>
+        <p className="text-[10px] text-muted-foreground">
+          Quanto você quer fechar por mês via prospecção ativa.
+        </p>
+      </div>
+
+      <button
+        disabled={!canSubmit}
+        onClick={() => onSubmit({ faturamento, ticket, metaContratos })}
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        Continuar diagnóstico <ArrowRight className="size-4" />
+      </button>
+    </div>
+  );
 }
 
 function DiagnosticoPage() {
@@ -610,9 +713,34 @@ function DiagnosticoPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [finished, setFinished] = useState(false);
+  const [contextCaptured, setContextCaptured] = useState(false);
 
   function leadId(): string | null {
     return typeof window !== "undefined" ? sessionStorage.getItem("po2-lead-id") : null;
+  }
+
+  function handleContextSubmit(v: { faturamento: string; ticket: string; metaContratos: string }) {
+    const ticketValor = parseNumber(v.ticket);
+    const metaValor = parseNumber(v.metaContratos);
+    setLead((prev) => {
+      if (!prev) return prev;
+      const updated: Lead = { ...prev, ...v, ticketValor, metaValor };
+      sessionStorage.setItem("po2-lead", JSON.stringify(updated));
+      return updated;
+    });
+    const id = leadId();
+    if (id) {
+      updateLead({
+        data: {
+          id,
+          status: "started_quiz",
+          faturamento: v.faturamento,
+          ticket: v.ticket,
+          metaContratos: v.metaContratos,
+        },
+      }).catch(() => {});
+    }
+    setContextCaptured(true);
   }
 
   useEffect(() => {
@@ -755,11 +883,8 @@ function DiagnosticoPage() {
     const roleInfo = ROLES.find((r) => r.key === role);
     const lines = ["Olá! Acabei de concluir o diagnóstico PO2.", "", `Nome: ${lead.nome}`];
     if (lead.cargo) lines.push(`Cargo: ${lead.cargo}`);
-    lines.push(
-      `E-mail: ${lead.email}`,
-      `Telefone: ${lead.telefone}`,
-      `Faturamento: ${lead.faturamento}`,
-    );
+    lines.push(`E-mail: ${lead.email}`, `Telefone: ${lead.telefone}`);
+    if (lead.faturamento) lines.push(`Faturamento: ${lead.faturamento}`);
     if (roleInfo) lines.push(`Perfil: ${roleInfo.label} (${roleInfo.sublabel})`);
     if (lead.plan) lines.push(`Plano de interesse: ${lead.plan}`);
     if (moneyGap.potencialMensal > 0) {
@@ -877,53 +1002,57 @@ function DiagnosticoPage() {
         </div>
 
         {!finished ? (
-          <div className="rounded-3xl border border-white/10 bg-card/70 p-8 shadow-2xl shadow-black/30">
-            <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-              Pergunta {step + 1} de {total}
-            </div>
-            <h2 className="mt-3 font-display text-3xl text-foreground">{q.title}</h2>
-            <p className="mt-2 text-sm text-muted-foreground">{q.helper}</p>
+          step === 1 && !contextCaptured ? (
+            <BusinessContextCard onSubmit={handleContextSubmit} />
+          ) : (
+            <div className="rounded-3xl border border-white/10 bg-card/70 p-8 shadow-2xl shadow-black/30">
+              <div className="text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+                Pergunta {step + 1} de {total}
+              </div>
+              <h2 className="mt-3 font-display text-3xl text-foreground">{q.title}</h2>
+              <p className="mt-2 text-sm text-muted-foreground">{q.helper}</p>
 
-            <div className="mt-8 space-y-3">
-              {q.options.map((opt, i) => {
-                const selected = answers[step] === i;
-                const Icon = opt.score === 2 ? Check : opt.score === 1 ? Minus : AlertTriangle;
-                const tone =
-                  opt.score === 2
-                    ? "text-gold border-gold/40"
-                    : opt.score === 1
-                      ? "text-amber-300 border-amber-400/30"
-                      : "text-red-300 border-red-400/30";
-                return (
-                  <button
-                    key={i}
-                    onClick={() => pick(i)}
-                    className={`group flex w-full items-center justify-between gap-4 rounded-xl border bg-background/40 px-5 py-4 text-left transition-all hover:border-gold/40 hover:bg-background/70 ${selected ? "border-gold bg-gold/5" : "border-white/10"}`}
-                  >
-                    <span className="text-sm font-medium text-foreground">{opt.label}</span>
-                    <span
-                      className={`flex size-7 shrink-0 items-center justify-center rounded-full border ${tone}`}
+              <div className="mt-8 space-y-3">
+                {q.options.map((opt, i) => {
+                  const selected = answers[step] === i;
+                  const Icon = opt.score === 2 ? Check : opt.score === 1 ? Minus : AlertTriangle;
+                  const tone =
+                    opt.score === 2
+                      ? "text-gold border-gold/40"
+                      : opt.score === 1
+                        ? "text-amber-300 border-amber-400/30"
+                        : "text-red-300 border-red-400/30";
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => pick(i)}
+                      className={`group flex w-full items-center justify-between gap-4 rounded-xl border bg-background/40 px-5 py-4 text-left transition-all hover:border-gold/40 hover:bg-background/70 ${selected ? "border-gold bg-gold/5" : "border-white/10"}`}
                     >
-                      <Icon className="size-3.5" />
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                      <span className="text-sm font-medium text-foreground">{opt.label}</span>
+                      <span
+                        className={`flex size-7 shrink-0 items-center justify-center rounded-full border ${tone}`}
+                      >
+                        <Icon className="size-3.5" />
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
 
-            <div className="mt-8 flex items-center justify-between text-xs">
-              <button
-                onClick={() => step > 0 && setStep(step - 1)}
-                disabled={step === 0}
-                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-30"
-              >
-                <ArrowLeft className="size-3.5" /> Voltar
-              </button>
-              <span className="text-muted-foreground">
-                Escolha a opção mais sincera — o diagnóstico depende disso.
-              </span>
+              <div className="mt-8 flex items-center justify-between text-xs">
+                <button
+                  onClick={() => step > 0 && setStep(step - 1)}
+                  disabled={step === 0}
+                  className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-30"
+                >
+                  <ArrowLeft className="size-3.5" /> Voltar
+                </button>
+                <span className="text-muted-foreground">
+                  Escolha a opção mais sincera — o diagnóstico depende disso.
+                </span>
+              </div>
             </div>
-          </div>
+          )
         ) : (
           <div className="rounded-3xl border border-gold/40 bg-gradient-to-b from-gold/10 to-card/80 p-10 shadow-[0_0_80px_-20px_rgba(197,160,89,0.45)]">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">

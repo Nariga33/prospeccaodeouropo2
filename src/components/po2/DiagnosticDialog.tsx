@@ -14,62 +14,32 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(100),
   cargo: z.string().trim().min(2, "Informe seu cargo").max(80),
   email: z.string().trim().email("E-mail inválido").max(255),
   telefone: z.string().trim().min(8, "Telefone inválido").max(20),
-  faturamento: z.string().min(1, "Selecione uma faixa"),
-  ticket: z.string().trim().min(1, "Informe o ticket médio"),
-  metaContratos: z.string().trim().min(1, "Informe a meta de contratos"),
 });
 
 type FormData = z.infer<typeof schema>;
 type Errors = Partial<Record<keyof FormData, string>>;
-
-const FATURAMENTO = [
-  "Até R$ 50 mil/mês",
-  "R$ 50 mil – R$ 200 mil/mês",
-  "R$ 200 mil – R$ 500 mil/mês",
-  "R$ 500 mil – R$ 1 milhão/mês",
-  "Acima de R$ 1 milhão/mês",
-];
 
 interface Props {
   trigger: ReactNode;
   plan?: string;
 }
 
-function parseNumber(v: string): number {
-  const n = Number(
-    v
-      .replace(/[^\d,.-]/g, "")
-      .replace(/\./g, "")
-      .replace(",", "."),
-  );
-  return Number.isFinite(n) ? n : 0;
-}
-
 export function DiagnosticDialog({ trigger, plan }: Props) {
   const navigate = useNavigate();
   const createLead = useServerFn(createDiagnosticLead);
   const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [data, setData] = useState<FormData>({
     nome: "",
     cargo: "",
     email: "",
     telefone: "",
-    faturamento: "",
-    ticket: "",
-    metaContratos: "",
   });
   const [errors, setErrors] = useState<Errors>({});
 
@@ -90,12 +60,8 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
       setErrors(errs);
       return;
     }
-    const payload = {
-      ...parsed.data,
-      plan,
-      ticketValor: parseNumber(parsed.data.ticket),
-      metaValor: parseNumber(parsed.data.metaContratos),
-    };
+    setSubmitting(true);
+    const payload = { ...parsed.data, plan };
     sessionStorage.setItem("po2-lead", JSON.stringify(payload));
     try {
       const { id } = await createLead({ data: { ...parsed.data, plan } });
@@ -104,15 +70,8 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
       // Não bloqueia o fluxo se o registro falhar — a pessoa segue pro diagnóstico normalmente.
     }
     setOpen(false);
-    setData({
-      nome: "",
-      cargo: "",
-      email: "",
-      telefone: "",
-      faturamento: "",
-      ticket: "",
-      metaContratos: "",
-    });
+    setSubmitting(false);
+    setData({ nome: "", cargo: "", email: "", telefone: "" });
     navigate({ to: "/diagnostico" });
   }
 
@@ -128,7 +87,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
             Vamos olhar sua operação outbound.
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Preencha os dados abaixo para iniciar seu diagnóstico estratégico.
+            4 campos rápidos e você já entra direto no diagnóstico.
           </DialogDescription>
         </DialogHeader>
 
@@ -140,6 +99,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               placeholder="Seu nome completo"
               className="border-white/10 bg-background/60"
               maxLength={100}
+              autoFocus
             />
           </Field>
           <Field label="Cargo" error={errors.cargo}>
@@ -171,51 +131,14 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               maxLength={20}
             />
           </Field>
-          <Field label="Faturamento mensal" error={errors.faturamento}>
-            <Select value={data.faturamento} onValueChange={(v) => update("faturamento", v)}>
-              <SelectTrigger className="border-white/10 bg-background/60">
-                <SelectValue placeholder="Selecione a faixa" />
-              </SelectTrigger>
-              <SelectContent className="border-white/10 bg-card">
-                {FATURAMENTO.map((f) => (
-                  <SelectItem key={f} value={f}>
-                    {f}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </Field>
-          <div className="grid grid-cols-2 gap-3">
-            <Field label="Ticket médio (R$)" error={errors.ticket}>
-              <Input
-                inputMode="decimal"
-                value={data.ticket}
-                onChange={(e) => update("ticket", e.target.value)}
-                placeholder="Ex.: 5.000"
-                className="border-white/10 bg-background/60"
-                maxLength={15}
-              />
-            </Field>
-            <Field label="Novos contratos/mês" error={errors.metaContratos}>
-              <Input
-                inputMode="numeric"
-                value={data.metaContratos}
-                onChange={(e) => update("metaContratos", e.target.value)}
-                placeholder="Ex.: 5"
-                className="border-white/10 bg-background/60"
-                maxLength={6}
-              />
-            </Field>
-          </div>
-          <p className="-mt-2 text-[10px] text-muted-foreground">
-            Quanto você quer fechar por mês via prospecção ativa.
-          </p>
 
           <button
             type="submit"
-            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
+            disabled={submitting}
+            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:opacity-60"
           >
-            Iniciar diagnóstico <ArrowRight className="size-4" />
+            {submitting ? "Abrindo..." : "Iniciar diagnóstico"}
+            {!submitting && <ArrowRight className="size-4" />}
           </button>
           <p className="text-center text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
             Resposta em até 24h úteis

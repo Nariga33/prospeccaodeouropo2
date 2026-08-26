@@ -22,7 +22,7 @@ import {
 const ctaPrimary =
   "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
 
-const SERVICES = [
+const METHOD_ITEMS = [
   { href: "/bdr", label: "BDR", sub: "Outbound" },
   { href: "/sdr", label: "SDR", sub: "Inbound" },
   { href: "/inside-sales", label: "Inside Sales", sub: "Condução" },
@@ -30,13 +30,10 @@ const SERVICES = [
   { href: "/mentoria", label: "Mentoria", sub: "Acompanhamento" },
 ];
 
-const LINKS = [
-  { href: "/eventos", label: "Eventos", isRoute: true },
-  { href: "/metodologias", label: "Metodologias", isRoute: true },
-  { href: "/#fundador", label: "Sobre" },
-  { href: "/#casos", label: "Resultados" },
-  { href: "/parceiros", label: "Parceiros", isRoute: true },
-  { href: "/materiais", label: "Materiais", isRoute: true },
+const RESOURCE_ITEMS = [
+  { href: "/eventos", label: "Eventos", sub: "Masterclasses ao vivo" },
+  { href: "/materiais", label: "Materiais", sub: "Conteúdo gratuito" },
+  { href: "/parceiros", label: "Parceiros", sub: "Rede PO2" },
 ];
 
 export function Nav() {
@@ -52,13 +49,13 @@ export function Nav() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground lg:flex">
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 outline-none transition-colors hover:text-gold data-[state=open]:text-gold">
-              Serviços <ChevronDown className="size-3.5" />
+              Método <ChevronDown className="size-3.5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="start"
-              className="min-w-[220px] border-white/10 bg-background/95 backdrop-blur-xl"
+              className="min-w-[240px] border-white/10 bg-background/95 backdrop-blur-xl"
             >
-              {SERVICES.map((s) => (
+              {METHOD_ITEMS.map((s) => (
                 <DropdownMenuItem key={s.label} asChild className="cursor-pointer">
                   <Link to={s.href} className="flex items-center justify-between px-2 py-2.5">
                     <span className="font-semibold text-foreground">{s.label}</span>
@@ -66,25 +63,43 @@ export function Nav() {
                   </Link>
                 </DropdownMenuItem>
               ))}
+              <div className="my-1 border-t border-white/10" />
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link to="/metodologias" className="px-2 py-2.5 font-semibold text-foreground">
+                  Metodologias
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {LINKS.map((link) =>
-            link.isRoute ? (
-              <Link
-                key={link.label}
-                to={link.href}
-                className="transition-colors hover:text-gold"
-                activeProps={{ className: "text-gold" }}
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a key={link.label} href={link.href} className="transition-colors hover:text-gold">
-                {link.label}
-              </a>
-            ),
-          )}
+          <a href="/#casos" className="transition-colors hover:text-gold">
+            Resultados
+          </a>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 outline-none transition-colors hover:text-gold data-[state=open]:text-gold">
+              Recursos <ChevronDown className="size-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="min-w-[220px] border-white/10 bg-background/95 backdrop-blur-xl"
+            >
+              {RESOURCE_ITEMS.map((s) => (
+                <DropdownMenuItem key={s.label} asChild className="cursor-pointer">
+                  <Link to={s.href} className="flex items-center justify-between px-2 py-2.5">
+                    <span className="font-semibold text-foreground">{s.label}</span>
+                    <span className="text-xs text-muted-foreground">{s.sub}</span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+              <div className="my-1 border-t border-white/10" />
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <a href="/#fundador" className="px-2 py-2.5 font-semibold text-foreground">
+                  Sobre
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -119,9 +134,9 @@ export function Nav() {
 
               <nav className="mt-6 flex flex-1 flex-col gap-1 text-base font-medium">
                 <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
-                  Serviços
+                  Método
                 </div>
-                {SERVICES.map((s) => (
+                {METHOD_ITEMS.map((s) => (
                   <SheetClose asChild key={s.label}>
                     <Link
                       to={s.href}
@@ -132,30 +147,50 @@ export function Nav() {
                     </Link>
                   </SheetClose>
                 ))}
+                <SheetClose asChild>
+                  <Link
+                    to="/metodologias"
+                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                  >
+                    Metodologias
+                  </Link>
+                </SheetClose>
 
                 <div className="mt-3 border-t border-white/10 pt-3" />
 
-                {LINKS.map((link) =>
-                  link.isRoute ? (
-                    <SheetClose asChild key={link.label}>
-                      <Link
-                        to={link.href}
-                        className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
-                  ) : (
-                    <SheetClose asChild key={link.label}>
-                      <a
-                        href={link.href}
-                        className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                      >
-                        {link.label}
-                      </a>
-                    </SheetClose>
-                  ),
-                )}
+                <SheetClose asChild>
+                  <a
+                    href="/#casos"
+                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                  >
+                    Resultados
+                  </a>
+                </SheetClose>
+
+                <div className="mt-3 border-t border-white/10 pt-3" />
+
+                <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
+                  Recursos
+                </div>
+                {RESOURCE_ITEMS.map((s) => (
+                  <SheetClose asChild key={s.label}>
+                    <Link
+                      to={s.href}
+                      className="flex items-center justify-between rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                    >
+                      {s.label}
+                      <span className="text-xs text-muted-foreground">{s.sub}</span>
+                    </Link>
+                  </SheetClose>
+                ))}
+                <SheetClose asChild>
+                  <a
+                    href="/#fundador"
+                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                  >
+                    Sobre
+                  </a>
+                </SheetClose>
               </nav>
 
               <div className="mt-auto flex flex-col gap-3 border-t border-white/10 pt-5">

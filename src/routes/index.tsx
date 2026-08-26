@@ -250,13 +250,9 @@ function Hero() {
             <span className="font-display font-normal italic text-gold">previsibilidade</span>.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Do topo ao fundo do funil: <Jargon term="LDR">LDR</Jargon>/
-            <Jargon term="BDR">BDR</Jargon> na <Jargon term="Outbound">prospecção ativa</Jargon>,{" "}
-            <Jargon term="SDR">SDR</Jargon> na qualificação inbound,{" "}
-            <Jargon term="Inside Sales">Inside Sales</Jargon> conduzindo e{" "}
-            <Jargon term="Closer">Closer</Jargon> fechando — tudo estruturado como uma operação só,
-            com <Jargon term="ICP">ICP</Jargon>, <Jargon term="Cadência">cadência</Jargon> e
-            métricas em cada etapa.
+            Prospecção ativa estruturada de ponta a ponta — da primeira ligação ao contrato fechado
+            — pra empresas que já vendem, mas ainda dependem do esforço individual de quem
+            prospecta.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
