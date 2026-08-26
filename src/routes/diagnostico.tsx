@@ -1107,6 +1107,9 @@ function DiagnosticoPage() {
                   Maturidade
                 </div>
                 <div className="mt-2 font-display text-4xl text-gold">{pct}%</div>
+                <p className="mt-1.5 text-[11px] text-muted-foreground">
+                  Cada resposta vale 0, 1 ou 2 pontos — {score}/{maxScore} pontos = {pct}%.
+                </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -1143,6 +1146,9 @@ function DiagnosticoPage() {
                       </span>
                     </div>
                     <p className="mt-2 text-sm font-semibold text-gold">{s.playbook.title}</p>
+                    <p className="mt-1 text-[11px] text-muted-foreground">
+                      {s.score}/10 pontos = {s.pct}%.
+                    </p>
                     <ul className="mt-3 space-y-2">
                       {s.playbook.items.map((item, i) => (
                         <li
