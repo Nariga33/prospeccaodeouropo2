@@ -1156,7 +1156,11 @@ function DiagnosticoPage() {
                   </div>
                 ))}
 
-                <PlaybookPdfButton lead={lead} sections={empresarioSections} />
+                <PlaybookPdfButton
+                  lead={lead}
+                  sections={empresarioSections}
+                  dores={dores.map(({ q }) => q.title)}
+                />
               </div>
             )}
 
@@ -1180,6 +1184,19 @@ function DiagnosticoPage() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6">
+                  <PlaybookPdfButton
+                    lead={lead}
+                    sections={[
+                      {
+                        label: ROLES.find((r) => r.key === role)?.label ?? "Diagnóstico",
+                        pct,
+                        playbook,
+                      },
+                    ]}
+                    dores={dores.map(({ q }) => q.title)}
+                  />
+                </div>
               </div>
             )}
 
@@ -1234,6 +1251,7 @@ function DiagnosticoPage() {
 function PlaybookPdfButton({
   lead,
   sections,
+  dores,
 }: {
   lead: Lead;
   sections: {
@@ -1241,13 +1259,16 @@ function PlaybookPdfButton({
     pct: number;
     playbook: { title: string; items: string[] };
   }[];
+  dores?: string[];
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [errorDetail, setErrorDetail] = useState<string | null>(null);
 
   async function download() {
     setLoading(true);
     setError(false);
+    setErrorDetail(null);
     try {
       const res = await fetch("/api/public/playbook-pdf", {
         method: "POST",
@@ -1260,6 +1281,7 @@ function PlaybookPdfButton({
             playbookTitle: s.playbook.title,
             items: s.playbook.items,
           })),
+          dores,
         }),
       });
       if (!res.ok) {
@@ -1271,7 +1293,7 @@ function PlaybookPdfButton({
           // resposta não era JSON, segue sem detalhe
         }
         console.error("[playbook-pdf] falha ao gerar PDF:", res.status, detail);
-        throw new Error(detail || "Falha ao gerar PDF");
+        throw new Error(detail || `Falha ao gerar PDF (status ${res.status})`);
       }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
@@ -1282,8 +1304,9 @@ function PlaybookPdfButton({
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-    } catch {
+    } catch (err) {
       setError(true);
+      setErrorDetail(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
     }
@@ -1307,6 +1330,9 @@ function PlaybookPdfButton({
       {error && (
         <p className="mt-2 text-center text-xs text-red-300">
           Não foi possível gerar o PDF agora — tenta de novo em alguns segundos.
+          {errorDetail && (
+            <span className="mt-1 block text-red-400/80">Detalhe: {errorDetail}</span>
+          )}
         </p>
       )}
     </div>

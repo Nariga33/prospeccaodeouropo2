@@ -10,6 +10,7 @@ interface SectionInput {
 interface RequestBody {
   name: string;
   sections: SectionInput[];
+  dores?: string[];
 }
 
 export const Route = createFileRoute("/api/public/playbook-pdf")({
@@ -90,6 +91,7 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
       playbookTitle: sanitizeForPdf(s.playbookTitle),
       items: s.items.map(sanitizeForPdf),
     })),
+    dores: rawBody.dores?.map(sanitizeForPdf).filter(Boolean),
   };
   const { PDFDocument, StandardFonts, rgb } = await import("pdf-lib");
   const pdf = await PDFDocument.create();
@@ -189,6 +191,48 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
       const num = `${i + 1}.`;
       page.drawText(num, { x: 60, y, size: 11, font: helvBold, color: gold });
       const lines = wrapText(item, helv, 11, maxWidth);
+      lines.forEach((line, li) => {
+        page.drawText(line, { x: 85, y: y - li * 15, size: 11, font: helv, color: white });
+      });
+      y -= lines.length * 15 + 18;
+    });
+
+    drawCentered(page, "www.prospeccaoodeouropo2.com", 40, 8, helv, goldSoft);
+  }
+
+  // Página final com as dores específicas identificadas nas respostas —
+  // o que de fato foi respondido, não só o texto genérico da faixa de maturidade.
+  if (body.dores && body.dores.length > 0) {
+    const page = pdf.addPage([PAGE_W, PAGE_H]);
+    drawFrame(page);
+
+    let y = PAGE_H - 90;
+    drawCentered(page, "PO2 · PLAYBOOK", y, 9, helv, goldSoft);
+    y -= 40;
+    drawCentered(page, "Pontos de atenção identificados", y, 24, helvBold, gold);
+    y -= 26;
+    drawCentered(
+      page,
+      "Onde suas respostas apontaram maior gap — comece por aqui.",
+      y,
+      11,
+      helv,
+      muted,
+    );
+    y -= 20;
+    page.drawLine({
+      start: { x: 60, y },
+      end: { x: PAGE_W - 60, y },
+      thickness: 0.5,
+      color: goldSoft,
+    });
+    y -= 34;
+
+    const maxWidth = PAGE_W - 140;
+    body.dores.forEach((dor, i) => {
+      const num = `${i + 1}.`;
+      page.drawText(num, { x: 60, y, size: 11, font: helvBold, color: gold });
+      const lines = wrapText(dor, helv, 11, maxWidth);
       lines.forEach((line, li) => {
         page.drawText(line, { x: 85, y: y - li * 15, size: 11, font: helv, color: white });
       });
