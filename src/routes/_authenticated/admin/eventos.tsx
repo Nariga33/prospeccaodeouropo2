@@ -59,12 +59,14 @@ function AdminEventosPage() {
               ← Ver site
             </Link>
             <h1 className="mt-1 text-xl font-semibold">Eventos PO2 — Admin</h1>
-            <a
-              href="/admin/diagnostico"
-              className="mt-1 inline-block text-xs text-muted-foreground hover:text-gold"
-            >
-              Ir para Leads do Diagnóstico →
-            </a>
+            <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
+              <a href="/admin/diagnostico" className="hover:text-gold">
+                Ir para Leads do Diagnóstico →
+              </a>
+              <a href="/admin/materiais" className="hover:text-gold">
+                Ir para Materiais →
+              </a>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -166,7 +168,7 @@ function AdminEventosPage() {
                 {(events ?? []).length === 0 && (
                   <tr>
                     <td colSpan={5} className="p-6 text-center text-muted-foreground">
-                      Nenhum evento ainda.
+                      Nenhum evento criado ainda — use "Novo evento" acima pra publicar o primeiro.
                     </td>
                   </tr>
                 )}
@@ -502,7 +504,10 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
           {isLoading ? (
             <div className="p-6 text-center text-muted-foreground">Carregando…</div>
           ) : (data ?? []).length === 0 ? (
-            <div className="p-6 text-center text-muted-foreground">Nenhuma inscrição ainda.</div>
+            <div className="p-6 text-center text-muted-foreground">
+              Ninguém se inscreveu ainda — divulgue o link do evento pra começar a preencher a
+              lista.
+            </div>
           ) : (
             <table className="w-full text-sm">
               <thead className="bg-white/5 text-left text-xs uppercase text-muted-foreground">

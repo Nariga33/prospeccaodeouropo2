@@ -129,12 +129,14 @@ function AdminDiagnosticoPage() {
               ← Ver site
             </Link>
             <h1 className="mt-1 text-xl font-semibold">Diagnóstico PO2 — Leads</h1>
-            <a
-              href="/admin/eventos"
-              className="mt-1 inline-block text-xs text-muted-foreground hover:text-gold"
-            >
-              Ir para Eventos →
-            </a>
+            <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
+              <a href="/admin/eventos" className="hover:text-gold">
+                Ir para Eventos →
+              </a>
+              <a href="/admin/materiais" className="hover:text-gold">
+                Ir para Materiais →
+              </a>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -250,8 +252,8 @@ function AdminDiagnosticoPage() {
                   <tr>
                     <td colSpan={7} className="p-6 text-center text-muted-foreground">
                       {filter === "all"
-                        ? "Ninguém entrou no diagnóstico ainda."
-                        : "Nenhum lead nesse filtro."}
+                        ? "Ninguém entrou no diagnóstico ainda — assim que alguém preencher o formulário no site, aparece aqui."
+                        : 'Nenhum lead nesse filtro — tenta "Todos".'}
                     </td>
                   </tr>
                 )}
