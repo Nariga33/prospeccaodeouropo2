@@ -9,83 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as BdrRouteImport } from './routes/bdr'
-import { Route as CloserRouteImport } from './routes/closer'
-import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
-import { Route as EventosRouteImport } from './routes/eventos'
-import { Route as InsideSalesRouteImport } from './routes/inside-sales'
-import { Route as MateriaisRouteImport } from './routes/materiais'
-import { Route as MentoriaRouteImport } from './routes/mentoria'
-import { Route as MetodologiasRouteImport } from './routes/metodologias'
-import { Route as ParceirosRouteImport } from './routes/parceiros'
-import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as VerificarCertificadoRouteImport } from './routes/verificar-certificado'
-import { Route as AuthenticatedAdminDiagnosticoRouteImport } from './routes/_authenticated/admin/diagnostico'
-import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
-import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
+import { Route as SdrRouteImport } from './routes/sdr'
+import { Route as ParceirosRouteImport } from './routes/parceiros'
+import { Route as MetodologiasRouteImport } from './routes/metodologias'
+import { Route as MentoriaRouteImport } from './routes/mentoria'
+import { Route as MateriaisRouteImport } from './routes/materiais'
+import { Route as InsideSalesRouteImport } from './routes/inside-sales'
+import { Route as EventosRouteImport } from './routes/eventos'
+import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
+import { Route as CloserRouteImport } from './routes/closer'
+import { Route as BdrRouteImport } from './routes/bdr'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicPlaybookPdfRouteImport } from './routes/api/public/playbook-pdf'
+import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
+import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authenticated/admin/eventos'
+import { Route as AuthenticatedAdminDiagnosticoRouteImport } from './routes/_authenticated/admin/diagnostico'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BdrRoute = BdrRouteImport.update({
-  id: '/bdr',
-  path: '/bdr',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CloserRoute = CloserRouteImport.update({
-  id: '/closer',
-  path: '/closer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiagnosticoRoute = DiagnosticoRouteImport.update({
-  id: '/diagnostico',
-  path: '/diagnostico',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventosRoute = EventosRouteImport.update({
-  id: '/eventos',
-  path: '/eventos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InsideSalesRoute = InsideSalesRouteImport.update({
-  id: '/inside-sales',
-  path: '/inside-sales',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MateriaisRoute = MateriaisRouteImport.update({
-  id: '/materiais',
-  path: '/materiais',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MentoriaRoute = MentoriaRouteImport.update({
-  id: '/mentoria',
-  path: '/mentoria',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MetodologiasRoute = MetodologiasRouteImport.update({
-  id: '/metodologias',
-  path: '/metodologias',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ParceirosRoute = ParceirosRouteImport.update({
-  id: '/parceiros',
-  path: '/parceiros',
+const VerificarCertificadoRoute = VerificarCertificadoRouteImport.update({
+  id: '/verificar-certificado',
+  path: '/verificar-certificado',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SdrRoute = SdrRouteImport.update({
@@ -93,26 +39,63 @@ const SdrRoute = SdrRouteImport.update({
   path: '/sdr',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VerificarCertificadoRoute = VerificarCertificadoRouteImport.update({
-  id: '/verificar-certificado',
-  path: '/verificar-certificado',
+const ParceirosRoute = ParceirosRouteImport.update({
+  id: '/parceiros',
+  path: '/parceiros',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminDiagnosticoRoute =
-  AuthenticatedAdminDiagnosticoRouteImport.update({
-    id: '/admin/diagnostico',
-    path: '/admin/diagnostico',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedAdminEventosRoute =
-  AuthenticatedAdminEventosRouteImport.update({
-    id: '/admin/eventos',
-    path: '/admin/eventos',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const ApiPublicBootstrapAdminRoute = ApiPublicBootstrapAdminRouteImport.update({
-  id: '/api/public/bootstrap-admin',
-  path: '/api/public/bootstrap-admin',
+const MetodologiasRoute = MetodologiasRouteImport.update({
+  id: '/metodologias',
+  path: '/metodologias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentoriaRoute = MentoriaRouteImport.update({
+  id: '/mentoria',
+  path: '/mentoria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MateriaisRoute = MateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsideSalesRoute = InsideSalesRouteImport.update({
+  id: '/inside-sales',
+  path: '/inside-sales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventosRoute = EventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiagnosticoRoute = DiagnosticoRouteImport.update({
+  id: '/diagnostico',
+  path: '/diagnostico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CloserRoute = CloserRouteImport.update({
+  id: '/closer',
+  path: '/closer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BdrRoute = BdrRouteImport.update({
+  id: '/bdr',
+  path: '/bdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicPlaybookPdfRoute = ApiPublicPlaybookPdfRouteImport.update({
@@ -120,6 +103,23 @@ const ApiPublicPlaybookPdfRoute = ApiPublicPlaybookPdfRouteImport.update({
   path: '/api/public/playbook-pdf',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBootstrapAdminRoute = ApiPublicBootstrapAdminRouteImport.update({
+  id: '/api/public/bootstrap-admin',
+  path: '/api/public/bootstrap-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminEventosRoute =
+  AuthenticatedAdminEventosRouteImport.update({
+    id: '/admin/eventos',
+    path: '/admin/eventos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminDiagnosticoRoute =
+  AuthenticatedAdminDiagnosticoRouteImport.update({
+    id: '/admin/diagnostico',
+    path: '/admin/diagnostico',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicCertificateTokenRoute =
   ApiPublicCertificateTokenRouteImport.update({
     id: '/api/public/certificate/$token',
@@ -275,88 +275,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bdr': {
-      id: '/bdr'
-      path: '/bdr'
-      fullPath: '/bdr'
-      preLoaderRoute: typeof BdrRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/closer': {
-      id: '/closer'
-      path: '/closer'
-      fullPath: '/closer'
-      preLoaderRoute: typeof CloserRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/diagnostico': {
-      id: '/diagnostico'
-      path: '/diagnostico'
-      fullPath: '/diagnostico'
-      preLoaderRoute: typeof DiagnosticoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/eventos': {
-      id: '/eventos'
-      path: '/eventos'
-      fullPath: '/eventos'
-      preLoaderRoute: typeof EventosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/inside-sales': {
-      id: '/inside-sales'
-      path: '/inside-sales'
-      fullPath: '/inside-sales'
-      preLoaderRoute: typeof InsideSalesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/materiais': {
-      id: '/materiais'
-      path: '/materiais'
-      fullPath: '/materiais'
-      preLoaderRoute: typeof MateriaisRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mentoria': {
-      id: '/mentoria'
-      path: '/mentoria'
-      fullPath: '/mentoria'
-      preLoaderRoute: typeof MentoriaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/metodologias': {
-      id: '/metodologias'
-      path: '/metodologias'
-      fullPath: '/metodologias'
-      preLoaderRoute: typeof MetodologiasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/parceiros': {
-      id: '/parceiros'
-      path: '/parceiros'
-      fullPath: '/parceiros'
-      preLoaderRoute: typeof ParceirosRouteImport
+    '/verificar-certificado': {
+      id: '/verificar-certificado'
+      path: '/verificar-certificado'
+      fullPath: '/verificar-certificado'
+      preLoaderRoute: typeof VerificarCertificadoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sdr': {
@@ -366,32 +289,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SdrRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/verificar-certificado': {
-      id: '/verificar-certificado'
-      path: '/verificar-certificado'
-      fullPath: '/verificar-certificado'
-      preLoaderRoute: typeof VerificarCertificadoRouteImport
+    '/parceiros': {
+      id: '/parceiros'
+      path: '/parceiros'
+      fullPath: '/parceiros'
+      preLoaderRoute: typeof ParceirosRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/diagnostico': {
-      id: '/_authenticated/admin/diagnostico'
-      path: '/admin/diagnostico'
-      fullPath: '/admin/diagnostico'
-      preLoaderRoute: typeof AuthenticatedAdminDiagnosticoRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/metodologias': {
+      id: '/metodologias'
+      path: '/metodologias'
+      fullPath: '/metodologias'
+      preLoaderRoute: typeof MetodologiasRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/eventos': {
-      id: '/_authenticated/admin/eventos'
-      path: '/admin/eventos'
-      fullPath: '/admin/eventos'
-      preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/mentoria': {
+      id: '/mentoria'
+      path: '/mentoria'
+      fullPath: '/mentoria'
+      preLoaderRoute: typeof MentoriaRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/api/public/bootstrap-admin': {
-      id: '/api/public/bootstrap-admin'
-      path: '/api/public/bootstrap-admin'
-      fullPath: '/api/public/bootstrap-admin'
-      preLoaderRoute: typeof ApiPublicBootstrapAdminRouteImport
+    '/materiais': {
+      id: '/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof MateriaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inside-sales': {
+      id: '/inside-sales'
+      path: '/inside-sales'
+      fullPath: '/inside-sales'
+      preLoaderRoute: typeof InsideSalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eventos': {
+      id: '/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diagnostico': {
+      id: '/diagnostico'
+      path: '/diagnostico'
+      fullPath: '/diagnostico'
+      preLoaderRoute: typeof DiagnosticoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/closer': {
+      id: '/closer'
+      path: '/closer'
+      fullPath: '/closer'
+      preLoaderRoute: typeof CloserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bdr': {
+      id: '/bdr'
+      path: '/bdr'
+      fullPath: '/bdr'
+      preLoaderRoute: typeof BdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/playbook-pdf': {
@@ -400,6 +379,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/public/playbook-pdf'
       preLoaderRoute: typeof ApiPublicPlaybookPdfRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bootstrap-admin': {
+      id: '/api/public/bootstrap-admin'
+      path: '/api/public/bootstrap-admin'
+      fullPath: '/api/public/bootstrap-admin'
+      preLoaderRoute: typeof ApiPublicBootstrapAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/eventos': {
+      id: '/_authenticated/admin/eventos'
+      path: '/admin/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AuthenticatedAdminEventosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/diagnostico': {
+      id: '/_authenticated/admin/diagnostico'
+      path: '/admin/diagnostico'
+      fullPath: '/admin/diagnostico'
+      preLoaderRoute: typeof AuthenticatedAdminDiagnosticoRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/certificate/$token': {
       id: '/api/public/certificate/$token'

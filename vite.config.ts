@@ -13,8 +13,20 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
+    resolve: {
+      // O build da Cloudflare (via bun) estava resolvendo "tslib" pro bundle
+      // UMD/CJS dele, que se autodetecta como "ambiente CommonJS" e marca
+      // __esModule=true em cima de si mesmo sem virar ESM de verdade — isso
+      // engana o __toESM do bundler (ele espera achar .default e não acha),
+      // e quebrava a geração do PDF em produção com "Cannot destructure
+      // property '__extends' of '__toESM(...).default'". Forçando a versão
+      // ESM nativa do tslib, esse problema de interop desaparece.
+      alias: {
+        tslib: "tslib/tslib.es6.js",
+      },
+    },
     ssr: {
-      noExternal: ["pdf-lib"],
+      noExternal: ["pdf-lib", "tslib"],
     },
   },
 });
