@@ -27,7 +27,6 @@ const METHOD_ITEMS = [
   { href: "/sdr", label: "SDR", sub: "Inbound" },
   { href: "/inside-sales", label: "Inside Sales", sub: "Condução" },
   { href: "/closer", label: "Closer", sub: "Fechamento" },
-  { href: "/mentoria", label: "Mentoria", sub: "Acompanhamento" },
 ];
 
 const RESOURCE_ITEMS = [
@@ -75,6 +74,14 @@ export function Nav() {
           <a href="/#casos" className="transition-colors hover:text-gold">
             Resultados
           </a>
+
+          <Link
+            to="/mentoria"
+            className="transition-colors hover:text-gold"
+            activeProps={{ className: "text-gold" }}
+          >
+            Mentoria
+          </Link>
 
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 outline-none transition-colors hover:text-gold data-[state=open]:text-gold">
@@ -165,6 +172,16 @@ export function Nav() {
                   >
                     Resultados
                   </a>
+                </SheetClose>
+
+                <SheetClose asChild>
+                  <Link
+                    to="/mentoria"
+                    className="flex items-center justify-between rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                  >
+                    Mentoria
+                    <span className="text-xs text-muted-foreground">Acompanhamento</span>
+                  </Link>
                 </SheetClose>
 
                 <div className="mt-3 border-t border-white/10 pt-3" />

@@ -738,7 +738,7 @@ function DiagnosticoPage() {
           ticket: v.ticket,
           metaContratos: v.metaContratos,
         },
-      }).catch(() => {});
+      }).catch((err) => console.error("[diagnostic] falha ao atualizar lead:", err));
     }
     setContextCaptured(true);
   }
@@ -773,7 +773,7 @@ function DiagnosticoPage() {
         if (id && role) {
           updateLead({
             data: { id, role, answers: next, status: "started_quiz" },
-          }).catch(() => {});
+          }).catch((err) => console.error("[diagnostic] falha ao atualizar lead:", err));
         }
       } else {
         setFinished(true);
@@ -792,7 +792,7 @@ function DiagnosticoPage() {
               answers: next,
               status: "completed_quiz",
             },
-          }).catch(() => {});
+          }).catch((err) => console.error("[diagnostic] falha ao atualizar lead:", err));
         }
       }
     }, 220);
@@ -1233,7 +1233,9 @@ function DiagnosticoPage() {
               onClick={() => {
                 const id = leadId();
                 if (id) {
-                  updateLead({ data: { id, status: "clicked_whatsapp" } }).catch(() => {});
+                  updateLead({ data: { id, status: "clicked_whatsapp" } }).catch((err) =>
+                    console.error("[diagnostic] falha ao atualizar lead:", err),
+                  );
                 }
               }}
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"

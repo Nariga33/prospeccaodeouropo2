@@ -66,8 +66,10 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
     try {
       const { id } = await createLead({ data: { ...parsed.data, plan } });
       sessionStorage.setItem("po2-lead-id", id);
-    } catch {
+    } catch (err) {
       // Não bloqueia o fluxo se o registro falhar — a pessoa segue pro diagnóstico normalmente.
+      // Mas loga o motivo real, senão a gente nunca descobre por que um lead não apareceu no admin.
+      console.error("[diagnostic] falha ao criar lead:", err);
     }
     setOpen(false);
     setSubmitting(false);

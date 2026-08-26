@@ -173,6 +173,7 @@ function LandingPage() {
         {/* COMO — o passo a passo aplicado na prática */}
         <Pitch />
         <EventosTeaser />
+        <MentoriaTeaser />
 
         {/* O Plano — o que acontece depois do sim */}
         <ThePlan />
@@ -223,6 +224,30 @@ function EventosTeaser() {
         <div className="mt-8">
           <Link to="/eventos" className={ctaPrimary}>
             Ver eventos disponíveis <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MentoriaTeaser() {
+  return (
+    <section className="border-t border-white/5 bg-surface/40 py-24">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+          <GraduationCap className="size-3" /> Mentoria com Matheus Staruck
+        </div>
+        <h2 className="mt-4 font-[Instrument_Serif] text-4xl leading-tight md:text-5xl">
+          Quer aprender o método e aplicar com acompanhamento?
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+          Não é curso gravado — é operação real, corrigida sessão a sessão. 8 módulos,
+          acompanhamento prático e 7 dias de garantia.
+        </p>
+        <div className="mt-8">
+          <Link to="/mentoria" className={ctaPrimary}>
+            Conhecer a mentoria <ArrowRight className="size-4" />
           </Link>
         </div>
       </div>
