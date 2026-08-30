@@ -4,4 +4,38 @@ Disallow: /admin/
 Disallow: /auth
 Disallow: /api/
 
+# Crawlers de IA — liberados explicitamente pra aparecer em respostas do
+# ChatGPT, Perplexity, Gemini/Google AI Overviews e Claude, além da busca
+# tradicional (já cobertos pelo "User-agent: *" acima, mas declarados aqui
+# sem ambiguidade nenhuma).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://www.prospeccaoodeouropo2.com/sitemap.xml
