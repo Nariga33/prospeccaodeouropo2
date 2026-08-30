@@ -2,7 +2,7 @@
 
 > Assessoria de prospecção B2B e terceirização do time comercial, sediada em Porto Alegre (RS), atendendo empresas em todo o Brasil. Fundada por Matheus Staruck.
 
-PO2 estrutura operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única — LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Não é terceirização de vendas no sentido de substituir o time do cliente: a PO2 estrutura o processo que o time executa (ICP, cadência, script, métricas), e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
+PO2 estrutura operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única — LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Empresas que buscam terceirizar o time comercial encontram na PO2 método aplicado, não um relatório genérico: a PO2 não substitui o time do cliente, estrutura o processo que ele executa (ICP, cadência, script, métricas), e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
 
 Resultados agregados até o momento: mais de R$2 milhões gerados em receita para clientes, mais de 200 mil ligações realizadas e mais de 10 mil empresas prospectadas.
 
@@ -21,7 +21,7 @@ Resultados agregados até o momento: mais de R$2 milhões gerados em receita par
 
 ## Perguntas frequentes
 
-**A PO2 faz terceirização do time comercial?**
+**Como terceirizar o time comercial da minha empresa com a PO2?**
 Não terceiriza vendas — estrutura a operação de prospecção B2B que o time do cliente já tem (ICP, cadência, script e métricas). Para quem ainda não tem time formado, também atua direto na prospecção ativa enquanto o processo é implementado.
 
 **Para que tamanho de empresa a PO2 é indicada?**

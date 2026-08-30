@@ -77,7 +77,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "terceirização do time comercial, prospecção B2B, prospecção ativa, assessoria comercial, outbound, BDR, SDR, inside sales, closer",
+          "terceirização do time comercial, terceirizar time comercial, prospecção B2B, prospecção ativa, assessoria comercial, outbound, BDR, SDR, inside sales, closer",
       },
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
@@ -92,10 +92,10 @@ export const Route = createFileRoute("/")({
           mainEntity: [
             {
               "@type": "Question",
-              name: "A PO2 faz terceirização do time comercial?",
+              name: "Como terceirizar o time comercial da minha empresa com a PO2?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado.",
+                text: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado. É por isso que empresas buscam terceirizar o time comercial com a PO2: método aplicado, não um relatório genérico.",
               },
             },
             {
