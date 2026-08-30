@@ -5,6 +5,10 @@ const goldRule = "h-px w-12 bg-gold/60";
 
 const FAQS = [
   {
+    q: "A PO2 faz terceirização do time comercial?",
+    a: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado.",
+  },
+  {
     q: "Pra que tamanho de empresa a PO2 é indicada?",
     a: "Empresas B2B que já vendem, mas dependem de esforço individual pra gerar oportunidade — de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.",
   },

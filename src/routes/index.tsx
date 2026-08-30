@@ -68,11 +68,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PO2 — Assessoria de Prospecção B2B em Porto Alegre, RS" },
+      { title: "PO2 — Terceirização do Time Comercial e Prospecção B2B" },
       {
         name: "description",
         content:
-          "Assessoria de prospecção B2B em Porto Alegre (RS), atendendo todo o Brasil: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade.",
+          "Terceirização do time comercial e prospecção B2B em Porto Alegre (RS), atendendo todo o Brasil: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade.",
+      },
+      {
+        name: "keywords",
+        content:
+          "terceirização do time comercial, prospecção B2B, prospecção ativa, assessoria comercial, outbound, BDR, SDR, inside sales, closer",
       },
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
@@ -85,6 +90,14 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: [
+            {
+              "@type": "Question",
+              name: "A PO2 faz terceirização do time comercial?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado.",
+              },
+            },
             {
               "@type": "Question",
               name: "Pra que tamanho de empresa a PO2 é indicada?",
