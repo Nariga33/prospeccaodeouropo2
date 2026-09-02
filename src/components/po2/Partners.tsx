@@ -1,6 +1,7 @@
 import { ExternalLink, Sparkles } from "lucide-react";
 import clubeNexLogo from "@/assets/partners/clube-nex.png";
 import vendasTeamLogo from "@/assets/partners/vendas-team.png";
+import columbaLogo from "@/assets/partners/columba.svg";
 
 const goldRule = "h-px w-12 bg-gold/60";
 
@@ -15,6 +16,17 @@ export function Partners() {
       url: "https://clubenex.com.br/",
       desc: "Clube fechado de empresários, por aplicação. Encontros semanais, eventos presenciais trimestrais e mentoria entre pares — networking estratégico, não troca de cartão.",
       fit: "Indicado se você já vende bem, mas cresce sozinho e sente falta de gente que já passou pelos mesmos gargalos.",
+    },
+    {
+      key: "columba",
+      name: "Columba",
+      logo: columbaLogo,
+      logoOnLight: false,
+      logoSquare: true,
+      tag: "Atendimento & IA",
+      url: "https://columba.com.br/",
+      desc: "Plataforma de atendimento no WhatsApp com IA nativa — inbox, automações e CRM, do primeiro contato ao pós-venda.",
+      fit: "Indicado se você já vende bem e precisa dar conta do volume de mensagens sem contratar mais gente.",
     },
     {
       key: "vendasteam",
@@ -43,12 +55,12 @@ export function Partners() {
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            Indicações de confiança pra quem quer ir além do método — rede pra crescer e plataforma
-            pra executar em escala.
+            Indicações de confiança pra quem quer ir além do método — rede pra crescer e
+            plataforma pra executar em escala.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3">
           {partners.map((p) => (
             <a
               key={p.key}
@@ -69,6 +81,8 @@ export function Partners() {
                   <div className="flex h-20 items-center rounded-xl bg-white px-5 py-3">
                     <img src={p.logo} alt={p.name} className="h-14 w-auto object-contain" />
                   </div>
+                ) : p.logoSquare ? (
+                  <img src={p.logo} alt={p.name} className="h-16 w-16 rounded-2xl object-contain" />
                 ) : (
                   <img src={p.logo} alt={p.name} className="h-9 w-auto object-contain" />
                 )}
