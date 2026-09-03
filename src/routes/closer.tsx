@@ -22,14 +22,14 @@ export const Route = createFileRoute("/closer")({
       {
         property: "og:description",
         content:
-          "Fechar não é sorte — é processo. O mesmo rigor de método em toda a operação comercial.",
+          "Fechar não é sorte — é processo. O mesmo rigor de método em toda a operação comercial terceirizada da PO2.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/closer" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Assessoria de fechamento comercial (Closer)",
+          serviceType: "Fechamento comercial (Closer) — operação comercial terceirizada",
           name: "Closer — PO2",
           description:
             "Método de negociação e fechamento: objeções finais, margem de negociação, onboarding e métricas de conversão.",

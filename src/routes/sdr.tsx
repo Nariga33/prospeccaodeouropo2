@@ -12,27 +12,27 @@ import { ArrowRight, Headset } from "lucide-react";
 export const Route = createFileRoute("/sdr")({
   head: () => ({
     meta: [
-      { title: "SDR & Inbound — PO2 | Qualificação de Leads" },
+      { title: "SDR Terceirizado & SDR as a Service — PO2 | Qualificação de Leads" },
       {
         name: "description",
         content:
-          "Estruturação de operação inbound e treinamento de SDR: lead scoring, SLA de resposta, qualificação MQL/PQL até SAL, SQL e venda fechada.",
+          "SDR terceirizado / SDR as a Service: lead scoring, SLA de resposta, qualificação MQL/PQL até SAL, SQL e venda fechada. Operação de pré-vendas terceirizada.",
       },
-      { property: "og:title", content: "SDR & Inbound — PO2" },
+      { property: "og:title", content: "SDR Terceirizado & SDR as a Service — PO2" },
       {
         property: "og:description",
         content:
-          "O mesmo rigor de método que a PO2 aplica no outbound, agora para qualificação inbound.",
+          "O mesmo rigor de método que a PO2 aplica no outbound, agora para qualificação inbound terceirizada.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/sdr" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Assessoria de qualificação inbound (SDR)",
-          name: "SDR & Inbound — PO2",
+          serviceType: "SDR terceirizado / SDR as a Service",
+          name: "SDR Terceirizado — PO2",
           description:
-            "Estruturação de operação inbound e qualificação de SDR: lead scoring, SLA de resposta, funil MQL/PQL/SAL/SQL.",
+            "Estruturação e/ou execução terceirizada de operação inbound e qualificação de SDR: lead scoring, SLA de resposta, funil MQL/PQL/SAL/SQL.",
           provider: {
             "@type": "ProfessionalService",
             name: "PO2 — Prospecção de Ouro 2.0",

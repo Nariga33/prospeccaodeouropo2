@@ -13,27 +13,27 @@ import { ArrowRight, Target } from "lucide-react";
 export const Route = createFileRoute("/bdr")({
   head: () => ({
     meta: [
-      { title: "BDR & Outbound — PO2 | Prospecção Ativa" },
+      { title: "BDR Terceirizado & Outbound — PO2 | Prospecção B2B Ativa" },
       {
         name: "description",
         content:
-          "Método de 7 etapas para estruturar operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
+          "BDR terceirizado com método de 7 etapas: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal. Prospecção ativa B2B terceirizada.",
       },
-      { property: "og:title", content: "BDR & Outbound — PO2" },
+      { property: "og:title", content: "BDR Terceirizado & Outbound — PO2" },
       {
         property: "og:description",
         content:
-          "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa.",
+          "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa terceirizada.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/bdr" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Assessoria de prospecção outbound (BDR)",
-          name: "BDR & Outbound — PO2",
+          serviceType: "BDR terceirizado / Prospecção outbound B2B terceirizada",
+          name: "BDR Terceirizado — PO2",
           description:
-            "Estruturação de operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
+            "Estruturação e/ou execução terceirizada de operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
           provider: {
             "@type": "ProfessionalService",
             name: "PO2 — Prospecção de Ouro 2.0",

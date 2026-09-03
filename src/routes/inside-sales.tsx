@@ -11,25 +11,25 @@ import { ArrowRight, Handshake } from "lucide-react";
 export const Route = createFileRoute("/inside-sales")({
   head: () => ({
     meta: [
-      { title: "Inside Sales — PO2 | Condução e Fechamento Remoto" },
+      { title: "Inside Sales Terceirizado — PO2 | Condução e Fechamento Remoto" },
       {
         name: "description",
         content:
-          "Método de 7 etapas para estruturar Inside Sales: descoberta, qualificação, proposta com prazo, follow-up sistemático, objeções, forecast e métricas de conversão.",
+          "Inside Sales terceirizado: descoberta, qualificação, proposta com prazo, follow-up sistemático, objeções, forecast e métricas de conversão.",
       },
-      { property: "og:title", content: "Inside Sales — PO2" },
+      { property: "og:title", content: "Inside Sales Terceirizado — PO2" },
       {
         property: "og:description",
         content:
-          "A ponte entre qualificação e fechamento — reunião, proposta e negociação com método.",
+          "A ponte entre qualificação e fechamento — reunião, proposta e negociação com método, dentro da operação comercial terceirizada da PO2.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/inside-sales" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Assessoria de Inside Sales",
-          name: "Inside Sales — PO2",
+          serviceType: "Inside Sales terceirizado",
+          name: "Inside Sales Terceirizado — PO2",
           description:
             "Estruturação de Inside Sales: descoberta, qualificação, proposta com prazo, follow-up sistemático e forecast de pipeline.",
           provider: {

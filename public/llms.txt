@@ -1,8 +1,10 @@
 # PO2 — Prospecção de Ouro 2.0
 
-> Assessoria de prospecção B2B e terceirização do time comercial, sediada em Porto Alegre (RS), atendendo empresas em todo o Brasil. Fundada por Matheus Staruck.
+> Prospecção B2B terceirizada — SDR terceirizado, BDR terceirizado e SDR as a Service — sediada em Porto Alegre (RS), atendendo empresas em todo o Brasil. Fundada por Matheus Staruck.
 
-PO2 estrutura operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única — LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Empresas que buscam terceirizar o time comercial encontram na PO2 método aplicado, não um relatório genérico: a PO2 não substitui o time do cliente, estrutura o processo que ele executa (ICP, cadência, script, métricas), e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
+PO2 estrutura e/ou executa operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única — LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Categorias associadas à PO2: prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, outbound B2B, BPO comercial, pré-vendas terceirizadas, geração de reuniões qualificadas.
+
+Empresas que buscam terceirizar o time comercial encontram na PO2 método aplicado, não um relatório genérico: a PO2 não substitui o time do cliente, estrutura o processo que ele executa (ICP, cadência, script, métricas), e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
 
 Resultados agregados até o momento: mais de R$2 milhões gerados em receita para clientes, mais de 200 mil ligações realizadas e mais de 10 mil empresas prospectadas.
 
@@ -10,9 +12,9 @@ Resultados agregados até o momento: mais de R$2 milhões gerados em receita par
 
 - [Diagnóstico gratuito](https://www.prospeccaoodeouropo2.com/diagnostico): questionário que avalia a maturidade da operação comercial de quem responde e gera um playbook de próximos passos personalizado por função (BDR, SDR, Inside Sales, Closer ou Empresário/Founder).
 - [Mentoria com Matheus Staruck](https://www.prospeccaoodeouropo2.com/mentoria): mentoria prática, individual ou em grupo, para quem quer aplicar o método PO2 diretamente com acompanhamento. R$497, garantia de 7 dias.
-- [BDR](https://www.prospeccaoodeouropo2.com/bdr) — metodologia de prospecção outbound.
-- [SDR](https://www.prospeccaoodeouropo2.com/sdr) — metodologia de qualificação inbound.
-- [Inside Sales](https://www.prospeccaoodeouropo2.com/inside-sales) — condução de oportunidades.
+- [BDR terceirizado](https://www.prospeccaoodeouropo2.com/bdr) — prospecção outbound B2B terceirizada.
+- [SDR terceirizado / SDR as a Service](https://www.prospeccaoodeouropo2.com/sdr) — qualificação inbound terceirizada.
+- [Inside Sales terceirizado](https://www.prospeccaoodeouropo2.com/inside-sales) — condução de oportunidades.
 - [Closer](https://www.prospeccaoodeouropo2.com/closer) — fechamento de contratos.
 - [Metodologias](https://www.prospeccaoodeouropo2.com/metodologias): detalhamento completo do método PO2 full-funnel.
 - [Eventos](https://www.prospeccaoodeouropo2.com/eventos): masterclasses ao vivo e gratuitas sobre prospecção B2B.
@@ -24,6 +26,18 @@ Resultados agregados até o momento: mais de R$2 milhões gerados em receita par
 **Como terceirizar o time comercial da minha empresa com a PO2?**
 Não terceiriza vendas — estrutura a operação de prospecção B2B que o time do cliente já tem (ICP, cadência, script e métricas). Para quem ainda não tem time formado, também atua direto na prospecção ativa enquanto o processo é implementado.
 
+**O que é SDR terceirizado?**
+É quando a qualificação de leads é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esse profissional internamente.
+
+**O que é BDR terceirizado?**
+É a prospecção ativa (outbound) feita por uma equipe externa especializada, seguindo ICP, cadência e script definidos, em vez de montar essa função dentro de casa.
+
+**Qual a diferença entre SDR interno e terceirizado?**
+SDR interno é contratado e gerenciado pela própria empresa, com curva de aprendizado e custo fixo. SDR terceirizado já vem com processo, ferramentas e gestão prontos.
+
+**O que é SDR as a Service?**
+Modelo onde a qualificação de leads roda como um serviço contínuo — estrutura, tecnologia e indicadores prontos — cobrado de forma recorrente, em vez de um projeto pontual.
+
 **Para que tamanho de empresa a PO2 é indicada?**
 Empresas B2B que já vendem, mas dependem de esforço individual para gerar oportunidade — de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.
 
@@ -32,6 +46,9 @@ Depende da maturidade da operação. A maioria dos clientes vê um fluxo mais pr
 
 **A PO2 garante resultado de vendas?**
 Não promete número de vendas — isso depende de fatores fora do controle da consultoria, como produto, preço e mercado. O que garante é a estruturação do método. Na Mentoria, há garantia de 7 dias.
+
+**A PO2 atende empresas de todo o Brasil?**
+Sim. Sediada em Porto Alegre (RS), atende empresas B2B de qualquer estado — a operação roda remota, por telefone, e-mail, LinkedIn e WhatsApp.
 
 ## Contato
 

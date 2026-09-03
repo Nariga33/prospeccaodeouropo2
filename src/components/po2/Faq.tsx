@@ -9,6 +9,22 @@ const FAQS = [
     a: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado. É por isso que empresas buscam terceirizar o time comercial com a PO2: método aplicado, não um relatório genérico.",
   },
   {
+    q: "O que é SDR terceirizado?",
+    a: "SDR terceirizado é quando a qualificação de leads — transformar um contato em oportunidade real — é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esse profissional internamente. A PO2 estrutura esse processo e pode executá-lo diretamente.",
+  },
+  {
+    q: "O que é BDR terceirizado?",
+    a: "BDR terceirizado é a prospecção ativa (outbound) — encontrar e abordar empresas que ainda não conhecem a solução — feita por uma equipe externa especializada, seguindo ICP, cadência e script definidos, em vez de montar essa função dentro de casa.",
+  },
+  {
+    q: "Qual a diferença entre SDR interno e terceirizado?",
+    a: "SDR interno é contratado, treinado e gerenciado pela própria empresa, com curva de aprendizado e custo fixo de folha. SDR terceirizado já vem com processo, ferramentas e gestão prontos — costuma ser mais rápido de colocar em operação, mas exige alinhamento constante de ICP e critério de qualificação com quem contrata.",
+  },
+  {
+    q: "O que é SDR as a Service?",
+    a: "É o modelo onde a qualificação de leads roda como um serviço contínuo — estrutura, tecnologia e indicadores prontos, cobrado de forma recorrente — em vez de um projeto pontual de consultoria.",
+  },
+  {
     q: "Pra que tamanho de empresa a PO2 é indicada?",
     a: "Empresas B2B que já vendem, mas dependem de esforço individual pra gerar oportunidade — de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.",
   },
@@ -31,6 +47,10 @@ const FAQS = [
   {
     q: "Vocês garantem resultado de vendas?",
     a: "Não prometemos número de vendas — isso depende de fatores fora do nosso controle, como produto, preço e mercado. O que garantimos é a estruturação do método. Na Mentoria, especificamente, você tem garantia de 7 dias caso ela não seja pra você.",
+  },
+  {
+    q: "A PO2 atende empresas de todo o Brasil?",
+    a: "Sim. A PO2 é sediada em Porto Alegre (RS), mas atende empresas B2B de qualquer estado — a operação de prospecção roda remota, por telefone, e-mail, LinkedIn e WhatsApp.",
   },
 ];
 

@@ -82,29 +82,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B" },
+      { title: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado" },
       {
         name: "description",
-        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+        content:
+          "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade. Sediada em Porto Alegre (RS), atendendo todo o Brasil.",
       },
       { name: "author", content: "PO2 — Matheus Staruck" },
       {
         property: "og:title",
-        content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B",
+        content: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
       },
       {
         property: "og:description",
-        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+        content:
+          "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "PO2 — Prospecção de Ouro 2.0 | Assessoria de Prospecção B2B",
+        content: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
       },
       {
         name: "twitter:description",
-        content: "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade.",
+        content:
+          "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade.",
       },
       {
         property: "og:image",
@@ -123,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "PO2 — Prospecção de Ouro 2.0",
           alternateName: "PO2",
           description:
-            "Assessoria de prospecção ativa B2B com método, inteligência e previsibilidade — ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul.",
+            "Prospecção B2B terceirizada, com SDR terceirizado, BDR terceirizado e SDR as a Service — ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul, atendendo todo o Brasil.",
           url: "https://www.prospeccaoodeouropo2.com/",
           telephone: `+55${PO2_PHONE_DISPLAY.replace(/[^\d]/g, "")}`,
           email: PO2_EMAIL,
@@ -156,6 +159,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           },
           knowsAbout: [
             "Assessoria de prospecção B2B",
+            "Prospecção B2B terceirizada",
+            "SDR terceirizado",
+            "BDR terceirizado",
+            "SDR as a Service",
+            "BPO comercial",
+            "Outbound B2B",
+            "Pré-vendas terceirizadas",
+            "Geração de reuniões qualificadas",
             "Consultoria de vendas",
             "Mentoria de prospecção",
             "Estruturação de time comercial",
@@ -166,6 +177,47 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "Inbound",
           ],
           sameAs: [PO2_LINKEDIN_URL, PO2_INSTAGRAM_URL],
+          makesOffer: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Prospecção B2B terceirizada",
+                description:
+                  "Estruturação e/ou execução de operação de prospecção outbound B2B — ICP, cadência multicanal, cold call, e-mail e LinkedIn.",
+                url: "https://www.prospeccaoodeouropo2.com/bdr",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "BDR terceirizado",
+                description:
+                  "Execução terceirizada de prospecção ativa (BDR/outbound) com método, cadência e gestão de indicadores.",
+                url: "https://www.prospeccaoodeouropo2.com/bdr",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "SDR terceirizado / SDR as a Service",
+                description:
+                  "Qualificação inbound terceirizada — lead scoring, SLA de resposta e funil MQL/PQL/SAL/SQL.",
+                url: "https://www.prospeccaoodeouropo2.com/sdr",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Inside Sales terceirizado",
+                description: "Condução de oportunidades e reuniões qualificadas até o fechamento.",
+                url: "https://www.prospeccaoodeouropo2.com/inside-sales",
+              },
+            },
+          ],
         },
       },
     ],

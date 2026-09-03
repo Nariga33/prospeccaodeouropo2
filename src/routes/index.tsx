@@ -72,12 +72,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Terceirização do time comercial e prospecção B2B em Porto Alegre (RS), atendendo todo o Brasil: LDR, BDR, SDR, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade.",
+          "Prospecção B2B terceirizada em Porto Alegre (RS), atendendo todo o Brasil: SDR terceirizado, BDR terceirizado, Inside Sales e Closer numa operação só, com método, inteligência e previsibilidade.",
       },
       {
         name: "keywords",
         content:
-          "terceirização do time comercial, terceirizar time comercial, prospecção B2B, prospecção ativa, assessoria comercial, outbound, BDR, SDR, inside sales, closer",
+          "terceirização do time comercial, terceirizar time comercial, prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, BPO comercial, outbound B2B, prospecção ativa, assessoria comercial, BDR, SDR, inside sales, closer",
       },
       { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
       {
@@ -96,6 +96,38 @@ export const Route = createFileRoute("/")({
               acceptedAnswer: {
                 "@type": "Answer",
                 text: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado. É por isso que empresas buscam terceirizar o time comercial com a PO2: método aplicado, não um relatório genérico.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O que é SDR terceirizado?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "SDR terceirizado é quando a qualificação de leads — transformar um contato em oportunidade real — é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esse profissional internamente. A PO2 estrutura esse processo e pode executá-lo diretamente.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O que é BDR terceirizado?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "BDR terceirizado é a prospecção ativa (outbound) — encontrar e abordar empresas que ainda não conhecem a solução — feita por uma equipe externa especializada, seguindo ICP, cadência e script definidos, em vez de montar essa função dentro de casa.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Qual a diferença entre SDR interno e terceirizado?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "SDR interno é contratado, treinado e gerenciado pela própria empresa, com curva de aprendizado e custo fixo de folha. SDR terceirizado já vem com processo, ferramentas e gestão prontos — costuma ser mais rápido de colocar em operação, mas exige alinhamento constante de ICP e critério de qualificação com quem contrata.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "O que é SDR as a Service?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "É o modelo onde a qualificação de leads roda como um serviço contínuo — estrutura, tecnologia e indicadores prontos, cobrado de forma recorrente — em vez de um projeto pontual de consultoria.",
               },
             },
             {
@@ -144,6 +176,14 @@ export const Route = createFileRoute("/")({
               acceptedAnswer: {
                 "@type": "Answer",
                 text: "Não promete número de vendas — isso depende de fatores fora do controle da consultoria, como produto, preço e mercado. O que garante é a estruturação do método. Na Mentoria, especificamente, há garantia de 7 dias.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "A PO2 atende empresas de todo o Brasil?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Sim. A PO2 é sediada em Porto Alegre (RS), mas atende empresas B2B de qualquer estado — a operação de prospecção roda remota, por telefone, e-mail, LinkedIn e WhatsApp.",
               },
             },
           ],
