@@ -322,15 +322,14 @@ function Hero() {
             Assessoria Comercial Full Funnel
           </div>
           <h1 className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Sua máquina comercial completa, com{" "}
-            <span className="font-display font-normal italic text-gold">método</span>,{" "}
-            <span className="font-display font-normal italic text-gold">inteligência</span> e{" "}
-            <span className="font-display font-normal italic text-gold">previsibilidade</span>.
+            Pare de depender de{" "}
+            <span className="font-display font-normal italic text-gold">esforço heroico</span> pra
+            ter pipeline todo mês.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
             Prospecção ativa estruturada de ponta a ponta — da primeira ligação ao contrato fechado
-            — pra empresas que já vendem, mas ainda dependem do esforço individual de quem
-            prospecta.
+            — com método, inteligência e previsibilidade. Pra empresas que já vendem, mas ainda
+            dependem de quem lembra de prospectar hoje.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
