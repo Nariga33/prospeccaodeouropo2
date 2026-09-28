@@ -16,7 +16,7 @@ const REASONS = [
   {
     icon: BarChart3,
     t: "Método validado, não teoria",
-    d: "+R$2MM gerados, +200k ligações, +10k empresas prospectadas — resultado real, não promessa de slide.",
+    d: "+R$17MM gerados pelos fundadores, +200k ligações, +10k empresas prospectadas — resultado real, não promessa de slide.",
   },
 ];
 

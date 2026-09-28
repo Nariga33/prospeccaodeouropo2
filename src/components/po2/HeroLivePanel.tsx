@@ -77,9 +77,9 @@ export function HeroLivePanel() {
             Receita gerada
           </div>
           <div className="font-display text-6xl text-gold">
-            <CountUp value="+R$ 2M" />
+            <CountUp value="+R$ 17M" />
           </div>
-          <div className="text-sm text-muted-foreground">em +30 negócios fechados</div>
+          <div className="text-sm text-muted-foreground">somando os resultados dos fundadores</div>
         </div>
         <div className="mt-8 grid grid-cols-3 gap-3">
           <div className="rounded-xl bg-white/5 p-4">
