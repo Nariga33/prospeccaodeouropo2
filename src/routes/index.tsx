@@ -3,7 +3,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import logo from "@/assets/po2-logo.png";
-import matheusPhoto from "@/assets/matheus-staruck.jpg";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import { StepInsightDialog } from "@/components/po2/StepInsightDialog";
@@ -27,6 +26,7 @@ import { WhoItsFor } from "@/components/po2/WhoItsFor";
 import { ThePlan } from "@/components/po2/ThePlan";
 import { RiskReduction } from "@/components/po2/RiskReduction";
 import { Faq } from "@/components/po2/Faq";
+import { FounderCarousel } from "@/components/po2/FounderCarousel";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Tooltip } from "recharts";
 import {
   Phone,
@@ -379,56 +379,11 @@ function Founder() {
   return (
     <section id="fundador" className="border-b border-white/5 bg-surface/40">
       <div className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
-          <span className={goldRule} /> Quem está por trás
-        </div>
+        <h2 className="mb-8 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
+          <span className={goldRule} /> Quem está por trás da estratégia
+        </h2>
 
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-3xl bg-gold/10 blur-3xl" />
-            <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-black/40">
-              <img
-                src={matheusPhoto}
-                alt="Matheus Staruck, Founder & CEO da PO2"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <div>
-            <h2 className="font-display text-5xl text-foreground">Matheus Staruck</h2>
-            <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
-              Founder &amp; CEO — PO2 Prospecção de Ouro 2.0
-            </p>
-
-            <div className="mt-6 space-y-4 text-muted-foreground">
-              <p>
-                Nasci em Torres, Rio Grande do Sul, mas fui criado em Arroio do Sal. Sou filho de um
-                construtor civil e de uma professora que, ao longo do tempo, se tornou empresária no
-                segmento de eventos — foi acompanhando essa trajetória que aprendi desde cedo sobre
-                relacionamento com clientes, negociação e fechamento de contratos.
-              </p>
-              <p>
-                Meu lado empreendedor começou muito cedo: desde os 12 anos eu buscava maneiras de
-                ganhar dinheiro fazendo pequenos serviços e negociando produtos no Marketplace do
-                Facebook — o "Brick", como a gente chama aqui no sul. Depois vieram os estudos em
-                Tecnologia da Informação e a manutenção de computadores pra conhecidos e familiares,
-                até passar pelo varejo.
-              </p>
-              <p>
-                Foi na Hub7 que mergulhei de vez no universo da prospecção B2B, outbound e
-                desenvolvimento comercial — participando da construção de operações comerciais,
-                estruturação de processos, criação de cadências, treinamento de equipes e
-                negociações estratégicas.
-              </p>
-              <p>
-                Toda essa experiência resultou na criação da PO2, onde hoje ajudo empresas a criarem
-                operações comerciais previsíveis através de metodologia, processos, tecnologia e
-                inteligência comercial.
-              </p>
-            </div>
-          </div>
-        </div>
+        <FounderCarousel />
 
         <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:grid-cols-4">
           {AUTHORITY_INDICATORS.map((s) => (
