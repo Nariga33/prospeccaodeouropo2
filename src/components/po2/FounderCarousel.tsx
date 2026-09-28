@@ -65,11 +65,11 @@ const PEOPLE: Person[] = [
     key: "joao",
     tab: "João Victor Acunha",
     name: "João Victor Acunha",
-    role: "Vendas consultivas · Geração de demanda · Global Markets",
+    role: "Co-Founder — PO2 Prospecção de Ouro 2.0",
     photo: joaoPhoto,
     width: 800,
     height: 1000,
-    alt: "João Victor Acunha, especialista em vendas consultivas, geração de demanda e Global Markets",
+    alt: "João Victor Acunha, Co-Founder da PO2",
     body: (
       <>
         <p>
