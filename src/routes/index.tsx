@@ -732,6 +732,26 @@ function Cases() {
       metricLabel: "MRR em proposta avançada.",
       tag: "Em proposta",
     },
+    {
+      n: "05",
+      company: "ExitLag",
+      contact: "João Victor Acunha",
+      context:
+        "Prospecção com ICP definido e decisores corretos durante a passagem do João Victor pela empresa, contribuindo para mais de US$ 3 milhões em receita previsível.",
+      metric: "+200",
+      metricLabel: "reuniões com ICP definido e decisores corretos.",
+      tag: "Reuniões",
+    },
+    {
+      n: "06",
+      company: "Banco Inter",
+      contact: "João Victor Acunha",
+      context:
+        "Participação na construção da parceria com a marca, durante a passagem do João Victor pela ExitLag.",
+      metric: "Parceria",
+      metricLabel: "construída com grande marca.",
+      tag: "Parceria",
+    },
   ];
   return (
     <section id="casos" className="border-b border-white/5 bg-surface/40">
@@ -742,8 +762,8 @@ function Cases() {
               <span className={goldRule} /> Casos reais
             </div>
             <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Empresas prospectadas pelo{" "}
-              <span className="font-display font-normal italic text-gold">Matheus Staruck.</span>
+              Empresas prospectadas pela{" "}
+              <span className="font-display font-normal italic text-gold">PO2.</span>
             </h2>
           </div>
           <p className="max-w-sm text-muted-foreground">
