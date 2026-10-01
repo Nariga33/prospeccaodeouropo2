@@ -1,9 +1,24 @@
 import { type ReactNode } from "react";
 import {
-  Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, PieChart, Pie, LineChart, Line, Tooltip,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Cell,
+  PieChart,
+  Pie,
+  LineChart,
+  Line,
+  Tooltip,
 } from "recharts";
 
 const GOLD = "#C5A059";
@@ -64,7 +79,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
   "03": {
     n: "03",
     title: "Cadência Multicanal",
-    subtitle: "Decisor não responde no primeiro toque — quase nunca.",
+    subtitle: "Decisor não responde no primeiro toque - quase nunca.",
     statBig: "80%",
     statLabel: "das respostas acontecem entre o 5º e o 8º toque coordenado.",
     chart: "bars",
@@ -77,7 +92,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
     ],
     bullets: [
       "E-mail + LinkedIn + ligação + WhatsApp coordenados multiplicam alcance.",
-      "Maioria dos times desiste no 2º toque — exatamente onde a venda começa.",
+      "Maioria dos times desiste no 2º toque - exatamente onde a venda começa.",
       "Cadência sem sequência clara é volume desperdiçado, não prospecção.",
     ],
   },
@@ -95,7 +110,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
     ],
     bullets: [
       "Os primeiros 15 segundos decidem se o decisor desliga ou conversa.",
-      "Pergunta certa gera diagnóstico — diagnóstico gera reunião.",
+      "Pergunta certa gera diagnóstico - diagnóstico gera reunião.",
       "Quem decora script vira robô; quem entende o cliente vira referência.",
     ],
   },
@@ -115,7 +130,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
       { name: "5", value: 44 },
     ],
     bullets: [
-      "Objeções recorrentes viram playbook — não improviso individual.",
+      "Objeções recorrentes viram playbook - não improviso individual.",
       "Mapear a raiz da objeção corrige pitch, ICP e qualificação em cascata.",
       "Time sem registro de objeções perde a mesma venda várias vezes.",
     ],
@@ -134,14 +149,14 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
     ],
     bullets: [
       "Critério padrão evita closer perdendo tempo com lead que não tem fit.",
-      "Qualificação clara protege a meta — e a saúde do time comercial.",
+      "Qualificação clara protege a meta - e a saúde do time comercial.",
       "Cada etapa do funil precisa de gatilho de avanço, não de torcida.",
     ],
   },
   "07": {
     n: "07",
     title: "Métricas & Melhoria",
-    subtitle: "O que não é medido, não evolui — e ninguém te avisa.",
+    subtitle: "O que não é medido, não evolui - e ninguém te avisa.",
     statBig: "+47%",
     statLabel: "em receita previsível em equipes com ritual semanal de revisão.",
     chart: "line",
@@ -154,14 +169,17 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
       { name: "M5", value: 147 },
     ],
     bullets: [
-      "Indicadores semanais revelam o gargalo real — lista, abordagem ou fechamento.",
+      "Indicadores semanais revelam o gargalo real - lista, abordagem ou fechamento.",
       "Sem ritual, o time repete os mesmos erros em ciclos cada vez maiores.",
       "Dados transformam prospecção de esforço pessoal em sistema escalável.",
     ],
   },
 };
 
-interface Props { stepKey: string; trigger: ReactNode }
+interface Props {
+  stepKey: string;
+  trigger: ReactNode;
+}
 
 export function StepInsightDialog({ stepKey, trigger }: Props) {
   const insight = STEP_INSIGHTS[stepKey];
@@ -270,7 +288,11 @@ function InsightChart({ insight }: { insight: StepInsight }) {
         <LineChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
           <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
           <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
-          <Tooltip contentStyle={tooltipStyle} labelStyle={tooltipLabelStyle} itemStyle={tooltipItemStyle} />
+          <Tooltip
+            contentStyle={tooltipStyle}
+            labelStyle={tooltipLabelStyle}
+            itemStyle={tooltipItemStyle}
+          />
           <Line
             type="monotone"
             dataKey="value"
@@ -290,7 +312,12 @@ function InsightChart({ insight }: { insight: StepInsight }) {
       <BarChart data={insight.data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
         <XAxis dataKey="name" stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} interval={0} />
         <YAxis stroke={GOLD} tick={{ fontSize: 11, fill: GOLD }} />
-        <Tooltip contentStyle={tooltipStyle} labelStyle={tooltipLabelStyle} itemStyle={tooltipItemStyle} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
+        <Tooltip
+          contentStyle={tooltipStyle}
+          labelStyle={tooltipLabelStyle}
+          itemStyle={tooltipItemStyle}
+          cursor={{ fill: "rgba(255,255,255,0.04)" }}
+        />
         <Bar dataKey="value" radius={[8, 8, 0, 0]}>
           {insight.data.map((d, i) => (
             <Cell key={i} fill={d.bad ? RED : GOLD} />
@@ -300,4 +327,3 @@ function InsightChart({ insight }: { insight: StepInsight }) {
     </ResponsiveContainer>
   );
 }
-

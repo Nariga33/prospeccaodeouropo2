@@ -8,21 +8,21 @@ const STEPS = [
     icon: Search,
     when: "Dias 1 a 3",
     t: "Diagnóstico e mapeamento",
-    d: "Reunião de descoberta, mapeamento do funil atual e definição inicial do ICP — antes de qualquer proposta.",
+    d: "Reunião de descoberta, mapeamento do funil atual e definição inicial do ICP - antes de qualquer proposta.",
   },
   {
     n: "02",
     icon: Layers,
     when: "Semana 1 e 2",
     t: "Estruturação",
-    d: "ICP documentado, cadência montada, scripts e critério de qualificação definidos — a base fica pronta.",
+    d: "ICP documentado, cadência montada, scripts e critério de qualificação definidos - a base fica pronta.",
   },
   {
     n: "03",
     icon: TrendingUp,
     when: "A partir do mês 1",
     t: "Execução acompanhada",
-    d: "Operação rodando de verdade, com ajuste semanal baseado em métrica real — não em achismo.",
+    d: "Operação rodando de verdade, com ajuste semanal baseado em métrica real - não em achismo.",
   },
 ];
 

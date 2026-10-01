@@ -13,13 +13,13 @@ import { ArrowRight, Target } from "lucide-react";
 export const Route = createFileRoute("/bdr")({
   head: () => ({
     meta: [
-      { title: "BDR Terceirizado & Outbound — PO2 | Prospecção B2B Ativa" },
+      { title: "BDR Terceirizado & Outbound - PO2 | Prospecção B2B Ativa" },
       {
         name: "description",
         content:
           "BDR terceirizado com método de 7 etapas: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal. Prospecção ativa B2B terceirizada.",
       },
-      { property: "og:title", content: "BDR Terceirizado & Outbound — PO2" },
+      { property: "og:title", content: "BDR Terceirizado & Outbound - PO2" },
       {
         property: "og:description",
         content:
@@ -31,12 +31,12 @@ export const Route = createFileRoute("/bdr")({
           "@context": "https://schema.org",
           "@type": "Service",
           serviceType: "BDR terceirizado / Prospecção outbound B2B terceirizada",
-          name: "BDR Terceirizado — PO2",
+          name: "BDR Terceirizado - PO2",
           description:
             "Estruturação e/ou execução terceirizada de operação de BDR/outbound: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal.",
           provider: {
             "@type": "ProfessionalService",
-            name: "PO2 — Prospecção de Ouro 2.0",
+            name: "PO2 - Prospecção de Ouro 2.0",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",
@@ -72,7 +72,7 @@ function BdrPage() {
               Topo de funil não é sorte. <span className="italic text-gold">É método.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Estruturação de operação outbound e treinamento de <Jargon term="BDR">BDR</Jargon> —
+              Estruturação de operação outbound e treinamento de <Jargon term="BDR">BDR</Jargon> -
               do ICP à reunião agendada, com o mesmo rigor de processo que a PO2 aplica na
               qualificação inbound.
             </p>
@@ -93,9 +93,9 @@ function BdrPage() {
           title="Mensagem sobre produto"
           titleEm="não gera reunião."
           problemTitle="Cadência que fala de você, não do lead"
-          problemText="A maioria das cadências de outbound abre falando da empresa, do produto, do 'nós ajudamos empresas como a sua'. O lead nunca leu a segunda linha — porque nada ali provou que você entende o problema dele antes de tentar vender algo."
+          problemText="A maioria das cadências de outbound abre falando da empresa, do produto, do 'nós ajudamos empresas como a sua'. O lead nunca leu a segunda linha - porque nada ali provou que você entende o problema dele antes de tentar vender algo."
           solutionTitle="Gap Prospecting: o problema antes do pitch"
-          solutionText="A PO2 estrutura cada abordagem em cima do Gap Prospecting — nomeia o problema específico do lead, com dado real do cenário dele, antes de qualquer menção a produto. A reunião nasce da urgência do problema, não da insistência do vendedor."
+          solutionText="A PO2 estrutura cada abordagem em cima do Gap Prospecting - nomeia o problema específico do lead, com dado real do cenário dele, antes de qualquer menção a produto. A reunião nasce da urgência do problema, não da insistência do vendedor."
         />
 
         <section id="funil-bdr" className="border-b border-white/5 bg-surface/40">
@@ -106,13 +106,13 @@ function BdrPage() {
                 <span className="h-px w-12 bg-gold/60" />
               </div>
               <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-                Da pesquisa à agenda —{" "}
+                Da pesquisa à agenda -{" "}
                 <span className="font-display font-normal italic text-gold">
                   sem depender de sorte.
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-                Cada etapa prepara a próxima — abordagem sem pesquisa é chute, e sequência sem
+                Cada etapa prepara a próxima - abordagem sem pesquisa é chute, e sequência sem
                 abordagem certa é insistência vazia.
               </p>
             </div>

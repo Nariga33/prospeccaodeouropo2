@@ -61,7 +61,7 @@ export function GapSection({
 
         <p className="mx-auto mt-8 max-w-lg text-center text-xs text-muted-foreground">
           Lógica aplicada com base no <em className="not-italic text-gold/80">Gap Selling</em> e{" "}
-          <em className="not-italic text-gold/80">Gap Prospecting</em>, de Keenan — vender o
+          <em className="not-italic text-gold/80">Gap Prospecting</em>, de Keenan - vender o
           problema, não o produto.
         </p>
       </div>

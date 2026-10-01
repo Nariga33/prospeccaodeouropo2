@@ -55,13 +55,13 @@ const ROLES: RoleInfo[] = [
     key: "empresario",
     label: "Empresário / Founder",
     sublabel: "Visão completa",
-    desc: "Radiografia da operação inteira — BDR, SDR e Closer numa visão só, com relatório em PDF.",
+    desc: "Radiografia da operação inteira - BDR, SDR e Closer numa visão só, com relatório em PDF.",
   },
   {
     key: "bdr",
     label: "BDR",
     sublabel: "Outbound",
-    desc: "Prospecção ativa — gera reunião com lead frio.",
+    desc: "Prospecção ativa - gera reunião com lead frio.",
   },
   {
     key: "sdr",
@@ -98,7 +98,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
       title: "Sua equipe estuda o cliente antes de cada contato?",
       helper: "Pesquisar a empresa, o decisor e o momento dele.",
       options: [
-        { label: "Sempre — temos um roteiro de preparação", score: 2 },
+        { label: "Sempre - temos um roteiro de preparação", score: 2 },
         { label: "Às vezes, depende do vendedor", score: 1 },
         { label: "Nunca, vamos direto para o contato", score: 0 },
       ],
@@ -117,7 +117,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
       helper: "Conversa com contexto x script decorado.",
       options: [
         { label: "Consultivas, com perguntas e diagnóstico", score: 2 },
-        { label: "Depende do vendedor — mistura os dois", score: 1 },
+        { label: "Depende do vendedor - mistura os dois", score: 1 },
         { label: "Script decorado, sem leitura do cliente", score: 0 },
       ],
     },
@@ -190,7 +190,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
       title: "Qual o tempo médio de resposta a um lead novo?",
       helper: "Velocidade é o maior preditor de conversão inbound.",
       options: [
-        { label: "Minutos — temos SLA definido e cumprido", score: 2 },
+        { label: "Minutos - temos SLA definido e cumprido", score: 2 },
         { label: "Algumas horas, sem meta formal", score: 1 },
         { label: "Um dia ou mais, sem controle", score: 0 },
       ],
@@ -219,7 +219,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
       options: [
         { label: "Sim, contexto completo é registrado e passado", score: 2 },
         { label: "Passamos o nome e pouco mais", score: 1 },
-        { label: "Não existe processo — o closer se vira", score: 0 },
+        { label: "Não existe processo - o closer se vira", score: 0 },
       ],
     },
     {
@@ -233,7 +233,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
     },
     {
       title: "Objeções de quem já demonstrou interesse são documentadas?",
-      helper: "Contexto muda a resposta — mapear o padrão ajuda.",
+      helper: "Contexto muda a resposta - mapear o padrão ajuda.",
       options: [
         { label: "Sim, lista viva e usada no treinamento", score: 2 },
         { label: "Conversamos informalmente sobre isso", score: 1 },
@@ -293,7 +293,7 @@ const BASE_QUESTIONS: Record<Exclude<RoleKey, "empresario">, Question[]> = {
       options: [
         { label: "Sim, sempre com data de retorno combinada", score: 2 },
         { label: "Às vezes, depende do vendedor", score: 1 },
-        { label: "Raramente — a proposta vai e some", score: 0 },
+        { label: "Raramente - a proposta vai e some", score: 0 },
       ],
     },
     {
@@ -476,16 +476,16 @@ const PLAYBOOKS: Record<
     baixa: {
       title: "Playbook: sair do improviso",
       items: [
-        "Escreva o ICP em uma página — 3 critérios de empresa, 2 cargos-alvo, 1 dor central.",
+        "Escreva o ICP em uma página - 3 critérios de empresa, 2 cargos-alvo, 1 dor central.",
         "Defina uma cadência simples de 4 toques (e-mail, LinkedIn, ligação, WhatsApp) em 7 dias.",
         "Crie um roteiro de abertura de 15 segundos e treine com o time antes da próxima leva de ligações.",
-        "Abra uma planilha (ou CRM) só pra registrar objeções recebidas — comece hoje.",
+        "Abra uma planilha (ou CRM) só pra registrar objeções recebidas - comece hoje.",
       ],
     },
     media: {
       title: "Playbook: fechar as lacunas",
       items: [
-        "Audite sua cadência atual — meça taxa de resposta por canal e corte o que não converte.",
+        "Audite sua cadência atual - meça taxa de resposta por canal e corte o que não converte.",
         "Padronize o critério de qualificação em uma etapa objetiva (CHAMP ou BANT).",
         "Implemente uma reunião semanal fixa de 30 min só pra revisar números do funil.",
         "Documente as 5 objeções mais comuns e a resposta padrão de cada uma.",
@@ -497,7 +497,7 @@ const PLAYBOOKS: Record<
         "Teste variações de abertura (A/B) por segmento de ICP e meça impacto na taxa de agendamento.",
         "Automatize o handoff pro closer com contexto completo, sem perder tempo em transição.",
         "Crie um dashboard vivo de indicadores por vendedor, revisado semanalmente.",
-        "Comece a testar expansão de ICP adjacente — sua base está madura pra isso.",
+        "Comece a testar expansão de ICP adjacente - sua base está madura pra isso.",
       ],
     },
   },
@@ -506,7 +506,7 @@ const PLAYBOOKS: Record<
       title: "Playbook: sair do improviso",
       items: [
         "Defina um SLA simples: responder todo lead novo em até 15 minutos.",
-        "Escreva um roteiro básico de qualificação — 4 perguntas que definem se o lead vale a pena.",
+        "Escreva um roteiro básico de qualificação - 4 perguntas que definem se o lead vale a pena.",
         "Combine com vendas um critério mínimo de handoff (o que precisa saber antes de aceitar o lead).",
         "Comece a registrar, mesmo que numa planilha, o motivo de cada lead desqualificado.",
       ],
@@ -514,7 +514,7 @@ const PLAYBOOKS: Record<
     media: {
       title: "Playbook: fechar as lacunas",
       items: [
-        "Implemente lead scoring básico — combine 2-3 critérios de fit com 1-2 de comportamento.",
+        "Implemente lead scoring básico - combine 2-3 critérios de fit com 1-2 de comportamento.",
         "Crie uma cadência de nutrição de 3 toques pra leads que não estão prontos ainda.",
         "Estruture o handoff com um formulário/checklist fixo pro closer, não depende de memória.",
         "Marque uma reunião quinzenal com marketing pra revisar qualidade do lead que chega.",
@@ -524,7 +524,7 @@ const PLAYBOOKS: Record<
       title: "Playbook: otimização fina",
       items: [
         "Automatize o lead scoring dentro do CRM, com atualização em tempo real.",
-        "Teste reduzir seu SLA de resposta ainda mais — cada minuto a menos aumenta conversão.",
+        "Teste reduzir seu SLA de resposta ainda mais - cada minuto a menos aumenta conversão.",
         "Crie um dashboard de conversão por estágio (Lead > MQL > SAL > SQL > Venda) revisado semanalmente.",
         "Comece a segmentar cadências de nutrição por motivo de não-conversão.",
       ],
@@ -536,7 +536,7 @@ const PLAYBOOKS: Record<
       items: [
         "Escreva um roteiro de descoberta com 5 perguntas fixas pra toda reunião.",
         "Escolha um framework de qualificação (BANT é o mais simples pra começar) e aplique sempre.",
-        "Toda proposta sai com data de retorno combinada — sem exceção.",
+        "Toda proposta sai com data de retorno combinada - sem exceção.",
         "Crie um lembrete fixo de follow-up 48h depois de cada reunião.",
       ],
     },
@@ -544,7 +544,7 @@ const PLAYBOOKS: Record<
       title: "Playbook: fechar as lacunas",
       items: [
         "Documente as 5 objeções mais comuns em proposta e a resposta padrão de cada uma.",
-        "Padronize os estágios do seu funil no CRM — defina o que precisa acontecer em cada um.",
+        "Padronize os estágios do seu funil no CRM - defina o que precisa acontecer em cada um.",
         "Implemente uma cadência fixa de follow-up (não deixar proposta esfriar sem contato).",
         "Meça seu ciclo médio de vendas nas últimas 10 negociações fechadas.",
       ],
@@ -555,7 +555,7 @@ const PLAYBOOKS: Record<
         "Analise onde o funil mais perde conversão (reunião > proposta ou proposta > fechamento) e foque ali.",
         "Teste reduzir seu ciclo de vendas com gatilhos de urgência genuínos (não pressão artificial).",
         "Crie um playbook de negociação por perfil de cliente (preço-sensível vs. urgência-sensível).",
-        "Compartilhe seus melhores roteiros com o time — vire referência interna.",
+        "Compartilhe seus melhores roteiros com o time - vire referência interna.",
       ],
     },
   },
@@ -573,7 +573,7 @@ const PLAYBOOKS: Record<
       title: "Playbook: fechar as lacunas",
       items: [
         "Implemente uma cadência de follow-up pra propostas paradas há mais de 5 dias.",
-        "Padronize o processo de contrato e onboarding — elimine retrabalho na entrega.",
+        "Padronize o processo de contrato e onboarding - elimine retrabalho na entrega.",
         "Meça sua taxa de conversão proposta > fechamento nas últimas 10 negociações.",
         "Alinhe com o time de qualificação o que precisa vir junto no handoff pra você fechar mais rápido.",
       ],
@@ -637,7 +637,7 @@ function OperationalContextCard({
         Só mais 2 perguntinhas sobre sua operação.
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        Isso ajuda a medir sua eficiência real, do jeito que você mesmo acompanha — sem isso, o
+        Isso ajuda a medir sua eficiência real, do jeito que você mesmo acompanha - sem isso, o
         diagnóstico fica só qualitativo.
       </p>
 
@@ -670,7 +670,7 @@ function OperationalContextCard({
         </div>
       </div>
       <p className="mt-3 text-[10px] text-muted-foreground">
-        Das agendas que você marca, quantas de fato avançam no funil — não só "aconteceram".
+        Das agendas que você marca, quantas de fato avançam no funil - não só "aconteceram".
       </p>
 
       <button
@@ -701,7 +701,7 @@ function BusinessContextCard({
         Só mais 2 perguntinhas de contexto.
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        Isso é o que transforma seu resultado num número em R$ — sem isso, o diagnóstico fica só
+        Isso é o que transforma seu resultado num número em R$ - sem isso, o diagnóstico fica só
         qualitativo.
       </p>
 
@@ -800,7 +800,7 @@ function guessRoleFromCargo(cargo: string): RoleKey | null {
     { role: "bdr", keywords: ["bdr", "hunter", "prospeccao ativa", "prospector"] },
   ];
   const matches = rules.filter((r) => r.keywords.some((k) => c.includes(k)));
-  // Só auto-preenche quando o cargo aponta claramente pra um papel só —
+  // Só auto-preenche quando o cargo aponta claramente pra um papel só -
   // em caso de ambiguidade, deixa a pessoa escolher.
   if (matches.length === 1) return matches[0].role;
   return null;
@@ -865,7 +865,7 @@ function DiagnosticoPage() {
     try {
       const parsed: Lead = JSON.parse(raw);
       setLead(parsed);
-      // Evita perguntar de novo o que a pessoa já disse — se o cargo digitado
+      // Evita perguntar de novo o que a pessoa já disse - se o cargo digitado
       // no formulário aponta claramente pra um papel só, começa direto por ele.
       if (parsed.cargo) {
         const guess = guessRoleFromCargo(parsed.cargo);
@@ -889,7 +889,7 @@ function DiagnosticoPage() {
     setTimeout(() => {
       if (step < total - 1) {
         setStep(step + 1);
-        // Salva o progresso a cada resposta — assim dá pra ver, no admin,
+        // Salva o progresso a cada resposta - assim dá pra ver, no admin,
         // exatamente em qual pergunta a pessoa parou caso ela abandone.
         if (id && role) {
           updateLead({
@@ -1018,10 +1018,10 @@ function DiagnosticoPage() {
     } else if (role !== "empresario" && lead.ticket) {
       lines.push(
         `Agendas marcadas/semana: ${lead.ticket}`,
-        `Viram oportunidade real: ${lead.metaContratos ?? "—"}`,
+        `Viram oportunidade real: ${lead.metaContratos ?? "-"}`,
       );
     }
-    lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) — ${verdict.tag}`);
+    lines.push("", `Resultado: ${score}/${maxScore} (${pct}%) - ${verdict.tag}`);
 
     if (dores.length > 0) {
       lines.push("", "Dores identificadas (respostas com maior gap):");
@@ -1033,7 +1033,7 @@ function DiagnosticoPage() {
     QUESTIONS.forEach((q, i) => {
       const a = answers[i];
       lines.push(`${i + 1}. ${q.title}`);
-      lines.push(`   → ${a !== null ? q.options[a].label : "—"}`);
+      lines.push(`   → ${a !== null ? q.options[a].label : "-"}`);
     });
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
   }
@@ -1058,7 +1058,7 @@ function DiagnosticoPage() {
             Qual é o seu <span className="text-gold">papel na operação</span>?
           </h1>
           <p className="mt-4 text-muted-foreground">
-            O diagnóstico e o playbook são diferentes pra cada função — escolhe o que mais se parece
+            O diagnóstico e o playbook são diferentes pra cada função - escolhe o que mais se parece
             com o que você faz hoje.
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -1109,7 +1109,7 @@ function DiagnosticoPage() {
           </h1>
           <p className="mt-4 text-muted-foreground">
             Responda 10 perguntas e receba um diagnóstico estratégico da sua máquina de prospecção
-            ativa — com a leitura honesta de onde está o gargalo e o caminho para virar o jogo.
+            ativa - com a leitura honesta de onde está o gargalo e o caminho para virar o jogo.
           </p>
           <div className="mt-6 h-1 w-full overflow-hidden rounded-full bg-white/5">
             <div
@@ -1191,7 +1191,7 @@ function DiagnosticoPage() {
                   <ArrowLeft className="size-3.5" /> Voltar
                 </button>
                 <span className="text-muted-foreground">
-                  Escolha a opção mais sincera — o diagnóstico depende disso.
+                  Escolha a opção mais sincera - o diagnóstico depende disso.
                 </span>
               </div>
             </div>
@@ -1244,12 +1244,12 @@ function DiagnosticoPage() {
                   <MiniStat label="Agendas marcadas/semana" value={`${lead.ticket}`} />
                   <MiniStat
                     label="Viram oportunidade real"
-                    value={`${lead.metaContratos ?? "—"}`}
+                    value={`${lead.metaContratos ?? "-"}`}
                   />
                 </div>
                 <p className="mt-4 text-xs text-muted-foreground">
                   Com {pct}% de maturidade, uma parte real dessas agendas está sendo desperdiçada
-                  por falta de processo — não de esforço.
+                  por falta de processo - não de esforço.
                 </p>
               </div>
             )}
@@ -1270,7 +1270,7 @@ function DiagnosticoPage() {
                 </div>
                 <div className="mt-2 font-display text-4xl text-gold">{pct}%</div>
                 <p className="mt-1.5 text-[11px] text-muted-foreground">
-                  Cada resposta vale 0, 1 ou 2 pontos — {score}/{maxScore} pontos = {pct}%.
+                  Cada resposta vale 0, 1 ou 2 pontos - {score}/{maxScore} pontos = {pct}%.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-background/40 p-5">
@@ -1374,7 +1374,7 @@ function DiagnosticoPage() {
                   <AlertTriangle className="size-3.5" /> Dores identificadas
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Onde suas respostas apontaram maior gap — é por aqui que o time PO2 vai começar a
+                  Onde suas respostas apontaram maior gap - é por aqui que o time PO2 vai começar a
                   conversa.
                 </p>
                 <ul className="mt-4 space-y-2">
@@ -1421,7 +1421,7 @@ function DiagnosticoPage() {
                   <ArrowRight className="size-4" />
                 </Link>
                 <p className="mt-4 text-xs text-muted-foreground">
-                  Esse é o caminho pra sair do improviso na prática, com acompanhamento — não pra
+                  Esse é o caminho pra sair do improviso na prática, com acompanhamento - não pra
                   decisão da empresa, mas pra sua evolução como{" "}
                   {ROLES.find((r) => r.key === role)?.label}.
                 </p>
@@ -1535,7 +1535,7 @@ function PlaybookPdfButton({
       </button>
       {error && (
         <p className="mt-2 text-center text-xs text-red-300">
-          Não foi possível gerar o PDF agora — tenta de novo em alguns segundos.
+          Não foi possível gerar o PDF agora - tenta de novo em alguns segundos.
           {errorDetail && (
             <span className="mt-1 block text-red-400/80">Detalhe: {errorDetail}</span>
           )}
@@ -1601,7 +1601,7 @@ function CountdownBanner({ nome }: { nome: string }) {
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {expired
-              ? "O tempo acabou. Recarregue para iniciar um novo diagnóstico — sem garantia de nova janela."
+              ? "O tempo acabou. Recarregue para iniciar um novo diagnóstico - sem garantia de nova janela."
               : "Se sair desta tela, a vaga é liberada para outra empresa. Garanta sua conversa antes do tempo acabar."}
           </p>
         </div>

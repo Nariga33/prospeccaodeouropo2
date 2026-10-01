@@ -23,13 +23,13 @@ const CLOSER_PHASES = [
         n: "01",
         icon: Search,
         t: "Contexto Antes da Call",
-        d: "Perfil, histórico com SDR/BDR e dor mapeada revisados antes de entrar — a call não começa descobrindo quem é o lead.",
+        d: "Perfil, histórico com SDR/BDR e dor mapeada revisados antes de entrar - a call não começa descobrindo quem é o lead.",
       },
       {
         n: "02",
         icon: MessageCircleQuestion,
         t: "Custo da Inação Calculado",
-        d: "O que o problema já custa por mês, em número — não em 'seria bom resolver'. É isso que sustenta o preço depois.",
+        d: "O que o problema já custa por mês, em número - não em 'seria bom resolver'. É isso que sustenta o preço depois.",
       },
     ],
   },
@@ -42,13 +42,13 @@ const CLOSER_PHASES = [
         n: "03",
         icon: ClipboardList,
         t: "Roteiro de Fechamento",
-        d: "Etapas claras do 'interesse confirmado' até a assinatura — não é 'vamos ver o que o cliente decide'.",
+        d: "Etapas claras do 'interesse confirmado' até a assinatura - não é 'vamos ver o que o cliente decide'.",
       },
       {
         n: "04",
         icon: Gauge,
         t: "Critério de Avanço",
-        d: "Sinais objetivos pra saber quando fechar ou continuar nutrindo — não é instinto.",
+        d: "Sinais objetivos pra saber quando fechar ou continuar nutrindo - não é instinto.",
       },
     ],
   },
@@ -61,19 +61,19 @@ const CLOSER_PHASES = [
         n: "05",
         icon: ShieldCheck,
         t: "Objeções Finais",
-        d: "Preço, prazo e autoridade — resposta pensada antes da negociação esquentar.",
+        d: "Preço, prazo e autoridade - resposta pensada antes da negociação esquentar.",
       },
       {
         n: "06",
         icon: Percent,
         t: "Margem Definida",
-        d: "Até onde ceder decidido antes da call — sem decisão de improviso.",
+        d: "Até onde ceder decidido antes da call - sem decisão de improviso.",
       },
       {
         n: "07",
         icon: Repeat,
         t: "Follow-up Ativo",
-        d: "Proposta parada recebe cadência de reengajamento — não fica esfriando.",
+        d: "Proposta parada recebe cadência de reengajamento - não fica esfriando.",
       },
     ],
   },
@@ -86,7 +86,7 @@ const CLOSER_PHASES = [
         n: "08",
         icon: FileCheck,
         t: "Onboarding Padrão",
-        d: "Contrato e entrega seguem processo replicável — não reinventa a cada venda.",
+        d: "Contrato e entrega seguem processo replicável - não reinventa a cada venda.",
       },
       {
         n: "09",
@@ -111,13 +111,13 @@ export function CloserMethod() {
               <span className={goldRule} /> O Método
             </div>
             <h2 className="max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Da qualificação ao contrato —{" "}
+              Da qualificação ao contrato -{" "}
               <span className="font-display font-normal italic text-gold">9 etapas</span> sem deixar
               dinheiro na mesa.
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            Fechar não é sorte nem carisma — é processo repetível, com critério pra saber quando
+            Fechar não é sorte nem carisma - é processo repetível, com critério pra saber quando
             avançar e margem definida antes da conversa esquentar.
           </p>
         </div>

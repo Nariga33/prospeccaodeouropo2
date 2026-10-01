@@ -82,16 +82,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado" },
+      { title: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado" },
       {
         name: "description",
         content:
           "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade. Sediada em Porto Alegre (RS), atendendo todo o Brasil.",
       },
-      { name: "author", content: "PO2 — Matheus Staruck" },
+      { name: "author", content: "PO2 - Matheus Staruck" },
       {
         property: "og:title",
-        content: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
+        content: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
       },
       {
         property: "og:description",
@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "PO2 — Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
+        content: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
       },
       {
         name: "twitter:description",
@@ -123,10 +123,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "PO2 — Prospecção de Ouro 2.0",
+          name: "PO2 - Prospecção de Ouro 2.0",
           alternateName: "PO2",
           description:
-            "Prospecção B2B terceirizada, com SDR terceirizado, BDR terceirizado e SDR as a Service — ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul, atendendo todo o Brasil.",
+            "Prospecção B2B terceirizada, com SDR terceirizado, BDR terceirizado e SDR as a Service - ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul, atendendo todo o Brasil.",
           url: "https://www.prospeccaoodeouropo2.com/",
           telephone: `+55${PO2_PHONE_DISPLAY.replace(/[^\d]/g, "")}`,
           email: PO2_EMAIL,
@@ -146,7 +146,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "Person",
               name: "Matheus Staruck",
               jobTitle: "Founder & CEO",
-              worksFor: { "@type": "Organization", name: "PO2 — Prospecção de Ouro 2.0" },
+              worksFor: { "@type": "Organization", name: "PO2 - Prospecção de Ouro 2.0" },
               knowsAbout: [
                 "Prospecção B2B",
                 "Outbound",
@@ -162,7 +162,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "Person",
               name: "João Victor Acunha",
               jobTitle: "Co-Founder",
-              worksFor: { "@type": "Organization", name: "PO2 — Prospecção de Ouro 2.0" },
+              worksFor: { "@type": "Organization", name: "PO2 - Prospecção de Ouro 2.0" },
               knowsAbout: [
                 "Vendas consultivas",
                 "Geração de demanda",
@@ -198,7 +198,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "@type": "Service",
                 name: "Prospecção B2B terceirizada",
                 description:
-                  "Estruturação e/ou execução de operação de prospecção outbound B2B — ICP, cadência multicanal, cold call, e-mail e LinkedIn.",
+                  "Estruturação e/ou execução de operação de prospecção outbound B2B - ICP, cadência multicanal, cold call, e-mail e LinkedIn.",
                 url: "https://www.prospeccaoodeouropo2.com/bdr",
               },
             },
@@ -218,7 +218,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "@type": "Service",
                 name: "SDR terceirizado / SDR as a Service",
                 description:
-                  "Qualificação inbound terceirizada — lead scoring, SLA de resposta e funil MQL/PQL/SAL/SQL.",
+                  "Qualificação inbound terceirizada - lead scoring, SLA de resposta e funil MQL/PQL/SAL/SQL.",
                 url: "https://www.prospeccaoodeouropo2.com/sdr",
               },
             },

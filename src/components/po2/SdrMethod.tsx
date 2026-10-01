@@ -22,7 +22,7 @@ const SDR_PHASES = [
         n: "01",
         icon: Gauge,
         t: "Lead Scoring",
-        d: "Critério objetivo de pontuação por perfil (fit) e comportamento (intenção) — não achismo.",
+        d: "Critério objetivo de pontuação por perfil (fit) e comportamento (intenção) - não achismo.",
       },
       {
         n: "02",
@@ -41,13 +41,13 @@ const SDR_PHASES = [
         n: "03",
         icon: MessageSquareText,
         t: "Qualificação Rápida",
-        d: "Roteiro de qualificação por chamada ou chat — consultivo, não interrogatório.",
+        d: "Roteiro de qualificação por chamada ou chat - consultivo, não interrogatório.",
       },
       {
         n: "04",
         icon: ShieldCheck,
         t: "Gestão de Objeções",
-        d: "Documentar e responder objeções de quem já demonstrou interesse — contexto muda tudo.",
+        d: "Documentar e responder objeções de quem já demonstrou interesse - contexto muda tudo.",
       },
     ],
   },
@@ -60,13 +60,13 @@ const SDR_PHASES = [
         n: "05",
         icon: ArrowRightLeft,
         t: "Handoff Estruturado",
-        d: "Passagem de bastão pro closer com contexto completo — cliente não repete a própria história.",
+        d: "Passagem de bastão pro closer com contexto completo - cliente não repete a própria história.",
       },
       {
         n: "06",
         icon: Repeat,
         t: "Nutrição de Frios",
-        d: "Cadência de reengajamento pra quem ainda não está pronto — sem descartar antes da hora.",
+        d: "Cadência de reengajamento pra quem ainda não está pronto - sem descartar antes da hora.",
       },
       {
         n: "07",
@@ -91,14 +91,14 @@ export function SdrMethod() {
               <span className={goldRule} /> O Método
             </div>
             <h2 className="max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Qualificação inbound —{" "}
+              Qualificação inbound -{" "}
               <span className="font-display font-normal italic text-gold">7 etapas</span> que viram
               receita.
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
             Tratamos <Jargon term="SDR">SDR</Jargon> com o mesmo rigor que tratamos{" "}
-            <Jargon term="BDR">BDR</Jargon> — critério, velocidade e métrica em cada etapa do funil,
+            <Jargon term="BDR">BDR</Jargon> - critério, velocidade e métrica em cada etapa do funil,
             do visitante ao fechamento.
           </p>
         </div>

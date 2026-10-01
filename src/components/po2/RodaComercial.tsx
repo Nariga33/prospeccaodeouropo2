@@ -97,7 +97,7 @@ export function RodaComercial() {
             <span className="font-display font-normal italic text-gold">operação comercial.</span>
           </h2>
           <p className="mt-5 text-muted-foreground">
-            Nota de 0 a 10 pra cada etapa do método — mesma lógica da roda da vida, só que com
+            Nota de 0 a 10 pra cada etapa do método - mesma lógica da roda da vida, só que com
             perguntas técnicas de prospecção. Arrasta os controles e veja onde sua operação
             realmente está.
           </p>

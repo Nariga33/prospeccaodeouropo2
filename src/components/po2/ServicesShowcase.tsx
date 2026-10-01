@@ -11,7 +11,7 @@ const SERVICES = [
     tab: "BDR",
     tag: "Outbound",
     title: "Prospecção ativa",
-    desc: "ICP, cadência multicanal e cold call consultiva — do primeiro contato ao agendamento, sem depender de indicação.",
+    desc: "ICP, cadência multicanal e cold call consultiva - do primeiro contato ao agendamento, sem depender de indicação.",
     pains: [
       "Ligações sem retorno e taxa de conexão baixa",
       "Listas genéricas, sem critério de qualificação",
@@ -25,10 +25,10 @@ const SERVICES = [
     tab: "SDR",
     tag: "Inbound",
     title: "Qualificação de leads",
-    desc: "Lead scoring, SLA de resposta rápida e handoff estruturado — de quem já demonstrou interesse até o closer.",
+    desc: "Lead scoring, SLA de resposta rápida e handoff estruturado - de quem já demonstrou interesse até o closer.",
     pains: [
       "Lead chega e demora horas pra ser respondido",
-      "MQL vira SQL raramente — filtro fraco",
+      "MQL vira SQL raramente - filtro fraco",
       "Handoff sem contexto, cliente repete a história",
     ],
     href: "/sdr",
@@ -39,7 +39,7 @@ const SERVICES = [
     tab: "Inside Sales",
     tag: "Condução",
     title: "Reunião e proposta",
-    desc: "A ponte entre qualificação e fechamento — condução da reunião, proposta com prazo e negociação remota.",
+    desc: "A ponte entre qualificação e fechamento - condução da reunião, proposta com prazo e negociação remota.",
     pains: [
       "Reunião não avança pra proposta concreta",
       "Follow-up que não acontece, negócio esfria",
@@ -53,7 +53,7 @@ const SERVICES = [
     tab: "Closer",
     tag: "Fechamento",
     title: "Negociação final",
-    desc: "Objeções finais, margem definida e onboarding padrão — fechar não é sorte, é processo repetível.",
+    desc: "Objeções finais, margem definida e onboarding padrão - fechar não é sorte, é processo repetível.",
     pains: [
       "Proposta parada, sem cadência de reengajamento",
       "Negociação sem critério, margem perdida no improviso",
@@ -67,7 +67,7 @@ const SERVICES = [
     tab: "Mentoria",
     tag: "Acompanhamento",
     title: "Operação executada junto",
-    desc: "Não é curso gravado — é acompanhamento prático com Matheus Staruck, correção de rota entre sessões.",
+    desc: "Não é curso gravado - é acompanhamento prático com Matheus Staruck, correção de rota entre sessões.",
     pains: [
       "Time sabe a teoria, mas não executa direito",
       "Curso gravado que ninguém termina",
@@ -95,7 +95,7 @@ export function ServicesShowcase() {
           </span>
         </h2>
         <p className="mt-5 max-w-xl text-muted-foreground">
-          Cada função do funil, com seu próprio método — atendemos qualquer etapa isolada ou a
+          Cada função do funil, com seu próprio método - atendemos qualquer etapa isolada ou a
           operação inteira.
         </p>
 

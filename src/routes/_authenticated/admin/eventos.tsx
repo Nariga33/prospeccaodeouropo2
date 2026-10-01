@@ -15,7 +15,7 @@ import { Plus, LogOut, Edit3, Trash2, Users, Copy, Check, Loader2, ArrowLeft } f
 
 export const Route = createFileRoute("/_authenticated/admin/eventos")({
   head: () => ({
-    meta: [{ title: "Admin — Eventos PO2" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Admin - Eventos PO2" }, { name: "robots", content: "noindex" }],
   }),
   component: AdminEventosPage,
 });
@@ -58,7 +58,7 @@ function AdminEventosPage() {
             <Link to="/" className="text-xs text-muted-foreground hover:text-gold">
               ← Ver site
             </Link>
-            <h1 className="mt-1 text-xl font-semibold">Eventos PO2 — Admin</h1>
+            <h1 className="mt-1 text-xl font-semibold">Eventos PO2 - Admin</h1>
             <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
               <a href="/admin/diagnostico" className="hover:text-gold">
                 Ir para Leads do Diagnóstico →
@@ -132,7 +132,7 @@ function AdminEventosPage() {
                               ? ` → R$ ${(e.price_promo_cents / 100).toFixed(0)}`
                               : ""
                           }`
-                        : "—"}
+                        : "-"}
                     </td>
                     <td className="p-3">{e.registrations?.[0]?.count ?? 0}</td>
                     <td className="p-3">
@@ -168,7 +168,7 @@ function AdminEventosPage() {
                 {(events ?? []).length === 0 && (
                   <tr>
                     <td colSpan={5} className="p-6 text-center text-muted-foreground">
-                      Nenhum evento criado ainda — use "Novo evento" acima pra publicar o primeiro.
+                      Nenhum evento criado ainda - use "Novo evento" acima pra publicar o primeiro.
                     </td>
                   </tr>
                 )}
@@ -322,11 +322,11 @@ function EventFormModal({
               className={inputCls}
             />
           </Field>
-          <Field label="Local (ex.: Online — Google Meet, ou endereço presencial)">
+          <Field label="Local (ex.: Online - Google Meet, ou endereço presencial)">
             <input
               value={form.location}
               onChange={(e) => set("location", e.target.value)}
-              placeholder="Online — Google Meet"
+              placeholder="Online - Google Meet"
               className={inputCls}
             />
           </Field>
@@ -483,7 +483,7 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
             >
               <ArrowLeft className="size-3" /> Voltar
             </button>
-            <h2 className="mt-1 text-lg font-semibold">Inscrições — {event.title}</h2>
+            <h2 className="mt-1 text-lg font-semibold">Inscrições - {event.title}</h2>
           </div>
           <div className="flex gap-2">
             <button
@@ -505,7 +505,7 @@ function RegistrationsModal({ event, onClose }: { event: EventRow; onClose: () =
             <div className="p-6 text-center text-muted-foreground">Carregando…</div>
           ) : (data ?? []).length === 0 ? (
             <div className="p-6 text-center text-muted-foreground">
-              Ninguém se inscreveu ainda — divulgue o link do evento pra começar a preencher a
+              Ninguém se inscreveu ainda - divulgue o link do evento pra começar a preencher a
               lista.
             </div>
           ) : (

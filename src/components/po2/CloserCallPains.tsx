@@ -7,7 +7,7 @@ const CLOSER_PAINS = [
   },
   {
     t: "Sem checkpoint de intenção antes da oferta",
-    d: "A call vai direto pra proposta sem confirmar se as dúvidas técnicas já foram resolvidas. O 'vou pensar' no final não é objeção real — é sintoma de call mal conduzida.",
+    d: "A call vai direto pra proposta sem confirmar se as dúvidas técnicas já foram resolvidas. O 'vou pensar' no final não é objeção real - é sintoma de call mal conduzida.",
   },
   {
     t: "Follow-up genérico em proposta parada",
@@ -24,7 +24,7 @@ export function CloserCallPains() {
             <AlertTriangle className="size-3" /> O que quebra a call
           </div>
           <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-tight md:text-4xl">
-            Não é falta de carisma —{" "}
+            Não é falta de carisma -{" "}
             <span className="font-display font-normal italic text-gold">é falta de estrutura.</span>
           </h2>
         </div>

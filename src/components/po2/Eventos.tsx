@@ -42,7 +42,7 @@ function formatDate(iso: string | null) {
 }
 
 function shortDate(iso: string | null) {
-  if (!iso) return { day: "—", month: "" };
+  if (!iso) return { day: "-", month: "" };
   const d = new Date(iso);
   return {
     day: String(d.getDate()).padStart(2, "0"),
@@ -430,7 +430,7 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
                   <span className="text-sm font-semibold">Presença confirmada!</span>
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Salve os links abaixo — enviaremos também por email.
+                  Salve os links abaixo - enviaremos também por email.
                 </p>
 
                 <div className="mt-4 space-y-3">

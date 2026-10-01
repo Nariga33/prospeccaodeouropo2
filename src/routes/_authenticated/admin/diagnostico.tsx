@@ -9,7 +9,7 @@ import { LogOut, Trash2, Copy, Check, Loader2, Download } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/diagnostico")({
   head: () => ({
-    meta: [{ title: "Admin — Diagnóstico PO2" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Admin - Diagnóstico PO2" }, { name: "robots", content: "noindex" }],
   }),
   component: AdminDiagnosticoPage,
 });
@@ -128,7 +128,7 @@ function AdminDiagnosticoPage() {
             <Link to="/" className="text-xs text-muted-foreground hover:text-gold">
               ← Ver site
             </Link>
-            <h1 className="mt-1 text-xl font-semibold">Diagnóstico PO2 — Leads</h1>
+            <h1 className="mt-1 text-xl font-semibold">Diagnóstico PO2 - Leads</h1>
             <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
               <a href="/admin/eventos" className="hover:text-gold">
                 Ir para Eventos →
@@ -217,7 +217,7 @@ function AdminDiagnosticoPage() {
                         </a>
                       </td>
                       <td className="p-3">{r.email}</td>
-                      <td className="p-3">{r.pct != null ? `${r.pct}%` : "—"}</td>
+                      <td className="p-3">{r.pct != null ? `${r.pct}%` : "-"}</td>
                       <td className="p-3">
                         <span
                           className={`inline-block rounded-full px-2 py-0.5 text-xs ${
@@ -252,8 +252,8 @@ function AdminDiagnosticoPage() {
                   <tr>
                     <td colSpan={7} className="p-6 text-center text-muted-foreground">
                       {filter === "all"
-                        ? "Ninguém entrou no diagnóstico ainda — assim que alguém preencher o formulário no site, aparece aqui."
-                        : 'Nenhum lead nesse filtro — tenta "Todos".'}
+                        ? "Ninguém entrou no diagnóstico ainda - assim que alguém preencher o formulário no site, aparece aqui."
+                        : 'Nenhum lead nesse filtro - tenta "Todos".'}
                     </td>
                   </tr>
                 )}

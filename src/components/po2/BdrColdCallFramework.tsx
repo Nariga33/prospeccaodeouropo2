@@ -7,7 +7,7 @@ const STEPS = [
   {
     icon: Smile,
     t: "Chame a atenção",
-    d: "Use o nome da pessoa — direto, sem 'como vai você hoje'.",
+    d: "Use o nome da pessoa - direto, sem 'como vai você hoje'.",
   },
   { icon: IdCard, t: "Identifique-se", d: "Seu nome e de onde você fala, sem enrolar." },
   { icon: MessageCircleQuestion, t: "Diga o motivo", d: "O porquê da ligação, em uma frase." },
@@ -19,7 +19,7 @@ const STEPS = [
   {
     icon: Target,
     t: "Peça o que você quer",
-    d: "E pare de falar — deixa o silêncio trabalhar por você.",
+    d: "E pare de falar - deixa o silêncio trabalhar por você.",
   },
 ];
 
@@ -66,7 +66,7 @@ export function BdrColdCallFramework() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Framework de cold call adaptado do livro{" "}
-            <em className="not-italic text-gold">Fanatical Prospecting</em>, de Jeb Blount — a PO2
+            <em className="not-italic text-gold">Fanatical Prospecting</em>, de Jeb Blount - a PO2
             treina esse roteiro com todo BDR.
           </p>
         </div>

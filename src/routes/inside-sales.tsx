@@ -11,17 +11,17 @@ import { ArrowRight, Handshake } from "lucide-react";
 export const Route = createFileRoute("/inside-sales")({
   head: () => ({
     meta: [
-      { title: "Inside Sales Terceirizado — PO2 | Condução e Fechamento Remoto" },
+      { title: "Inside Sales Terceirizado - PO2 | Condução e Fechamento Remoto" },
       {
         name: "description",
         content:
           "Inside Sales terceirizado: descoberta, qualificação, proposta com prazo, follow-up sistemático, objeções, forecast e métricas de conversão.",
       },
-      { property: "og:title", content: "Inside Sales Terceirizado — PO2" },
+      { property: "og:title", content: "Inside Sales Terceirizado - PO2" },
       {
         property: "og:description",
         content:
-          "A ponte entre qualificação e fechamento — reunião, proposta e negociação com método, dentro da operação comercial terceirizada da PO2.",
+          "A ponte entre qualificação e fechamento - reunião, proposta e negociação com método, dentro da operação comercial terceirizada da PO2.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/inside-sales" },
       {
@@ -29,12 +29,12 @@ export const Route = createFileRoute("/inside-sales")({
           "@context": "https://schema.org",
           "@type": "Service",
           serviceType: "Inside Sales terceirizado",
-          name: "Inside Sales Terceirizado — PO2",
+          name: "Inside Sales Terceirizado - PO2",
           description:
             "Estruturação de Inside Sales: descoberta, qualificação, proposta com prazo, follow-up sistemático e forecast de pipeline.",
           provider: {
             "@type": "ProfessionalService",
-            name: "PO2 — Prospecção de Ouro 2.0",
+            name: "PO2 - Prospecção de Ouro 2.0",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",
@@ -71,7 +71,7 @@ function InsideSalesPage() {
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               <Jargon term="Inside Sales">Inside Sales</Jargon> é a ponte entre a qualificação e o
-              fechamento — conduz a reunião, monta a proposta e negocia remotamente, com o mesmo
+              fechamento - conduz a reunião, monta a proposta e negocia remotamente, com o mesmo
               rigor de método que a PO2 aplica em todo o funil.
             </p>
             <div className="mt-8">
@@ -91,9 +91,9 @@ function InsideSalesPage() {
           title="Demonstração de produto"
           titleEm="não fecha negócio."
           problemTitle="Discovery vira apresentação de slide"
-          problemText="A reunião começa com o vendedor mostrando feature atrás de feature. O lead assiste educadamente e nunca mais responde — porque em nenhum momento ficou claro pra ele o tamanho do problema que está deixando de resolver, em dinheiro ou tempo."
+          problemText="A reunião começa com o vendedor mostrando feature atrás de feature. O lead assiste educadamente e nunca mais responde - porque em nenhum momento ficou claro pra ele o tamanho do problema que está deixando de resolver, em dinheiro ou tempo."
           solutionTitle="Os 4 blocos de discovery do Gap Selling"
-          solutionText="A condução da PO2 segue a lógica de Keenan: estado atual, estado futuro, impacto do problema e causa raiz — nessa ordem, antes de qualquer proposta. O lead sai da reunião entendendo o custo de continuar como está, não uma lista de funcionalidades."
+          solutionText="A condução da PO2 segue a lógica de Keenan: estado atual, estado futuro, impacto do problema e causa raiz - nessa ordem, antes de qualquer proposta. O lead sai da reunião entendendo o custo de continuar como está, não uma lista de funcionalidades."
         />
 
         <section className="border-b border-white/5 bg-surface/40">
@@ -104,13 +104,13 @@ function InsideSalesPage() {
                 <span className="h-px w-12 bg-gold/60" />
               </div>
               <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-                Da reunião ao fechamento —{" "}
+                Da reunião ao fechamento -{" "}
                 <span className="font-display font-normal italic text-gold">
                   um estágio de cada vez.
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-                Cada estágio tem um critério de avanço claro — não é "achismo de que tá quase
+                Cada estágio tem um critério de avanço claro - não é "achismo de que tá quase
                 fechando".
               </p>
             </div>

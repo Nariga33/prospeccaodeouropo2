@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }> = {
   ICP: {
     full: "Ideal Customer Profile",
-    desc: "Perfil de cliente ideal — o tipo de empresa que mais compra, melhor paga e mais retém.",
+    desc: "Perfil de cliente ideal - o tipo de empresa que mais compra, melhor paga e mais retém.",
   },
   BDR: {
     full: "Business Development Representative",
@@ -12,7 +12,7 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
   },
   LDR: {
     full: "Lead Development Representative",
-    desc: "Primeiro contato do funil — identifica e qualifica minimamente o lead antes de passar pro BDR/SDR.",
+    desc: "Primeiro contato do funil - identifica e qualifica minimamente o lead antes de passar pro BDR/SDR.",
   },
   SDR: {
     full: "Sales Development Representative",
@@ -28,15 +28,15 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
   },
   SAL: {
     full: "Sales Accepted Lead",
-    desc: "Lead que o SDR validou e o time de vendas aceitou trabalhar — passou no filtro mínimo de fit.",
+    desc: "Lead que o SDR validou e o time de vendas aceitou trabalhar - passou no filtro mínimo de fit.",
   },
   SQL: {
     full: "Sales Qualified Lead",
-    desc: "Lead qualificado e pronto pra proposta — já validado por critério (BANT, CHAMP) e com reunião agendada.",
+    desc: "Lead qualificado e pronto pra proposta - já validado por critério (BANT, CHAMP) e com reunião agendada.",
   },
   MRR: {
     full: "Monthly Recurring Revenue",
-    desc: "Receita recorrente mensal — quanto entra todo mês de forma previsível.",
+    desc: "Receita recorrente mensal - quanto entra todo mês de forma previsível.",
   },
   DIAL: {
     desc: "Valor anual de uma proposta em discussão ativa com o cliente.",
@@ -46,16 +46,16 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     desc: "Quanto você gasta, em média, para conquistar um novo cliente.",
   },
   CHAMP: {
-    desc: "Challenges, Authority, Money, Prioritization — qualificação focada na dor antes do orçamento.",
+    desc: "Challenges, Authority, Money, Prioritization - qualificação focada na dor antes do orçamento.",
   },
   SPIN: {
-    desc: "Situation, Problem, Implication, Need-payoff — perguntas que constroem urgência.",
+    desc: "Situation, Problem, Implication, Need-payoff - perguntas que constroem urgência.",
   },
   BANT: {
-    desc: "Budget, Authority, Need, Timing — qualificação clássica para leads maduros.",
+    desc: "Budget, Authority, Need, Timing - qualificação clássica para leads maduros.",
   },
   LAER: {
-    desc: "Listen, Acknowledge, Explore, Respond — tratamento de objeções com método.",
+    desc: "Listen, Acknowledge, Explore, Respond - tratamento de objeções com método.",
   },
   "Gap Selling": {
     desc: "Vender o gap entre o estado atual e o desejado, quantificando o custo de não agir.",
@@ -64,7 +64,7 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     desc: "Provocar uma nova visão do problema do cliente, em vez de apenas atender pedido.",
   },
   Outbound: {
-    desc: "Prospecção ativa — você procura o cliente, não espera ele chegar.",
+    desc: "Prospecção ativa - você procura o cliente, não espera ele chegar.",
   },
   Pipeline: {
     desc: "Funil de oportunidades comerciais em andamento.",
@@ -73,13 +73,13 @@ export const JARGON_DEFINITIONS: Record<string, { full?: string; desc: string }>
     desc: "Sequência planejada de toques (e-mail, ligação, LinkedIn, WhatsApp) ao longo do tempo.",
   },
   Pitch: {
-    desc: "Discurso de apresentação inicial — os primeiros segundos da abordagem.",
+    desc: "Discurso de apresentação inicial - os primeiros segundos da abordagem.",
   },
   "Inside Sales": {
-    desc: "Conduz a reunião, monta proposta e negocia remotamente — a ponte entre qualificação e fechamento.",
+    desc: "Conduz a reunião, monta proposta e negocia remotamente - a ponte entre qualificação e fechamento.",
   },
   Closer: {
-    desc: "Fecha o negócio — negociação final, contrato e handoff pro onboarding do cliente.",
+    desc: "Fecha o negócio - negociação final, contrato e handoff pro onboarding do cliente.",
   },
 };
 

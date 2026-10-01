@@ -16,7 +16,7 @@ const CHANNELS = [
     icon: Search,
     label: "SEO / Busca",
     day: "Etapa 1",
-    desc: "Lead encontra a empresa buscando a solução — sem interrupção, por interesse próprio.",
+    desc: "Lead encontra a empresa buscando a solução - sem interrupção, por interesse próprio.",
   },
   {
     icon: FileText,
@@ -34,7 +34,7 @@ const CHANNELS = [
     icon: Gauge,
     label: "Lead Scoring",
     day: "Etapa 4",
-    desc: "Pontuação por fit e intenção — decide quem o SDR aborda primeiro.",
+    desc: "Pontuação por fit e intenção - decide quem o SDR aborda primeiro.",
   },
   {
     icon: MessageCircle,
@@ -116,7 +116,7 @@ export function InboundHub() {
             </span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            A PO2 não trabalha só a qualificação — orquestra busca, conteúdo, anúncio e nutrição
+            A PO2 não trabalha só a qualificação - orquestra busca, conteúdo, anúncio e nutrição
             numa jornada única, com lead scoring guiando quem o SDR aborda primeiro. Clique em cada
             etapa pra entender o papel dela.
           </p>

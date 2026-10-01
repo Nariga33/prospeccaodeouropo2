@@ -213,7 +213,7 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
     y -= 26;
     drawCentered(
       page,
-      "Onde suas respostas apontaram maior gap — comece por aqui.",
+      "Onde suas respostas apontaram maior gap - comece por aqui.",
       y,
       11,
       helv,

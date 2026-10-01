@@ -22,7 +22,7 @@ export function Methodologies() {
       d: "Provocar uma nova forma de enxergar o problema do cliente.",
       acronym: "Teach · Tailor · Take control",
       summary:
-        "Vendedor desafia a visão atual do cliente trazendo um insight que ele ainda não enxergou. Não atende pedido — provoca uma nova leitura do problema baseada em dados de mercado.",
+        "Vendedor desafia a visão atual do cliente trazendo um insight que ele ainda não enxergou. Não atende pedido - provoca uma nova leitura do problema baseada em dados de mercado.",
       when: "Use em mercados maduros, com decisores experientes que já receberam dezenas de abordagens iguais. Quando você precisa se diferenciar pela visão, não pelo produto.",
       example:
         "A maioria dos times comerciais que olhamos achava que o problema era volume. Em 80% dos casos, era ICP errado. Posso te mostrar como identificar isso na sua operação?",
@@ -35,7 +35,7 @@ export function Methodologies() {
         "Método de tratamento de objeções em quatro passos. Em vez de rebater na hora, o vendedor escuta até o fim, valida a preocupação, explora a raiz e só então responde com argumento direcionado.",
       when: "Use sempre que surgir objeção real (preço, timing, autoridade). Evita o reflexo de defender o produto e mantém a conversa consultiva.",
       example:
-        "Entendi sua preocupação com o investimento. Me ajuda a entender — é o valor em si ou o momento da empresa? (explora antes de responder)",
+        "Entendi sua preocupação com o investimento. Me ajuda a entender - é o valor em si ou o momento da empresa? (explora antes de responder)",
     },
     {
       t: "SPIN",
@@ -63,7 +63,7 @@ export function Methodologies() {
       acronym: "Budget · Authority · Need · Timing",
       summary:
         "Framework clássico criado pela IBM. Qualifica pelo orçamento disponível, autoridade do contato, necessidade clara e prazo de decisão. Eficiente para limpar pipeline rápido.",
-      when: "Use em leads já maduros, em estágios mais avançados do funil, ou para priorizar fila do closer. Não substitui descoberta inicial — complementa.",
+      when: "Use em leads já maduros, em estágios mais avançados do funil, ou para priorizar fila do closer. Não substitui descoberta inicial - complementa.",
       example:
         "Para encaixar com nossos planos, faz sentido para mim entender: orçamento previsto, quem mais decide com você e janela de implantação. Podemos passar por esses três?",
     },
@@ -85,7 +85,7 @@ export function Methodologies() {
           </h2>
           <p className="mt-5 text-muted-foreground">
             A PO2 aplica frameworks consagrados conforme o tipo de <Jargon term="ICP">lead</Jargon>{" "}
-            e o estágio comercial — leitura de cenário, não roteiro robótico. Clique em cada
+            e o estágio comercial - leitura de cenário, não roteiro robótico. Clique em cada
             metodologia para entender o que é e quando aplicar.
           </p>
         </div>

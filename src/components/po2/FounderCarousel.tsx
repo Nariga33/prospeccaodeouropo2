@@ -28,7 +28,7 @@ const PEOPLE: Person[] = [
     key: "matheus",
     tab: "Matheus Staruck",
     name: "Matheus Staruck",
-    role: "Founder & CEO — PO2 Prospecção de Ouro 2.0",
+    role: "Founder & CEO - PO2 Prospecção de Ouro 2.0",
     photo: matheusPhoto,
     width: 748,
     height: 935,
@@ -38,7 +38,7 @@ const PEOPLE: Person[] = [
         <p>
           Nasci em Torres, Rio Grande do Sul, mas fui criado em Arroio do Sal. Sou filho de um
           construtor civil e de uma professora que, ao longo do tempo, se tornou empresária no
-          segmento de eventos — foi acompanhando essa trajetória que aprendi desde cedo sobre{" "}
+          segmento de eventos - foi acompanhando essa trajetória que aprendi desde cedo sobre{" "}
           <span className={strong}>
             relacionamento com clientes, negociação e fechamento de contratos
           </span>
@@ -47,13 +47,13 @@ const PEOPLE: Person[] = [
         <p>
           Meu lado empreendedor começou muito cedo: <span className={strong}>desde os 12 anos</span>{" "}
           eu buscava maneiras de ganhar dinheiro fazendo pequenos serviços e negociando produtos no
-          Marketplace do Facebook — o "Brick", como a gente chama aqui no sul. Depois vieram os
+          Marketplace do Facebook - o "Brick", como a gente chama aqui no sul. Depois vieram os
           estudos em <span className={strong}>Tecnologia da Informação</span> e a manutenção de
           computadores pra conhecidos e familiares, até passar pelo varejo.
         </p>
         <p>
           Foi na <span className={strong}>Hub7</span> que mergulhei de vez no universo da{" "}
-          <span className={strong}>prospecção B2B, outbound e desenvolvimento comercial</span> —
+          <span className={strong}>prospecção B2B, outbound e desenvolvimento comercial</span> -
           participando da construção de operações comerciais, estruturação de processos, criação de
           cadências, treinamento de equipes e negociações estratégicas.
         </p>
@@ -70,7 +70,7 @@ const PEOPLE: Person[] = [
     key: "joao",
     tab: "João Victor Acunha",
     name: "João Victor Acunha",
-    role: "Co-Founder — PO2 Prospecção de Ouro 2.0",
+    role: "Co-Founder - PO2 Prospecção de Ouro 2.0",
     photo: joaoPhoto,
     width: 800,
     height: 1000,
@@ -107,7 +107,7 @@ export function FounderCarousel() {
   const [heights, setHeights] = useState<number[]>([]);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Cada slide tem a própria altura — o container se ajusta ao slide ativo pra não sobrar
+  // Cada slide tem a própria altura - o container se ajusta ao slide ativo pra não sobrar
   // espaço vazio embaixo do texto mais curto.
   useEffect(() => {
     const measure = () => setHeights(slideRefs.current.map((el) => el?.offsetHeight ?? 0));

@@ -92,7 +92,7 @@ function LeadGate({
       a.click();
       a.remove();
     } catch {
-      toast.error("Não deu pra registrar agora — tenta de novo em instantes.");
+      toast.error("Não deu pra registrar agora - tenta de novo em instantes.");
     } finally {
       setSaving(false);
     }

@@ -11,12 +11,12 @@ const REASONS = [
   {
     icon: ShieldCheck,
     t: "Mentoria com garantia de 7 dias",
-    d: "Se não for pra você, devolvemos o valor investido — sem burocracia.",
+    d: "Se não for pra você, devolvemos o valor investido - sem burocracia.",
   },
   {
     icon: BarChart3,
     t: "Método validado, não teoria",
-    d: "+R$17MM gerados pelos fundadores, +200k ligações, +10k empresas prospectadas — resultado real, não promessa de slide.",
+    d: "+R$17MM gerados pelos fundadores, +200k ligações, +10k empresas prospectadas - resultado real, não promessa de slide.",
   },
 ];
 

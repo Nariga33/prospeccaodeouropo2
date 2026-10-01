@@ -83,13 +83,13 @@ export function FullFunnelOverview() {
             <span className={goldRule} /> O funil inteiro <span className={goldRule} />
           </div>
           <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-            Da abordagem ao fechamento —{" "}
+            Da abordagem ao fechamento -{" "}
             <span className="font-display font-normal italic text-gold">
               e de volta pro marketing.
             </span>
           </h2>
           <p className="mx-auto mt-5 text-muted-foreground">
-            A PO2 não entrega um pedaço isolado. Executa a prospecção, qualifica, fecha — e devolve
+            A PO2 não entrega um pedaço isolado. Executa a prospecção, qualifica, fecha - e devolve
             pro marketing o que aprendeu no meio do caminho.
           </p>
         </div>
@@ -108,7 +108,7 @@ export function FullFunnelOverview() {
               </defs>
               <circle cx={350} cy={400} r={380} fill="url(#funnelGlow)" />
 
-              {/* Linhas de fluxo tier a tier (centro a centro — os círculos cobrem as pontas) */}
+              {/* Linhas de fluxo tier a tier (centro a centro - os círculos cobrem as pontas) */}
               <line
                 x1={195}
                 y1={100}
@@ -243,17 +243,17 @@ export function FullFunnelOverview() {
               <RotateCcw className="size-4" /> O ciclo de feedback
             </div>
             <p className="mt-4 text-sm leading-relaxed text-foreground/90">
-              Cada conversa de BDR e SDR revela uma dor de mercado real — objeção recorrente, ICP
+              Cada conversa de BDR e SDR revela uma dor de mercado real - objeção recorrente, ICP
               que não fecha, campanha atraindo gente errada. A PO2 mapeia isso e devolve pro
               marketing e pra diretoria, pra refinar produto, ICP e campanhas.
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
-              Sem esse ciclo, marketing continua gerando o mesmo lead ruim — e comercial continua
+              Sem esse ciclo, marketing continua gerando o mesmo lead ruim - e comercial continua
               queimando tempo tentando fechar quem nunca devia ter entrado no funil.
             </p>
 
             <div className="mt-6 rounded-xl border border-red-400/30 bg-red-400/5 p-4 text-sm text-foreground/90">
-              Sem esse loop: orçamento de marketing gerando lead que nunca converte — e ninguém sabe
+              Sem esse loop: orçamento de marketing gerando lead que nunca converte - e ninguém sabe
               por quê.
             </div>
 

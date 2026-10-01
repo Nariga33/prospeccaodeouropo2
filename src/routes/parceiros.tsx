@@ -6,7 +6,7 @@ import { Partners } from "@/components/po2/Partners";
 export const Route = createFileRoute("/parceiros")({
   head: () => ({
     meta: [
-      { title: "Parceiros — PO2 | Prospecção de Ouro 2.0" },
+      { title: "Parceiros - PO2 | Prospecção de Ouro 2.0" },
       {
         name: "description",
         content:

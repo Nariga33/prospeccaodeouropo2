@@ -21,7 +21,7 @@ const IS_PHASES = [
         n: "01",
         icon: MessageSquareText,
         t: "Roteiro de Descoberta",
-        d: "Perguntas estruturadas na reunião — não é uma apresentação de slide solta.",
+        d: "Perguntas estruturadas na reunião - não é uma apresentação de slide solta.",
       },
       {
         n: "02",
@@ -40,13 +40,13 @@ const IS_PHASES = [
         n: "03",
         icon: FileText,
         t: "Proposta com Prazo",
-        d: "Toda proposta sai com data de retorno combinada — não fica solta esperando resposta.",
+        d: "Toda proposta sai com data de retorno combinada - não fica solta esperando resposta.",
       },
       {
         n: "04",
         icon: Repeat,
         t: "Follow-up Sistemático",
-        d: "Cadência de retorno pós-reunião — sem deixar a negociação esfriar.",
+        d: "Cadência de retorno pós-reunião - sem deixar a negociação esfriar.",
       },
     ],
   },
@@ -59,7 +59,7 @@ const IS_PHASES = [
         n: "05",
         icon: ShieldCheck,
         t: "Playbook de Objeções",
-        d: "Preço, prazo e concorrência — resposta pensada antes da negociação esquentar.",
+        d: "Preço, prazo e concorrência - resposta pensada antes da negociação esquentar.",
       },
       {
         n: "06",
@@ -90,13 +90,13 @@ export function InsideSalesMethod() {
               <span className={goldRule} /> O Método
             </div>
             <h2 className="max-w-3xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-              Da reunião ao contrato —{" "}
+              Da reunião ao contrato -{" "}
               <span className="font-display font-normal italic text-gold">7 etapas</span> que fecham
               negócio.
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            O lead já chegou qualificado — o que decide se fecha ou não é a condução da reunião, da
+            O lead já chegou qualificado - o que decide se fecha ou não é a condução da reunião, da
             proposta e da negociação.
           </p>
         </div>

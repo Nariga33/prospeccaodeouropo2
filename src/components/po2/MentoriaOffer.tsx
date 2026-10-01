@@ -6,12 +6,12 @@ const goldRule = "h-px w-12 bg-gold/60";
 const STACK = [
   {
     title: "Diagnóstico ao vivo individual",
-    desc: "Sessão de imersão na sua operação — funil, cadência e onde o dinheiro está travando.",
+    desc: "Sessão de imersão na sua operação - funil, cadência e onde o dinheiro está travando.",
     value: "R$ 697",
   },
   {
     title: "8 módulos completos da mentoria",
-    desc: "Do pitch de 4 blocos à gestão de indicadores — ao vivo, com gravação.",
+    desc: "Do pitch de 4 blocos à gestão de indicadores - ao vivo, com gravação.",
     value: "R$ 1.497",
   },
   {
@@ -21,7 +21,7 @@ const STACK = [
   },
   {
     title: "Acompanhamento prático",
-    desc: "Correção de rota entre sessões — não é só teoria gravada.",
+    desc: "Correção de rota entre sessões - não é só teoria gravada.",
     value: "R$ 497",
   },
   {
@@ -92,7 +92,7 @@ export function MentoriaOffer() {
               <MessageCircle className="size-4" /> Quero garantir minha vaga
             </a>
             <p className="mt-4 text-xs text-muted-foreground">
-              Vagas limitadas — acompanhamento é individual, não escalável em massa.
+              Vagas limitadas - acompanhamento é individual, não escalável em massa.
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ export function MentoriaOffer() {
           </h3>
           <p className="max-w-md text-sm text-muted-foreground">
             7 dias de garantia. Se por qualquer motivo você achar que a mentoria não é pra você,
-            devolvemos o valor investido — sem burocracia.
+            devolvemos o valor investido - sem burocracia.
           </p>
         </div>
       </div>

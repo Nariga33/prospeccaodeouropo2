@@ -114,22 +114,26 @@ export function WelcomeGate() {
               {isPessoa
                 ? "Reserve sua vaga no próximo evento gratuito e comece sua evolução."
                 : track === "mentoria"
-                ? "Você está no perfil ideal para nossa Mentoria. Faça um diagnóstico gratuito e receba um plano de 90 dias."
-                : "Você está no perfil ideal para nossa Assessoria. Faça um diagnóstico gratuito e vamos mapear sua operação outbound."}
+                  ? "Você está no perfil ideal para nossa Mentoria. Faça um diagnóstico gratuito e receba um plano de 90 dias."
+                  : "Você está no perfil ideal para nossa Assessoria. Faça um diagnóstico gratuito e vamos mapear sua operação outbound."}
             </DialogDescription>
 
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" />
-                {isPessoa ? "Vaga em evento presencial/online" : "Diagnóstico ao vivo com especialista"}
+                {isPessoa
+                  ? "Vaga em evento presencial/online"
+                  : "Diagnóstico ao vivo com especialista"}
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" />
-                {isPessoa ? "Certificado de participação" : "Relatório de gargalos + plano de 90 dias"}
+                {isPessoa
+                  ? "Certificado de participação"
+                  : "Relatório de gargalos + plano de 90 dias"}
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" />
-                Sem compromisso — resposta em até 24h úteis
+                Sem compromisso - resposta em até 24h úteis
               </li>
             </ul>
 

@@ -14,7 +14,7 @@ export function Partners() {
       logoOnLight: true,
       tag: "Rede & Mentoria",
       url: "https://clubenex.com.br/",
-      desc: "Clube fechado de empresários, por aplicação. Encontros semanais, eventos presenciais trimestrais e mentoria entre pares — networking estratégico, não troca de cartão.",
+      desc: "Clube fechado de empresários, por aplicação. Encontros semanais, eventos presenciais trimestrais e mentoria entre pares - networking estratégico, não troca de cartão.",
       fit: "Indicado se você já vende bem, mas cresce sozinho e sente falta de gente que já passou pelos mesmos gargalos.",
     },
     {
@@ -25,7 +25,7 @@ export function Partners() {
       logoSquare: true,
       tag: "Atendimento & IA",
       url: "https://columba.com.br/",
-      desc: "Plataforma de atendimento no WhatsApp com IA nativa — inbox, automações e CRM, do primeiro contato ao pós-venda.",
+      desc: "Plataforma de atendimento no WhatsApp com IA nativa - inbox, automações e CRM, do primeiro contato ao pós-venda.",
       fit: "Indicado se você já vende bem e precisa dar conta do volume de mensagens sem contratar mais gente.",
     },
     {
@@ -35,7 +35,7 @@ export function Partners() {
       logoOnLight: false,
       tag: "Plataforma & Tecnologia",
       url: "https://www.vendas.team/",
-      desc: "Plataforma comercial com IA nativa — CRM, cadências, enriquecimento de leads e dashboards num só lugar, do primeiro contato ao fechamento.",
+      desc: "Plataforma comercial com IA nativa - CRM, cadências, enriquecimento de leads e dashboards num só lugar, do primeiro contato ao fechamento.",
       fit: "Indicado se o método já está definido (é aí que entra a PO2) e falta a tecnologia pra rodar isso em escala.",
     },
   ];
@@ -55,8 +55,8 @@ export function Partners() {
             </h2>
           </div>
           <p className="max-w-md text-muted-foreground">
-            Indicações de confiança pra quem quer ir além do método — rede pra crescer e
-            plataforma pra executar em escala.
+            Indicações de confiança pra quem quer ir além do método - rede pra crescer e plataforma
+            pra executar em escala.
           </p>
         </div>
 

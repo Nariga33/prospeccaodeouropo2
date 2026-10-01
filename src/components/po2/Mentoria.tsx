@@ -46,7 +46,7 @@ export function Mentoria() {
           { name: "Com diagnóstico PO2", value: 7 },
         ],
         bullets: [
-          <>Mapeamento revela onde a receita trava — quase nunca é onde o time acha.</>,
+          <>Mapeamento revela onde a receita trava - quase nunca é onde o time acha.</>,
           <>Plano de 90 dias com prioridades ordenadas por impacto e esforço.</>,
           <>Você sai da sessão sabendo o que atacar já na semana seguinte.</>,
         ],
@@ -99,9 +99,9 @@ export function Mentoria() {
           { name: "Script PO2", value: 12 },
         ],
         bullets: [
-          <>Abordagem consultiva substitui pitch de catálogo — decisor responde mais.</>,
+          <>Abordagem consultiva substitui pitch de catálogo - decisor responde mais.</>,
           <>12 toques distribuídos em canais certos aumentam superfície de contato.</>,
-          <>Cada objeção comum ganha resposta calibrada — sem improviso na hora.</>,
+          <>Cada objeção comum ganha resposta calibrada - sem improviso na hora.</>,
         ],
       },
     },
@@ -121,7 +121,7 @@ export function Mentoria() {
         ],
         bullets: [
           <>Reunião fixa impede que problemas de funil apareçam só no fim do mês.</>,
-          <>Indicadores viram decisão — não relatório para ninguém ler.</>,
+          <>Indicadores viram decisão - não relatório para ninguém ler.</>,
           <>Time para de terceirizar para o mercado o que é ajuste de operação.</>,
         ],
       },
@@ -150,7 +150,7 @@ export function Mentoria() {
     {
       icon: ShieldQuestion,
       t: "Treinamento de objeções",
-      d: "Mapeamento das 10 objeções mais comuns do seu mercado e resposta calibrada — do preço ao timing e à concorrência.",
+      d: "Mapeamento das 10 objeções mais comuns do seu mercado e resposta calibrada - do preço ao timing e à concorrência.",
       entrega: "Playbook de objeções com áudios de referência",
       chart: {
         headline: "+89%",
@@ -162,7 +162,7 @@ export function Mentoria() {
           { name: "Com playbook", value: 34 },
         ],
         bullets: [
-          <>Vendedor deixa de travar em "tá caro" e "vou pensar" — resposta é reflexo.</>,
+          <>Vendedor deixa de travar em "tá caro" e "vou pensar" - resposta é reflexo.</>,
           <>Áudios de referência mostram o tom, não só o texto.</>,
           <>Objeção mapeada vira gatilho de avanço, não desculpa para perder deal.</>,
         ],
@@ -190,7 +190,7 @@ export function Mentoria() {
         bullets: [
           <>Conhecimento sai da cabeça do fundador e vira ativo da empresa.</>,
           <>Novo vendedor entra produtivo sem depender de sombra semanal.</>,
-          <>Playbook vivo evolui a cada ciclo — não engaveta em 30 dias.</>,
+          <>Playbook vivo evolui a cada ciclo - não engaveta em 30 dias.</>,
         ],
       },
     },
@@ -210,7 +210,7 @@ export function Mentoria() {
         ],
         bullets: [
           <>Suporte quinzenal garante que operação não volta ao improviso antigo.</>,
-          <>Canal direto tira dúvida na hora que ela aparece — não semana depois.</>,
+          <>Canal direto tira dúvida na hora que ela aparece - não semana depois.</>,
           <>Mentor sai; o método fica rodando como sistema do time.</>,
         ],
       },
@@ -306,7 +306,7 @@ export function Mentoria() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          {/* Gráfico + bullets — reagem ao slide ativo do carrossel */}
+          {/* Gráfico + bullets - reagem ao slide ativo do carrossel */}
           <div className="rounded-3xl border border-gold/30 bg-card/70 p-7">
             <div key={`chart-${active}`} className="animate-fade-in">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-bold uppercase tracking-[0.25em] text-gold/70">
@@ -378,7 +378,7 @@ export function Mentoria() {
               className="relative flex-1 rounded-3xl border border-gold/30 bg-card/70 p-7 outline-none"
               tabIndex={0}
               role="group"
-              aria-label="Entregas da mentoria — use as setas para navegar"
+              aria-label="Entregas da mentoria - use as setas para navegar"
               onKeyDown={(e) => {
                 if (e.key === "ArrowRight") {
                   e.preventDefault();

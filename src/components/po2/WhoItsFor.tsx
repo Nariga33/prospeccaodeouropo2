@@ -5,7 +5,7 @@ const goldRule = "h-px w-12 bg-gold/60";
 const FIT = [
   "Já vende, mas depende de esforço individual pra gerar oportunidade",
   "Tem (ou quer ter) pelo menos 1 pessoa dedicada à prospecção ou vendas",
-  "Quer processo replicável — não depender de sorte comercial",
+  "Quer processo replicável - não depender de sorte comercial",
   "Aceita ser guiado por diagnóstico antes de qualquer proposta fechada",
 ];
 
@@ -29,7 +29,7 @@ export function WhoItsFor() {
             <span className="font-display font-normal italic text-gold">todo mundo.</span>
           </h2>
           <p className="mx-auto mt-5 text-muted-foreground">
-            Preferimos ser diretos agora do que decepcionar depois — confere se faz sentido pra sua
+            Preferimos ser diretos agora do que decepcionar depois - confere se faz sentido pra sua
             realidade.
           </p>
         </div>

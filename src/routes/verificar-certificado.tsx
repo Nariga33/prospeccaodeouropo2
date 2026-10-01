@@ -9,11 +9,11 @@ import { ShieldCheck, ShieldX, Loader2, Search } from "lucide-react";
 export const Route = createFileRoute("/verificar-certificado")({
   head: () => ({
     meta: [
-      { title: "Verificar Certificado — PO2" },
+      { title: "Verificar Certificado - PO2" },
       {
         name: "description",
         content:
-          "Confirme a autenticidade de um certificado emitido pela PO2 — Prospecção de Ouro 2.0.",
+          "Confirme a autenticidade de um certificado emitido pela PO2 - Prospecção de Ouro 2.0.",
       },
     ],
   }),
@@ -105,7 +105,7 @@ function VerifyPage() {
                 </div>
                 <p className="mt-3 text-sm text-muted-foreground">
                   {result.reason === "not_finished"
-                    ? "Esse código existe, mas o certificado ainda não está disponível — o evento não terminou."
+                    ? "Esse código existe, mas o certificado ainda não está disponível - o evento não terminou."
                     : "Código não encontrado. Confere se copiou certinho, sem espaços extras."}
                 </p>
               </div>

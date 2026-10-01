@@ -9,7 +9,7 @@ import { LogOut, Trash2, Copy, Check, Loader2, Download } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/materiais")({
   head: () => ({
-    meta: [{ title: "Admin — Materiais PO2" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Admin - Materiais PO2" }, { name: "robots", content: "noindex" }],
   }),
   component: AdminMateriaisPage,
 });
@@ -87,7 +87,7 @@ function AdminMateriaisPage() {
             <Link to="/" className="text-xs text-muted-foreground hover:text-gold">
               ← Ver site
             </Link>
-            <h1 className="mt-1 text-xl font-semibold">Materiais gratuitos — Leads</h1>
+            <h1 className="mt-1 text-xl font-semibold">Materiais gratuitos - Leads</h1>
             <div className="mt-1 flex gap-3 text-xs text-muted-foreground">
               <a href="/admin/eventos" className="hover:text-gold">
                 Ir para Eventos →
@@ -164,7 +164,7 @@ function AdminMateriaisPage() {
                           {r.whatsapp}
                         </a>
                       ) : (
-                        "—"
+                        "-"
                       )}
                     </td>
                     <td className="p-3">{r.email}</td>
@@ -195,8 +195,8 @@ function AdminMateriaisPage() {
                   <tr>
                     <td colSpan={6} className="p-6 text-center text-muted-foreground">
                       {filter === "all"
-                        ? "Ninguém baixou material ainda — assim que alguém enviar o formulário na página de materiais, aparece aqui."
-                        : 'Nenhum lead nesse filtro — tenta "Todos".'}
+                        ? "Ninguém baixou material ainda - assim que alguém enviar o formulário na página de materiais, aparece aqui."
+                        : 'Nenhum lead nesse filtro - tenta "Todos".'}
                     </td>
                   </tr>
                 )}

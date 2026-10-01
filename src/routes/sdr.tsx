@@ -12,13 +12,13 @@ import { ArrowRight, Headset } from "lucide-react";
 export const Route = createFileRoute("/sdr")({
   head: () => ({
     meta: [
-      { title: "SDR Terceirizado & SDR as a Service — PO2 | Qualificação de Leads" },
+      { title: "SDR Terceirizado & SDR as a Service - PO2 | Qualificação de Leads" },
       {
         name: "description",
         content:
           "SDR terceirizado / SDR as a Service: lead scoring, SLA de resposta, qualificação MQL/PQL até SAL, SQL e venda fechada. Operação de pré-vendas terceirizada.",
       },
-      { property: "og:title", content: "SDR Terceirizado & SDR as a Service — PO2" },
+      { property: "og:title", content: "SDR Terceirizado & SDR as a Service - PO2" },
       {
         property: "og:description",
         content:
@@ -30,12 +30,12 @@ export const Route = createFileRoute("/sdr")({
           "@context": "https://schema.org",
           "@type": "Service",
           serviceType: "SDR terceirizado / SDR as a Service",
-          name: "SDR Terceirizado — PO2",
+          name: "SDR Terceirizado - PO2",
           description:
             "Estruturação e/ou execução terceirizada de operação inbound e qualificação de SDR: lead scoring, SLA de resposta, funil MQL/PQL/SAL/SQL.",
           provider: {
             "@type": "ProfessionalService",
-            name: "PO2 — Prospecção de Ouro 2.0",
+            name: "PO2 - Prospecção de Ouro 2.0",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",
@@ -71,7 +71,7 @@ function SdrPage() {
               Outbound tem método. <span className="italic text-gold">Inbound também deveria.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Estruturação de operação inbound e treinamento de <Jargon term="SDR">SDR</Jargon> — do
+              Estruturação de operação inbound e treinamento de <Jargon term="SDR">SDR</Jargon> - do
               lead que chega sozinho até a venda fechada, com o mesmo rigor de processo que a PO2
               aplica no outbound.
             </p>
@@ -92,9 +92,9 @@ function SdrPage() {
           title="Reunião marcada"
           titleEm="com quem não tem dor de verdade."
           problemTitle="Qualificação por checklist de produto"
-          problemText="'Você usa CRM? Tem orçamento?' — perguntas técnicas que confirmam se o lead cabe no produto, mas nunca revelam se ele tem um problema real que dói o suficiente pra mudar. Reunião acontece, closer descobre no meio da call que não tinha gap nenhum."
+          problemText="'Você usa CRM? Tem orçamento?' - perguntas técnicas que confirmam se o lead cabe no produto, mas nunca revelam se ele tem um problema real que dói o suficiente pra mudar. Reunião acontece, closer descobre no meio da call que não tinha gap nenhum."
           solutionTitle="Gap Selling na qualificação: estado atual x estado futuro"
-          solutionText="O SDR da PO2 qualifica mapeando o gap — onde o lead está hoje, onde ele quer chegar, e o tamanho real dessa distância. Só passa pro closer quem tem um problema mensurável, não quem só respondeu 'sim' pras perguntas certas."
+          solutionText="O SDR da PO2 qualifica mapeando o gap - onde o lead está hoje, onde ele quer chegar, e o tamanho real dessa distância. Só passa pro closer quem tem um problema mensurável, não quem só respondeu 'sim' pras perguntas certas."
         />
 
         <section className="border-b border-white/5 bg-surface/40">
@@ -105,13 +105,13 @@ function SdrPage() {
                 <span className="h-px w-12 bg-gold/60" />
               </div>
               <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-                Do visitante à venda —{" "}
+                Do visitante à venda -{" "}
                 <span className="font-display font-normal italic text-gold">
                   sem perder ninguém no caminho.
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-                Cada etapa do funil tem um critério de passagem claro — não é achismo de quem
+                Cada etapa do funil tem um critério de passagem claro - não é achismo de quem
                 "parece" pronto pra comprar.
               </p>
             </div>

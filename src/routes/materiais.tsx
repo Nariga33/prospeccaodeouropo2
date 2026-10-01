@@ -7,7 +7,7 @@ import { FileText, Table } from "lucide-react";
 export const Route = createFileRoute("/materiais")({
   head: () => ({
     meta: [
-      { title: "Materiais gratuitos — PO2 | Prospecção de Ouro 2.0" },
+      { title: "Materiais gratuitos - PO2 | Prospecção de Ouro 2.0" },
       {
         name: "description",
         content:
@@ -34,7 +34,7 @@ function MateriaisPage() {
               Conteúdo prático, <span className="italic text-gold">sem enrolação.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Ferramentas reais que você usa hoje mesmo — nada de e-book genérico de 40 páginas.
+              Ferramentas reais que você usa hoje mesmo - nada de e-book genérico de 40 páginas.
             </p>
           </div>
         </section>
@@ -46,7 +46,7 @@ function MateriaisPage() {
               icon={FileText}
               tag="Guia PDF"
               title="Como montar seu time de BDR, SDR e Closer com segurança"
-              desc="Perfil comportamental, perguntas de entrevista, o que testar na prática e os erros mais comuns em cada contratação — guia gratuito."
+              desc="Perfil comportamental, perguntas de entrevista, o que testar na prática e os erros mais comuns em cada contratação - guia gratuito."
               fileUrl="/materiais/guia-estruturacao-contratacao-po2.pdf"
               fileName="guia-estruturacao-contratacao-po2.pdf"
               ctaLabel="Baixar guia"
@@ -56,7 +56,7 @@ function MateriaisPage() {
               icon={Table}
               tag="Planilha grátis"
               title="Acompanhamento semanal de vendas"
-              desc="Ligações, conexões, reuniões, propostas e conversão — tudo numa planilha simples pra preencher toda sexta-feira."
+              desc="Ligações, conexões, reuniões, propostas e conversão - tudo numa planilha simples pra preencher toda sexta-feira."
               fileUrl="/materiais/planilha-acompanhamento-vendas-po2.csv"
               fileName="planilha-acompanhamento-vendas-po2.csv"
               ctaLabel="Baixar planilha"

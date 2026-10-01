@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Jargon } from "@/components/po2/Jargon";
 
 const STAGES = [
-  { label: "Visitante", width: 100, bg: "#15171b", border: "rgba(197,160,89,0.15)", text: "#9a9a9a" },
+  {
+    label: "Visitante",
+    width: 100,
+    bg: "#15171b",
+    border: "rgba(197,160,89,0.15)",
+    text: "#9a9a9a",
+  },
   { label: "Lead", width: 82, bg: "#241f18", border: "rgba(197,160,89,0.25)", text: "#c9c4ba" },
   {
     label: "MQL / PQL",

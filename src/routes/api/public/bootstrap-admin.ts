@@ -35,11 +35,12 @@ export const Route = createFileRoute("/api/public/bootstrap-admin")({
           }
           // Find existing user by email.
           const list = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
-          const found = list.data.users.find(
-            (u) => (u.email ?? "").toLowerCase() === email,
-          );
+          const found = list.data.users.find((u) => (u.email ?? "").toLowerCase() === email);
           if (!found) {
-            return Response.json({ ok: false, error: "Usuário existe mas não encontrado" }, { status: 500 });
+            return Response.json(
+              { ok: false, error: "Usuário existe mas não encontrado" },
+              { status: 500 },
+            );
           }
           userId = found.id;
         } else {

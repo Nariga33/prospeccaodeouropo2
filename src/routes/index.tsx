@@ -68,7 +68,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PO2 — Terceirização do Time Comercial e Prospecção B2B" },
+      { title: "PO2 - Terceirização do Time Comercial e Prospecção B2B" },
       {
         name: "description",
         content:
@@ -79,7 +79,7 @@ export const Route = createFileRoute("/")({
         content:
           "terceirização do time comercial, terceirizar time comercial, prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, BPO comercial, outbound B2B, prospecção ativa, assessoria comercial, BDR, SDR, inside sales, closer",
       },
-      { property: "og:title", content: "PO2 — Prospecção de Ouro 2.0" },
+      { property: "og:title", content: "PO2 - Prospecção de Ouro 2.0" },
       {
         property: "og:description",
         content:
@@ -96,7 +96,7 @@ export const Route = createFileRoute("/")({
               name: "Como terceirizar o time comercial da minha empresa com a PO2?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Não terceirizamos vendas — estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado. É por isso que empresas buscam terceirizar o time comercial com a PO2: método aplicado, não um relatório genérico.",
+                text: "Não terceirizamos vendas - estruturamos a operação de prospecção B2B que seu time já tem (ICP, cadência, script e métricas). Pra quem ainda não tem time formado, também atuamos direto na prospecção ativa enquanto o processo é implementado. É por isso que empresas buscam terceirizar o time comercial com a PO2: método aplicado, não um relatório genérico.",
               },
             },
             {
@@ -104,7 +104,7 @@ export const Route = createFileRoute("/")({
               name: "O que é SDR terceirizado?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "SDR terceirizado é quando a qualificação de leads — transformar um contato em oportunidade real — é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esse profissional internamente. A PO2 estrutura esse processo e pode executá-lo diretamente.",
+                text: "SDR terceirizado é quando a qualificação de leads - transformar um contato em oportunidade real - é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esse profissional internamente. A PO2 estrutura esse processo e pode executá-lo diretamente.",
               },
             },
             {
@@ -112,7 +112,7 @@ export const Route = createFileRoute("/")({
               name: "O que é BDR terceirizado?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "BDR terceirizado é a prospecção ativa (outbound) — encontrar e abordar empresas que ainda não conhecem a solução — feita por uma equipe externa especializada, seguindo ICP, cadência e script definidos, em vez de montar essa função dentro de casa.",
+                text: "BDR terceirizado é a prospecção ativa (outbound) - encontrar e abordar empresas que ainda não conhecem a solução - feita por uma equipe externa especializada, seguindo ICP, cadência e script definidos, em vez de montar essa função dentro de casa.",
               },
             },
             {
@@ -120,7 +120,7 @@ export const Route = createFileRoute("/")({
               name: "Qual a diferença entre SDR interno e terceirizado?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "SDR interno é contratado, treinado e gerenciado pela própria empresa, com curva de aprendizado e custo fixo de folha. SDR terceirizado já vem com processo, ferramentas e gestão prontos — costuma ser mais rápido de colocar em operação, mas exige alinhamento constante de ICP e critério de qualificação com quem contrata.",
+                text: "SDR interno é contratado, treinado e gerenciado pela própria empresa, com curva de aprendizado e custo fixo de folha. SDR terceirizado já vem com processo, ferramentas e gestão prontos - costuma ser mais rápido de colocar em operação, mas exige alinhamento constante de ICP e critério de qualificação com quem contrata.",
               },
             },
             {
@@ -128,7 +128,7 @@ export const Route = createFileRoute("/")({
               name: "O que é SDR as a Service?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "É o modelo onde a qualificação de leads roda como um serviço contínuo — estrutura, tecnologia e indicadores prontos, cobrado de forma recorrente — em vez de um projeto pontual de consultoria.",
+                text: "É o modelo onde a qualificação de leads roda como um serviço contínuo - estrutura, tecnologia e indicadores prontos, cobrado de forma recorrente - em vez de um projeto pontual de consultoria.",
               },
             },
             {
@@ -136,7 +136,7 @@ export const Route = createFileRoute("/")({
               name: "Pra que tamanho de empresa a PO2 é indicada?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Empresas B2B que já vendem, mas dependem de esforço individual pra gerar oportunidade — de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.",
+                text: "Empresas B2B que já vendem, mas dependem de esforço individual pra gerar oportunidade - de times de 1 vendedor a operações com múltiplos BDR, SDR e closers.",
               },
             },
             {
@@ -144,7 +144,7 @@ export const Route = createFileRoute("/")({
               name: "Já tenho time comercial. Por que contratar a PO2?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "A PO2 não substitui o time — estrutura o método que ele executa: ICP, cadência, script e métricas. Time sem processo vende menos do que poderia, independente do tamanho.",
+                text: "A PO2 não substitui o time - estrutura o método que ele executa: ICP, cadência, script e métricas. Time sem processo vende menos do que poderia, independente do tamanho.",
               },
             },
             {
@@ -160,7 +160,7 @@ export const Route = createFileRoute("/")({
               name: "O que diferencia a PO2 de uma consultoria comum?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Não entrega só um relatório — participa da execução, com acompanhamento prático e correção de rota junto com o time.",
+                text: "Não entrega só um relatório - participa da execução, com acompanhamento prático e correção de rota junto com o time.",
               },
             },
             {
@@ -176,7 +176,7 @@ export const Route = createFileRoute("/")({
               name: "A PO2 garante resultado de vendas?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Não promete número de vendas — isso depende de fatores fora do controle da consultoria, como produto, preço e mercado. O que garante é a estruturação do método. Na Mentoria, especificamente, há garantia de 7 dias.",
+                text: "Não promete número de vendas - isso depende de fatores fora do controle da consultoria, como produto, preço e mercado. O que garante é a estruturação do método. Na Mentoria, especificamente, há garantia de 7 dias.",
               },
             },
             {
@@ -184,7 +184,7 @@ export const Route = createFileRoute("/")({
               name: "A PO2 atende empresas de todo o Brasil?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Sim. A PO2 é sediada em Porto Alegre (RS), mas atende empresas B2B de qualquer estado — a operação de prospecção roda remota, por telefone, e-mail, LinkedIn e WhatsApp.",
+                text: "Sim. A PO2 é sediada em Porto Alegre (RS), mas atende empresas B2B de qualquer estado - a operação de prospecção roda remota, por telefone, e-mail, LinkedIn e WhatsApp.",
               },
             },
           ],
@@ -213,26 +213,26 @@ function LandingPage() {
       <main>
         <Hero />
 
-        {/* PROBLEMA — dor real, antes/depois */}
+        {/* PROBLEMA - dor real, antes/depois */}
         <ProblemVsMethod />
 
-        {/* SOLUÇÃO / MÉTODO — o funil completo e as 5 frentes */}
+        {/* SOLUÇÃO / MÉTODO - o funil completo e as 5 frentes */}
         <FullFunnelOverview />
         <ServicesShowcase />
         <MetodologiasTeaser />
 
-        {/* Qualificação — pra quem é (e pra quem não é) */}
+        {/* Qualificação - pra quem é (e pra quem não é) */}
         <WhoItsFor />
 
-        {/* COMO — o passo a passo aplicado na prática */}
+        {/* COMO - o passo a passo aplicado na prática */}
         <Pitch />
         <EventosTeaser />
         <MentoriaTeaser />
 
-        {/* O Plano — o que acontece depois do sim */}
+        {/* O Plano - o que acontece depois do sim */}
         <ThePlan />
 
-        {/* QUEM ESTÁ POR TRÁS — autoridade, depois que a dor já fisgou */}
+        {/* QUEM ESTÁ POR TRÁS - autoridade, depois que a dor já fisgou */}
         <Founder />
 
         {/* CASES */}
@@ -241,13 +241,13 @@ function LandingPage() {
         {/* AVALIAÇÕES */}
         <Testimonials />
 
-        {/* Investimento — justifica o valor antes do CTA final */}
+        {/* Investimento - justifica o valor antes do CTA final */}
         <CostComparison />
 
-        {/* Redução de risco — reforça garantia antes da decisão */}
+        {/* Redução de risco - reforça garantia antes da decisão */}
         <RiskReduction />
 
-        {/* Dúvidas — quebra objeção antes da decisão */}
+        {/* Dúvidas - quebra objeção antes da decisão */}
         <Faq />
 
         {/* CTA */}
@@ -296,7 +296,7 @@ function MentoriaTeaser() {
           Quer aprender o método e aplicar com acompanhamento?
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Não é curso gravado — é operação real, corrigida sessão a sessão. 8 módulos,
+          Não é curso gravado - é operação real, corrigida sessão a sessão. 8 módulos,
           acompanhamento prático e 7 dias de garantia.
         </p>
         <div className="mt-8">
@@ -323,14 +323,13 @@ function Hero() {
             Assessoria Comercial Full Funnel
           </div>
           <h1 className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Pare de depender de{" "}
-            <span className="font-display font-normal italic text-gold">esforço heroico</span> pra
-            ter pipeline todo mês.
+            Clientes novos todo mês, sem depender de{" "}
+            <span className="font-display font-normal italic text-gold">indicação ou sorte</span>.
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Prospecção ativa estruturada de ponta a ponta — da primeira ligação ao contrato fechado
-            — com método, inteligência e previsibilidade. Pra empresas que já vendem, mas ainda
-            dependem de quem lembra de prospectar hoje.
+            A gente entra em contato direto com os donos e gestores certos, toda semana, e te
+            entrega a conversa pronta pra fechar negócio. Você não precisa entender de prospecção,
+            CRM ou cadência de mensagens - só atender quem já tem interesse real na sua empresa.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
@@ -368,7 +367,7 @@ function Hero() {
   );
 }
 
-// Indicadores de autoridade — edite os valores livremente conforme os números crescem.
+// Indicadores de autoridade - edite os valores livremente conforme os números crescem.
 const AUTHORITY_INDICATORS = [
   { v: "+R$17MM", l: "Receita gerada (fundadores)" },
   { v: "+5", l: "Anos em operação outbound" },
@@ -410,48 +409,48 @@ function ProblemVsMethod() {
       bad: "Sem ICP",
       badDesc: "Listas feitas no chute, sem critério de qualificação.",
       badLong:
-        "Sem ICP documentado, cada etapa trata todo contato do mesmo jeito — seja o BDR ligando frio ou o SDR respondendo um lead novo. Empresas que nunca comprariam recebem o mesmo esforço das que fechariam rápido, e isso só fica claro quando já é tarde.",
+        "Sem ICP documentado, cada etapa trata todo contato do mesmo jeito - seja o BDR ligando frio ou o SDR respondendo um lead novo. Empresas que nunca comprariam recebem o mesmo esforço das que fechariam rápido, e isso só fica claro quando já é tarde.",
       goodIcon: LineChart,
       good: "ICP documentado",
       goodDesc: "Pipeline previsível, com esforço direcionado para quem compra.",
       goodLong:
-        "Com ICP escrito e compartilhado entre marketing, pré-venda e closer, cada etapa do funil sabe exatamente quem vale o esforço. O pipeline fica mais enxuto — mas muito mais previsível.",
+        "Com ICP escrito e compartilhado entre marketing, pré-venda e closer, cada etapa do funil sabe exatamente quem vale o esforço. O pipeline fica mais enxuto - mas muito mais previsível.",
     },
     {
       badIcon: MessageSquare,
       bad: "Abordagem genérica",
-      badDesc: "Mensagem igual para todo mundo — sem contexto.",
+      badDesc: "Mensagem igual para todo mundo - sem contexto.",
       badLong:
-        "A mesma mensagem genérica vai pra todo mundo, outbound ou inbound. O lead sente que está recebendo spam, mesmo quando o produto poderia resolver o problema real dele — e a taxa de resposta paga o preço.",
+        "A mesma mensagem genérica vai pra todo mundo, outbound ou inbound. O lead sente que está recebendo spam, mesmo quando o produto poderia resolver o problema real dele - e a taxa de resposta paga o preço.",
       goodIcon: Users,
       good: "Abordagem consultiva",
-      goodDesc: "Reuniões com decisores certos — não leads errados.",
+      goodDesc: "Reuniões com decisores certos - não leads errados.",
       goodLong:
-        "Cada abordagem nasce do contexto real do lead — empresa, cargo, momento. A reunião que acontece já começa validada, porque quem está do outro lado sentiu que foi entendido antes de ser abordado.",
+        "Cada abordagem nasce do contexto real do lead - empresa, cargo, momento. A reunião que acontece já começa validada, porque quem está do outro lado sentiu que foi entendido antes de ser abordado.",
     },
     {
       badIcon: Layers,
       bad: "Cadência sem estratégia",
       badDesc: "Sequência sem narrativa, sem progressão comercial.",
       badLong:
-        "Sequência de contato sem lógica — um e-mail aqui, uma ligação ali, sem narrativa entre os toques. O lead recebe estímulos desconexos e não entende por que continua sendo procurado.",
+        "Sequência de contato sem lógica - um e-mail aqui, uma ligação ali, sem narrativa entre os toques. O lead recebe estímulos desconexos e não entende por que continua sendo procurado.",
       goodIcon: Wallet,
       good: "Cadência estruturada",
       goodDesc: "Time comercial produtivo, CAC mais baixo.",
       goodLong:
-        "Cada canal — e-mail, LinkedIn, ligação, WhatsApp — entra numa ordem que conta uma história, reforçando a mesma mensagem sob ângulos diferentes até a resposta acontecer.",
+        "Cada canal - e-mail, LinkedIn, ligação, WhatsApp - entra numa ordem que conta uma história, reforçando a mesma mensagem sob ângulos diferentes até a resposta acontecer.",
     },
     {
       badIcon: BarChart3,
       bad: "Número sem análise",
       badDesc: "Time ocupado, mas sem saber o que converte.",
       badLong:
-        "O time está sempre ocupado — ligando, respondendo, negociando — mas ninguém sabe dizer com clareza o que está funcionando e o que está só queimando tempo.",
+        "O time está sempre ocupado - ligando, respondendo, negociando - mas ninguém sabe dizer com clareza o que está funcionando e o que está só queimando tempo.",
       goodIcon: ShieldCheck,
       good: "Ritual de métricas",
-      goodDesc: "Decisão com dado — a empresa deixa de ser refém do acaso comercial.",
+      goodDesc: "Decisão com dado - a empresa deixa de ser refém do acaso comercial.",
       goodLong:
-        "Métrica revisada toda semana, por etapa do funil, revela exatamente onde está o gargalo — lista ruim, abordagem fraca ou negociação sem critério. A decisão vira dado, não achismo.",
+        "Métrica revisada toda semana, por etapa do funil, revela exatamente onde está o gargalo - lista ruim, abordagem fraca ou negociação sem critério. A decisão vira dado, não achismo.",
     },
   ];
   return (
@@ -467,14 +466,14 @@ function ProblemVsMethod() {
           </span>
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Empresas com bons produtos e vendedores continuam sem previsibilidade porque cada etapa —
-          do primeiro contato ao fechamento — acontece no improviso. A conta chega em pipeline fraco
+          Empresas com bons produtos e vendedores continuam sem previsibilidade porque cada etapa -
+          do primeiro contato ao fechamento - acontece no improviso. A conta chega em pipeline fraco
           e CAC alto.
         </p>
 
         <blockquote className="mt-10 max-w-3xl border-l-2 border-gold/50 pl-6 font-display text-xl italic leading-snug text-foreground/90 md:text-2xl">
           "Vender mais não é sobre fazer mais contato. É sobre fazer o contato{" "}
-          <em className="not-italic text-gold">certo</em>, com a pessoa certa, no momento certo — em
+          <em className="not-italic text-gold">certo</em>, com a pessoa certa, no momento certo - em
           qualquer etapa do funil, com controle dos números."
         </blockquote>
 
@@ -634,9 +633,9 @@ function Pitch() {
           PO2.
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Os primeiros 15 segundos definem se quem está do outro lado —{" "}
+          Os primeiros 15 segundos definem se quem está do outro lado -{" "}
           <Jargon term="BDR">BDR</Jargon>, <Jargon term="SDR">SDR</Jargon> ou{" "}
-          <Jargon term="Inside Sales">Inside Sales</Jargon> — será visto como vendedor genérico ou
+          <Jargon term="Inside Sales">Inside Sales</Jargon> - será visto como vendedor genérico ou
           como conversa relevante.
         </p>
 
@@ -682,7 +681,7 @@ function MetodologiasTeaser() {
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
           Frameworks consagrados (CHAMP, SPIN, Challenger Sale...) e o Modelo PO2 de Evolução
-          Comercial — mapa mental e ciclo C.R.E.S.C.E.R. explicados a fundo.
+          Comercial - mapa mental e ciclo C.R.E.S.C.E.R. explicados a fundo.
         </p>
         <div className="mt-8">
           <Link to="/metodologias" className={ctaPrimary}>
@@ -767,7 +766,7 @@ function Cases() {
             </h2>
           </div>
           <p className="max-w-sm text-muted-foreground">
-            Contatos diretos com decisores, agendas realizadas e propostas em andamento — método
+            Contatos diretos com decisores, agendas realizadas e propostas em andamento - método
             validado em campo.
           </p>
         </div>
@@ -810,7 +809,7 @@ function CostComparison() {
   const stack = [
     {
       label: "Time de prospecção (BDR + SDR, CLT júnior)",
-      note: "Piso + FGTS, INSS, 13º, férias — 2 posições",
+      note: "Piso + FGTS, INSS, 13º, férias - 2 posições",
       value: "R$ 13.000",
     },
     {
@@ -842,7 +841,7 @@ function CostComparison() {
             mais do que parece.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            Sem contar os 60 a 90 dias de ramp-up em que o time ainda não bate meta — tempo em que o
+            Sem contar os 60 a 90 dias de ramp-up em que o time ainda não bate meta - tempo em que o
             CAC sobe e o pipeline continua fraco.
           </p>
         </div>
@@ -893,7 +892,7 @@ function CostComparison() {
             </div>
             <ul className="space-y-3">
               {[
-                "Método validado — sem curva de aprendizado",
+                "Método validado - sem curva de aprendizado",
                 "ICP, cadência e scripts prontos desde a semana 1",
                 "Acompanhamento semanal incluso",
                 "Sem encargos trabalhistas nem gestão de pessoa",
@@ -919,7 +918,7 @@ function CostComparison() {
           </div>
           <p className="max-w-xl text-xs text-muted-foreground">
             Valores de referência (jun/2026) para estimar o custo de estruturar um time comercial
-            interno vs. contratar a PO2. Podem variar por região, senioridade e negociação — use
+            interno vs. contratar a PO2. Podem variar por região, senioridade e negociação - use
             como comparativo, não como orçamento fechado.
           </p>
         </div>

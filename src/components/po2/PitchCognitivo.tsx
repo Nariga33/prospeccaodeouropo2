@@ -23,7 +23,7 @@ const PITCH_COGNITIVO = [
     n: 2,
     icon: CalendarClock,
     t: "Parametrização de Agenda",
-    d: "Alinha o que vai acontecer na call e quanto tempo leva — corta a ansiedade do lead.",
+    d: "Alinha o que vai acontecer na call e quanto tempo leva - corta a ansiedade do lead.",
   },
   {
     n: 3,
@@ -35,7 +35,7 @@ const PITCH_COGNITIVO = [
     n: 4,
     icon: Award,
     t: "Âncora de Autoridade",
-    d: "Apresenta a PO2 de forma breve. A call não é sobre o closer — é sobre o lead.",
+    d: "Apresenta a PO2 de forma breve. A call não é sobre o closer - é sobre o lead.",
   },
   {
     n: 5,
@@ -53,7 +53,7 @@ const PITCH_COGNITIVO = [
     n: 7,
     icon: ShieldQuestion,
     t: "Checkpoint de Intenção",
-    d: "Confirma que não sobrou dúvida técnica. Isola a objeção — se sobrar, é preço, não produto.",
+    d: "Confirma que não sobrou dúvida técnica. Isola a objeção - se sobrar, é preço, não produto.",
   },
   {
     n: 8,
@@ -65,7 +65,7 @@ const PITCH_COGNITIVO = [
     n: 9,
     icon: Zap,
     t: "Incentivo Real",
-    d: "Urgência ética — desconto por decisão rápida ou valor agregado, nunca pressão vazia.",
+    d: "Urgência ética - desconto por decisão rápida ou valor agregado, nunca pressão vazia.",
   },
 ];
 
@@ -78,11 +78,11 @@ export function PitchCognitivo() {
             <span className={goldRule} /> O roteiro de call <span className={goldRule} />
           </div>
           <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
-            PITCH —{" "}
+            PITCH -{" "}
             <span className="font-display font-normal italic text-gold">Venda Cognitiva.</span>
           </h2>
           <p className="mx-auto mt-5 text-muted-foreground">
-            O roteiro de 9 passos que a PO2 treina em todo Closer — desenvolvido com{" "}
+            O roteiro de 9 passos que a PO2 treina em todo Closer - desenvolvido com{" "}
             <span className="text-gold">Thiago Zanoni</span>, especialista em fechamento de alta
             performance. Não depende de carisma, depende de estrutura.
           </p>

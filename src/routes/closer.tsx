@@ -12,30 +12,30 @@ import { ArrowRight, Trophy } from "lucide-react";
 export const Route = createFileRoute("/closer")({
   head: () => ({
     meta: [
-      { title: "Closer — PO2 | Negociação e Fechamento" },
+      { title: "Closer - PO2 | Negociação e Fechamento" },
       {
         name: "description",
         content:
           "Método de 9 etapas para Closer: qualificação pré-call, roteiro de fechamento, objeções finais, margem de negociação, onboarding e métricas de conversão.",
       },
-      { property: "og:title", content: "Closer — PO2" },
+      { property: "og:title", content: "Closer - PO2" },
       {
         property: "og:description",
         content:
-          "Fechar não é sorte — é processo. O mesmo rigor de método em toda a operação comercial terceirizada da PO2.",
+          "Fechar não é sorte - é processo. O mesmo rigor de método em toda a operação comercial terceirizada da PO2.",
       },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/closer" },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Fechamento comercial (Closer) — operação comercial terceirizada",
-          name: "Closer — PO2",
+          serviceType: "Fechamento comercial (Closer) - operação comercial terceirizada",
+          name: "Closer - PO2",
           description:
             "Método de negociação e fechamento: objeções finais, margem de negociação, onboarding e métricas de conversão.",
           provider: {
             "@type": "ProfessionalService",
-            name: "PO2 — Prospecção de Ouro 2.0",
+            name: "PO2 - Prospecção de Ouro 2.0",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",
@@ -71,7 +71,7 @@ function CloserPage() {
               Fechar não é sorte. <span className="italic text-gold">É processo.</span>
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              O <Jargon term="Closer">Closer</Jargon> fecha o negócio — negociação final, contrato e
+              O <Jargon term="Closer">Closer</Jargon> fecha o negócio - negociação final, contrato e
               handoff pro onboarding, com o mesmo rigor de método que a PO2 aplica em toda a
               operação comercial.
             </p>
@@ -92,9 +92,9 @@ function CloserPage() {
           title="Negociação de preço"
           titleEm="quando o gap nunca foi quantificado."
           problemTitle="Desconto vira a única ferramenta de fechamento"
-          problemText="Sem o custo de continuar no estado atual quantificado em dinheiro, o lead só enxerga um número: o preço da proposta. Qualquer concorrente mais barato parece uma escolha óbvia — porque ninguém mostrou o que o problema já está custando todo mês."
+          problemText="Sem o custo de continuar no estado atual quantificado em dinheiro, o lead só enxerga um número: o preço da proposta. Qualquer concorrente mais barato parece uma escolha óbvia - porque ninguém mostrou o que o problema já está custando todo mês."
           solutionTitle="Fechar em cima do gap, não do desconto"
-          solutionText="O Closer PO2 negocia com o custo do problema calculado desde a discovery — o valor de continuar como está, comparado ao investimento pra mudar. A conversa deixa de ser sobre preço e passa a ser sobre risco de adiar a decisão."
+          solutionText="O Closer PO2 negocia com o custo do problema calculado desde a discovery - o valor de continuar como está, comparado ao investimento pra mudar. A conversa deixa de ser sobre preço e passa a ser sobre risco de adiar a decisão."
         />
 
         <CloserCallPains />

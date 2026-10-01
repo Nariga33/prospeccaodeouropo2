@@ -8,13 +8,13 @@ import { GapSection } from "@/components/po2/GapSection";
 export const Route = createFileRoute("/mentoria")({
   head: () => ({
     meta: [
-      { title: "Mentoria com Matheus Staruck — PO2 | Prospecção B2B" },
+      { title: "Mentoria com Matheus Staruck - PO2 | Prospecção B2B" },
       {
         name: "description",
         content:
-          "Mentoria prática de prospecção B2B com Matheus Staruck. Não é curso, é operação que você executa junto — método, indicadores e melhoria contínua.",
+          "Mentoria prática de prospecção B2B com Matheus Staruck. Não é curso, é operação que você executa junto - método, indicadores e melhoria contínua.",
       },
-      { property: "og:title", content: "Mentoria PO2 — Matheus Staruck" },
+      { property: "og:title", content: "Mentoria PO2 - Matheus Staruck" },
       {
         property: "og:description",
         content:
@@ -28,10 +28,10 @@ export const Route = createFileRoute("/mentoria")({
           serviceType: "Mentoria de prospecção e vendas B2B",
           name: "Mentoria PO2 com Matheus Staruck",
           description:
-            "Mentoria prática de prospecção e vendas B2B — diagnóstico, 8 módulos, templates, acompanhamento e comunidade.",
+            "Mentoria prática de prospecção e vendas B2B - diagnóstico, 8 módulos, templates, acompanhamento e comunidade.",
           provider: {
             "@type": "ProfessionalService",
-            name: "PO2 — Prospecção de Ouro 2.0",
+            name: "PO2 - Prospecção de Ouro 2.0",
             areaServed: "Brasil",
             address: {
               "@type": "PostalAddress",
@@ -65,9 +65,9 @@ function MentoriaPage() {
           title="Time treinado em técnica"
           titleEm="continua sem saber diagnosticar."
           problemTitle="Sabe responder objeção, não sabe evitar que ela apareça"
-          problemText="A maioria do treinamento comercial ensina script de fechamento e contorno de objeção — remédio pro sintoma. O time nunca aprendeu a mapear o gap do cliente antes de vender, então a objeção sempre chega tarde, quando já é difícil reverter."
+          problemText="A maioria do treinamento comercial ensina script de fechamento e contorno de objeção - remédio pro sintoma. O time nunca aprendeu a mapear o gap do cliente antes de vender, então a objeção sempre chega tarde, quando já é difícil reverter."
           solutionTitle="Gap Selling e Gap Prospecting aplicados na prática"
-          solutionText="A Mentoria não ensina teoria isolada — corrige a operação real do aluno, sessão a sessão, aplicando a lógica de diagnóstico de Keenan em cima das ligações, reuniões e negociações que já estão acontecendo."
+          solutionText="A Mentoria não ensina teoria isolada - corrige a operação real do aluno, sessão a sessão, aplicando a lógica de diagnóstico de Keenan em cima das ligações, reuniões e negociações que já estão acontecendo."
         />
         <MentoriaOffer />
       </main>

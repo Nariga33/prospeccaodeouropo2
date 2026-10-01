@@ -22,7 +22,7 @@ const CHANNELS = [
     icon: Phone,
     label: "Cold Call",
     day: "Dia 2",
-    desc: "Ligação com diagnóstico — roteiro consultivo, não script decorado.",
+    desc: "Ligação com diagnóstico - roteiro consultivo, não script decorado.",
   },
   {
     icon: MessageCircle,
@@ -114,7 +114,7 @@ export function OutboundHub() {
             <span className="font-display font-normal italic text-gold">todos os canais.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            A PO2 não te entrega uma ferramenta isolada — orquestra LinkedIn, WhatsApp, cold call,
+            A PO2 não te entrega uma ferramenta isolada - orquestra LinkedIn, WhatsApp, cold call,
             e-mail e CRM numa cadência única, com métrica em cada etapa. Clique em cada canal pra
             ver o que acontece naquele dia.
           </p>

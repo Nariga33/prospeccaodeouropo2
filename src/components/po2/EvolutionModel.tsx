@@ -18,7 +18,7 @@ const levels = [
     icon: Brain,
     title: "Mentalidade",
     tag: "Como penso",
-    desc: "Desenvolvemos líderes comerciais — crenças, prosperidade e relação com vendas.",
+    desc: "Desenvolvemos líderes comerciais - crenças, prosperidade e relação com vendas.",
   },
   {
     n: "02",
@@ -32,7 +32,7 @@ const levels = [
     icon: MapIcon,
     title: "Caminho",
     tag: "O que decido",
-    desc: "Construímos o plano estratégico — processos, prioridades e metas com direção.",
+    desc: "Construímos o plano estratégico - processos, prioridades e metas com direção.",
   },
   {
     n: "04",
@@ -46,7 +46,7 @@ const levels = [
     icon: Trophy,
     title: "Resultado",
     tag: "O que construo",
-    desc: "Receita previsível e crescimento sustentável — consequência, não acaso.",
+    desc: "Receita previsível e crescimento sustentável - consequência, não acaso.",
   },
 ];
 
@@ -85,7 +85,7 @@ const cycle: CycleItem[] = [
   {
     letter: "R",
     label: "Resultado",
-    desc: "Receita previsível como consequência do método — não como acaso comercial.",
+    desc: "Receita previsível como consequência do método - não como acaso comercial.",
   },
 ];
 
@@ -115,7 +115,7 @@ function JourneyMindMap() {
         className="relative mt-8 flex items-center justify-center outline-none"
         tabIndex={0}
         role="group"
-        aria-label="Mapa mental da jornada de evolução — use as setas para navegar"
+        aria-label="Mapa mental da jornada de evolução - use as setas para navegar"
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") {
             e.preventDefault();
@@ -246,7 +246,7 @@ function JourneyMindMap() {
             before: "Ninguém responde minhas mensagens",
             after: "Minha abordagem ainda não gera curiosidade suficiente",
           },
-          { before: "Falta lead", after: "Falta conversão — a consciência revela o problema real" },
+          { before: "Falta lead", after: "Falta conversão - a consciência revela o problema real" },
         ].map((ex) => (
           <div key={ex.before} className="rounded-xl border border-white/10 bg-card/50 p-4">
             <div className="flex gap-3 text-xs">
@@ -290,7 +290,7 @@ function CrescerCycle() {
         Método <span className="italic text-gold">C.R.E.S.C.E.R.</span>
       </h3>
       <p className="mt-3 max-w-md text-sm text-muted-foreground">
-        Um ciclo contínuo — não uma linha reta. Clique em cada letra para entender o que ela
+        Um ciclo contínuo - não uma linha reta. Clique em cada letra para entender o que ela
         significa.
       </p>
 
@@ -298,7 +298,7 @@ function CrescerCycle() {
         className="relative mt-8 flex items-center justify-center outline-none"
         tabIndex={0}
         role="group"
-        aria-label="Ciclo C.R.E.S.C.E.R. — use as setas para navegar"
+        aria-label="Ciclo C.R.E.S.C.E.R. - use as setas para navegar"
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") {
             e.preventDefault();
@@ -451,7 +451,7 @@ export function EvolutionModel() {
           <span className="font-display font-normal italic text-gold">a transformação.</span>
         </h2>
         <p className="mt-5 text-muted-foreground">
-          Frameworks resolvem execução. O Modelo PO2 resolve o que vem antes — mentalidade,
+          Frameworks resolvem execução. O Modelo PO2 resolve o que vem antes - mentalidade,
           consciência e disciplina de jornada. É assim que método vira resultado sustentável.
         </p>
       </div>

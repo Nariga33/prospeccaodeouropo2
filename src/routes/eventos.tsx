@@ -7,13 +7,13 @@ import { Sparkles } from "lucide-react";
 export const Route = createFileRoute("/eventos")({
   head: () => ({
     meta: [
-      { title: "Eventos ao vivo — PO2 | Masterclasses de Prospecção B2B" },
+      { title: "Eventos ao vivo - PO2 | Masterclasses de Prospecção B2B" },
       {
         name: "description",
         content:
           "Inscreva-se nas masterclasses ao vivo da PO2. Encontros online, íntimos e limitados sobre prospecção B2B com certificado de participação.",
       },
-      { property: "og:title", content: "Eventos ao vivo — PO2" },
+      { property: "og:title", content: "Eventos ao vivo - PO2" },
       {
         property: "og:description",
         content: "Masterclasses online de prospecção B2B com Matheus Staruck. Vagas limitadas.",

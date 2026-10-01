@@ -7,7 +7,7 @@ import { Loader2, ShieldCheck } from "lucide-react";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Acesso administrativo — PO2" },
+      { title: "Acesso administrativo - PO2" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -30,7 +30,10 @@ function AuthPage() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim().toLowerCase(),
+      password,
+    });
     setLoading(false);
     if (error) {
       toast.error("Credenciais inválidas");
@@ -42,7 +45,10 @@ function AuthPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6">
-      <form onSubmit={onSubmit} className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-8 shadow-2xl">
+      <form
+        onSubmit={onSubmit}
+        className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.02] p-8 shadow-2xl"
+      >
         <div className="flex items-center gap-3 text-gold">
           <ShieldCheck className="size-5" />
           <span className="text-sm font-semibold tracking-widest uppercase">PO2 Admin</span>
