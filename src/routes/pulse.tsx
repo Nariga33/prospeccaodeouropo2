@@ -34,6 +34,23 @@ export const Route = createFileRoute("/pulse")({
   component: PulsePage,
 });
 
+const INDICADORES = [
+  ["Taxa de agendamento", "Leads com reunião agendada sobre os leads criados."],
+  ["Taxa de no-show", "Reuniões agendadas em que o lead não compareceu."],
+  ["Comparecimento", "Reuniões realizadas sobre as agendadas."],
+  ["Taxa de qualificação", "Leads qualificados (SQL) sobre as reuniões realizadas."],
+  ["Taxa de fechamento", "Fechamentos sobre os leads qualificados."],
+  ["Conversão total", "Fechamentos sobre os leads criados no período."],
+];
+
+function track(name: string) {
+  try {
+    (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", name, { page: "pulse" });
+  } catch {
+    /* sem analytics */
+  }
+}
+
 const RECURSOS = [
   {
     icon: Search,
@@ -92,43 +109,44 @@ function PulsePage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
-          <div>
-            <span className="inline-block rounded-md bg-gold px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-gold-foreground">
-              PO2 Pulse
-            </span>
-            <h1 className="mt-8 text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
-              PO2 Pulse:{" "}
-              <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-                O pulso da sua operação comercial
+        <section className="grid lg:grid-cols-[1.05fr_1fr]">
+          <div className="bg-[#F4F5F0] px-6 py-16 text-[#101314] md:px-12 md:py-24 lg:px-16">
+            <div className="mx-auto max-w-xl lg:ml-auto lg:mr-0">
+              <span className="inline-block rounded-md bg-[#D8FF36] px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#101314]">
+                PO2 Pulse
               </span>
-            </h1>
-            <div className="mt-8 max-w-xl space-y-5 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                Prospecte, venda, defina metas e alinhe projetos com o time, tudo em um só lugar. Com o{" "}
-                <strong className="text-foreground">PO2 Pulse</strong> você acompanha indicadores, recebe
-                recomendações e conta com mentorias periódicas.
-              </p>
-              <p>
-                Uma conexão entre consultoria, tecnologia e acompanhamento contínuo para construir uma relação de
-                longo prazo com a sua operação comercial.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href={PO2_WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
-              >
-                Falar com o time <ArrowRight className="size-4" />
-              </a>
-              <a
-                href="#recursos"
-                className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium transition-colors hover:border-gold hover:text-gold"
-              >
-                Ver o que tem no Pulse <ArrowRight className="size-4" />
-              </a>
+              <h1 className="mt-8 text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
+                PO2 Pulse: <span className="text-[#155E75]">O pulso da sua operação comercial</span>
+              </h1>
+              <div className="mt-8 space-y-5 text-lg leading-relaxed text-[#101314]/80">
+                <p>
+                  Prospecte, venda, defina metas e alinhe projetos com o time, tudo em um só lugar. Com o{" "}
+                  <strong className="text-[#101314]">PO2 Pulse</strong> você acompanha indicadores, recebe
+                  recomendações e conta com mentorias periódicas.
+                </p>
+                <p>
+                  Uma conexão entre consultoria, tecnologia e acompanhamento contínuo para construir uma relação de
+                  longo prazo com a sua operação comercial.
+                </p>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a
+                  href={PO2_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("pulse_cta_whatsapp")}
+                  className="inline-flex items-center gap-6 rounded-xl bg-[#101314] px-7 py-4 text-sm font-medium text-[#F4F5F0] transition-all hover:bg-[#155E75]"
+                >
+                  Falar com o time <ArrowRight className="size-4" />
+                </a>
+                <a
+                  href="#recursos"
+                  onClick={() => track("pulse_cta_recursos")}
+                  className="inline-flex items-center gap-6 rounded-xl border border-[#101314]/30 px-7 py-4 text-sm font-medium transition-colors hover:border-[#155E75] hover:text-[#155E75]"
+                >
+                  Ver o que tem no Pulse <ArrowRight className="size-4" />
+                </a>
+              </div>
             </div>
           </div>
           <img
@@ -136,8 +154,31 @@ function PulsePage() {
             alt="Painel do PO2 Pulse em um notebook, com nota geral, evolução e indicadores de processos, conversão, gestão e atividades"
             width={810}
             height={1080}
-            className="mx-auto w-full max-w-md rounded-3xl border border-white/10 lg:max-w-none"
+            className="h-full max-h-[720px] w-full object-cover lg:max-h-none"
           />
+        </section>
+
+        <section id="indicadores" className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Indicadores</p>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
+            O pulso da operação, em números
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            O Pulse mede cada etapa do funil comercial e mostra onde a operação perde ou ganha ritmo.
+          </p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {INDICADORES.map(([t, d]) => (
+              <div key={t} className="rounded-2xl border border-white/10 bg-[#155E75]/30 p-6">
+                <div className="flex items-end gap-1" aria-hidden="true">
+                  <span className="h-3 w-1.5 rounded-sm bg-gold" />
+                  <span className="h-5 w-1.5 rounded-sm bg-gold" />
+                  <span className="h-8 w-1.5 rounded-sm bg-gold" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold text-gold">{t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="recursos" className="mx-auto max-w-7xl px-6 pb-24">
