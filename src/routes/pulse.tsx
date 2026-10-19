@@ -10,6 +10,7 @@ import {
   Sparkles,
   FileText,
   FileSignature,
+  Phone,
 } from "lucide-react";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
@@ -37,47 +38,52 @@ const RECURSOS = [
   {
     icon: Search,
     t: "Prospecte",
-    d: "Encontre empresas e pessoas, crie leads e ligue sem sair do CRM.",
+    d: "Busque pessoas e empresas por cargo, porte, estado e segmento, filtre só decisores, crie o lead e ligue sem sair do CRM. Importe também de planilha Excel.",
+  },
+  {
+    icon: Filter,
+    t: "Funil e métricas",
+    d: "Leads, SAL, SQL e Fechamento, com taxa de agendamento, no-show, comparecimento, qualificação e conversão total.",
   },
   {
     icon: MessageCircle,
-    t: "WhatsApp integrado",
-    d: "Conversas, cadências, campanhas e avisos no mesmo lugar em que você acompanha o lead.",
+    t: "WhatsApp e Instagram",
+    d: "Espelhe o WhatsApp no CRM, converse com os leads e mantenha as mensagens ligadas ao card. Campanhas e avisos no mesmo lugar.",
+  },
+  {
+    icon: Phone,
+    t: "Ligações com dashboard",
+    d: "Ligue pelo CRM e acompanhe as ligações do time em um painel de estatísticas.",
   },
   {
     icon: Workflow,
     t: "Cadências multicanal",
-    d: "Sequências de e-mail, WhatsApp, Instagram, ligação e LinkedIn montadas em fluxo, com esperas e condições.",
-  },
-  {
-    icon: Filter,
-    t: "Venda com funil e métricas",
-    d: "Acompanhe Lead, SAL, SQL e Fechamento e veja quantos avançam em cada etapa.",
+    d: "E-mail, WhatsApp, Instagram, ligação e LinkedIn montados em fluxo, com esperas, condições e modelos prontos de outbound, no-show e pós-reunião.",
   },
   {
     icon: Target,
-    t: "Defina metas",
-    d: "Estabeleça metas comerciais e acompanhe o resultado do time.",
+    t: "Metas e sala de guerra",
+    d: "Defina a meta contratual do mês, gere o diagnóstico de prospecção e o plano de 30 dias e monte a pauta de alinhamento com o cliente.",
   },
   {
     icon: Users,
     t: "Alinhe projetos com o time",
-    d: "Chat da equipe com menções, atividades e follow-ups em calendário para todo mundo remar junto.",
+    d: "Chat da equipe com menções, atividades e follow-ups em calendário e aprovações de ICP, personas, scripts e cadências.",
   },
   {
     icon: Sparkles,
     t: "Playbooks a partir do site",
-    d: "Informe o site da empresa e a IA monta um rascunho de playbook com a metodologia PO2. Você revisa antes de salvar.",
+    d: "Informe o site da empresa e a IA monta um rascunho de playbook com a metodologia PO2, por conta-cliente. Você revisa antes de salvar.",
   },
   {
     icon: FileText,
-    t: "Propostas a partir de call",
-    d: "Gere a proposta comercial a partir da transcrição da reunião com o cliente.",
+    t: "Propostas a partir da call",
+    d: "Do diagnóstico da call ao rascunho revisável e ao PDF final, com a base de serviços da PO2.",
   },
   {
     icon: FileSignature,
-    t: "Contratos em um clique",
-    d: "Gere o contrato a partir da transcrição da call e também a partir da proposta.",
+    t: "Contratos revisados",
+    d: "Parta do modelo de 3, 6 ou 12 meses, traga a proposta e aprove as diferenças antes de alterar o contrato.",
   },
 ];
 
