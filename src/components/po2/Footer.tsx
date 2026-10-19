@@ -51,9 +51,7 @@ export function Footer() {
             <Link to="/parceiros" className="transition-colors hover:text-gold">
               Parceiros
             </Link>
-            <Link to="/verificar-certificado" className="transition-colors hover:text-gold">
-              Verificar certificado
-            </Link>
+            
           </div>
 
           <div className="flex flex-col gap-2 text-sm">
@@ -75,7 +73,7 @@ export function Footer() {
               href={`mailto:${PO2_EMAIL}`}
               className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-gold"
             >
-              <Mail className="size-4" /> {PO2_EMAIL}
+              <Mail className="size-4" /> <span className="break-words text-xs sm:text-sm">{PO2_EMAIL}</span>
             </a>
           </div>
 

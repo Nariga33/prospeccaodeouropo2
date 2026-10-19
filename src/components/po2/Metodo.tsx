@@ -422,7 +422,7 @@ export function ParaQuemE() {
 /* Frentes e responsáveis                                             */
 /* ------------------------------------------------------------------ */
 
-const FRENTES: { t: string; d: string; to?: "/pulse" | "/academy" | "/solucoes" }[] = [
+const FRENTES: { t: string; d: string; to?: "/pulse" | "/solucoes" }[] = [
   {
     t: "Estruturação comercial",
     d: "ICP, lista, diagnóstico estrutural, cadência multicanal e pitch alinhado, com acompanhamento até o resultado.",
@@ -445,8 +445,8 @@ const FRENTES: { t: string; d: string; to?: "/pulse" | "/academy" | "/solucoes" 
   },
   {
     t: "Mentoria e capacitação",
-    d: "Acompanhamento prático, sessão a sessão, e trilhas de SDR, BDR, closer e gestor na PO2 Academy.",
-    to: "/academy",
+    d: "Acompanhamento prático, sessão a sessão, para SDRs, BDRs, closers e gestores.",
+    to: "/solucoes",
   },
 ];
 

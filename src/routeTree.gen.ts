@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VerificarCertificadoRouteImport } from './routes/verificar-certificado'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SdrRouteImport } from './routes/sdr'
@@ -22,9 +21,9 @@ import { Route as InsideSalesRouteImport } from './routes/inside-sales'
 import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as CloserRouteImport } from './routes/closer'
+import { Route as CasesRouteImport } from './routes/cases'
 import { Route as BdrRouteImport } from './routes/bdr'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AcademyRouteImport } from './routes/academy'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicPlaybookPdfRouteImport } from './routes/api/public/playbook-pdf'
@@ -34,11 +33,6 @@ import { Route as AuthenticatedAdminEventosRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminDiagnosticoRouteImport } from './routes/_authenticated/admin/diagnostico'
 import { Route as ApiPublicCertificateTokenRouteImport } from './routes/api/public/certificate/$token'
 
-const VerificarCertificadoRoute = VerificarCertificadoRouteImport.update({
-  id: '/verificar-certificado',
-  path: '/verificar-certificado',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SolucoesRoute = SolucoesRouteImport.update({
   id: '/solucoes',
   path: '/solucoes',
@@ -99,6 +93,11 @@ const CloserRoute = CloserRouteImport.update({
   path: '/closer',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CasesRoute = CasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BdrRoute = BdrRouteImport.update({
   id: '/bdr',
   path: '/bdr',
@@ -107,11 +106,6 @@ const BdrRoute = BdrRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AcademyRoute = AcademyRouteImport.update({
-  id: '/academy',
-  path: '/academy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -160,9 +154,9 @@ const ApiPublicCertificateTokenRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/academy': typeof AcademyRoute
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/cases': typeof CasesRoute
   '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
@@ -175,7 +169,6 @@ export interface FileRoutesByFullPath {
   '/sdr': typeof SdrRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/verificar-certificado': typeof VerificarCertificadoRoute
   '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/admin/materiais': typeof AuthenticatedAdminMateriaisRoute
@@ -185,9 +178,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/academy': typeof AcademyRoute
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/cases': typeof CasesRoute
   '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
@@ -200,7 +193,6 @@ export interface FileRoutesByTo {
   '/sdr': typeof SdrRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/verificar-certificado': typeof VerificarCertificadoRoute
   '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/admin/materiais': typeof AuthenticatedAdminMateriaisRoute
@@ -212,9 +204,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/academy': typeof AcademyRoute
   '/auth': typeof AuthRoute
   '/bdr': typeof BdrRoute
+  '/cases': typeof CasesRoute
   '/closer': typeof CloserRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/eventos': typeof EventosRoute
@@ -227,7 +219,6 @@ export interface FileRoutesById {
   '/sdr': typeof SdrRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/verificar-certificado': typeof VerificarCertificadoRoute
   '/_authenticated/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
   '/_authenticated/admin/eventos': typeof AuthenticatedAdminEventosRoute
   '/_authenticated/admin/materiais': typeof AuthenticatedAdminMateriaisRoute
@@ -239,9 +230,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/academy'
     | '/auth'
     | '/bdr'
+    | '/cases'
     | '/closer'
     | '/diagnostico'
     | '/eventos'
@@ -254,7 +245,6 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/sobre'
     | '/solucoes'
-    | '/verificar-certificado'
     | '/admin/diagnostico'
     | '/admin/eventos'
     | '/admin/materiais'
@@ -264,9 +254,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/academy'
     | '/auth'
     | '/bdr'
+    | '/cases'
     | '/closer'
     | '/diagnostico'
     | '/eventos'
@@ -279,7 +269,6 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/sobre'
     | '/solucoes'
-    | '/verificar-certificado'
     | '/admin/diagnostico'
     | '/admin/eventos'
     | '/admin/materiais'
@@ -290,9 +279,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/academy'
     | '/auth'
     | '/bdr'
+    | '/cases'
     | '/closer'
     | '/diagnostico'
     | '/eventos'
@@ -305,7 +294,6 @@ export interface FileRouteTypes {
     | '/sdr'
     | '/sobre'
     | '/solucoes'
-    | '/verificar-certificado'
     | '/_authenticated/admin/diagnostico'
     | '/_authenticated/admin/eventos'
     | '/_authenticated/admin/materiais'
@@ -317,9 +305,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  AcademyRoute: typeof AcademyRoute
   AuthRoute: typeof AuthRoute
   BdrRoute: typeof BdrRoute
+  CasesRoute: typeof CasesRoute
   CloserRoute: typeof CloserRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
   EventosRoute: typeof EventosRoute
@@ -332,7 +320,6 @@ export interface RootRouteChildren {
   SdrRoute: typeof SdrRoute
   SobreRoute: typeof SobreRoute
   SolucoesRoute: typeof SolucoesRoute
-  VerificarCertificadoRoute: typeof VerificarCertificadoRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
   ApiPublicPlaybookPdfRoute: typeof ApiPublicPlaybookPdfRoute
   ApiPublicCertificateTokenRoute: typeof ApiPublicCertificateTokenRoute
@@ -340,13 +327,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/verificar-certificado': {
-      id: '/verificar-certificado'
-      path: '/verificar-certificado'
-      fullPath: '/verificar-certificado'
-      preLoaderRoute: typeof VerificarCertificadoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/solucoes': {
       id: '/solucoes'
       path: '/solucoes'
@@ -431,6 +411,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CloserRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bdr': {
       id: '/bdr'
       path: '/bdr'
@@ -443,13 +430,6 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/academy': {
-      id: '/academy'
-      path: '/academy'
-      fullPath: '/academy'
-      preLoaderRoute: typeof AcademyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -529,9 +509,9 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AcademyRoute: AcademyRoute,
   AuthRoute: AuthRoute,
   BdrRoute: BdrRoute,
+  CasesRoute: CasesRoute,
   CloserRoute: CloserRoute,
   DiagnosticoRoute: DiagnosticoRoute,
   EventosRoute: EventosRoute,
@@ -544,7 +524,6 @@ const rootRouteChildren: RootRouteChildren = {
   SdrRoute: SdrRoute,
   SobreRoute: SobreRoute,
   SolucoesRoute: SolucoesRoute,
-  VerificarCertificadoRoute: VerificarCertificadoRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,
   ApiPublicPlaybookPdfRoute: ApiPublicPlaybookPdfRoute,
   ApiPublicCertificateTokenRoute: ApiPublicCertificateTokenRoute,

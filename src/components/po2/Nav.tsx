@@ -18,13 +18,12 @@ const ctaPrimary =
 const ctaOutline =
   "inline-flex items-center gap-3 rounded-xl border border-gold px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-gold hover:text-gold-foreground";
 
-// Menu do rebrand (mockup PO2): Sobre | Soluções | Pulse | Academy | Cases
+// Menu do rebrand (mockup PO2): Sobre | Soluções | Pulse | Cases
 const NAV_ITEMS: { label: string; to?: string; href?: string }[] = [
   { label: "Sobre", to: "/sobre" },
   { label: "Soluções", to: "/solucoes" },
   { label: "Pulse", to: "/pulse" },
-  { label: "Academy", to: "/academy" },
-  { label: "Cases", href: "/sobre#casos" },
+  { label: "Cases", to: "/cases" },
 ];
 
 export function Nav() {

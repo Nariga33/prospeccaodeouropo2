@@ -6,6 +6,7 @@ import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
 import bgHero from "@/assets/bg-gradiente-hero.webp";
+import { SolucaoHome } from "@/components/po2/Jornada";
 import { Arcs } from "@/components/po2/Arcs";
 import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 
@@ -86,7 +87,7 @@ function SolucoesPage() {
       <main>
         <section className="relative overflow-hidden border-b border-white/5">
         <img src={bgHero} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70" />
-        <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[1100px] opacity-70 md:translate-x-[40%]" />
+        <Arcs className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-full max-w-[1100px] opacity-70 md:block md:translate-x-[40%]" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-20 md:pt-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-16">
           <div className="lg:sticky lg:top-28">
             <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
@@ -109,12 +110,6 @@ function SolucoesPage() {
                 className="inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
               >
                 Falar com o time <ArrowRight className="size-4" />
-              </a>
-              <a
-                href="/pulse"
-                className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium transition-colors hover:border-gold hover:text-gold"
-              >
-                Conheça o Pulse <ArrowRight className="size-4" />
               </a>
             </div>
           </div>
@@ -169,6 +164,7 @@ function SolucoesPage() {
         </div>
         <ClientesMarquee />
         </section>
+        <SolucaoHome />
         <ProblemaMetodo />
         <FunilEtapas />
         <MatrizDiagnostico />
