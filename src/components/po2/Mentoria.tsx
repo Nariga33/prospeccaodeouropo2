@@ -101,7 +101,7 @@ export function Mentoria() {
         bullets: [
           <>Abordagem consultiva substitui pitch de catálogo - decisor responde mais.</>,
           <>12 toques distribuídos em canais certos aumentam superfície de contato.</>,
-          <>Cada objeção comum ganha resposta calibrada - sem improviso na hora.</>,
+          <>Cada objeção comum ganha resposta calibrada - sem faltar ar na hora.</>,
         ],
       },
     },
@@ -209,7 +209,7 @@ export function Mentoria() {
           { name: "PO2 c/ pós-mentoria", value: 92 },
         ],
         bullets: [
-          <>Suporte quinzenal garante que operação não volta ao improviso antigo.</>,
+          <>Suporte quinzenal garante que operação não volta para os aparelhos.</>,
           <>Canal direto tira dúvida na hora que ela aparece - não semana depois.</>,
           <>Mentor sai; o método fica rodando como sistema do time.</>,
         ],

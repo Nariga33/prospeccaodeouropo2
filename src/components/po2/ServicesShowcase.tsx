@@ -56,7 +56,7 @@ const SERVICES = [
     desc: "Objeções finais, margem definida e onboarding padrão - fechar não é sorte, é processo repetível.",
     pains: [
       "Proposta parada, sem cadência de reengajamento",
-      "Negociação sem critério, margem perdida no improviso",
+      "Negociação sem critério: a margem perde o fôlego",
       "Fechamento que demora mais do que devia",
     ],
     href: "/closer",

@@ -130,7 +130,7 @@ export const STEP_INSIGHTS: Record<string, StepInsight> = {
       { name: "5", value: 44 },
     ],
     bullets: [
-      "Objeções recorrentes viram playbook - não improviso individual.",
+      "Objeções recorrentes viram playbook - não depende do fôlego de uma pessoa só.",
       "Mapear a raiz da objeção corrige pitch, ICP e qualificação em cascata.",
       "Time sem registro de objeções perde a mesma venda várias vezes.",
     ],

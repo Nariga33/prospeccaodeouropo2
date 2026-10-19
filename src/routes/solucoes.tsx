@@ -5,9 +5,9 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
-import monograma from "@/assets/monograma.webp";
-import bgListras from "@/assets/bg-listras.webp";
-import logoBranco from "@/assets/po2-logo-branco.svg";
+import bgHero from "@/assets/bg-gradiente-hero.webp";
+import { Arcs } from "@/components/po2/Arcs";
+import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 
 export const Route = createFileRoute("/solucoes")({
   head: () => ({
@@ -84,29 +84,39 @@ function SolucoesPage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="relative overflow-hidden">
-        <img src={bgListras} alt="" aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 object-cover opacity-30" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <img src={logoBranco} alt="PO2" className="h-12 w-auto" />
-            <div className="mt-20 text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
+        <section className="relative overflow-hidden border-b border-white/5">
+        <img src={bgHero} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70" />
+        <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[1100px] opacity-70 md:translate-x-[40%]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-20 md:pt-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-16">
+          <div className="lg:sticky lg:top-28">
+            <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
               Soluções
             </div>
-            <h1 className="mt-6 max-w-lg text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
+            <h1 className="mt-8 max-w-lg text-balance font-display text-4xl font-normal leading-[1.1] tracking-tight md:text-6xl">
               Estrutura comercial para{" "}
               <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
                 resultados
               </span>
             </h1>
-            <a
-              href={PO2_WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-10 inline-flex items-center gap-6 rounded-xl border border-gold px-7 py-4 text-sm font-medium transition-all hover:bg-gold hover:text-gold-foreground"
-            >
-              Falar com o time <ArrowRight className="size-4" />
-            </a>
-            <img src={monograma} alt="" aria-hidden="true" className="pointer-events-none mt-10 w-48 opacity-60 lg:absolute lg:-right-10 lg:bottom-0 lg:mt-0 lg:w-64" />
+            <p className="mt-8 max-w-md text-pretty text-lg text-muted-foreground">
+              Do primeiro contato ao fechamento: processos, tecnologia e mentoria para o seu comercial respirar sozinho.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a
+                href={PO2_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
+              >
+                Falar com o time <ArrowRight className="size-4" />
+              </a>
+              <a
+                href="/pulse"
+                className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium transition-colors hover:border-gold hover:text-gold"
+              >
+                Conheça o Pulse <ArrowRight className="size-4" />
+              </a>
+            </div>
           </div>
 
           <ul className="space-y-3">
@@ -157,6 +167,7 @@ function SolucoesPage() {
             })}
           </ul>
         </div>
+        <ClientesMarquee />
         </section>
         <ProblemaMetodo />
         <FunilEtapas />
@@ -167,10 +178,10 @@ function SolucoesPage() {
           <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
             <div>
               <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
-                Pronto para tirar a prospecção do improviso?
+                Sua prospecção está com pouco oxigênio e pulso baixo?
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
-                Fale com o time da PO2 e mapeamos os gargalos da sua operação comercial.
+                Fale com o time da PO2. Medimos onde falta fôlego na sua operação comercial e devolvemos o ritmo.
               </p>
             </div>
             <a

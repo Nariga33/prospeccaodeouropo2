@@ -27,7 +27,7 @@ const IS_PHASES = [
         n: "02",
         icon: Filter,
         t: "Qualificação por Framework",
-        d: "BANT, CHAMP ou SPIN aplicado com consistência, não no improviso.",
+        d: "BANT, CHAMP ou SPIN aplicado com consistência, não por impulso, com ritmo constante.",
       },
     ],
   },

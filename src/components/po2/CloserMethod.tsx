@@ -67,7 +67,7 @@ const CLOSER_PHASES = [
         n: "06",
         icon: Percent,
         t: "Margem Definida",
-        d: "Até onde ceder decidido antes da call - sem decisão de improviso.",
+        d: "Até onde ceder decidido antes da call - sem decidir sem ar na hora da pressão.",
       },
       {
         n: "07",

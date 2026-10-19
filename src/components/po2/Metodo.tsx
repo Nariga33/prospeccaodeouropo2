@@ -61,7 +61,7 @@ export function ProblemaMetodo() {
       </h2>
       <p className="mt-5 max-w-2xl text-muted-foreground">
         Empresas com bons produtos e bons vendedores continuam sem previsibilidade quando cada etapa, do primeiro
-        contato ao fechamento, acontece no improviso.
+        contato ao fechamento, acontece sem fôlego: pouco oxigênio, pulso fraco e nenhum ritmo.
       </p>
       <div className="mt-12 grid gap-4 md:grid-cols-2">
         {PARES.map((p) => (
