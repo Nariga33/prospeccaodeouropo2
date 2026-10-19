@@ -422,75 +422,70 @@ export function ParaQuemE() {
 /* Frentes e responsáveis                                             */
 /* ------------------------------------------------------------------ */
 
-type Resp = "matheus" | "victor";
-
-const FRENTES: { t: string; d: string; resp: Resp; to?: "/pulse" | "/academy" | "/solucoes" }[] = [
+const FRENTES: { t: string; d: string; to?: "/pulse" | "/academy" | "/solucoes" }[] = [
   {
     t: "Estruturação comercial",
     d: "ICP, lista, diagnóstico estrutural, cadência multicanal e pitch alinhado, com acompanhamento até o resultado.",
-    resp: "victor",
     to: "/solucoes",
   },
   {
     t: "Aceleração de vendas",
     d: "Rotinas e estratégias de geração de demanda e vendas consultivas que aumentam a conversão.",
-    resp: "victor",
     to: "/solucoes",
   },
   {
     t: "Terceirização de pré-vendas",
     d: "A PO2 assume a prospecção ativa e a qualificação (BDR e SDR) e entrega oportunidades para o seu time.",
-    resp: "matheus",
     to: "/solucoes",
   },
   {
     t: "Tecnologia: PO2 Pulse",
     d: "CRM próprio da PO2 com prospecção, cadências, funil, metas, playbooks, propostas e contratos.",
-    resp: "matheus",
     to: "/pulse",
   },
   {
     t: "Mentoria e capacitação",
     d: "Acompanhamento prático, sessão a sessão, e trilhas de SDR, BDR, closer e gestor na PO2 Academy.",
-    resp: "matheus",
     to: "/academy",
   },
 ];
 
-const RESP = {
-  matheus: { nome: "Matheus Staruck", cargo: "Fundador e CEO", foto: fotoMatheus },
-  victor: { nome: "Victor Nogueira", cargo: "Cofundador", foto: fotoVictor },
-} as const;
-
 export function Frentes() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-      <Eyebrow>Frentes e responsáveis</Eyebrow>
+      <Eyebrow>Frentes e quem conduz</Eyebrow>
       <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
-        Cada frente tem um <span className={GRADIENTE}>fundador</span> à frente
+        Em todas as frentes, os <span className={GRADIENTE}>dois fundadores</span> juntos
       </h2>
       <p className="mt-5 max-w-2xl text-muted-foreground">
-        Você não fala com um intermediário: quem constrói o método também conduz a entrega.
+        Matheus Staruck e Victor Nogueira conduzem cada entrega lado a lado. Você não fala com um intermediário: quem constrói o método também executa.
       </p>
       <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {FRENTES.map((f) => {
-          const r = RESP[f.resp];
           return (
             <article key={f.t} className="flex flex-col rounded-2xl border border-white/10 bg-card p-7">
               <h3 className="font-display text-xl font-medium">{f.t}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{f.d}</p>
               <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
-                <img
-                  src={r.foto}
-                  alt={r.nome}
-                  width={96}
-                  height={96}
-                  loading="lazy"
-                  className="size-11 rounded-full border border-gold/40 object-cover object-top"
-                />
+                <div className="flex shrink-0 -space-x-3">
+                  {[
+                    { foto: fotoMatheus, nome: "Matheus Staruck" },
+                    { foto: fotoVictor, nome: "Victor Nogueira" },
+                  ].map((r) => (
+                    <img
+                      key={r.nome}
+                      src={r.foto}
+                      alt={r.nome}
+                      width={96}
+                      height={96}
+                      loading="lazy"
+                      className="size-11 rounded-full border-2 border-card object-cover object-top ring-1 ring-gold/40"
+                    />
+                  ))}
+                </div>
                 <div className="flex-1">
-                  <p className="text-sm font-semibold">{r.nome}</p>
-                  <p className="text-xs text-muted-foreground">{r.cargo}</p>
+                  <p className="text-sm font-semibold">Matheus e Victor</p>
+                  <p className="text-xs text-muted-foreground">Fundador e cofundador, juntos</p>
                 </div>
                 {f.to && (
                   <Link
