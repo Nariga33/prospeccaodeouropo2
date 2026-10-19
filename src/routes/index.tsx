@@ -1,3 +1,5 @@
+import { PO2_WHATSAPP_URL } from "@/lib/contact";
+import { Arcs } from "@/components/po2/Arcs";
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -212,6 +214,8 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
+        <Solucoes />
+        <Consultoria />
 
         {/* PROBLEMA - dor real, antes/depois */}
         <ProblemVsMethod />
@@ -312,54 +316,118 @@ function MentoriaTeaser() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-white/5">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[700px] w-[1100px] -translate-x-1/2 rounded-full bg-gold/10 blur-[140px]" />
-      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pb-28 pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div>
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold/70 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
-            </span>
-            Prospecção que gera receita
-          </div>
-          <h1 className="text-balance font-display text-3xl font-normal leading-[1.15] tracking-tight md:text-5xl lg:text-6xl">
-            PO2 é a nova forma de fazer <span className="text-gold">vendas</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para
-            gerar mais oportunidades e resultados consistentes.
-          </p>
-
-          <div className="mt-10 flex flex-wrap gap-3">
-            <DiagnosticDialog
-              trigger={
-                <button className={ctaPrimary}>
-                  Realizar o diagnóstico gratuito <ArrowRight className="size-4" />
-                </button>
-              }
-            />
-            <Link to="/bdr" className={ctaSecondary}>
-              Ver o método PO2
-            </Link>
-          </div>
-
-          <div className="mt-10">
-            <div className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-              Cobertura full funnel
-            </div>
-            <div className="flex flex-wrap items-center gap-1.5">
-              {["LDR", "BDR", "SDR", "Inside Sales", "Closer"].map((r, i, arr) => (
-                <div key={r} className="flex items-center gap-1.5">
-                  <span className="rounded-full border border-gold/25 bg-gold/5 px-3 py-1.5 text-xs font-bold text-gold">
-                    <Jargon term={r}>{r}</Jargon>
-                  </span>
-                  {i < arr.length - 1 && <ArrowRight className="size-3 text-gold/40" />}
-                </div>
-              ))}
-            </div>
-          </div>
+      <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[1100px] opacity-90 md:translate-x-[30%]" />
+      <div className="relative mx-auto max-w-7xl px-6 pb-28 pt-24 md:pt-32">
+        <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
+          Prospecção que gera receita
         </div>
-        <HeroLivePanel />
+        <h1 className="mt-8 max-w-3xl text-balance font-display text-4xl font-normal leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
+          PO2 é a nova forma de fazer{" "}
+          <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+            vendas
+          </span>
+        </h1>
+        <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground md:text-xl">
+          Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para
+          gerar mais oportunidades e resultados consistentes.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href={PO2_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
+          >
+            Falar com o time <ArrowRight className="size-4" />
+          </a>
+          <a
+            href="#solucoes"
+            className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium text-foreground transition-colors hover:border-gold hover:text-gold"
+          >
+            Conheça as soluções <ArrowRight className="size-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const SOLUCOES = [
+  {
+    t: "Estruturação comercial",
+    d: "Organizamos processos, times e ferramentas para uma operação mais previsível e escalável.",
+  },
+  {
+    t: "Aceleração de vendas",
+    d: "Implementamos estratégias e rotinas que geram mais oportunidades e aumentam a taxa de conversão.",
+  },
+  {
+    t: "Mentoria e capacitação",
+    d: "Desenvolvemos times comerciais com métodos práticos e aplicáveis à realidade de cada negócio.",
+  },
+  {
+    t: "Tecnologia a favor de vendas",
+    d: "Implementamos automações e soluções que dão mais eficiência e visibilidade para a operação.",
+  },
+];
+
+function Solucoes() {
+  return (
+    <section id="solucoes" className="relative overflow-hidden border-b border-white/5 py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
+          Soluções
+        </div>
+        <h2 className="mt-6 max-w-2xl font-display text-3xl font-normal leading-tight md:text-5xl">
+          Soluções comerciais em destaque
+        </h2>
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {SOLUCOES.map((x, i) => (
+            <div
+              key={x.t}
+              className="rounded-2xl border border-white/10 bg-card/60 p-7 transition-colors hover:border-gold/60"
+            >
+              <div className="font-display text-sm text-gold">0{i + 1}</div>
+              <h3 className="mt-8 font-display text-xl font-normal leading-snug">{x.t}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{x.d}</p>
+            </div>
+          ))}
+        </div>
+        <a
+          href="/#fundador"
+          className="mt-12 inline-flex items-center gap-6 rounded-xl border border-gold px-7 py-4 text-sm font-medium transition-all hover:bg-gold hover:text-gold-foreground"
+        >
+          Conheça a PO2 <ArrowRight className="size-4" />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Consultoria() {
+  return (
+    <section className="relative overflow-hidden border-b border-white/5 py-28">
+      <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[900px] opacity-70 md:translate-x-[25%]" />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-gold md:text-xs">
+          Consultoria com resultado
+        </div>
+        <h2 className="mt-6 max-w-2xl text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
+          Vendas que viram o{" "}
+          <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+            próximo passo
+          </span>
+        </h2>
+        <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+          Estruturamos estratégias comerciais para gerar mais oportunidades e acelerar o
+          crescimento da sua empresa.
+        </p>
+        <a
+          href="/#fundador"
+          className="mt-10 inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
+        >
+          Conheça a PO2 <ArrowRight className="size-4" />
+        </a>
       </div>
     </section>
   );

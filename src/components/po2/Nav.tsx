@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronDown, Menu, Phone } from "lucide-react";
-import logo from "@/assets/po2-logo-verde.svg";
-import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
+import { ArrowRight, Menu, Phone } from "lucide-react";
+import logoBranco from "@/assets/po2-logo-branco.svg";
 import { PO2_PHONE_DISPLAY, PO2_WHATSAPP_URL } from "@/lib/contact";
 import {
   Sheet,
@@ -12,27 +11,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const ctaPrimary =
   "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 
-const METHOD_ITEMS = [
-  { href: "/bdr", label: "BDR", sub: "Outbound" },
-  { href: "/sdr", label: "SDR", sub: "Inbound" },
-  { href: "/inside-sales", label: "Inside Sales", sub: "Condução" },
-  { href: "/closer", label: "Closer", sub: "Fechamento" },
-];
+const ctaOutline =
+  "inline-flex items-center gap-3 rounded-xl border border-gold px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-gold hover:text-gold-foreground";
 
-const RESOURCE_ITEMS = [
-  { href: "/eventos", label: "Eventos", sub: "Masterclasses ao vivo" },
-  { href: "/materiais", label: "Materiais", sub: "Conteúdo gratuito" },
-  { href: "/parceiros", label: "Parceiros", sub: "Rede PO2" },
+// Menu do rebrand (mockup PO2): Sobre | Soluções | Pulse | Academy | Cases
+const NAV_ITEMS: { label: string; to?: string; href?: string }[] = [
+  { label: "Sobre", href: "/#fundador" },
+  { label: "Soluções", href: "/#solucoes" },
+  { label: "Pulse", to: "/diagnostico" },
+  { label: "Academy", to: "/mentoria" },
+  { label: "Cases", href: "/#casos" },
 ];
 
 export function Nav() {
@@ -42,82 +34,28 @@ export function Nav() {
     <header className="sticky top-[var(--po2-banner-h,0px)] z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link to="/" className="flex shrink-0 items-center">
-          <img src={logo} alt="PO2" className="h-12 w-auto" />
+          <img src={logoBranco} alt="PO2" className="h-12 w-auto" />
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground lg:flex">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 outline-none transition-colors hover:text-gold data-[state=open]:text-gold">
-              Método <ChevronDown className="size-3.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="start"
-              className="min-w-[240px] border-white/10 bg-background/95 backdrop-blur-xl"
-            >
-              {METHOD_ITEMS.map((s) => (
-                <DropdownMenuItem key={s.label} asChild className="cursor-pointer">
-                  <Link to={s.href} className="flex items-center justify-between px-2 py-2.5">
-                    <span className="font-semibold text-foreground">{s.label}</span>
-                    <span className="text-xs text-muted-foreground">{s.sub}</span>
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-              <div className="my-1 border-t border-white/10" />
-              <DropdownMenuItem asChild className="cursor-pointer">
-                <Link to="/metodologias" className="px-2 py-2.5 font-semibold text-foreground">
-                  Metodologias
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <a href="/#casos" className="transition-colors hover:text-gold">
-            Resultados
-          </a>
-
-          <Link
-            to="/mentoria"
-            className="transition-colors hover:text-gold"
-            activeProps={{ className: "text-gold" }}
-          >
-            Mentoria
-          </Link>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 outline-none transition-colors hover:text-gold data-[state=open]:text-gold">
-              Recursos <ChevronDown className="size-3.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="start"
-              className="min-w-[220px] border-white/10 bg-background/95 backdrop-blur-xl"
-            >
-              {RESOURCE_ITEMS.map((s) => (
-                <DropdownMenuItem key={s.label} asChild className="cursor-pointer">
-                  <Link to={s.href} className="flex items-center justify-between px-2 py-2.5">
-                    <span className="font-semibold text-foreground">{s.label}</span>
-                    <span className="text-xs text-muted-foreground">{s.sub}</span>
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-              <div className="my-1 border-t border-white/10" />
-              <DropdownMenuItem asChild className="cursor-pointer">
-                <a href="/#fundador" className="px-2 py-2.5 font-semibold text-foreground">
-                  Sobre
-                </a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <nav className="hidden items-center gap-10 text-sm font-medium text-foreground lg:flex">
+          {NAV_ITEMS.map((n) =>
+            n.to ? (
+              <Link key={n.label} to={n.to} className="transition-colors hover:text-gold">
+                {n.label}
+              </Link>
+            ) : (
+              <a key={n.label} href={n.href} className="transition-colors hover:text-gold">
+                {n.label}
+              </a>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
           <div className="hidden lg:block">
-            <DiagnosticDialog
-              trigger={
-                <button className={ctaPrimary}>
-                  Diagnóstico gratuito <ArrowRight className="size-4" />
-                </button>
-              }
-            />
+            <a href={PO2_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={ctaOutline}>
+              Falar com o time <ArrowRight className="size-4" />
+            </a>
           </div>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -135,79 +73,30 @@ export function Nav() {
             >
               <SheetHeader>
                 <SheetTitle className="text-left">
-                  <img src={logo} alt="PO2" className="h-10 w-auto" />
+                  <img src={logoBranco} alt="PO2" className="h-10 w-auto" />
                 </SheetTitle>
               </SheetHeader>
 
               <nav className="mt-6 flex flex-1 flex-col gap-1 text-base font-medium">
-                <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
-                  Método
-                </div>
-                {METHOD_ITEMS.map((s) => (
-                  <SheetClose asChild key={s.label}>
-                    <Link
-                      to={s.href}
-                      className="flex items-center justify-between rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                    >
-                      {s.label}
-                      <span className="text-xs text-muted-foreground">{s.sub}</span>
-                    </Link>
+                {NAV_ITEMS.map((n) => (
+                  <SheetClose asChild key={n.label}>
+                    {n.to ? (
+                      <Link
+                        to={n.to}
+                        className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                      >
+                        {n.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={n.href}
+                        className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
+                      >
+                        {n.label}
+                      </a>
+                    )}
                   </SheetClose>
                 ))}
-                <SheetClose asChild>
-                  <Link
-                    to="/metodologias"
-                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                  >
-                    Metodologias
-                  </Link>
-                </SheetClose>
-
-                <div className="mt-3 border-t border-white/10 pt-3" />
-
-                <SheetClose asChild>
-                  <a
-                    href="/#casos"
-                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                  >
-                    Resultados
-                  </a>
-                </SheetClose>
-
-                <SheetClose asChild>
-                  <Link
-                    to="/mentoria"
-                    className="flex items-center justify-between rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                  >
-                    Mentoria
-                    <span className="text-xs text-muted-foreground">Acompanhamento</span>
-                  </Link>
-                </SheetClose>
-
-                <div className="mt-3 border-t border-white/10 pt-3" />
-
-                <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
-                  Recursos
-                </div>
-                {RESOURCE_ITEMS.map((s) => (
-                  <SheetClose asChild key={s.label}>
-                    <Link
-                      to={s.href}
-                      className="flex items-center justify-between rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                    >
-                      {s.label}
-                      <span className="text-xs text-muted-foreground">{s.sub}</span>
-                    </Link>
-                  </SheetClose>
-                ))}
-                <SheetClose asChild>
-                  <a
-                    href="/#fundador"
-                    className="rounded-lg px-3 py-3 text-foreground transition-colors hover:bg-white/5 hover:text-gold"
-                  >
-                    Sobre
-                  </a>
-                </SheetClose>
               </nav>
 
               <div className="mt-auto flex flex-col gap-3 border-t border-white/10 pt-5">
@@ -219,15 +108,9 @@ export function Nav() {
                 >
                   <Phone className="size-4" /> {PO2_PHONE_DISPLAY}
                 </a>
-                <SheetClose asChild>
-                  <DiagnosticDialog
-                    trigger={
-                      <button className={`${ctaPrimary} w-full justify-center`}>
-                        Diagnóstico gratuito <ArrowRight className="size-4" />
-                      </button>
-                    }
-                  />
-                </SheetClose>
+                <a href={PO2_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={`${ctaOutline} w-full justify-center`}>
+                  Falar com o time <ArrowRight className="size-4" />
+                </a>
               </div>
             </SheetContent>
           </Sheet>
