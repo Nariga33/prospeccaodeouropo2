@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Mail, MessageCircle, Phone } from "lucide-react";
-import logo from "@/assets/po2-logo-verde.svg";
+import logo from "@/assets/po2-logo-branco.svg";
 import {
   PO2_EMAIL,
   PO2_INSTAGRAM_URL,
@@ -19,16 +19,34 @@ export function Footer() {
             <img src={logo} alt="PO2" className="h-10 w-auto" />
             <div className="hidden h-8 w-px bg-white/10 md:block" />
             <p className="text-xs text-muted-foreground">
-              Assessoria de Prospecção B2B · Matheus Staruck
+              PO2 · Prospecção que gera receita
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
             <Link to="/bdr" className="transition-colors hover:text-gold">
-              Método
+              BDR
+            </Link>
+            <Link to="/sdr" className="transition-colors hover:text-gold">
+              SDR
+            </Link>
+            <Link to="/inside-sales" className="transition-colors hover:text-gold">
+              Inside Sales
+            </Link>
+            <Link to="/closer" className="transition-colors hover:text-gold">
+              Closer
+            </Link>
+            <Link to="/metodologias" className="transition-colors hover:text-gold">
+              Metodologias
+            </Link>
+            <Link to="/mentoria" className="transition-colors hover:text-gold">
+              Mentoria
             </Link>
             <Link to="/eventos" className="transition-colors hover:text-gold">
               Eventos
+            </Link>
+            <Link to="/materiais" className="transition-colors hover:text-gold">
+              Materiais
             </Link>
             <Link to="/parceiros" className="transition-colors hover:text-gold">
               Parceiros
