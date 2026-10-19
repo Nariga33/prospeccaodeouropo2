@@ -9,7 +9,7 @@ import sebrae from "@/assets/clientes/sebrae.webp";
 const CLIENTES = [
   { src: anel, alt: "O2 Inc", h: "h-9" },
   { src: cr, alt: "CR Advocacias", h: "h-12" },
-  { src: estrela, alt: "Cliente PO2", h: "h-10" },
+  { src: estrela, alt: "CollaborAI", h: "h-10" },
   { src: hub7, alt: "Hub7", h: "h-12" },
   { src: nummy, alt: "Nummy", h: "h-9" },
   { src: sebrae, alt: "Sebrae", h: "h-11" },
