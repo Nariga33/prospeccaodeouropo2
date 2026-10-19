@@ -7,6 +7,7 @@ import bgListras from "@/assets/bg-listras.webp";
 import monograma from "@/assets/monograma.webp";
 import logoBranco from "@/assets/po2-logo-branco.svg";
 import matheusHero from "@/assets/matheus-hero.webp";
+import joaoPhoto from "@/assets/joao-victor-acunha.webp";
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
@@ -226,28 +227,44 @@ function Previsibilidade() {
 
 function Consultoria() {
   return (
-    <section className="relative overflow-hidden border-b border-white/5 py-28">
-      <img src={bgArcos} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute right-0 top-0 h-full w-auto max-w-[70%] object-cover object-left opacity-40 md:opacity-90" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-gold md:text-xs">
-          Consultoria com resultado
+    <section className="relative overflow-hidden border-b border-white/5 bg-[#040d14]">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-0 md:grid-cols-2">
+        <div className="relative order-2 min-h-[420px] md:order-1 md:min-h-[640px]">
+          <img
+            src={bgArcos}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-24 -top-10 h-full w-auto max-w-none -scale-x-100 object-cover opacity-70"
+          />
+          <img
+            src={joaoPhoto}
+            alt="João Victor Acunha, co-founder da PO2"
+            width={800}
+            height={1000}
+            className="relative z-10 mx-auto h-full max-h-[680px] w-auto object-contain object-bottom [mask-image:radial-gradient(ellipse_65%_80%_at_50%_45%,black_50%,transparent_100%)]"
+          />
         </div>
-        <h2 className="mt-6 max-w-2xl text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
-          Vendas que viram o{" "}
-          <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-            próximo passo
-          </span>
-        </h2>
-        <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-          Estruturamos estratégias comerciais para gerar mais oportunidades e acelerar o
-          crescimento da sua empresa.
-        </p>
-        <a
-          href="/#sobre"
-          className="mt-10 inline-flex items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
-        >
-          Conheça a PO2 <ArrowRight className="size-4" />
-        </a>
+        <div className="relative z-10 order-1 px-6 py-20 md:order-2 md:py-28">
+          <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
+            Consultoria com resultado
+          </div>
+          <h2 className="mt-6 max-w-md text-balance font-display text-4xl font-medium leading-[1.08] md:text-6xl">
+            Vendas que viram o{" "}
+            <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+              próximo passo
+            </span>
+          </h2>
+          <p className="mt-8 max-w-sm text-lg text-muted-foreground">
+            Estruturamos estratégias comerciais para gerar mais oportunidades e acelerar o
+            crescimento da sua empresa.
+          </p>
+          <a
+            href="/#sobre"
+            className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
+          >
+            Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
+          </a>
+        </div>
       </div>
     </section>
   );
