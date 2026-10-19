@@ -1,5 +1,8 @@
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { Arcs } from "@/components/po2/Arcs";
+import { HalfRings } from "@/components/po2/HalfRings";
+import logoBranco from "@/assets/po2-logo-branco.svg";
+import matheusHero from "@/assets/matheus-hero.webp";
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -216,6 +219,8 @@ function LandingPage() {
         <Hero />
         <Solucoes />
         <Consultoria />
+        <SobreNos />
+        <Previsibilidade />
 
         {/* PROBLEMA - dor real, antes/depois */}
         <ProblemVsMethod />
@@ -399,6 +404,73 @@ function Solucoes() {
         >
           Conheça a PO2 <ArrowRight className="size-4" />
         </a>
+      </div>
+    </section>
+  );
+}
+
+function SobreNos() {
+  return (
+    <section className="relative overflow-hidden border-b border-white/5 bg-[#040d14] py-24 md:py-32">
+      <div className="pointer-events-none absolute -left-40 -top-40 h-[480px] w-[480px] rounded-full bg-[#155E75]/30 blur-[120px]" />
+      <HalfRings className="pointer-events-none absolute -right-24 top-1/2 h-[560px] -translate-y-1/2 opacity-95 md:right-0 md:h-[640px]" />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <img src={logoBranco} alt="PO2" className="h-16 w-auto md:h-20" />
+        <div className="mt-24 text-[11px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
+          Sobre nós
+        </div>
+        <h2 className="mt-6 max-w-md text-balance font-display text-5xl font-medium leading-[1.02] md:text-7xl">
+          Estrutura comercial para{" "}
+          <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+            resultados
+          </span>
+        </h2>
+        <a
+          href="/#fundador"
+          className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
+        >
+          Saiba mais <ArrowRight className="size-5 text-[#22C5E6]" />
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Previsibilidade() {
+  return (
+    <section className="relative overflow-hidden border-b border-white/5 bg-[#06141c]">
+      <div className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle_at_30%_70%,#D8FF36_0%,#22C5E6_35%,#155E75_60%,transparent_72%)] opacity-70 blur-[2px]" />
+      <div className="relative mx-auto grid max-w-7xl items-end gap-8 px-6 pt-24 md:grid-cols-2 md:pt-28">
+        <div className="pb-24">
+          <div className="max-w-xs text-[11px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
+            Vendas com estratégia
+          </div>
+          <h2 className="mt-8 text-balance font-display text-4xl font-medium leading-[1.08] md:text-6xl">
+            Mais{" "}
+            <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+              previsibilidade
+            </span>{" "}
+            para o seu crescimento
+          </h2>
+          <p className="mt-8 max-w-sm text-lg text-muted-foreground">
+            Estruturamos processos comerciais que geram oportunidades reais e resultados
+            consistentes.
+          </p>
+          <a
+            href="/#fundador"
+            className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
+          >
+            Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
+          </a>
+        </div>
+        <div className="relative flex justify-center md:justify-end">
+          <img
+            src={matheusHero}
+            alt="Matheus Staruck, fundador da PO2"
+            loading="lazy"
+            className="relative z-10 max-h-[640px] w-auto object-contain"
+          />
+        </div>
       </div>
     </section>
   );
