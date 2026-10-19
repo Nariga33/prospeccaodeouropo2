@@ -1,6 +1,9 @@
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { Arcs } from "@/components/po2/Arcs";
-import { HalfRings } from "@/components/po2/HalfRings";
+import bgHero from "@/assets/bg-gradiente-hero.webp";
+import bgArcos from "@/assets/bg-arcos.webp";
+import bgListras from "@/assets/bg-listras.webp";
+import monograma from "@/assets/monograma.webp";
 import logoBranco from "@/assets/po2-logo-branco.svg";
 import matheusHero from "@/assets/matheus-hero.webp";
 import { useEffect, useRef, useState } from "react";
@@ -68,6 +71,7 @@ import {
   Repeat,
   Loader2,
   Handshake,
+  Settings,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -321,6 +325,7 @@ function MentoriaTeaser() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b border-white/5">
+      <img src={bgHero} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70" />
       <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[1100px] opacity-90 md:translate-x-[30%]" />
       <div className="relative mx-auto max-w-7xl px-6 pb-28 pt-24 md:pt-32">
         <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
@@ -377,32 +382,40 @@ const SOLUCOES = [
 ];
 
 function Solucoes() {
+  const icons = [BarChart3, Zap, Users, Settings];
   return (
-    <section id="solucoes" className="relative overflow-hidden border-b border-white/5 py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="solucoes" className="relative overflow-hidden border-b border-white/5 bg-[#06141c] py-24">
+      <img src={bgListras} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/2 object-cover opacity-60 [mask-image:linear-gradient(to_right,transparent,black_60%)]" />
+      <div className="relative mx-auto max-w-7xl px-6">
         <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
           Soluções
         </div>
-        <h2 className="mt-6 max-w-2xl font-display text-3xl font-normal leading-tight md:text-5xl">
+        <h2 className="mt-6 max-w-2xl font-display text-3xl font-medium leading-tight md:text-5xl">
           Soluções comerciais em destaque
         </h2>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {SOLUCOES.map((x, i) => (
-            <div
-              key={x.t}
-              className="rounded-2xl border border-white/10 bg-card/60 p-7 transition-colors hover:border-gold/60"
-            >
-              <div className="font-display text-sm text-gold">0{i + 1}</div>
-              <h3 className="mt-8 font-display text-xl font-normal leading-snug">{x.t}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{x.d}</p>
-            </div>
-          ))}
+        <div className="mt-14 flex max-w-xl flex-col gap-10">
+          {SOLUCOES.map((x, i) => {
+            const Icon = icons[i];
+            return (
+              <div key={x.t} className="flex items-start gap-6">
+                <div className="shrink-0 rounded-2xl bg-gradient-to-br from-[#D8FF36] via-[#22C5E6] to-[#1F6FE0] p-px">
+                  <div className="flex size-16 items-center justify-center rounded-2xl bg-[#06141c]">
+                    <Icon className="size-8 text-[#22D3EE]" strokeWidth={1.5} />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-display text-xl font-medium leading-snug md:text-2xl">{x.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">{x.d}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <a
           href="/#fundador"
-          className="mt-12 inline-flex items-center gap-6 rounded-xl border border-gold px-7 py-4 text-sm font-medium transition-all hover:bg-gold hover:text-gold-foreground"
+          className="mt-14 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
         >
-          Conheça a PO2 <ArrowRight className="size-4" />
+          Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
         </a>
       </div>
     </section>
@@ -413,7 +426,7 @@ function SobreNos() {
   return (
     <section className="relative overflow-hidden border-b border-white/5 bg-[#040d14] py-24 md:py-32">
       <div className="pointer-events-none absolute -left-40 -top-40 h-[480px] w-[480px] rounded-full bg-[#155E75]/30 blur-[120px]" />
-      <HalfRings className="pointer-events-none absolute -right-24 top-1/2 h-[560px] -translate-y-1/2 opacity-95 md:right-0 md:h-[640px]" />
+      <img src={monograma} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute -right-16 top-1/2 h-[520px] w-auto -translate-y-1/2 md:right-8 md:h-[640px]" />
       <div className="relative mx-auto max-w-7xl px-6">
         <img src={logoBranco} alt="PO2" className="h-16 w-auto md:h-20" />
         <div className="mt-24 text-[11px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
@@ -479,7 +492,7 @@ function Previsibilidade() {
 function Consultoria() {
   return (
     <section className="relative overflow-hidden border-b border-white/5 py-28">
-      <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[900px] opacity-70 md:translate-x-[25%]" />
+      <img src={bgArcos} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute right-0 top-0 h-full w-auto max-w-[70%] object-cover object-left opacity-90" />
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-gold md:text-xs">
           Consultoria com resultado
