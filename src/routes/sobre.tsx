@@ -42,16 +42,14 @@ const PESSOAS = [
     alt: "Matheus Staruck, fundador e CEO da PO2",
     numeros: [
       ["+R$2MM", "Receita gerada"],
-      ["+5", "Anos em operação outbound"],
       ["+200k", "Ligações realizadas"],
       ["+10k", "Empresas prospectadas"],
     ],
     corpo: (
       <p>
-        Formado em <span className={strong}>Tecnologia da Informação</span>, Matheus mergulhou na{" "}
-        <span className={strong}>prospecção B2B e no outbound</span> na Hub7, onde ajudou a construir operações
-        comerciais, cadências e treinamentos de equipe. Fundou a PO2 para ajudar empresas a criarem{" "}
-        <span className={strong}>operações comerciais previsíveis</span>.
+        Especialista em <span className={strong}>prospecção B2B e outbound</span>, com operações, cadências e times
+        construídos do zero. Ao todo, <span className={strong}>+R$2MM em receita gerada</span> e milhares de empresas
+        prospectadas.
       </p>
     ),
   },
@@ -61,17 +59,15 @@ const PESSOAS = [
     foto: fotoVictor,
     alt: "Victor Nogueira, cofundador da PO2",
     numeros: [
-      ["+US$3M", "Receita previsível"],
-      ["+200", "Reuniões com ICP definido e decisores corretos"],
-      ["Banco Inter", "Parceria construída com grande marca"],
+      ["+R$15MM", "Receita gerada (+US$3M)"],
+      ["+200", "Reuniões com decisores corretos"],
+      ["Banco Inter", "Parceria com grande marca"],
     ],
     corpo: (
       <p>
-        Especialista em <span className={strong}>vendas consultivas, geração de demanda e Global Markets</span>, com
-        passagem por operações high-ticket. Na ExitLag, gerou mais de 200 reuniões com decisores corretos e
-        contribuiu para mais de US$ 3 milhões em receita previsível. Na PO2, leva essa experiência para empresas que
-        querem{" "}
-        <span className={strong}>transformar prospecção em receita</span>.
+        Especialista em <span className={strong}>vendas consultivas e geração de demanda</span>, com operações
+        high-ticket e parcerias com grandes marcas. Ao todo,{" "}
+        <span className={strong}>+R$15MM em receita gerada</span> e centenas de reuniões com decisores.
       </p>
     ),
   },
@@ -108,8 +104,7 @@ function SobrePage() {
               <p className="mt-2 text-muted-foreground">em receita gerada, somando os resultados do Matheus e do Victor.</p>
             </div>
             <p className="mt-6 max-w-sm text-xs leading-relaxed text-muted-foreground md:mt-0">
-              R$2 milhões na PO2 e mais de US$ 3 milhões em receita previsível em operações do Victor, convertidos a
-              R$5,00 por dólar.
+              R$2 milhões do Matheus e R$15 milhões do Victor (US$ 3 milhões convertidos a R$5,00 por dólar).
             </p>
           </div>
         </section>

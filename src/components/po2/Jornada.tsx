@@ -400,13 +400,15 @@ const FUNDADORES = [
     nome: "Matheus Staruck",
     cargo: "Fundador e CEO",
     foto: fotoMatheus,
-    d: "Anos de outbound e prospecção B2B, com operações, cadências e times construídos do zero.",
+    stat: "+R$2MM",
+    d: "Prospecção B2B e outbound, com operações, cadências e times construídos do zero.",
   },
   {
     nome: "Victor Nogueira",
     cargo: "Cofundador",
     foto: fotoVictor,
-    d: "Vendas consultivas e geração de demanda, com mais de US$ 3 milhões em receita previsível.",
+    stat: "+R$15MM",
+    d: "Vendas consultivas e geração de demanda, com operações high-ticket e grandes marcas.",
   },
 ];
 
@@ -429,6 +431,8 @@ export function QuemVendeHome() {
               <div className="flex flex-col justify-center p-6 md:p-8">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">{f.cargo}</p>
                 <h3 className="mt-2 font-display text-2xl font-semibold">{f.nome}</h3>
+                <p className="mt-4 font-display text-4xl text-gold">{f.stat}</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">em receita gerada</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.d}</p>
               </div>
             </article>
