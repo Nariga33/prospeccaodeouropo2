@@ -77,7 +77,7 @@ function AuthPage() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] disabled:opacity-60"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] disabled:opacity-60"
         >
           {loading ? <Loader2 className="size-4 animate-spin" /> : null}
           Entrar

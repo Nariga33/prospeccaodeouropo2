@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
-import logo from "@/assets/po2-logo.png";
+import logo from "@/assets/po2-logo-verde.svg";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { EvolutionModel } from "@/components/po2/EvolutionModel";
 import { StepInsightDialog } from "@/components/po2/StepInsightDialog";
@@ -198,7 +198,7 @@ export const Route = createFileRoute("/")({
 
 const goldRule = "h-px w-12 bg-gold/60";
 const ctaPrimary =
-  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 const ctaSecondary =
   "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-white/10";
 
@@ -320,16 +320,14 @@ function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold/70 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
             </span>
-            Assessoria Comercial Full Funnel
+            Prospecção que gera receita
           </div>
-          <h1 className="text-balance text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
-            Clientes novos todo mês, sem depender de{" "}
-            <span className="font-display font-normal italic text-gold">indicação ou sorte</span>.
+          <h1 className="text-balance font-display text-3xl font-normal leading-[1.15] tracking-tight md:text-5xl lg:text-6xl">
+            PO2 é a nova forma de fazer <span className="text-gold">vendas</span>
           </h1>
           <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground">
-            A gente entra em contato direto com os donos e gestores certos, toda semana, e te
-            entrega a conversa pronta pra fechar negócio. Você não precisa entender de prospecção,
-            CRM ou cadência de mensagens - só atender quem já tem interesse real na sua empresa.
+            Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para
+            gerar mais oportunidades e resultados consistentes.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
@@ -508,7 +506,7 @@ function BeforeAfterDialog({ row: r }: { row: PVMRow }) {
       <DialogTrigger asChild>
         <button
           type="button"
-          className="group relative grid w-full grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-card/40 text-left transition-all hover:border-gold/30 hover:shadow-[0_8px_40px_-12px_rgba(197,160,89,0.25)] sm:grid-cols-2"
+          className="group relative grid w-full grid-cols-1 overflow-hidden rounded-2xl border border-white/10 bg-card/40 text-left transition-all hover:border-gold/30 hover:shadow-[0_8px_40px_-12px_rgba(216,255,54,0.25)] sm:grid-cols-2"
         >
           <div className="flex items-start gap-4 p-7 sm:pr-10">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-red-400/20 bg-gradient-to-br from-red-400/10 to-transparent text-red-400/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
@@ -880,7 +878,7 @@ function CostComparison() {
             <ArrowRight className="size-5 rotate-90 lg:rotate-0" />
           </div>
 
-          <div className="relative rounded-3xl border border-gold/50 bg-gradient-to-b from-gold/10 to-card/80 p-8 shadow-[0_0_60px_-15px_rgba(197,160,89,0.4)]">
+          <div className="relative rounded-3xl border border-gold/50 bg-gradient-to-b from-gold/10 to-card/80 p-8 shadow-[0_0_60px_-15px_rgba(216,255,54,0.4)]">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-[10px] font-extrabold uppercase tracking-[0.2em] text-gold-foreground">
               Sem ramp-up às cegas
             </div>

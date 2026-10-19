@@ -5,22 +5,22 @@ const STAGES = [
   {
     label: "Visitante",
     width: 100,
-    bg: "#15171b",
-    border: "rgba(197,160,89,0.15)",
+    bg: "#161A1C",
+    border: "rgba(216,255,54,0.15)",
     text: "#9a9a9a",
   },
-  { label: "Lead", width: 82, bg: "#241f18", border: "rgba(197,160,89,0.25)", text: "#c9c4ba" },
+  { label: "Lead", width: 82, bg: "#241f18", border: "rgba(216,255,54,0.25)", text: "#c9c4ba" },
   {
     label: "MQL / PQL",
     width: 64,
-    bg: "#3a2e18",
-    border: "rgba(197,160,89,0.4)",
-    text: "#e6cf9e",
+    bg: "#155E75",
+    border: "rgba(216,255,54,0.4)",
+    text: "#D8FF36",
     split: true,
   },
-  { label: "SAL", width: 46, bg: "#5c451c", border: "rgba(197,160,89,0.55)", text: "#f0dcae" },
-  { label: "SQL", width: 30, bg: "#8a651f", border: "rgba(197,160,89,0.7)", text: "#fff2d6" },
-  { label: "Sale", width: 16, bg: "#C5A059", border: "#C5A059", text: "#1a1208" },
+  { label: "SAL", width: 46, bg: "#5c451c", border: "rgba(216,255,54,0.55)", text: "#f0dcae" },
+  { label: "SQL", width: 30, bg: "#8a651f", border: "rgba(216,255,54,0.7)", text: "#fff2d6" },
+  { label: "Sale", width: 16, bg: "#D8FF36", border: "#D8FF36", text: "#101314" },
 ];
 
 const STEP_DELAY_MS = 220;

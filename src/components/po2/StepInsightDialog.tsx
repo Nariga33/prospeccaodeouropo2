@@ -21,7 +21,7 @@ import {
   Tooltip,
 } from "recharts";
 
-const GOLD = "#C5A059";
+const GOLD = "#D8FF36";
 const MUTED = "#3a3a3a";
 const RED = "#c0524a";
 
@@ -232,7 +232,7 @@ export function StepInsightDialog({ stepKey, trigger }: Props) {
             e.preventDefault();
             document.getElementById("diagnostico")?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]"
         >
           Quero diagnóstico gratuito
         </a>
@@ -243,8 +243,8 @@ export function StepInsightDialog({ stepKey, trigger }: Props) {
 
 function InsightChart({ insight }: { insight: StepInsight }) {
   const tooltipStyle = {
-    background: "#0e0e10",
-    border: "1px solid rgba(197,160,89,0.3)",
+    background: "#101314",
+    border: "1px solid rgba(216,255,54,0.3)",
     borderRadius: 8,
     fontSize: 12,
     color: "#fff",

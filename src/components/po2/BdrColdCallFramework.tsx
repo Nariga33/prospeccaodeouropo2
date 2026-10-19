@@ -85,7 +85,7 @@ export function BdrColdCallFramework() {
                     transform: visible ? "translateY(0) scale(1)" : "translateY(16px) scale(0.85)",
                   }}
                 >
-                  <div className="relative z-10 flex size-16 items-center justify-center rounded-full border-2 border-gold/50 bg-background text-gold shadow-[0_0_30px_rgba(197,160,89,0.2)]">
+                  <div className="relative z-10 flex size-16 items-center justify-center rounded-full border-2 border-gold/50 bg-background text-gold shadow-[0_0_30px_rgba(216,255,54,0.2)]">
                     <s.icon className="size-6" />
                     <span className="absolute -right-1 -top-1 flex size-6 items-center justify-center rounded-full bg-gold text-[11px] font-bold text-gold-foreground">
                       {i + 1}

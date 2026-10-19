@@ -142,7 +142,7 @@ export function WelcomeGate() {
                 <Link
                   to="/eventos"
                   onClick={() => setOpen(false)}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]"
                 >
                   <Calendar className="size-4" /> Ver próximos eventos
                 </Link>
@@ -152,7 +152,7 @@ export function WelcomeGate() {
                   trigger={
                     <button
                       onClick={() => setOpen(false)}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]"
                     >
                       Quero meu diagnóstico gratuito <ArrowRight className="size-4" />
                     </button>
@@ -187,7 +187,7 @@ function ChoiceCard({
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-background/50 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:bg-background/80 hover:shadow-[0_0_30px_rgba(197,160,89,0.15)]"
+      className="group flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-background/50 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:bg-background/80 hover:shadow-[0_0_30px_rgba(216,255,54,0.15)]"
     >
       <span className="inline-flex size-11 items-center justify-center rounded-xl border border-gold/30 bg-gold/10 text-gold transition-colors group-hover:bg-gold/20">
         {icon}

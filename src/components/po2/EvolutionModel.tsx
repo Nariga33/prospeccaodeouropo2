@@ -133,8 +133,8 @@ function JourneyMindMap() {
         >
           <defs>
             <radialGradient id="po2JourneyGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(197,160,89,0.18)" />
-              <stop offset="100%" stopColor="rgba(197,160,89,0)" />
+              <stop offset="0%" stopColor="rgba(216,255,54,0.18)" />
+              <stop offset="100%" stopColor="rgba(216,255,54,0)" />
             </radialGradient>
           </defs>
           <circle cx={cx} cy={cy} r={r + 30} fill="url(#po2JourneyGlow)" />
@@ -151,7 +151,7 @@ function JourneyMindMap() {
                 y1={cy}
                 x2={x}
                 y2={y}
-                stroke={isActive ? "rgba(197,160,89,0.7)" : "rgba(197,160,89,0.25)"}
+                stroke={isActive ? "rgba(216,255,54,0.7)" : "rgba(216,255,54,0.25)"}
                 strokeWidth={isActive ? 2 : 1}
               />
             );
@@ -171,11 +171,11 @@ function JourneyMindMap() {
                   cx={x}
                   cy={y}
                   r="42"
-                  fill={isActive ? "#1a1208" : "#0F1115"}
-                  stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
+                  fill={isActive ? "#101314" : "#101314"}
+                  stroke={isActive ? "#D8FF36" : "rgba(216,255,54,0.6)"}
                   strokeWidth={isActive ? 2.5 : 1.5}
                   style={
-                    isActive ? { filter: "drop-shadow(0 0 10px rgba(197,160,89,0.7))" } : undefined
+                    isActive ? { filter: "drop-shadow(0 0 10px rgba(216,255,54,0.7))" } : undefined
                   }
                 />
                 <foreignObject
@@ -185,7 +185,7 @@ function JourneyMindMap() {
                   height={32}
                   className="pointer-events-none"
                 >
-                  <Icon size={32} color={isActive ? "#C5A059" : "rgba(230,225,215,0.8)"} />
+                  <Icon size={32} color={isActive ? "#D8FF36" : "rgba(230,225,215,0.8)"} />
                 </foreignObject>
                 <text
                   x={lx}
@@ -193,7 +193,7 @@ function JourneyMindMap() {
                   textAnchor="middle"
                   fontSize="17"
                   fontWeight="600"
-                  fill={isActive ? "#C5A059" : "rgba(230,225,215,0.85)"}
+                  fill={isActive ? "#D8FF36" : "rgba(230,225,215,0.85)"}
                   className="pointer-events-none select-none"
                 >
                   {l.title}
@@ -316,8 +316,8 @@ function CrescerCycle() {
         >
           <defs>
             <radialGradient id="po2CycleGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(197,160,89,0.18)" />
-              <stop offset="100%" stopColor="rgba(197,160,89,0)" />
+              <stop offset="0%" stopColor="rgba(216,255,54,0.18)" />
+              <stop offset="100%" stopColor="rgba(216,255,54,0)" />
             </radialGradient>
           </defs>
           <circle cx={cx} cy={cy} r={r + 30} fill="url(#po2CycleGlow)" />
@@ -326,7 +326,7 @@ function CrescerCycle() {
             cy={cy}
             r={r}
             fill="none"
-            stroke="rgba(197,160,89,0.35)"
+            stroke="rgba(216,255,54,0.35)"
             strokeWidth="1"
             strokeDasharray="3 6"
           />
@@ -347,11 +347,11 @@ function CrescerCycle() {
                   cx={x}
                   cy={y}
                   r="42"
-                  fill={isActive ? "#1a1208" : "#0F1115"}
-                  stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
+                  fill={isActive ? "#101314" : "#101314"}
+                  stroke={isActive ? "#D8FF36" : "rgba(216,255,54,0.6)"}
                   strokeWidth={isActive ? 2.5 : 1.5}
                   style={
-                    isActive ? { filter: "drop-shadow(0 0 10px rgba(197,160,89,0.7))" } : undefined
+                    isActive ? { filter: "drop-shadow(0 0 10px rgba(216,255,54,0.7))" } : undefined
                   }
                 />
                 <text
@@ -360,7 +360,7 @@ function CrescerCycle() {
                   textAnchor="middle"
                   fontSize="28"
                   fontWeight="700"
-                  fill="#C5A059"
+                  fill="#D8FF36"
                   className="pointer-events-none select-none"
                 >
                   {item.letter}
@@ -371,7 +371,7 @@ function CrescerCycle() {
                   textAnchor="middle"
                   fontSize="17"
                   fontWeight="600"
-                  fill={isActive ? "#C5A059" : "rgba(230,225,215,0.85)"}
+                  fill={isActive ? "#D8FF36" : "rgba(230,225,215,0.85)"}
                   className="pointer-events-none select-none"
                 >
                   {item.label}

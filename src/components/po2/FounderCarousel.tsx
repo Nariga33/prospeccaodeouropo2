@@ -193,7 +193,7 @@ export function FounderCarousel() {
                   slideRefs.current[i] = el;
                 }}
               >
-                <div className="grid gap-12 bg-[radial-gradient(ellipse_at_50%_20%,rgba(197,160,89,0.10),transparent_55%)] px-1 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:bg-[radial-gradient(ellipse_at_22%_45%,rgba(197,160,89,0.10),transparent_50%)]">
+                <div className="grid gap-12 bg-[radial-gradient(ellipse_at_50%_20%,rgba(216,255,54,0.10),transparent_55%)] px-1 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:bg-[radial-gradient(ellipse_at_22%_45%,rgba(216,255,54,0.10),transparent_50%)]">
                   <div className="relative">
                     <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-black/40">
                       <img

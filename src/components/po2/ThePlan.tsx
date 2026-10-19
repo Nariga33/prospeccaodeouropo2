@@ -48,7 +48,7 @@ export function ThePlan() {
           <div className="absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent md:block" />
           {STEPS.map((s) => (
             <div key={s.n} className="relative flex flex-col items-center text-center">
-              <span className="relative z-10 flex size-16 items-center justify-center rounded-full border-2 border-gold/50 bg-background text-gold shadow-[0_0_30px_rgba(197,160,89,0.2)]">
+              <span className="relative z-10 flex size-16 items-center justify-center rounded-full border-2 border-gold/50 bg-background text-gold shadow-[0_0_30px_rgba(216,255,54,0.2)]">
                 <s.icon className="size-6" />
               </span>
               <div className="mt-5 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">

@@ -137,7 +137,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:opacity-60"
+            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98] disabled:opacity-60"
           >
             {submitting ? "Abrindo..." : "Iniciar diagnóstico"}
             {!submitting && <ArrowRight className="size-4" />}

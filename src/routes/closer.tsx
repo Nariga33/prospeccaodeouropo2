@@ -54,7 +54,7 @@ export const Route = createFileRoute("/closer")({
 });
 
 const ctaPrimary =
-  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 
 function CloserPage() {
   return (
@@ -104,7 +104,7 @@ function CloserPage() {
         <PitchCognitivo />
 
         <section className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.1),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(216,255,54,0.1),transparent_60%)]" />
           <div className="mx-auto max-w-3xl px-6 py-24 text-center">
             <h2 className="font-display text-4xl text-foreground md:text-5xl">
               Quantas propostas ficam{" "}

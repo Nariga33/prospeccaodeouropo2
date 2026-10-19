@@ -107,21 +107,21 @@ export function RodaComercial() {
           <div className="mx-auto h-[360px] w-full max-w-md">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={data} outerRadius="72%">
-                <PolarGrid stroke="rgba(197,160,89,0.2)" />
+                <PolarGrid stroke="rgba(216,255,54,0.2)" />
                 <PolarAngleAxis
                   dataKey="subject"
                   tick={{ fontSize: 11, fill: "rgba(230,225,215,0.85)" }}
                 />
                 <PolarRadiusAxis
                   domain={[0, 10]}
-                  tick={{ fontSize: 9, fill: "rgba(197,160,89,0.5)" }}
+                  tick={{ fontSize: 9, fill: "rgba(216,255,54,0.5)" }}
                   tickCount={6}
                   axisLine={false}
                 />
                 <Radar
                   dataKey="valor"
-                  stroke="#C5A059"
-                  fill="#C5A059"
+                  stroke="#D8FF36"
+                  fill="#D8FF36"
                   fillOpacity={0.28}
                   strokeWidth={2}
                 />

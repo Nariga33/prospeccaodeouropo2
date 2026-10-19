@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/po2-logo.png";
+import logo from "@/assets/po2-logo-verde.svg";
 import {
   Linkedin,
   Phone,
@@ -127,8 +127,8 @@ export function OutboundHub() {
           <svg viewBox={`0 0 ${size} ${size}`} className="aspect-square w-full overflow-visible">
             <defs>
               <radialGradient id="po2HubGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(197,160,89,0.22)" />
-                <stop offset="100%" stopColor="rgba(197,160,89,0)" />
+                <stop offset="0%" stopColor="rgba(216,255,54,0.22)" />
+                <stop offset="100%" stopColor="rgba(216,255,54,0)" />
               </radialGradient>
               <filter id="po2NodeBlur" x="-60%" y="-60%" width="220%" height="220%">
                 <feGaussianBlur stdDeviation="14" />
@@ -147,14 +147,14 @@ export function OutboundHub() {
                   cx={x}
                   cy={y}
                   r={rNode / 2 + 14}
-                  fill={i === active ? "rgba(197,160,89,0.35)" : "rgba(197,160,89,0.14)"}
+                  fill={i === active ? "rgba(216,255,54,0.35)" : "rgba(216,255,54,0.14)"}
                   filter="url(#po2NodeBlur)"
                   style={{ opacity: visible ? 1 : 0, transition: "opacity 0.6s ease-out" }}
                 />
               );
             })}
 
-            <circle cx={cx} cy={cy} r={rCenter} fill="#0F1115" stroke="#C5A059" strokeWidth="2.5" />
+            <circle cx={cx} cy={cy} r={rCenter} fill="#101314" stroke="#D8FF36" strokeWidth="2.5" />
             <foreignObject x={cx - 78} y={cy - 78} width={156} height={156}>
               <div className="flex h-full w-full items-center justify-center">
                 <img src={logo} alt="PO2" className="h-20 w-auto object-contain" />
@@ -184,13 +184,13 @@ export function OutboundHub() {
                     cx={x}
                     cy={y}
                     r={rNode / 2}
-                    fill={isActive ? "#1a1208" : "#15171b"}
-                    stroke={isActive ? "#C5A059" : "rgba(197,160,89,0.5)"}
+                    fill={isActive ? "#101314" : "#161A1C"}
+                    stroke={isActive ? "#D8FF36" : "rgba(216,255,54,0.5)"}
                     strokeWidth={isActive ? 2.5 : 1.5}
                   />
                   <foreignObject x={x - 20} y={y - 20} width={40} height={40}>
                     <div className="flex h-full w-full items-center justify-center">
-                      <Icon size={isActive ? 24 : 20} color="#C5A059" />
+                      <Icon size={isActive ? 24 : 20} color="#D8FF36" />
                     </div>
                   </foreignObject>
                   <text
@@ -211,7 +211,7 @@ export function OutboundHub() {
                     fontSize="11"
                     fontWeight="700"
                     letterSpacing="0.15em"
-                    fill={isActive ? "#C5A059" : "rgba(197,160,89,0.6)"}
+                    fill={isActive ? "#D8FF36" : "rgba(216,255,54,0.6)"}
                     className="pointer-events-none select-none"
                   >
                     {c.day.toUpperCase()}

@@ -4,25 +4,25 @@ const STAGES = [
   {
     label: "Pesquisa",
     width: 100,
-    bg: "#15171b",
-    border: "rgba(197,160,89,0.15)",
+    bg: "#161A1C",
+    border: "rgba(216,255,54,0.15)",
     text: "#9a9a9a",
   },
   {
     label: "Abordagem Personalizada",
     width: 78,
-    bg: "#3a2e18",
-    border: "rgba(197,160,89,0.4)",
-    text: "#e6cf9e",
+    bg: "#155E75",
+    border: "rgba(216,255,54,0.4)",
+    text: "#D8FF36",
   },
   {
     label: "Preparação p/ Fechar Agenda",
     width: 52,
     bg: "#6b4f24",
-    border: "rgba(197,160,89,0.6)",
+    border: "rgba(216,255,54,0.6)",
     text: "#f5e2b8",
   },
-  { label: "Dar Sequência", width: 28, bg: "#C5A059", border: "#C5A059", text: "#1a1208" },
+  { label: "Dar Sequência", width: 28, bg: "#D8FF36", border: "#D8FF36", text: "#101314" },
 ];
 
 const STEP_DELAY_MS = 260;

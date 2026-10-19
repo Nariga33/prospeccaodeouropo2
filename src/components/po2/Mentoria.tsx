@@ -27,7 +27,7 @@ import {
 
 const goldRule = "h-px w-12 bg-gold/60";
 const ctaPrimary =
-  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 
 export function Mentoria() {
   const slides = [
@@ -333,15 +333,15 @@ export function Mentoria() {
                     >
                       <XAxis
                         dataKey="name"
-                        stroke="#C5A059"
-                        tick={{ fontSize: 11, fill: "#C5A059" }}
+                        stroke="#D8FF36"
+                        tick={{ fontSize: 11, fill: "#D8FF36" }}
                         interval={0}
                       />
-                      <YAxis stroke="#C5A059" tick={{ fontSize: 11, fill: "#C5A059" }} />
+                      <YAxis stroke="#D8FF36" tick={{ fontSize: 11, fill: "#D8FF36" }} />
                       <Tooltip
                         contentStyle={{
-                          background: "#0e0e10",
-                          border: "1px solid rgba(197,160,89,0.3)",
+                          background: "#101314",
+                          border: "1px solid rgba(216,255,54,0.3)",
                           borderRadius: 8,
                           fontSize: 12,
                           color: "#fff",
@@ -353,7 +353,7 @@ export function Mentoria() {
                       />
                       <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                         {chart.data.map((d, i) => (
-                          <Cell key={i} fill={d.bad ? "#c0524a" : "#C5A059"} />
+                          <Cell key={i} fill={d.bad ? "#c0524a" : "#D8FF36"} />
                         ))}
                       </Bar>
                     </BarChart>

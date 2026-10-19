@@ -14,7 +14,7 @@ import {
   ClipboardCheck,
   GraduationCap,
 } from "lucide-react";
-import logo from "@/assets/po2-logo.png";
+import logo from "@/assets/po2-logo-verde.svg";
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
@@ -676,7 +676,7 @@ function OperationalContextCard({
       <button
         disabled={!canSubmit}
         onClick={() => onSubmit({ faturamento: "", ticket: agendas, metaContratos: oportunidades })}
-        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
       >
         Continuar diagnóstico <ArrowRight className="size-4" />
       </button>
@@ -761,7 +761,7 @@ function BusinessContextCard({
       <button
         disabled={!canSubmit}
         onClick={() => onSubmit({ faturamento, ticket, metaContratos })}
-        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
       >
         Continuar diagnóstico <ArrowRight className="size-4" />
       </button>
@@ -1197,7 +1197,7 @@ function DiagnosticoPage() {
             </div>
           )
         ) : (
-          <div className="rounded-3xl border border-gold/40 bg-gradient-to-b from-gold/10 to-card/80 p-10 shadow-[0_0_80px_-20px_rgba(197,160,89,0.45)]">
+          <div className="rounded-3xl border border-gold/40 bg-gradient-to-b from-gold/10 to-card/80 p-10 shadow-[0_0_80px_-20px_rgba(216,255,54,0.45)]">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
               <Sparkles className="size-3" /> Diagnóstico pronto
             </div>
@@ -1402,7 +1402,7 @@ function DiagnosticoPage() {
                       );
                     }
                   }}
-                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(216,255,54,0.45)] active:scale-[0.98]"
                 >
                   <Phone className="size-4" /> Falar com o time PO2{" "}
                   <ArrowRight className="size-4" />
@@ -1415,7 +1415,7 @@ function DiagnosticoPage() {
               <>
                 <Link
                   to="/mentoria"
-                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(216,255,54,0.45)] active:scale-[0.98]"
                 >
                   <GraduationCap className="size-4" /> Quero evoluir com a Mentoria PO2{" "}
                   <ArrowRight className="size-4" />

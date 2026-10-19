@@ -6,7 +6,7 @@ import { Megaphone, Brain, Headset, Target, Trophy, RotateCcw, ArrowRight } from
 const goldRule = "h-px w-12 bg-gold/60";
 
 const ctaPrimary =
-  "inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+  "inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 
 interface FNode {
   key: string;
@@ -102,8 +102,8 @@ export function FullFunnelOverview() {
             >
               <defs>
                 <radialGradient id="funnelGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="rgba(197,160,89,0.18)" />
-                  <stop offset="100%" stopColor="rgba(197,160,89,0)" />
+                  <stop offset="0%" stopColor="rgba(216,255,54,0.18)" />
+                  <stop offset="100%" stopColor="rgba(216,255,54,0)" />
                 </radialGradient>
               </defs>
               <circle cx={350} cy={400} r={380} fill="url(#funnelGlow)" />
@@ -114,7 +114,7 @@ export function FullFunnelOverview() {
                 y1={100}
                 x2={140}
                 y2={400}
-                stroke="rgba(197,160,89,0.3)"
+                stroke="rgba(216,255,54,0.3)"
                 strokeWidth={1.5}
               />
               <line
@@ -122,7 +122,7 @@ export function FullFunnelOverview() {
                 y1={100}
                 x2={560}
                 y2={400}
-                stroke="rgba(197,160,89,0.3)"
+                stroke="rgba(216,255,54,0.3)"
                 strokeWidth={1.5}
               />
               <line
@@ -130,7 +130,7 @@ export function FullFunnelOverview() {
                 y1={400}
                 x2={350}
                 y2={670}
-                stroke="rgba(197,160,89,0.3)"
+                stroke="rgba(216,255,54,0.3)"
                 strokeWidth={1.5}
               />
               <line
@@ -138,7 +138,7 @@ export function FullFunnelOverview() {
                 y1={400}
                 x2={350}
                 y2={670}
-                stroke="rgba(197,160,89,0.3)"
+                stroke="rgba(216,255,54,0.3)"
                 strokeWidth={1.5}
               />
 
@@ -146,7 +146,7 @@ export function FullFunnelOverview() {
               <path
                 d="M 445 685 C 700 580, 700 210, 500 110"
                 fill="none"
-                stroke="#C5A059"
+                stroke="#D8FF36"
                 strokeWidth={2.5}
                 strokeDasharray="7 9"
                 style={{
@@ -156,7 +156,7 @@ export function FullFunnelOverview() {
               />
               <polygon
                 points="480,92 508,108 483,127"
-                fill="#C5A059"
+                fill="#D8FF36"
                 style={{ opacity: loopVisible ? 0.85 : 0, transition: "opacity 0.8s ease-out" }}
               />
               <text
@@ -166,7 +166,7 @@ export function FullFunnelOverview() {
                 fontSize="16"
                 fontWeight="700"
                 letterSpacing="0.12em"
-                fill="#C5A059"
+                fill="#D8FF36"
                 transform="rotate(90 690 400)"
                 style={{ opacity: loopVisible ? 1 : 0, transition: "opacity 0.8s ease-out" }}
               >
@@ -176,9 +176,9 @@ export function FullFunnelOverview() {
               {NODES.map((n, i) => {
                 const Icon = n.icon;
                 const visible = i < visibleCount;
-                const fill = n.tier === 2 ? "#C5A059" : "#0F1115";
-                const iconColor = n.tier === 2 ? "#1a1208" : "#C5A059";
-                const stroke = n.tier === 2 ? "#C5A059" : "rgba(197,160,89,0.55)";
+                const fill = n.tier === 2 ? "#D8FF36" : "#101314";
+                const iconColor = n.tier === 2 ? "#101314" : "#D8FF36";
+                const stroke = n.tier === 2 ? "#D8FF36" : "rgba(216,255,54,0.55)";
                 const content = (
                   <g
                     style={{
@@ -230,7 +230,7 @@ export function FullFunnelOverview() {
                 fontSize="14"
                 fontWeight="700"
                 letterSpacing="0.25em"
-                fill="rgba(197,160,89,0.65)"
+                fill="rgba(216,255,54,0.65)"
                 style={{ opacity: visibleCount >= 4 ? 1 : 0, transition: "opacity 0.5s" }}
               >
                 PRÉ-VENDA

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Menu, Phone } from "lucide-react";
-import logo from "@/assets/po2-logo.png";
+import logo from "@/assets/po2-logo-verde.svg";
 import { DiagnosticDialog } from "@/components/po2/DiagnosticDialog";
 import { PO2_PHONE_DISPLAY, PO2_WHATSAPP_URL } from "@/lib/contact";
 import {
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const ctaPrimary =
-  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]";
+  "inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]";
 
 const METHOD_ITEMS = [
   { href: "/bdr", label: "BDR", sub: "Outbound" },

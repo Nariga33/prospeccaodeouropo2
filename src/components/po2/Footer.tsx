@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Mail, MessageCircle, Phone } from "lucide-react";
-import logo from "@/assets/po2-logo.png";
+import logo from "@/assets/po2-logo-verde.svg";
 import {
   PO2_EMAIL,
   PO2_INSTAGRAM_URL,

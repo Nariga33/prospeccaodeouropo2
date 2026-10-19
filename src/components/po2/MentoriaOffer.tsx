@@ -87,7 +87,7 @@ export function MentoriaOffer() {
               href={PO2_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(197,160,89,0.45)] active:scale-[0.98]"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_50px_rgba(216,255,54,0.45)] active:scale-[0.98]"
             >
               <MessageCircle className="size-4" /> Quero garantir minha vaga
             </a>

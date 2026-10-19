@@ -151,7 +151,7 @@ function EventCard({
   const past = isPast(event.ends_at);
 
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all hover:border-gold/40 hover:shadow-[0_0_40px_rgba(197,160,89,0.15)]">
+    <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all hover:border-gold/40 hover:shadow-[0_0_40px_rgba(216,255,54,0.15)]">
       <button
         onClick={onOpen}
         className="relative aspect-[16/9] overflow-hidden bg-black text-left"
@@ -230,7 +230,7 @@ function EventCard({
 function InvitationHeader({ event }: { event: PublicEvent }) {
   return (
     <div className="relative border-b border-gold/20 bg-gradient-to-b from-black to-background px-8 py-10 text-center">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.15),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(216,255,54,0.15),transparent_60%)]" />
       <div className="relative">
         <div className="mx-auto mb-4 inline-flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">
           <span className="h-px w-8 bg-gold/50" /> Convite oficial PO2{" "}
@@ -339,7 +339,7 @@ function RegisterDialog({ event, onClose }: { event: PublicEvent; onClose: () =>
           </div>
         </div>
       )}
-      <div className="my-8 w-full max-w-4xl overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_80px_rgba(197,160,89,0.15)]">
+      <div className="my-8 w-full max-w-4xl overflow-hidden rounded-2xl border border-gold/20 bg-background shadow-[0_0_80px_rgba(216,255,54,0.15)]">
         <div className="relative">
           <button
             onClick={onClose}

@@ -107,7 +107,7 @@ export function ServicesShowcase() {
               onClick={() => setActive(i)}
               className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-bold transition-all ${
                 i === active
-                  ? "border-gold bg-gold text-gold-foreground shadow-[0_0_30px_rgba(197,160,89,0.3)]"
+                  ? "border-gold bg-gold text-gold-foreground shadow-[0_0_30px_rgba(216,255,54,0.3)]"
                   : "border-white/10 bg-white/5 text-muted-foreground hover:border-gold/30 hover:text-foreground"
               }`}
             >
@@ -145,7 +145,7 @@ export function ServicesShowcase() {
 
               <Link
                 to={current.href}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(197,160,89,0.35)] active:scale-[0.98]"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)] active:scale-[0.98]"
               >
                 Conhecer {current.tab} <ArrowRight className="size-4" />
               </Link>

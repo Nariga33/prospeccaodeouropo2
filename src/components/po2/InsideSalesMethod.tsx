@@ -109,7 +109,7 @@ export function InsideSalesMethod() {
               onClick={() => setActivePhase(i)}
               className={`rounded-full border px-5 py-2.5 text-sm font-bold transition-all ${
                 i === activePhase
-                  ? "border-gold bg-gold text-gold-foreground shadow-[0_0_30px_rgba(197,160,89,0.3)]"
+                  ? "border-gold bg-gold text-gold-foreground shadow-[0_0_30px_rgba(216,255,54,0.3)]"
                   : "border-white/10 bg-white/5 text-muted-foreground hover:border-gold/30 hover:text-foreground"
               }`}
             >

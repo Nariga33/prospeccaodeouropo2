@@ -30,7 +30,7 @@ export function MaterialCard({
     <>
       <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-card/70 transition-all hover:-translate-y-1 hover:border-gold/40">
         <div className="relative flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-gold/10 via-background to-black">
-          <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(197,160,89,0.25)_1px,transparent_1px)] [background-size:18px_18px]" />
+          <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(216,255,54,0.25)_1px,transparent_1px)] [background-size:18px_18px]" />
           <span className="relative flex size-20 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold">
             <Icon className="size-9" />
           </span>
@@ -43,7 +43,7 @@ export function MaterialCard({
           <p className="mt-2 flex-1 text-sm text-muted-foreground">{desc}</p>
           <button
             onClick={() => setOpen(true)}
-            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(197,160,89,0.3)]"
+            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-gold px-4 py-2.5 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(216,255,54,0.3)]"
           >
             <Download className="size-3.5" /> {ctaLabel}
           </button>

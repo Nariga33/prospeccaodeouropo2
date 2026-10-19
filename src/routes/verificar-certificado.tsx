@@ -74,7 +74,7 @@ function VerifyPage() {
               <button
                 type="submit"
                 disabled={result.state === "loading"}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(197,160,89,0.3)] disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground transition-all hover:shadow-[0_0_30px_rgba(216,255,54,0.3)] disabled:opacity-60"
               >
                 {result.state === "loading" ? (
                   <Loader2 className="size-4 animate-spin" />
