@@ -401,14 +401,14 @@ const FUNDADORES = [
     cargo: "Fundador e CEO",
     foto: fotoMatheus,
     stat: "+R$10MM",
-    d: "Prospecção B2B e outbound, com operações, cadências e times construídos do zero.",
+    d: "Especialista em Outbound, Vendas Consultivas, Challenger Sale e Gestão Comercial.",
   },
   {
     nome: "Victor Nogueira",
     cargo: "Cofundador",
     foto: fotoVictor,
     stat: "+R$10MM",
-    d: "Vendas consultivas e geração de demanda, com operações high-ticket e grandes marcas.",
+    d: "Especialista em Challenger Sale, Vendas Consultivas e Global Sales.",
   },
 ];
 

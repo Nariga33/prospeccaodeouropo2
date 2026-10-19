@@ -47,9 +47,8 @@ const PESSOAS = [
     ],
     corpo: (
       <p>
-        Especialista em <span className={strong}>prospecção B2B e outbound</span>, com operações, cadências e times
-        construídos do zero. Ao todo, <span className={strong}>+R$10MM em negócios gerados</span> e milhares de empresas
-        prospectadas.
+        Especialista em <span className={strong}>Outbound, Vendas Consultivas, Challenger Sale e Gestão Comercial</span>.
+        Ao todo, <span className={strong}>+R$10MM em negócios gerados</span>.
       </p>
     ),
   },
@@ -65,9 +64,8 @@ const PESSOAS = [
     ],
     corpo: (
       <p>
-        Especialista em <span className={strong}>vendas consultivas e geração de demanda</span>, com operações
-        high-ticket e parcerias com grandes marcas. Ao todo,{" "}
-        <span className={strong}>+R$10MM em negócios gerados</span> e centenas de reuniões com decisores.
+        Especialista em <span className={strong}>Challenger Sale, Vendas Consultivas e Global Sales</span>.
+        Ao todo, <span className={strong}>+R$10MM em negócios gerados</span>.
       </p>
     ),
   },
