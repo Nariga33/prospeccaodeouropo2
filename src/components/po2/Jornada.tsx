@@ -462,3 +462,28 @@ export function CtaFinal() {
     </section>
   );
 }
+
+export function CtaOxigenio() {
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-gold/30 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
+        <div>
+          <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
+            Sua prospecção está com pouco oxigênio e <span className={GRADIENTE}>pulso baixo</span>?
+          </h2>
+          <p className="mt-3 max-w-xl text-muted-foreground">
+            Fale com o time da PO2. Medimos onde falta fôlego na sua operação comercial e devolvemos o ritmo.
+          </p>
+        </div>
+        <a
+          href={PO2_WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex shrink-0 items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
+        >
+          Falar com o time <ArrowRight className="size-4" />
+        </a>
+      </div>
+    </section>
+  );
+}

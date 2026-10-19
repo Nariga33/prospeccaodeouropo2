@@ -6,7 +6,7 @@ import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
 import bgHero from "@/assets/bg-gradiente-hero.webp";
-import { SolucaoHome } from "@/components/po2/Jornada";
+import { CtaOxigenio } from "@/components/po2/Jornada";
 import { Arcs } from "@/components/po2/Arcs";
 import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 
@@ -164,32 +164,14 @@ function SolucoesPage() {
         </div>
         <ClientesMarquee />
         </section>
-        <SolucaoHome />
+        <CtaOxigenio />
         <ProblemaMetodo />
         <FunilEtapas />
+        <CtaOxigenio />
         <MatrizDiagnostico />
         <PlanoEtapas />
         <PitchBlocos />
-        <section className="mx-auto max-w-7xl px-6 py-20 md:py-24">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
-            <div>
-              <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
-                Sua prospecção está com pouco oxigênio e pulso baixo?
-              </h2>
-              <p className="mt-3 max-w-xl text-muted-foreground">
-                Fale com o time da PO2. Medimos onde falta fôlego na sua operação comercial e devolvemos o ritmo.
-              </p>
-            </div>
-            <a
-              href={PO2_WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
-            >
-              Falar com o time <ArrowRight className="size-4" />
-            </a>
-          </div>
-        </section>
+        <CtaOxigenio />
       </main>
       <Footer />
     </div>
