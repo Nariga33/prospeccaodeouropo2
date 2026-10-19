@@ -45,7 +45,7 @@ const FUNCIONALIDADES = [
   {
     icon: GraduationCap,
     t: "Trilhas de formação",
-    d: "Caminhos de aprendizagem para SDRs, closers e gestores, do fundamento comercial à liderança.",
+    d: "Caminhos de aprendizagem para BDRs, SDRs, closers e gestores, do fundamento comercial à liderança.",
   },
   {
     icon: Users,
@@ -62,6 +62,7 @@ const FUNCIONALIDADES = [
 const TRILHAS = [
   { icon: BarChart3, t: "Fundamentos comerciais" },
   { icon: Users, t: "SDRs" },
+  { icon: Users, t: "BDRs" },
   { icon: Target, t: "Closers" },
   { icon: Settings, t: "Gestores" },
 ];
@@ -149,7 +150,7 @@ function AcademyPage() {
           </div>
 
           <h3 className="mt-16 font-display text-xl font-semibold">Trilhas de aprendizagem</h3>
-          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
             {TRILHAS.map(({ icon: Icon, t }) => (
               <div key={t} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#155E75]/30 p-5">
                 <Icon className="size-7 text-gold" strokeWidth={1.5} />
