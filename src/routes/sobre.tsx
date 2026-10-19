@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
-import fotoJoao from "@/assets/sobre-joao.webp";
+import fotoVictor from "@/assets/sobre-victor.webp";
 import fotoMatheus from "@/assets/sobre-matheus.webp";
 
 export const Route = createFileRoute("/sobre")({
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/sobre")({
       {
         name: "description",
         content:
-          "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e João Victor Acunha, cofundador. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
+          "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e Victor Nogueira, cofundador. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
       },
       { property: "og:title", content: "Sobre a PO2 - Quem está por trás" },
       { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/sobre" },
@@ -44,12 +44,14 @@ const PESSOAS = [
     ],
   },
   {
-    nome: "João Victor Acunha",
+    nome: "Victor Nogueira",
     cargo: "Cofundador",
-    foto: fotoJoao,
-    alt: "João Victor Acunha, cofundador da PO2",
+    foto: fotoVictor,
+    alt: "Victor Nogueira, cofundador da PO2",
     paragrafos: [
-      "Cofundador do Método PO2, atua ao lado do Matheus na construção e na evolução da operação comercial dos clientes.",
+      "Especialista em vendas consultivas, geração de demanda e Global Markets.",
+      "Já atuou em operações high-ticket e, durante sua passagem pela ExitLag, gerou mais de 200 reuniões com ICP definido e decisores corretos, além de participar da construção de parcerias com grandes marcas, como Banco Inter, e contribuir para mais de US$ 3 milhões em receita previsível.",
+      "Hoje, leva essa experiência para ajudar profissionais e empresas a gerar oportunidades qualificadas, acessar decisores e transformar prospecção em receita.",
     ],
   },
 ];
