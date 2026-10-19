@@ -38,4 +38,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://www.prospeccaoodeouropo2.com/sitemap.xml
+Sitemap: https://pulsepo2.com/sitemap.xml

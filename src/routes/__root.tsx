@@ -125,7 +125,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           alternateName: "PO2",
           description:
             "Prospecção B2B terceirizada, com SDR terceirizado, BDR terceirizado e SDR as a Service - ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul, atendendo todo o Brasil.",
-          url: "https://www.prospeccaoodeouropo2.com/",
+          url: "https://pulsepo2.com/",
           telephone: `+55${PO2_PHONE_DISPLAY.replace(/[^\d]/g, "")}`,
           email: PO2_EMAIL,
           areaServed: [
@@ -197,7 +197,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 name: "Prospecção B2B terceirizada",
                 description:
                   "Estruturação e/ou execução de operação de prospecção outbound B2B - ICP, cadência multicanal, cold call, e-mail e LinkedIn.",
-                url: "https://www.prospeccaoodeouropo2.com/bdr",
+                url: "https://pulsepo2.com/bdr",
               },
             },
             {
@@ -207,7 +207,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 name: "BDR terceirizado",
                 description:
                   "Execução terceirizada de prospecção ativa (BDR/outbound) com método, cadência e gestão de indicadores.",
-                url: "https://www.prospeccaoodeouropo2.com/bdr",
+                url: "https://pulsepo2.com/bdr",
               },
             },
             {
@@ -217,7 +217,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 name: "SDR terceirizado / SDR as a Service",
                 description:
                   "Qualificação inbound terceirizada - lead scoring, SLA de resposta e funil MQL/PQL/SAL/SQL.",
-                url: "https://www.prospeccaoodeouropo2.com/sdr",
+                url: "https://pulsepo2.com/sdr",
               },
             },
             {
@@ -226,7 +226,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "@type": "Service",
                 name: "Inside Sales terceirizado",
                 description: "Condução de oportunidades e reuniões qualificadas até o fechamento.",
-                url: "https://www.prospeccaoodeouropo2.com/inside-sales",
+                url: "https://pulsepo2.com/inside-sales",
               },
             },
           ],

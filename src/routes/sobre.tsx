@@ -16,9 +16,9 @@ export const Route = createFileRoute("/sobre")({
           "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e Victor Nogueira, cofundador, com +R$17MM em receita gerada. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
       },
       { property: "og:title", content: "Sobre a PO2 - Quem está por trás" },
-      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/sobre" },
+      { property: "og:url", content: "https://pulsepo2.com/sobre" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/sobre" }],
+    links: [{ rel: "canonical", href: "https://pulsepo2.com/sobre" }],
   }),
   component: SobrePage,
 });

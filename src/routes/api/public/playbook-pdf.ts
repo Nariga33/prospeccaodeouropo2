@@ -154,7 +154,7 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
     year: "numeric",
   });
   drawCentered(cover, today, PAGE_H - 455, 10, helv, muted);
-  drawCentered(cover, "www.prospeccaoodeouropo2.com", 40, 8, helv, goldSoft);
+  drawCentered(cover, "pulsepo2.com", 40, 8, helv, goldSoft);
 
   // One page per section
   for (const section of body.sections) {
@@ -197,7 +197,7 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
       y -= lines.length * 15 + 18;
     });
 
-    drawCentered(page, "www.prospeccaoodeouropo2.com", 40, 8, helv, goldSoft);
+    drawCentered(page, "pulsepo2.com", 40, 8, helv, goldSoft);
   }
 
   // Página final com as dores específicas identificadas nas respostas —
@@ -239,7 +239,7 @@ async function buildPlaybookPdf(rawBody: RequestBody): Promise<Uint8Array> {
       y -= lines.length * 15 + 18;
     });
 
-    drawCentered(page, "www.prospeccaoodeouropo2.com", 40, 8, helv, goldSoft);
+    drawCentered(page, "pulsepo2.com", 40, 8, helv, goldSoft);
   }
 
   return pdf.save();

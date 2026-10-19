@@ -27,9 +27,9 @@ export const Route = createFileRoute("/")({
         content:
           "Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para gerar mais oportunidades e resultados consistentes.",
       },
-      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/" },
+      { property: "og:url", content: "https://pulsepo2.com/" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/" }],
+    links: [{ rel: "canonical", href: "https://pulsepo2.com/" }],
   }),
   component: LandingPage,
 });

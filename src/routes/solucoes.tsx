@@ -18,9 +18,9 @@ export const Route = createFileRoute("/solucoes")({
           "Estruturação comercial, aceleração de vendas, mentoria, tecnologia e terceirização de pré-vendas: as soluções da PO2 para gerar mais oportunidades e resultados.",
       },
       { property: "og:title", content: "Soluções - PO2" },
-      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/solucoes" },
+      { property: "og:url", content: "https://pulsepo2.com/solucoes" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/solucoes" }],
+    links: [{ rel: "canonical", href: "https://pulsepo2.com/solucoes" }],
   }),
   component: SolucoesPage,
 });

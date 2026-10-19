@@ -176,7 +176,7 @@ function buildCertificatePdf(params: CertParams): Uint8Array {
   pdf.drawText(sigName, sigX - sigW / 2, sigY + 10, sigSize, "F3", white);
   pdf.drawCentered(params.signatureTitle, sigY - 15, 9, "F1", goldSoft);
 
-  pdf.drawCentered("prospeccaoodeouropo2.com/verificar-certificado", 52, 8, "F1", goldSoft);
+  pdf.drawCentered("pulsepo2.com/verificar-certificado", 52, 8, "F1", goldSoft);
   pdf.drawCentered(`Código de verificação: ${params.token}`, 38, 7, "F1", goldSoft);
 
   return pdf.save();

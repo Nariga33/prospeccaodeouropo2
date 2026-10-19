@@ -26,9 +26,9 @@ export const Route = createFileRoute("/academy")({
           "PO2 Academy: ambiente de aprendizagem com treinamentos, mentorias e certificações para profissionais e lideranças de vendas, com tecnologia e CRM próprios da PO2.",
       },
       { property: "og:title", content: "PO2 Academy" },
-      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/academy" },
+      { property: "og:url", content: "https://pulsepo2.com/academy" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/academy" }],
+    links: [{ rel: "canonical", href: "https://pulsepo2.com/academy" }],
   }),
   component: AcademyPage,
 });

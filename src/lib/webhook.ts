@@ -13,7 +13,7 @@ export async function sendToWebhook(event: string, data: Record<string, unknown>
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         event,
-        source: "prospeccaoodeouropo2.com",
+        source: "pulsepo2.com",
         timestamp: new Date().toISOString(),
         ...data,
       }),

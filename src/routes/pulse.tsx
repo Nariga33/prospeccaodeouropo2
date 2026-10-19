@@ -33,9 +33,9 @@ export const Route = createFileRoute("/pulse")({
           "PO2 Pulse: acompanhe indicadores, receba recomendações e conte com mentorias periódicas. Consultoria, tecnologia e acompanhamento contínuo.",
       },
       { property: "og:title", content: "PO2 Pulse" },
-      { property: "og:url", content: "https://www.prospeccaoodeouropo2.com/pulse" },
+      { property: "og:url", content: "https://pulsepo2.com/pulse" },
     ],
-    links: [{ rel: "canonical", href: "https://www.prospeccaoodeouropo2.com/pulse" }],
+    links: [{ rel: "canonical", href: "https://pulsepo2.com/pulse" }],
   }),
   component: PulsePage,
 });

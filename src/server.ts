@@ -37,9 +37,24 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
+// Domínio oficial: pulsepo2.com. O domínio antigo (e o www) redirecionam com 301.
+const CANONICAL_HOST = "pulsepo2.com";
+const LEGACY_HOSTS = new Set([
+  "prospeccaoodeouropo2.com",
+  "www.prospeccaoodeouropo2.com",
+  "www.pulsepo2.com",
+]);
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      if (LEGACY_HOSTS.has(url.hostname)) {
+        url.hostname = CANONICAL_HOST;
+        url.protocol = "https:";
+        url.port = "";
+        return Response.redirect(url.toString(), 301);
+      }
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
