@@ -6,7 +6,7 @@ import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
 import bgHero from "@/assets/bg-gradiente-hero.webp";
-import { CtaOxigenio } from "@/components/po2/Jornada";
+import { CtaFinal, CtaOxigenio } from "@/components/po2/Jornada";
 import { Arcs } from "@/components/po2/Arcs";
 import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 
@@ -167,11 +167,10 @@ function SolucoesPage() {
         <CtaOxigenio />
         <ProblemaMetodo />
         <FunilEtapas />
-        <CtaOxigenio />
         <MatrizDiagnostico />
         <PlanoEtapas />
         <PitchBlocos />
-        <CtaOxigenio />
+        <CtaFinal />
       </main>
       <Footer />
     </div>
