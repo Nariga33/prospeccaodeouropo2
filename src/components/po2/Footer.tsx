@@ -19,7 +19,7 @@ export function Footer() {
             <img src={logo} alt="PO2" className="h-10 w-auto" />
             <div className="hidden h-8 w-px bg-white/10 md:block" />
             <p className="text-xs text-muted-foreground">
-              PO2 · Prospecção que gera receita
+              PO2 · Oxigênio Comercial
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-2 border-t border-white/5 pt-6 md:flex-row md:items-center">
           <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
-            © {new Date().getFullYear()} PO2 - Prospecção de Ouro 2.0
+            © {new Date().getFullYear()} PO2 - Oxigênio Comercial
           </div>
         </div>
       </div>

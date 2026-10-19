@@ -4,6 +4,7 @@ import { ArrowRight, BarChart3, Zap, Users, Settings, Headset, ChevronDown } fro
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
+import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
 import monograma from "@/assets/monograma.webp";
 import bgListras from "@/assets/bg-listras.webp";
 import logoBranco from "@/assets/po2-logo-branco.svg";
@@ -82,7 +83,8 @@ function SolucoesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
-      <main className="relative overflow-hidden">
+      <main>
+        <section className="relative overflow-hidden">
         <img src={bgListras} alt="" aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 object-cover opacity-30" />
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
           <div className="relative">
@@ -155,6 +157,32 @@ function SolucoesPage() {
             })}
           </ul>
         </div>
+        </section>
+        <ProblemaMetodo />
+        <FunilEtapas />
+        <MatrizDiagnostico />
+        <PlanoEtapas />
+        <PitchBlocos />
+        <section className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
+            <div>
+              <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
+                Pronto para tirar a prospecção do improviso?
+              </h2>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                Fale com o time da PO2 e mapeamos os gargalos da sua operação comercial.
+              </p>
+            </div>
+            <a
+              href={PO2_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-6 rounded-xl bg-gold px-7 py-4 text-sm font-medium text-gold-foreground transition-all hover:shadow-[0_0_40px_rgba(216,255,54,0.35)]"
+            >
+              Falar com o time <ArrowRight className="size-4" />
+            </a>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

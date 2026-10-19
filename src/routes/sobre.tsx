@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
+import { FaqPo2, Frentes, ParaQuemE } from "@/components/po2/Metodo";
 import fotoVictor from "@/assets/sobre-victor.webp";
 import fotoMatheus from "@/assets/sobre-matheus.webp";
 
@@ -109,6 +110,24 @@ const PESSOAS = [
   },
 ];
 
+const O_QUE_E = [
+  [
+    "O que é",
+    "Oxigênio comercial para empresas B2B",
+    "A PO2 estrutura e executa a prospecção: ICP, lista, cadência multicanal, pitch e métricas. Une consultoria, mentoria, terceirização de pré-vendas e tecnologia própria.",
+  ],
+  [
+    "Para quem",
+    "Quem já vende, mas depende de esforço individual",
+    "Empresas B2B de times de 1 vendedor a operações com vários BDRs, SDRs e closers que querem previsibilidade para gerar oportunidades.",
+  ],
+  [
+    "Como",
+    "Diagnóstico antes de proposta",
+    "Mapeamos o funil, definimos o ICP, montamos a base e ajustamos toda semana com base em métrica real, junto com o seu time.",
+  ],
+];
+
 const CASES = [
   { empresa: "Mansão Maromba", contato: "Diretor Thiago (Toguro)", ctx: "Contato direto com o diretor. Agenda realizada para fechar parceria.", metrica: "Parceria", rotulo: "agendada com C-Level.", tag: "C-Level" },
   { empresa: "Comil Ônibus", contato: "Diretoria executiva", ctx: "Conversa direta com diretores sobre uso de I.A. na operação.", metrica: "+R$ 40K", rotulo: "MRR em proposta avançada.", tag: "Em proposta" },
@@ -139,6 +158,21 @@ function SobrePage() {
             comerciais. Ajudamos negócios a desenvolver processos de vendas mais eficientes, estruturados e previsíveis.
           </p>
         </section>
+
+        <section className="mx-auto max-w-7xl px-6 pb-4 pt-8">
+          <div className="grid gap-4 md:grid-cols-3">
+            {O_QUE_E.map(([k, t, d]) => (
+              <div key={k} className="rounded-2xl border border-white/10 bg-card p-7">
+                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gold">{k}</p>
+                <h2 className="mt-4 font-display text-xl font-medium leading-snug">{t}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Frentes />
+        <ParaQuemE />
 
         <section className="mx-auto max-w-7xl px-6 pt-8">
           <div className="rounded-3xl border border-gold/30 bg-gradient-to-r from-[#155E75]/40 to-card p-8 md:flex md:items-end md:justify-between md:p-10">
@@ -212,6 +246,8 @@ function SobrePage() {
             ))}
           </div>
         </section>
+
+        <FaqPo2 />
 
         <section className="mx-auto max-w-7xl px-6 pb-24">
           <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
