@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerificarCertificadoRouteImport } from './routes/verificar-certificado'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
+import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SdrRouteImport } from './routes/sdr'
 import { Route as PulseRouteImport } from './routes/pulse'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
@@ -41,6 +42,11 @@ const VerificarCertificadoRoute = VerificarCertificadoRouteImport.update({
 const SolucoesRoute = SolucoesRouteImport.update({
   id: '/solucoes',
   path: '/solucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SdrRoute = SdrRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/parceiros': typeof ParceirosRoute
   '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
+  '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
   '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/parceiros': typeof ParceirosRoute
   '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
+  '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
   '/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/parceiros': typeof ParceirosRoute
   '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
+  '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
   '/_authenticated/admin/diagnostico': typeof AuthenticatedAdminDiagnosticoRoute
@@ -243,6 +252,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/pulse'
     | '/sdr'
+    | '/sobre'
     | '/solucoes'
     | '/verificar-certificado'
     | '/admin/diagnostico'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/pulse'
     | '/sdr'
+    | '/sobre'
     | '/solucoes'
     | '/verificar-certificado'
     | '/admin/diagnostico'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/parceiros'
     | '/pulse'
     | '/sdr'
+    | '/sobre'
     | '/solucoes'
     | '/verificar-certificado'
     | '/_authenticated/admin/diagnostico'
@@ -318,6 +330,7 @@ export interface RootRouteChildren {
   ParceirosRoute: typeof ParceirosRoute
   PulseRoute: typeof PulseRoute
   SdrRoute: typeof SdrRoute
+  SobreRoute: typeof SobreRoute
   SolucoesRoute: typeof SolucoesRoute
   VerificarCertificadoRoute: typeof VerificarCertificadoRoute
   ApiPublicBootstrapAdminRoute: typeof ApiPublicBootstrapAdminRoute
@@ -339,6 +352,13 @@ declare module '@tanstack/react-router' {
       path: '/solucoes'
       fullPath: '/solucoes'
       preLoaderRoute: typeof SolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sdr': {
@@ -522,6 +542,7 @@ const rootRouteChildren: RootRouteChildren = {
   ParceirosRoute: ParceirosRoute,
   PulseRoute: PulseRoute,
   SdrRoute: SdrRoute,
+  SobreRoute: SobreRoute,
   SolucoesRoute: SolucoesRoute,
   VerificarCertificadoRoute: VerificarCertificadoRoute,
   ApiPublicBootstrapAdminRoute: ApiPublicBootstrapAdminRoute,

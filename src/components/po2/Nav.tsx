@@ -20,7 +20,7 @@ const ctaOutline =
 
 // Menu do rebrand (mockup PO2): Sobre | Soluções | Pulse | Academy | Cases
 const NAV_ITEMS: { label: string; to?: string; href?: string }[] = [
-  { label: "Sobre", href: "/#top" },
+  { label: "Sobre", to: "/sobre" },
   { label: "Soluções", to: "/solucoes" },
   { label: "Pulse", to: "/pulse" },
   { label: "Academy", to: "/academy" },
