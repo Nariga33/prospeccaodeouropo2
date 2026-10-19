@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerificarCertificadoRouteImport } from './routes/verificar-certificado'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SdrRouteImport } from './routes/sdr'
+import { Route as PulseRouteImport } from './routes/pulse'
 import { Route as ParceirosRouteImport } from './routes/parceiros'
 import { Route as MetodologiasRouteImport } from './routes/metodologias'
 import { Route as MentoriaRouteImport } from './routes/mentoria'
@@ -44,6 +45,11 @@ const SolucoesRoute = SolucoesRouteImport.update({
 const SdrRoute = SdrRouteImport.update({
   id: '/sdr',
   path: '/sdr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PulseRoute = PulseRouteImport.update({
+  id: '/pulse',
+  path: '/pulse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParceirosRoute = ParceirosRouteImport.update({
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
+  '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
+  '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/mentoria': typeof MentoriaRoute
   '/metodologias': typeof MetodologiasRoute
   '/parceiros': typeof ParceirosRoute
+  '/pulse': typeof PulseRoute
   '/sdr': typeof SdrRoute
   '/solucoes': typeof SolucoesRoute
   '/verificar-certificado': typeof VerificarCertificadoRoute
@@ -222,6 +231,7 @@ export interface FileRouteTypes {
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
+    | '/pulse'
     | '/sdr'
     | '/solucoes'
     | '/verificar-certificado'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
+    | '/pulse'
     | '/sdr'
     | '/solucoes'
     | '/verificar-certificado'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/mentoria'
     | '/metodologias'
     | '/parceiros'
+    | '/pulse'
     | '/sdr'
     | '/solucoes'
     | '/verificar-certificado'
@@ -291,6 +303,7 @@ export interface RootRouteChildren {
   MentoriaRoute: typeof MentoriaRoute
   MetodologiasRoute: typeof MetodologiasRoute
   ParceirosRoute: typeof ParceirosRoute
+  PulseRoute: typeof PulseRoute
   SdrRoute: typeof SdrRoute
   SolucoesRoute: typeof SolucoesRoute
   VerificarCertificadoRoute: typeof VerificarCertificadoRoute
@@ -320,6 +333,13 @@ declare module '@tanstack/react-router' {
       path: '/sdr'
       fullPath: '/sdr'
       preLoaderRoute: typeof SdrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pulse': {
+      id: '/pulse'
+      path: '/pulse'
+      fullPath: '/pulse'
+      preLoaderRoute: typeof PulseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parceiros': {
@@ -479,6 +499,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentoriaRoute: MentoriaRoute,
   MetodologiasRoute: MetodologiasRoute,
   ParceirosRoute: ParceirosRoute,
+  PulseRoute: PulseRoute,
   SdrRoute: SdrRoute,
   SolucoesRoute: SolucoesRoute,
   VerificarCertificadoRoute: VerificarCertificadoRoute,
