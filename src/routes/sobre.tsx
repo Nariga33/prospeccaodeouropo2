@@ -14,7 +14,7 @@ export const Route = createFileRoute("/sobre")({
       {
         name: "description",
         content:
-          "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e Victor Nogueira, cofundador, com +R$17MM em receita gerada. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
+          "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e Victor Nogueira, cofundador, com +R$20MM em negócios gerados. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
       },
       { property: "og:title", content: "Sobre a PO2 - Quem está por trás" },
       { property: "og:url", content: "https://pulsepo2.com/sobre" },
@@ -41,14 +41,14 @@ const PESSOAS = [
     foto: fotoMatheus,
     alt: "Matheus Staruck, fundador e CEO da PO2",
     numeros: [
-      ["+R$2MM", "Receita gerada"],
+      ["+R$10MM", "Em negócios gerados"],
       ["+200k", "Ligações realizadas"],
       ["+10k", "Empresas prospectadas"],
     ],
     corpo: (
       <p>
         Especialista em <span className={strong}>prospecção B2B e outbound</span>, com operações, cadências e times
-        construídos do zero. Ao todo, <span className={strong}>+R$2MM em receita gerada</span> e milhares de empresas
+        construídos do zero. Ao todo, <span className={strong}>+R$10MM em negócios gerados</span> e milhares de empresas
         prospectadas.
       </p>
     ),
@@ -59,7 +59,7 @@ const PESSOAS = [
     foto: fotoVictor,
     alt: "Victor Nogueira, cofundador da PO2",
     numeros: [
-      ["+R$15MM", "Receita gerada (+US$3M)"],
+      ["+R$10MM", "Em negócios gerados"],
       ["+200", "Reuniões com decisores corretos"],
       ["Banco Inter", "Parceria com grande marca"],
     ],
@@ -67,7 +67,7 @@ const PESSOAS = [
       <p>
         Especialista em <span className={strong}>vendas consultivas e geração de demanda</span>, com operações
         high-ticket e parcerias com grandes marcas. Ao todo,{" "}
-        <span className={strong}>+R$15MM em receita gerada</span> e centenas de reuniões com decisores.
+        <span className={strong}>+R$10MM em negócios gerados</span> e centenas de reuniões com decisores.
       </p>
     ),
   },
@@ -100,11 +100,11 @@ function SobrePage() {
           <div className="rounded-3xl border border-gold/30 bg-gradient-to-r from-[#155E75]/40 to-card p-8 md:flex md:items-end md:justify-between md:p-10">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Resultados dos fundadores</p>
-              <p className="mt-3 font-display text-5xl text-gold md:text-7xl">+R$17MM</p>
-              <p className="mt-2 text-muted-foreground">em receita gerada, somando os resultados do Matheus e do Victor.</p>
+              <p className="mt-3 font-display text-5xl text-gold md:text-7xl">+R$20MM</p>
+              <p className="mt-2 text-muted-foreground">em negócios gerados, somando os resultados do Matheus e do Victor.</p>
             </div>
             <p className="mt-6 max-w-sm text-xs leading-relaxed text-muted-foreground md:mt-0">
-              R$2 milhões do Matheus e R$15 milhões do Victor (US$ 3 milhões convertidos a R$5,00 por dólar).
+              R$10 milhões em negócios do Matheus e R$10 milhões em negócios do Victor.
             </p>
           </div>
         </section>
