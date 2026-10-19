@@ -22,8 +22,8 @@ const ctaOutline =
 const NAV_ITEMS: { label: string; to?: string; href?: string }[] = [
   { label: "Sobre", href: "/#sobre" },
   { label: "Soluções", href: "/#solucoes" },
-  { label: "Pulse", to: "/diagnostico" },
-  { label: "Academy", to: "/mentoria" },
+  { label: "Pulse", href: "/#pulse" },
+  { label: "Academy", href: "/#academy" },
   { label: "Cases", href: "/#clientes" },
 ];
 

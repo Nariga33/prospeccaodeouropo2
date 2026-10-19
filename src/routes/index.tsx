@@ -51,6 +51,8 @@ function LandingPage() {
         <Consultoria />
         <SobreNos />
         <Previsibilidade />
+        <PropositoValores />
+        <PulseAcademy />
       </main>
       <Footer />
     </div>
@@ -265,6 +267,80 @@ function Consultoria() {
             Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
           </a>
         </div>
+      </div>
+    </section>
+  );
+}
+
+const VALORES = [
+  ["Orientação a resultados", "Cada ação deve contribuir para a evolução comercial do cliente."],
+  ["Transparência", "Diagnósticos claros, indicadores acessíveis e comunicação objetiva."],
+  ["Comprometimento", "Participação ativa na implementação das soluções."],
+  ["Inovação aplicada", "Tecnologia e novas metodologias a serviço da eficiência comercial."],
+  ["Evolução contínua", "Desenvolvimento constante de processos, pessoas e resultados."],
+];
+
+function PropositoValores() {
+  return (
+    <section className="relative overflow-hidden bg-background px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Propósito e valores</p>
+        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
+          PO2 é método. <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">Método é resultado.</span>
+        </h2>
+        <p className="mt-5 max-w-2xl text-muted-foreground">
+          Transformar a maneira como empresas vendem e empreendedores constroem seus negócios.
+        </p>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {VALORES.map(([t, d]) => (
+            <div key={t} className="rounded-2xl border border-white/10 bg-card p-6">
+              <h3 className="font-display text-base font-semibold text-foreground">{t}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PulseAcademy() {
+  const items = [
+    {
+      id: "pulse",
+      t: "PO2 Pulse",
+      sub: "O pulso da sua operação comercial",
+      d: "Consultoria, tecnologia e acompanhamento contínuo: acompanhe indicadores, receba recomendações e conte com mentorias periódicas.",
+    },
+    {
+      id: "academy",
+      t: "PO2 Academy",
+      sub: "Ambiente de aprendizagem",
+      d: "Treinamentos, mentorias e certificações para profissionais e lideranças de vendas.",
+      bullets: [
+        "Trilhas de formação para SDRs, closers e gestores",
+        "Cursos práticos e mentorias com especialistas",
+        "Avaliações e certificações profissionais",
+      ],
+    },
+  ];
+  return (
+    <section className="bg-background px-6 pb-24">
+      <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+        {items.map((i) => (
+          <div key={i.id} id={i.id} className="rounded-3xl border border-white/10 bg-[#155E75]/40 p-8 md:p-10">
+            <h3 className="font-display text-2xl font-semibold text-gold">{i.t}</h3>
+            <p className="mt-2 font-display text-lg text-foreground">{i.sub}</p>
+            <p className="mt-4 text-muted-foreground">{i.d}</p>
+            {i.bullets && (
+              <ul className="mt-5 space-y-2 text-sm text-foreground">
+                {i.bullets.map((b) => (
+                  <li key={b} className="flex gap-2"><span className="text-gold">•</span>{b}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );
