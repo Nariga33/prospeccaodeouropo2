@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -16,6 +17,11 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import pulseImg from "@/assets/pulse-dashboard.webp";
+import telaProspectar from "@/assets/pulse-prospectar.webp";
+import telaCadencias from "@/assets/pulse-cadencias.webp";
+import telaPlaybooks from "@/assets/pulse-playbooks.webp";
+import telaSala from "@/assets/pulse-sala-de-guerra.webp";
+import telaAtividades from "@/assets/pulse-atividades.webp";
 
 export const Route = createFileRoute("/pulse")({
   head: () => ({
@@ -33,6 +39,54 @@ export const Route = createFileRoute("/pulse")({
   }),
   component: PulsePage,
 });
+
+const TELAS = [
+  { id: "prospectar", t: "Prospectar", d: "Encontre pessoas e empresas por cargo, porte, estado e segmento e crie o lead sem sair do CRM.", img: telaProspectar },
+  { id: "cadencias", t: "Cadências", d: "Sequências multicanal com esperas e condições, com modelos prontos para você ajustar.", img: telaCadencias },
+  { id: "playbooks", t: "Playbooks", d: "A metodologia PO2 como base e um adendo para cada conta-cliente.", img: telaPlaybooks },
+  { id: "sala", t: "Sala de guerra", d: "Meta contratual, diagnóstico, plano de 30 dias e pauta de alinhamento com o cliente.", img: telaSala },
+  { id: "atividades", t: "Atividades", d: "Follow-ups e tarefas dos leads e das ligações em lista e calendário.", img: telaAtividades },
+];
+
+function Telas() {
+  const [atual, setAtual] = useState(TELAS[0].id);
+  const tela = TELAS.find((x) => x.id === atual) ?? TELAS[0];
+  return (
+    <section id="telas" className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Por dentro do Pulse</p>
+      <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
+        Veja a plataforma em ação
+      </h2>
+      <div role="tablist" className="mt-8 flex flex-wrap gap-2">
+        {TELAS.map((x) => (
+          <button
+            key={x.id}
+            role="tab"
+            aria-selected={x.id === atual}
+            onClick={() => setAtual(x.id)}
+            className={`rounded-full border px-5 py-2 text-sm font-medium transition-colors ${
+              x.id === atual
+                ? "border-gold bg-gold text-gold-foreground"
+                : "border-white/15 text-foreground hover:border-gold hover:text-gold"
+            }`}
+          >
+            {x.t}
+          </button>
+        ))}
+      </div>
+      <p className="mt-5 max-w-2xl text-muted-foreground">{tela.d}</p>
+      <img
+        key={tela.id}
+        src={tela.img}
+        alt={`Tela ${tela.t} do PO2 Pulse`}
+        width={1800}
+        height={1100}
+        loading="lazy"
+        className="mt-6 w-full rounded-3xl border border-white/10"
+      />
+    </section>
+  );
+}
 
 const INDICADORES = [
   ["Taxa de agendamento", "Leads com reunião agendada sobre os leads criados."],
@@ -180,6 +234,8 @@ function PulsePage() {
             ))}
           </div>
         </section>
+
+        <Telas />
 
         <section id="recursos" className="mx-auto max-w-7xl px-6 pb-24">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">O que tem dentro do Pulse</p>
