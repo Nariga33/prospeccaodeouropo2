@@ -75,7 +75,7 @@ function Hero() {
             Falar com o time <ArrowRight className="size-4" />
           </a>
           <a
-            href="/metodologias"
+            href="/solucoes"
             className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium text-foreground transition-colors hover:border-gold hover:text-gold"
           >
             Conheça as soluções <ArrowRight className="size-4" />
