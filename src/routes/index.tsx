@@ -2,16 +2,10 @@ import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { Arcs } from "@/components/po2/Arcs";
 import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 import bgHero from "@/assets/bg-gradiente-hero.webp";
-import bgArcos from "@/assets/bg-arcos.webp";
-import bgListras from "@/assets/bg-listras.webp";
-import monograma from "@/assets/monograma.webp";
-import logoBranco from "@/assets/po2-logo-branco.svg";
-import matheusHero from "@/assets/matheus-hero.webp";
-import joaoPhoto from "@/assets/joao-victor-acunha.webp";
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
-import { Users, ArrowRight, BarChart3, Zap, Settings } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,13 +40,6 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
-        <ClientesMarquee />
-        <Solucoes />
-        <Consultoria />
-        <SobreNos />
-        <Previsibilidade />
-        <PropositoValores />
-        <PulseAcademy />
       </main>
       <Footer />
     </div>
@@ -64,7 +51,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden border-b border-white/5">
       <img src={bgHero} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70" />
       <Arcs className="pointer-events-none absolute inset-y-0 right-0 h-full w-full max-w-[1100px] opacity-90 md:translate-x-[30%]" />
-      <div className="relative mx-auto max-w-7xl px-6 pb-28 pt-24 md:pt-32">
+      <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-24 md:pt-32">
         <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
           Prospecção que gera receita
         </div>
@@ -88,260 +75,14 @@ function Hero() {
             Falar com o time <ArrowRight className="size-4" />
           </a>
           <a
-            href="#solucoes"
+            href="/metodologias"
             className="inline-flex items-center gap-6 rounded-xl border border-white/20 px-7 py-4 text-sm font-medium text-foreground transition-colors hover:border-gold hover:text-gold"
           >
             Conheça as soluções <ArrowRight className="size-4" />
           </a>
         </div>
       </div>
-    </section>
-  );
-}
-
-const SOLUCOES = [
-  {
-    t: "Estruturação comercial",
-    d: "Organizamos processos, times e ferramentas para uma operação mais previsível e escalável.",
-  },
-  {
-    t: "Aceleração de vendas",
-    d: "Implementamos estratégias e rotinas que geram mais oportunidades e aumentam a taxa de conversão.",
-  },
-  {
-    t: "Mentoria e capacitação",
-    d: "Desenvolvemos times comerciais com métodos práticos e aplicáveis à realidade de cada negócio.",
-  },
-  {
-    t: "Tecnologia a favor de vendas",
-    d: "Implementamos automações e soluções que dão mais eficiência e visibilidade para a operação.",
-  },
-];
-
-function Solucoes() {
-  const icons = [BarChart3, Zap, Users, Settings];
-  return (
-    <section id="solucoes" className="relative overflow-hidden border-b border-white/5 bg-[#06141c] py-24">
-      <img src={bgListras} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/2 object-cover opacity-60 [mask-image:linear-gradient(to_right,transparent,black_60%)]" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
-          Soluções
-        </div>
-        <h2 className="mt-6 max-w-2xl font-display text-3xl font-medium leading-tight md:text-5xl">
-          Soluções comerciais em destaque
-        </h2>
-        <div className="mt-14 flex max-w-xl flex-col gap-10">
-          {SOLUCOES.map((x, i) => {
-            const Icon = icons[i];
-            return (
-              <div key={x.t} className="flex items-start gap-6">
-                <div className="shrink-0 rounded-2xl bg-gradient-to-br from-[#D8FF36] via-[#22C5E6] to-[#1F6FE0] p-px">
-                  <div className="flex size-16 items-center justify-center rounded-2xl bg-[#06141c]">
-                    <Icon className="size-8 text-[#22D3EE]" strokeWidth={1.5} />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl font-medium leading-snug md:text-2xl">{x.t}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">{x.d}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <a
-          href="/#sobre"
-          className="mt-14 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
-        >
-          Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
-        </a>
-      </div>
-    </section>
-  );
-}
-
-function SobreNos() {
-  return (
-    <section id="sobre" className="relative overflow-hidden border-b border-white/5 bg-[#040d14] py-24 md:py-32">
-      <div className="pointer-events-none absolute -left-40 -top-40 h-[480px] w-[480px] rounded-full bg-[#155E75]/30 blur-[120px]" />
-      <img src={monograma} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute -right-16 top-1/2 h-[520px] w-auto -translate-y-1/2 opacity-35 md:right-8 md:h-[640px] md:opacity-100" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <img src={logoBranco} alt="PO2" className="h-16 w-auto md:h-20" />
-        <div className="mt-24 text-[11px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
-          Sobre nós
-        </div>
-        <h2 className="mt-6 max-w-md text-balance font-display text-5xl font-medium leading-[1.02] md:text-7xl">
-          Estrutura comercial para{" "}
-          <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-            resultados
-          </span>
-        </h2>
-        <a
-          href="/#sobre"
-          className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
-        >
-          Saiba mais <ArrowRight className="size-5 text-[#22C5E6]" />
-        </a>
-      </div>
-    </section>
-  );
-}
-
-function Previsibilidade() {
-  return (
-    <section className="relative overflow-hidden border-b border-white/5 bg-[#06141c]">
-      <div className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle_at_30%_70%,#D8FF36_0%,#22C5E6_35%,#155E75_60%,transparent_72%)] opacity-70 blur-[2px] max-md:opacity-30" />
-      <div className="relative mx-auto grid max-w-7xl items-end gap-8 px-6 pt-24 md:grid-cols-2 md:pt-28">
-        <div className="pb-24">
-          <div className="max-w-xs text-[11px] font-medium uppercase tracking-[0.4em] text-muted-foreground md:text-xs">
-            Vendas com estratégia
-          </div>
-          <h2 className="mt-8 text-balance font-display text-4xl font-medium leading-[1.08] md:text-6xl">
-            Mais{" "}
-            <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-              previsibilidade
-            </span>{" "}
-            para o seu crescimento
-          </h2>
-          <p className="mt-8 max-w-sm text-lg text-muted-foreground">
-            Estruturamos processos comerciais que geram oportunidades reais e resultados
-            consistentes.
-          </p>
-          <a
-            href="/#sobre"
-            className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
-          >
-            Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
-          </a>
-        </div>
-        <div className="relative flex justify-center md:justify-end">
-          <img
-            src={matheusHero}
-            alt="Matheus Staruck, fundador da PO2"
-            width={996}
-            height={1500}
-            className="relative z-10 h-auto max-h-[640px] w-auto object-contain"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Consultoria() {
-  return (
-    <section className="relative overflow-hidden border-b border-white/5 bg-[#040d14]">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-0 md:grid-cols-2">
-        <div className="relative order-2 min-h-[420px] md:order-1 md:min-h-[640px]">
-          <img
-            src={bgArcos}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-24 -top-10 h-full w-auto max-w-none -scale-x-100 object-cover opacity-70"
-          />
-          <img
-            src={joaoPhoto}
-            alt="João Victor Acunha, co-founder da PO2"
-            width={800}
-            height={1000}
-            className="relative z-10 mx-auto h-full max-h-[680px] w-auto object-contain object-bottom [mask-image:radial-gradient(ellipse_65%_80%_at_50%_45%,black_50%,transparent_100%)]"
-          />
-        </div>
-        <div className="relative z-10 order-1 px-6 py-20 md:order-2 md:py-28">
-          <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
-            Consultoria com resultado
-          </div>
-          <h2 className="mt-6 max-w-md text-balance font-display text-4xl font-medium leading-[1.08] md:text-6xl">
-            Vendas que viram o{" "}
-            <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-              próximo passo
-            </span>
-          </h2>
-          <p className="mt-8 max-w-sm text-lg text-muted-foreground">
-            Estruturamos estratégias comerciais para gerar mais oportunidades e acelerar o
-            crescimento da sua empresa.
-          </p>
-          <a
-            href="/#sobre"
-            className="mt-10 inline-flex items-center gap-6 rounded-full border border-[#22C5E6] px-8 py-4 text-sm font-medium transition-all hover:bg-[#22C5E6]/10"
-          >
-            Conheça a PO2 <ArrowRight className="size-5 text-[#22C5E6]" />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const VALORES = [
-  ["Orientação a resultados", "Cada ação deve contribuir para a evolução comercial do cliente."],
-  ["Transparência", "Diagnósticos claros, indicadores acessíveis e comunicação objetiva."],
-  ["Comprometimento", "Participação ativa na implementação das soluções."],
-  ["Inovação aplicada", "Tecnologia e novas metodologias a serviço da eficiência comercial."],
-  ["Evolução contínua", "Desenvolvimento constante de processos, pessoas e resultados."],
-];
-
-function PropositoValores() {
-  return (
-    <section className="relative overflow-hidden bg-background px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Propósito e valores</p>
-        <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
-          PO2 é método. <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">Método é resultado.</span>
-        </h2>
-        <p className="mt-5 max-w-2xl text-muted-foreground">
-          Transformar a maneira como empresas vendem e empreendedores constroem seus negócios.
-        </p>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {VALORES.map(([t, d]) => (
-            <div key={t} className="rounded-2xl border border-white/10 bg-card p-6">
-              <h3 className="font-display text-base font-semibold text-foreground">{t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PulseAcademy() {
-  const items = [
-    {
-      id: "pulse",
-      t: "PO2 Pulse",
-      sub: "O pulso da sua operação comercial",
-      d: "Consultoria, tecnologia e acompanhamento contínuo: acompanhe indicadores, receba recomendações e conte com mentorias periódicas.",
-    },
-    {
-      id: "academy",
-      t: "PO2 Academy",
-      sub: "Ambiente de aprendizagem",
-      d: "Treinamentos, mentorias e certificações para profissionais e lideranças de vendas.",
-      bullets: [
-        "Trilhas de formação para SDRs, closers e gestores",
-        "Cursos práticos e mentorias com especialistas",
-        "Avaliações e certificações profissionais",
-      ],
-    },
-  ];
-  return (
-    <section className="bg-background px-6 pb-24">
-      <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
-        {items.map((i) => (
-          <div key={i.id} id={i.id} className="rounded-3xl border border-white/10 bg-[#155E75]/40 p-8 md:p-10">
-            <h3 className="font-display text-2xl font-semibold text-gold">{i.t}</h3>
-            <p className="mt-2 font-display text-lg text-foreground">{i.sub}</p>
-            <p className="mt-4 text-muted-foreground">{i.d}</p>
-            {i.bullets && (
-              <ul className="mt-5 space-y-2 text-sm text-foreground">
-                {i.bullets.map((b) => (
-                  <li key={b} className="flex gap-2"><span className="text-gold">•</span>{b}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
+      <ClientesMarquee />
     </section>
   );
 }
