@@ -24,7 +24,7 @@ const NAV_ITEMS: { label: string; to?: string; href?: string }[] = [
   { label: "Soluções", to: "/solucoes" },
   { label: "Pulse", to: "/pulse" },
   { label: "Academy", to: "/academy" },
-  { label: "Cases", href: "/#clientes" },
+  { label: "Cases", href: "/sobre#casos" },
 ];
 
 export function Nav() {
