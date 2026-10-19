@@ -352,6 +352,19 @@ export function ParaQuemHome() {
 /* Pulse: oxigênio + pulsação                                         */
 /* ------------------------------------------------------------------ */
 
+const APARELHOS = [
+  "Venda que depende do esforço de uma pessoa só",
+  "Lista no chute e abordagem genérica",
+  "Cadência sem estratégia, sem história",
+  "Número sem análise, decisão no achismo",
+];
+const AR_PURO = [
+  "ICP documentado e lista certa",
+  "Abordagem consultiva e cadência estruturada",
+  "Time treinado e mentorado, do BDR ao closer",
+  "Ritmo diário no Pulse e métricas revisadas toda semana",
+];
+
 export function PulseFinal() {
   return (
     <section id="pulse" className="relative overflow-hidden border-t border-white/5 bg-[#0B0D0E]">
@@ -370,14 +383,14 @@ export function PulseFinal() {
             <span className="po2-beat absolute inline-flex size-full rounded-full bg-gold" />
             <span className="relative inline-flex size-3 rounded-full bg-gold" />
           </span>
-          <Eyebrow>06 · Pulse</Eyebrow>
+          <Eyebrow>06 · Pulse · Respire</Eyebrow>
         </div>
         <h2 className="mt-6 text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
-          Só oxigênio não mantém ninguém <span className={GRADIENTE}>vivo</span>
+          Retire a sua empresa dos aparelhos e comece a respirar <span className={GRADIENTE}>ar puro</span>
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-          Não existe pessoa sem pulsação só com oxigênio. Para a sua empresa sobreviver, para ela
-          respirar, ela precisa de pulsação.
+          Uma empresa ligada a aparelhos até sobrevive, mas não vive. E não existe pessoa sem
+          pulsação só com oxigênio: para respirar sozinha, a sua empresa precisa de método e de pulsação.
         </p>
 
       <svg
@@ -402,19 +415,44 @@ export function PulseFinal() {
           strokeLinejoin="round"
         />
       </svg>
-        <div className="mx-auto mt-8 grid max-w-3xl gap-4 text-left md:grid-cols-2">
+        <div className="mx-auto mt-8 grid max-w-5xl gap-4 text-left md:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-card/60 p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+              Nos aparelhos
+            </p>
+            <ul className="mt-5 space-y-3">
+              {APARELHOS.map((t) => (
+                <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <X className="mt-0.5 size-4 shrink-0 text-red-400/70" /> {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-3xl border border-gold/30 bg-gold/5 p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Respirando sozinha</p>
+            <ul className="mt-5 space-y-3">
+              {AR_PURO.map((t) => (
+                <li key={t} className="flex items-start gap-3 text-sm text-foreground/90">
+                  <Check className="mt-0.5 size-4 shrink-0 text-gold" /> {t}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-4 grid max-w-5xl gap-4 text-left md:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-card/60 p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Oxigênio</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Oxigênio · inovação</p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Método, processo, ICP, cadência e mentoria. É o que dá fôlego para a operação
-              comercial respirar.
+              Método, processo, ICP, cadência e mentoria. É o que traz inovação e dá fôlego para a
+              operação comercial.
             </p>
           </div>
           <div className="rounded-2xl border border-white/10 bg-card/60 p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Pulsação</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Pulsação · Pulse</p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              O Pulse é o CRM da PO2: leads, atividades, funil e cadências rodando todo dia, no
-              ritmo certo.
+              O Pulse é o CRM da PO2: leads, atividades, funil e cadências rodando todo dia, no ritmo
+              certo.
             </p>
           </div>
         </div>
