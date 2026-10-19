@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado" },
+      { title: "PO2 - Oxigênio Comercial" },
       {
         name: "description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "PO2 - Matheus Staruck" },
       {
         property: "og:title",
-        content: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
+        content: "PO2 - Oxigênio Comercial",
       },
       {
         property: "og:description",
@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "PO2 - Prospecção B2B Terceirizada | SDR e BDR Terceirizado",
+        content: "PO2 - Oxigênio Comercial",
       },
       {
         name: "twitter:description",
@@ -238,6 +238,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "llms.txt", href: "/llms.txt" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

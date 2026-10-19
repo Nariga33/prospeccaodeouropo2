@@ -1,5 +1,6 @@
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { Arcs } from "@/components/po2/Arcs";
+import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 import bgHero from "@/assets/bg-gradiente-hero.webp";
 import bgArcos from "@/assets/bg-arcos.webp";
 import bgListras from "@/assets/bg-listras.webp";
@@ -77,7 +78,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PO2 - Terceirização do Time Comercial e Prospecção B2B" },
+      { title: "PO2 - Oxigênio Comercial" },
       {
         name: "description",
         content:
@@ -88,7 +89,7 @@ export const Route = createFileRoute("/")({
         content:
           "terceirização do time comercial, terceirizar time comercial, prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, BPO comercial, outbound B2B, prospecção ativa, assessoria comercial, BDR, SDR, inside sales, closer",
       },
-      { property: "og:title", content: "PO2 - Prospecção de Ouro 2.0" },
+      { property: "og:title", content: "PO2 - Oxigênio Comercial" },
       {
         property: "og:description",
         content:
@@ -221,6 +222,7 @@ function LandingPage() {
       <Nav />
       <main>
         <Hero />
+        <ClientesMarquee />
         <Solucoes />
         <Consultoria />
         <SobreNos />
