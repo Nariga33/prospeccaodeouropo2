@@ -29,7 +29,7 @@ export function ClientesMarquee() {
       />
     ));
   return (
-    <section aria-label="Clientes que confiam" className="border-b border-white/5 bg-background py-12">
+    <section id="clientes" aria-label="Clientes que confiam" className="border-b border-white/5 bg-background py-12">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-8 text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
           Clientes que confiam

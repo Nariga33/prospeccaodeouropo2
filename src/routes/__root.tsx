@@ -12,8 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
-import { EventCountdownBanner } from "@/components/po2/EventCountdownBanner";
-import { WelcomeGate } from "@/components/po2/WelcomeGate";
 import { WhatsAppFloat } from "@/components/po2/WhatsAppFloat";
 import { PO2_EMAIL, PO2_INSTAGRAM_URL, PO2_LINKEDIN_URL, PO2_PHONE_DISPLAY } from "@/lib/contact";
 
@@ -292,8 +290,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <WelcomeGate />
-      <EventCountdownBanner />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <WhatsAppFloat />
