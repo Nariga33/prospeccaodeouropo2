@@ -18,10 +18,8 @@ import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import pulseImg from "@/assets/pulse-dashboard.webp";
 import telaProspectar from "@/assets/pulse-prospectar.webp";
-import telaCadencias from "@/assets/pulse-cadencias.webp";
 import telaPlaybooks from "@/assets/pulse-playbooks.webp";
 import telaSala from "@/assets/pulse-sala-de-guerra.webp";
-import telaAtividades from "@/assets/pulse-atividades.webp";
 
 export const Route = createFileRoute("/pulse")({
   head: () => ({
@@ -40,12 +38,16 @@ export const Route = createFileRoute("/pulse")({
   component: PulsePage,
 });
 
-const TELAS = [
+type Tela = { id: string; t: string; d: string; img?: string; video?: string; poster?: string };
+
+const TELAS: Tela[] = [
+  { id: "leads", t: "Leads", d: "Cadastre a empresa e o contato e acompanhe cada oportunidade pelo funil.", video: "/videos/pulse-leads.mp4", poster: "/videos/pulse-leads.webp" },
+  { id: "atividades", t: "Atividades", d: "Follow-ups e tarefas dos leads, das ligações e das cadências em lista e calendário.", video: "/videos/pulse-atividades.mp4", poster: "/videos/pulse-atividades.webp" },
+  { id: "funil", t: "Funil", d: "Métricas comerciais por etapa: agendamento, qualificação e fechamento.", video: "/videos/pulse-funil.mp4", poster: "/videos/pulse-funil.webp" },
+  { id: "cadencias", t: "Cadências", d: "Sequências multicanal com esperas e condições, com modelos prontos para você ajustar.", video: "/videos/pulse-cadencias.mp4", poster: "/videos/pulse-cadencias.webp" },
   { id: "prospectar", t: "Prospectar", d: "Encontre pessoas e empresas por cargo, porte, estado e segmento e crie o lead sem sair do CRM.", img: telaProspectar },
-  { id: "cadencias", t: "Cadências", d: "Sequências multicanal com esperas e condições, com modelos prontos para você ajustar.", img: telaCadencias },
   { id: "playbooks", t: "Playbooks", d: "A metodologia PO2 como base e um adendo para cada conta-cliente.", img: telaPlaybooks },
   { id: "sala", t: "Sala de guerra", d: "Meta contratual, diagnóstico, plano de 30 dias e pauta de alinhamento com o cliente.", img: telaSala },
-  { id: "atividades", t: "Atividades", d: "Follow-ups e tarefas dos leads e das ligações em lista e calendário.", img: telaAtividades },
 ];
 
 function Telas() {
@@ -75,15 +77,33 @@ function Telas() {
         ))}
       </div>
       <p className="mt-5 max-w-2xl text-muted-foreground">{tela.d}</p>
-      <img
-        key={tela.id}
-        src={tela.img}
-        alt={`Tela ${tela.t} do PO2 Pulse`}
-        width={1800}
-        height={1100}
-        loading="lazy"
-        className="mt-6 w-full rounded-3xl border border-white/10"
-      />
+      {tela.video ? (
+        <video
+          key={tela.id}
+          src={tela.video}
+          poster={tela.poster}
+          width={1440}
+          height={900}
+          controls
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={`Vídeo da tela ${tela.t} do PO2 Pulse`}
+          className="mt-6 w-full rounded-3xl border border-white/10 bg-black"
+        />
+      ) : (
+        <img
+          key={tela.id}
+          src={tela.img}
+          alt={`Tela ${tela.t} do PO2 Pulse`}
+          width={1800}
+          height={1100}
+          loading="lazy"
+          className="mt-6 w-full rounded-3xl border border-white/10"
+        />
+      )}
     </section>
   );
 }
