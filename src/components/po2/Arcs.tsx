@@ -2,13 +2,13 @@ export function Arcs({ className = "" }: { className?: string }) {
   return (
     <>
       <style>{`
-        @keyframes po2-arc-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-22px,16px) scale(1.035); } }
-        @keyframes po2-arc-b { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(26px,-20px) scale(0.96); } }
-        @keyframes po2-glow { 0%,100% { opacity: .75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
+        @keyframes po2-arc-a { 0%,100% { transform: translate(0,0) scale(1); } 40% { transform: translate(-8px,6px) scale(1.025); } }
+        @keyframes po2-arc-b { 0%,100% { transform: translate(0,0) scale(1); } 40% { transform: translate(10px,-8px) scale(1.03); } }
+        @keyframes po2-glow { 0%,100% { opacity: .6; transform: scale(1); } 40% { opacity: 1; transform: scale(1.1); } }
         .po2-arc { transform-box: fill-box; transform-origin: center; will-change: transform; }
-        .po2-arc-1 { animation: po2-arc-a 16s ease-in-out infinite; }
-        .po2-arc-2 { animation: po2-arc-b 20s ease-in-out infinite; }
-        .po2-arc-glow { animation: po2-glow 12s ease-in-out infinite; }
+        .po2-arc-1 { animation: po2-arc-a 5s ease-in-out infinite; }
+        .po2-arc-2 { animation: po2-arc-b 5s ease-in-out infinite; }
+        .po2-arc-glow { animation: po2-glow 5s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) { .po2-arc { animation: none !important; } }
       `}</style>
     <svg
