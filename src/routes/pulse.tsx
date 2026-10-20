@@ -54,7 +54,7 @@ function Telas() {
   const [atual, setAtual] = useState(TELAS[0].id);
   const tela = TELAS.find((x) => x.id === atual) ?? TELAS[0];
   return (
-    <section id="telas" className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
+    <section id="telas" className="mx-auto max-w-[1450px] px-6 pb-20 md:pb-28">
       <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Por dentro do Pulse</p>
       <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
         Veja a plataforma em ação
@@ -232,7 +232,7 @@ function PulsePage() {
           />
         </section>
 
-        <section id="indicadores" className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <section id="indicadores" className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Indicadores</p>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
             O pulso da operação, em números
@@ -257,7 +257,7 @@ function PulsePage() {
 
         <Telas />
 
-        <section id="recursos" className="mx-auto max-w-7xl px-6 pb-24">
+        <section id="recursos" className="mx-auto max-w-[1450px] px-6 pb-24">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">O que tem dentro do Pulse</p>
           <h2 className="mt-4 max-w-3xl font-display text-3xl font-semibold leading-tight md:text-5xl">
             Da prospecção ao contrato, na mesma plataforma

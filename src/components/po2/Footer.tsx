@@ -13,7 +13,7 @@ import {
 export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-surface/40">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-10">
+      <div className="mx-auto flex max-w-[1450px] flex-col gap-8 px-6 py-10">
         <div className="flex flex-col flex-wrap items-start justify-between gap-8 md:flex-row md:items-center">
           <div className="flex items-center gap-4">
             <img src={logo} alt="PO2" className="h-10 w-auto" />

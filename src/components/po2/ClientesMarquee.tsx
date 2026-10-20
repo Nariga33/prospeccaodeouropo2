@@ -30,7 +30,7 @@ export function ClientesMarquee() {
     ));
   return (
     <section id="clientes" aria-label="Clientes que confiam" className="relative pb-10">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-[1450px] px-6">
         <div className="mb-8 text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
           Clientes que confiam
         </div>

@@ -181,7 +181,7 @@ function CapituloBloco({ c }: { c: Capitulo }) {
       >
         {c.n}
       </span>
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+      <div className="relative mx-auto grid max-w-[1450px] gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div className="flex items-center gap-3">
             <span className="font-display text-sm text-gold">{c.n}</span>
@@ -290,7 +290,7 @@ const COM = [
 export function PraQuemHome() {
   return (
     <section className="border-t border-white/5 bg-[#0B0D0E]">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
         <Eyebrow>Pra quem a gente vende</Eyebrow>
         <h2 className="mt-4 max-w-4xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           Para quem já vende, mas sente a operação{" "}
@@ -342,7 +342,7 @@ const FAIXA = [
 function ComoIntro() {
   return (
     <section className="border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <div className="mx-auto max-w-[1450px] px-6 py-16 md:py-24">
         <Eyebrow>Como a gente vende isso</Eyebrow>
         <h2 className="mt-4 max-w-4xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           Do primeiro contato ao <span className={GRADIENTE}>fechamento</span>
@@ -415,7 +415,7 @@ const FUNDADORES = [
 export function QuemVendeHome() {
   return (
     <section className="border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
         <Eyebrow>Quem vende isso</Eyebrow>
         <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           Quem faz a PO2 <span className={GRADIENTE}>respirar vendas</span>
@@ -465,7 +465,7 @@ export function CtaFinal() {
 
 export function CtaOxigenio() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+    <section className="mx-auto max-w-[1450px] px-6 py-12 md:py-16">
       <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-gold/30 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
         <div>
           <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">

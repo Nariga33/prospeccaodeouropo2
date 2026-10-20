@@ -80,7 +80,7 @@ export function EventCountdownBanner() {
       ref={barRef}
       className="sticky top-0 z-[60] border-b border-gold/30 bg-black/95 backdrop-blur-xl"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2 text-[11px] md:text-xs">
+      <div className="mx-auto flex max-w-[1450px] items-center justify-between gap-3 px-4 py-2 text-[11px] md:text-xs">
         <a
           href="#eventos"
           className="flex flex-1 items-center gap-3 truncate font-medium text-gold hover:text-gold/80"

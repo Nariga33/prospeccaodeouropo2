@@ -76,7 +76,7 @@ function SobrePage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="mx-auto max-w-7xl px-6 pb-8 pt-16 md:pt-24">
+        <section className="mx-auto max-w-[1450px] px-6 pb-8 pt-16 md:pt-24">
           <span className="inline-block rounded-md bg-gold px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-gold-foreground">
             Quem é a PO2
           </span>
@@ -94,7 +94,7 @@ function SobrePage() {
 
         <Frentes />
 
-        <section className="mx-auto max-w-7xl px-6 pt-8">
+        <section className="mx-auto max-w-[1450px] px-6 pt-8">
           <div className="rounded-3xl border border-gold/30 bg-gradient-to-r from-[#155E75]/40 to-card p-8 md:flex md:items-end md:justify-between md:p-10">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Resultados dos fundadores</p>
@@ -107,7 +107,7 @@ function SobrePage() {
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-6 py-12 md:grid-cols-2 md:py-16">
+        <section className="mx-auto grid max-w-[1450px] gap-8 px-6 py-12 md:grid-cols-2 md:py-16">
           {PESSOAS.map((p) => (
             <article key={p.nome} className="overflow-hidden rounded-3xl border border-white/10 bg-card">
               <img
@@ -137,7 +137,7 @@ function SobrePage() {
 
         <FaqPo2 />
 
-        <section className="mx-auto max-w-7xl px-6 pb-24">
+        <section className="mx-auto max-w-[1450px] px-6 pb-24">
           <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
             <div>
               <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">

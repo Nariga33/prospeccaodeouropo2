@@ -72,7 +72,7 @@ export function Methodologies() {
   const [active, setActive] = useState<Methodology | null>(null);
   return (
     <section id="metodologias" className="border-b border-white/5">
-      <div className="mx-auto max-w-7xl px-6 py-28">
+      <div className="mx-auto max-w-[1450px] px-6 py-28">
         <div className="mb-12 max-w-3xl">
           <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
             <span className={goldRule} /> Metodologias aplicadas

@@ -41,7 +41,7 @@ export function Partners() {
   ];
   return (
     <section id="parceiros" className="border-b border-white/5 bg-surface/40">
-      <div className="mx-auto max-w-7xl px-6 py-24">
+      <div className="mx-auto max-w-[1450px] px-6 py-24">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">

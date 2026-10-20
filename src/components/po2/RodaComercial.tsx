@@ -87,7 +87,7 @@ export function RodaComercial() {
 
   return (
     <section className="border-b border-white/5 bg-surface/40">
-      <div className="mx-auto max-w-7xl px-6 py-24">
+      <div className="mx-auto max-w-[1450px] px-6 py-24">
         <div className="mb-12 max-w-2xl">
           <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">
             <span className={goldRule} /> Autoavaliação

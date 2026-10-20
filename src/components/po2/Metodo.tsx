@@ -53,7 +53,7 @@ const PARES = [
 
 export function ProblemaMetodo() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+    <section className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
       <Eyebrow>O problema</Eyebrow>
       <h2 className="mt-4 max-w-4xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
         Sua operação comercial não falha por falta de esforço. Falha por falta de{" "}
@@ -122,7 +122,7 @@ export function FunilEtapas() {
   const [ativa, setAtiva] = useState(2);
   return (
     <section className="bg-[#F4F5F0] text-[#101314]">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
         <Eyebrow dark>Método PO2 · Funil</Eyebrow>
         <h2 className="mt-4 max-w-4xl text-balance font-display text-3xl font-normal leading-[1.1] md:text-6xl">
           Meta de vendas vira rotina quando a conta é{" "}
@@ -228,7 +228,7 @@ const QUADRANTES = [
 export function MatrizDiagnostico() {
   return (
     <section className="bg-[#0B0D0E]">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-[1fr_1.15fr] lg:items-center">
+      <div className="mx-auto grid max-w-[1450px] gap-12 px-6 py-20 md:py-28 lg:grid-cols-[1fr_1.15fr] lg:items-center">
         <div>
           <Eyebrow>Diagnóstico estrutural</Eyebrow>
           <h2 className="mt-5 text-balance font-display text-4xl font-normal leading-[1.1] md:text-5xl">
@@ -312,7 +312,7 @@ const PLANO = [
 
 export function PlanoEtapas() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+    <section className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
       <Eyebrow>O plano</Eyebrow>
       <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
         O que acontece depois do <span className={GRADIENTE}>sim</span>
@@ -344,7 +344,7 @@ const PITCH = [
 export function PitchBlocos() {
   return (
     <section className="border-t border-white/5 bg-surface/40">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
         <Eyebrow>Como abordamos</Eyebrow>
         <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           O pitch de 4 blocos: vender <span className={GRADIENTE}>diagnóstico</span> antes de vender solução
@@ -387,7 +387,7 @@ const NAO = [
 
 export function ParaQuemE() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+    <section className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
       <Eyebrow>Para quem é</Eyebrow>
       <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
         Empresas B2B que querem vender com <span className={GRADIENTE}>previsibilidade</span>
@@ -452,7 +452,7 @@ const FRENTES: { t: string; d: string; to?: "/pulse" | "/solucoes" }[] = [
 
 export function Frentes() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+    <section className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
       <Eyebrow>Frentes e quem conduz</Eyebrow>
       <h2 className="mt-4 max-w-3xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
         Em todas as frentes, os <span className={GRADIENTE}>dois fundadores</span> juntos

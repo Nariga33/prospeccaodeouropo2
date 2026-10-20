@@ -254,7 +254,7 @@ export function Mentoria() {
       className="relative overflow-hidden border-b border-white/5 bg-surface/40"
     >
       <div className="pointer-events-none absolute right-0 top-0 h-[400px] w-[600px] rounded-full bg-gold/10 blur-[140px]" />
-      <div className="relative mx-auto max-w-7xl px-6 py-28">
+      <div className="relative mx-auto max-w-[1450px] px-6 py-28">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">

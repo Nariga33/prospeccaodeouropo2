@@ -37,7 +37,7 @@ function CasesPage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="mx-auto max-w-7xl px-6 pb-10 pt-16 md:pt-24">
+        <section className="mx-auto max-w-[1450px] px-6 pb-10 pt-16 md:pt-24">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Cases</p>
           <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
             Empresas prospectadas pela{" "}
@@ -50,7 +50,7 @@ function CasesPage() {
           </p>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 pb-20 md:pb-28">
+        <section className="mx-auto max-w-[1450px] px-6 pb-20 md:pb-28">
           <div className="grid gap-4 md:grid-cols-2">
             {CASES.map((c) => (
               <div key={c.empresa} className="flex flex-col rounded-2xl border border-white/10 bg-card p-7 transition-colors hover:border-gold/40">
@@ -73,7 +73,7 @@ function CasesPage() {
 
         <ClientesMarquee />
 
-        <section className="mx-auto max-w-7xl px-6 py-20">
+        <section className="mx-auto max-w-[1450px] px-6 py-20">
           <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-[#155E75]/40 via-card to-card p-8 md:flex-row md:items-center md:p-12">
             <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">
               Quer ser o próximo case?

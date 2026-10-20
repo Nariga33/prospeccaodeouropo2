@@ -83,7 +83,7 @@ export function InsideSalesMethod() {
 
   return (
     <section className="border-b border-white/5">
-      <div className="mx-auto max-w-7xl px-6 py-24">
+      <div className="mx-auto max-w-[1450px] px-6 py-24">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="mb-4 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold">

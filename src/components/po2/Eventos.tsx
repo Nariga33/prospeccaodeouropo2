@@ -66,7 +66,7 @@ export function Eventos() {
       id="eventos"
       className="border-t border-white/5 bg-gradient-to-b from-black to-background py-24"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-[1450px] px-6">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mx-auto flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
             <Sparkles className="size-3" /> Convite oficial PO2

@@ -31,7 +31,7 @@ export function Nav() {
 
   return (
     <header className="sticky top-[var(--po2-banner-h,0px)] z-50 border-b border-white/5 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      <div className="mx-auto flex max-w-[1450px] items-center justify-between px-6 py-3">
         <Link to="/" className="flex shrink-0 items-center">
           <img src={logoBranco} alt="PO2" className="h-12 w-auto" />
         </Link>

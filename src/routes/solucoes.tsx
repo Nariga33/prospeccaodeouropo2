@@ -5,7 +5,6 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FunilEtapas, MatrizDiagnostico, PitchBlocos, PlanoEtapas, ProblemaMetodo } from "@/components/po2/Metodo";
-import bgHero from "@/assets/bg-gradiente-hero.webp";
 import { CtaFinal, CtaOxigenio } from "@/components/po2/Jornada";
 import { Arcs } from "@/components/po2/Arcs";
 import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
@@ -85,10 +84,9 @@ function SolucoesPage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="relative overflow-hidden border-b border-white/5">
-        <img src={bgHero} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70" />
-        <Arcs className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-full max-w-[1100px] opacity-70 md:block md:translate-x-[40%]" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-20 md:pt-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-16">
+        <section className="relative overflow-hidden border-b border-white/5 bg-[#05090B]">
+        <Arcs className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" />
+        <div className="relative mx-auto grid max-w-[1450px] gap-12 px-6 pb-16 pt-20 md:pt-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-16">
           <div className="lg:sticky lg:top-28">
             <div className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
               Soluções
