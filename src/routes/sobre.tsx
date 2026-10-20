@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
+import { Arcs } from "@/components/po2/Arcs";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { FaqPo2, Frentes, FAQS } from "@/components/po2/Metodo";
 import fotoVictor from "@/assets/sobre-victor.webp";
@@ -89,64 +90,80 @@ function SobrePage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-gold-foreground">
       <Nav />
       <main>
-        <section className="mx-auto max-w-[1450px] px-6 pb-8 pt-16 md:pt-24">
-          <span className="inline-block rounded-md bg-gold px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-gold-foreground">
-            Quem é a PO2
-          </span>
-          <h1 className="mt-8 max-w-4xl text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
-            Quem faz a PO2{" "}
-            <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
-              respirar vendas
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Fundada em 2024, em Porto Alegre (RS), a PO2 é especializada em prospecção B2B e estruturação de operações
-            comerciais.
-          </p>
-        </section>
-
-        <Frentes />
-
-        <section className="mx-auto max-w-[1450px] px-6 pt-8">
-          <div className="rounded-3xl border border-gold/30 bg-gradient-to-r from-[#155E75]/40 to-card p-8 md:flex md:items-end md:justify-between md:p-10">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Resultados dos fundadores</p>
-              <p className="mt-3 font-display text-5xl text-gold md:text-7xl">+R$20MM</p>
-              <p className="mt-2 text-muted-foreground">em negócios gerados, somando os resultados do Matheus e do Victor.</p>
+        <section className="relative overflow-hidden border-b border-white/5 bg-[#05090B]">
+          <Arcs className="pointer-events-none absolute inset-0 hidden h-full w-full md:block" />
+          <div className="relative mx-auto grid max-w-[1450px] items-center gap-12 px-6 pb-20 pt-20 md:pb-28 md:pt-28 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
+            <div className="min-w-0">
+              <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted-foreground md:text-xs">
+                Quem é a PO2
+              </p>
+              <h1 className="mt-8 max-w-3xl font-display text-4xl font-normal leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
+                Quem faz a PO2{" "}
+                <span className="bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent">
+                  respirar vendas
+                </span>
+              </h1>
+              <p className="mt-8 max-w-xl text-pretty text-lg text-muted-foreground md:text-xl">
+                Fundada em 2024, em Porto Alegre (RS), a PO2 é especializada em prospecção B2B e estruturação de
+                operações comerciais.
+              </p>
             </div>
-            <p className="mt-6 max-w-sm text-xs leading-relaxed text-muted-foreground md:mt-0">
-              R$10 milhões em negócios do Matheus e R$10 milhões em negócios do Victor.
-            </p>
+
+            <div className="min-w-0 rounded-3xl border border-white/10 bg-card/50 p-6 backdrop-blur sm:p-8 md:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Resultados dos fundadores</p>
+              <p className="mt-4 bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text font-display text-5xl text-transparent sm:text-6xl md:text-7xl">
+                +R$20MM
+              </p>
+              <p className="mt-2 text-muted-foreground">em negócios gerados, somando Matheus e Victor.</p>
+              <div className="mt-8 grid grid-cols-2 gap-3 border-t border-white/10 pt-6">
+                {[
+                  ["Matheus Staruck", "+R$10MM"],
+                  ["Victor Nogueira", "+R$10MM"],
+                ].map(([n, v]) => (
+                  <div key={n}>
+                    <p className="font-display text-2xl text-foreground">{v}</p>
+                    <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">{n}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-[1450px] gap-8 px-6 py-12 md:grid-cols-2 md:py-16">
+        <section className="mx-auto grid max-w-[1450px] gap-6 px-6 py-16 md:grid-cols-2 md:py-24">
           {PESSOAS.map((p) => (
-            <article key={p.nome} className="overflow-hidden rounded-3xl border border-white/10 bg-card">
-              <img
-                src={p.foto}
-                alt={p.alt}
-                width={800}
-                height={1000}
-                loading="lazy"
-                className="aspect-[4/5] w-full object-cover object-top"
-              />
-              <div className="p-7 md:p-9">
-                <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">{p.cargo}</p>
-                <h2 className="mt-3 font-display text-3xl font-semibold">{p.nome}</h2>
-                <div className="mt-6 grid grid-cols-2 gap-3">
+            <article key={p.nome} className="group overflow-hidden rounded-3xl border border-white/10 bg-card transition-colors hover:border-gold/40">
+              <div className="relative">
+                <img
+                  src={p.foto}
+                  alt={p.alt}
+                  width={800}
+                  height={1000}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03] md:aspect-[4/3.4]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7 md:p-9">
+                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">{p.cargo}</p>
+                  <h2 className="mt-2 font-display text-3xl font-semibold md:text-4xl">{p.nome}</h2>
+                </div>
+              </div>
+              <div className="p-7 pt-4 md:p-9 md:pt-4">
+                <div className="leading-relaxed text-muted-foreground">{p.corpo}</div>
+                <div className="mt-6 grid grid-cols-3 gap-2 md:gap-3">
                   {p.numeros.map(([v, l]) => (
-                    <div key={l} className="rounded-xl border border-white/10 bg-[#155E75]/30 p-4">
-                      <div className="font-display text-2xl text-gold">{v}</div>
+                    <div key={l} className="min-w-0 rounded-xl border border-white/10 bg-[#155E75]/25 p-3 md:p-4">
+                      <div className="font-display text-base text-gold sm:text-xl md:text-2xl">{v}</div>
                       <div className="mt-1 text-xs leading-snug text-muted-foreground">{l}</div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">{p.corpo}</div>
               </div>
             </article>
           ))}
         </section>
+
+        <Frentes />
 
         <FaqPo2 />
 
