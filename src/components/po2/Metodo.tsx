@@ -525,7 +525,7 @@ export function Frentes() {
 /* FAQ                                                                */
 /* ------------------------------------------------------------------ */
 
-const FAQS = [
+export const FAQS = [
   {
     q: "O que é SDR e BDR terceirizado?",
     a: "É quando a qualificação de leads (SDR) ou a prospecção ativa (BDR) é feita por uma equipe externa, com processo, ferramentas e gestão próprios, em vez de contratar e treinar esses profissionais dentro de casa. A PO2 estrutura o processo e pode executá-lo diretamente.",

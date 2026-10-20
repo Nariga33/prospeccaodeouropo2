@@ -11,18 +11,15 @@ import { ArrowRight, Handshake } from "lucide-react";
 export const Route = createFileRoute("/inside-sales")({
   head: () => ({
     meta: [
-      { title: "Inside Sales Terceirizado - PO2 | Condução e Fechamento Remoto" },
+      { title: "Inside Sales Terceirizado: Condução e Fechamento | PO2" },
       {
         name: "description",
         content:
-          "Inside Sales terceirizado: descoberta, qualificação, proposta com prazo, follow-up sistemático, objeções, forecast e métricas de conversão.",
+          "Inside sales terceirizado: condução de oportunidades, qualificação e fechamento remoto com processo, métricas e acompanhamento da PO2.",
       },
-      { property: "og:title", content: "Inside Sales Terceirizado - PO2" },
-      {
-        property: "og:description",
-        content:
-          "A ponte entre qualificação e fechamento - reunião, proposta e negociação com método, dentro da operação comercial terceirizada da PO2.",
-      },
+      { property: "og:title", content: "Inside Sales Terceirizado: Condução e Fechamento | PO2" },
+      { property: "og:description", content: "Inside sales terceirizado: condução de oportunidades, qualificação e fechamento remoto com processo, métricas e acompanhamento da PO2." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/inside-sales" },
       {
         "script:ld+json": {

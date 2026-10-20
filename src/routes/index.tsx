@@ -10,23 +10,20 @@ import { CtaFinal, CtaOxigenio, ComoHome, PraQuemHome, QuemVendeHome, SolucaoHom
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PO2 - Oxigênio Comercial" },
+      { title: "PO2: Estruturação Comercial e Prospecção B2B | Porto Alegre" },
       {
         name: "description",
         content:
-          "Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para gerar mais oportunidades e resultados consistentes.",
+          "A PO2 estrutura e acelera áreas comerciais B2B com processos, tecnologia e mentoria: lista, ICP, BDR, SDR e closer. Fale com o time e gere mais oportunidades.",
       },
       {
         name: "keywords",
         content:
           "terceirização do time comercial, terceirizar time comercial, prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, BPO comercial, outbound B2B, prospecção ativa, assessoria comercial, BDR, SDR, inside sales, closer",
       },
-      { property: "og:title", content: "PO2 - Oxigênio Comercial" },
-      {
-        property: "og:description",
-        content:
-          "Estruturamos e aceleramos áreas comerciais com processos, tecnologia e mentoria para gerar mais oportunidades e resultados consistentes.",
-      },
+      { property: "og:title", content: "PO2: Estruturação Comercial e Prospecção B2B | Porto Alegre" },
+      { property: "og:description", content: "A PO2 estrutura e acelera áreas comerciais B2B com processos, tecnologia e mentoria: lista, ICP, BDR, SDR e closer. Fale com o time e gere mais oportunidades." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/" }],

@@ -6,12 +6,15 @@ import { Partners } from "@/components/po2/Partners";
 export const Route = createFileRoute("/parceiros")({
   head: () => ({
     meta: [
-      { title: "Parceiros - PO2 | Prospecção de Ouro 2.0" },
+      { title: "Parceiros PO2 | Rede de Parceiros Comerciais" },
       {
         name: "description",
         content:
-          "Indicações de confiança da PO2: Clube NEX (rede e mentoria entre empresários), Columba (atendimento no WhatsApp com IA) e Vendas.team (plataforma comercial com IA nativa).",
+          "Conheça a rede de parceiros da PO2 e como crescer junto em prospecção, vendas e estruturação comercial B2B.",
       },
+      { property: "og:title", content: "Parceiros PO2 | Rede de Parceiros Comerciais" },
+      { property: "og:description", content: "Conheça a rede de parceiros da PO2 e como crescer junto em prospecção, vendas e estruturação comercial B2B." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/parceiros" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/parceiros" }],

@@ -12,18 +12,15 @@ import { ArrowRight, Trophy } from "lucide-react";
 export const Route = createFileRoute("/closer")({
   head: () => ({
     meta: [
-      { title: "Closer - PO2 | Negociação e Fechamento" },
+      { title: "Closer: Negociação e Fechamento B2B | PO2" },
       {
         name: "description",
         content:
-          "Método de 9 etapas para Closer: qualificação pré-call, roteiro de fechamento, objeções finais, margem de negociação, onboarding e métricas de conversão.",
+          "Closer e mentoria de fechamento: contexto antes da call, custo da inação, objeções finais e follow-up para fechar mais contratos B2B.",
       },
-      { property: "og:title", content: "Closer - PO2" },
-      {
-        property: "og:description",
-        content:
-          "Fechar não é sorte - é processo. O mesmo rigor de método em toda a operação comercial terceirizada da PO2.",
-      },
+      { property: "og:title", content: "Closer: Negociação e Fechamento B2B | PO2" },
+      { property: "og:description", content: "Closer e mentoria de fechamento: contexto antes da call, custo da inação, objeções finais e follow-up para fechar mais contratos B2B." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/closer" },
       {
         "script:ld+json": {

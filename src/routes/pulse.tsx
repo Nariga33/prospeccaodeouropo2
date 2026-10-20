@@ -24,13 +24,15 @@ import telaSala from "@/assets/pulse-sala-de-guerra.webp";
 export const Route = createFileRoute("/pulse")({
   head: () => ({
     meta: [
-      { title: "PO2 Pulse - O pulso da sua operação comercial" },
+      { title: "PO2 Pulse: CRM de Prospecção para Times de Vendas B2B" },
       {
         name: "description",
         content:
-          "PO2 Pulse: acompanhe indicadores, receba recomendações e conte com mentorias periódicas. Consultoria, tecnologia e acompanhamento contínuo.",
+          "O Pulse é o CRM da PO2: leads, atividades, funil, cadências e playbooks em um só lugar para o seu time prospectar com ritmo e previsibilidade.",
       },
-      { property: "og:title", content: "PO2 Pulse" },
+      { property: "og:title", content: "PO2 Pulse: CRM de Prospecção para Times de Vendas B2B" },
+      { property: "og:description", content: "O Pulse é o CRM da PO2: leads, atividades, funil, cadências e playbooks em um só lugar para o seu time prospectar com ritmo e previsibilidade." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/pulse" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/pulse" }],

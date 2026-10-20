@@ -7,12 +7,15 @@ import { FileText, Table } from "lucide-react";
 export const Route = createFileRoute("/materiais")({
   head: () => ({
     meta: [
-      { title: "Materiais gratuitos - PO2 | Prospecção de Ouro 2.0" },
+      { title: "Materiais Gratuitos de Prospecção B2B | PO2" },
       {
         name: "description",
         content:
-          "Guia gratuito de estruturação e contratação de BDR, SDR e Closer, e planilha de acompanhamento semanal de vendas.",
+          "Guias, playbooks e planilhas gratuitas da PO2 para estruturar prospecção, ICP, cadência e pré-vendas no seu time comercial. Baixe e aplique hoje.",
       },
+      { property: "og:title", content: "Materiais Gratuitos de Prospecção B2B | PO2" },
+      { property: "og:description", content: "Guias, playbooks e planilhas gratuitas da PO2 para estruturar prospecção, ICP, cadência e pré-vendas no seu time comercial. Baixe e aplique hoje." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/materiais" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/materiais" }],

@@ -12,18 +12,15 @@ import { ArrowRight, Headset } from "lucide-react";
 export const Route = createFileRoute("/sdr")({
   head: () => ({
     meta: [
-      { title: "SDR Terceirizado & SDR as a Service - PO2 | Qualificação de Leads" },
+      { title: "SDR Terceirizado e SDR as a Service | PO2" },
       {
         name: "description",
         content:
-          "SDR terceirizado / SDR as a Service: lead scoring, SLA de resposta, qualificação MQL/PQL até SAL, SQL e venda fechada. Operação de pré-vendas terceirizada.",
+          "SDR terceirizado para qualificar leads com lead scoring, SLA de resposta e handoff estruturado ao closer. Mais reuniões qualificadas, menos lead perdido.",
       },
-      { property: "og:title", content: "SDR Terceirizado & SDR as a Service - PO2" },
-      {
-        property: "og:description",
-        content:
-          "O mesmo rigor de método que a PO2 aplica no outbound, agora para qualificação inbound terceirizada.",
-      },
+      { property: "og:title", content: "SDR Terceirizado e SDR as a Service | PO2" },
+      { property: "og:description", content: "SDR terceirizado para qualificar leads com lead scoring, SLA de resposta e handoff estruturado ao closer. Mais reuniões qualificadas, menos lead perdido." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/sdr" },
       {
         "script:ld+json": {

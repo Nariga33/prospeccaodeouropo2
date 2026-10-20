@@ -3,20 +3,33 @@ import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
-import { FaqPo2, Frentes } from "@/components/po2/Metodo";
+import { FaqPo2, Frentes, FAQS } from "@/components/po2/Metodo";
 import fotoVictor from "@/assets/sobre-victor.webp";
 import fotoMatheus from "@/assets/sobre-matheus.webp";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
-      { title: "Sobre a PO2 - Quem está por trás do Método PO2" },
+      { title: "Quem é a PO2 | Matheus Staruck e Victor Nogueira" },
       {
         name: "description",
         content:
-          "Conheça quem está por trás do Método PO2: Matheus Staruck, fundador, e Victor Nogueira, cofundador, com +R$20MM em negócios gerados. Prospecção B2B e estruturação de operações comerciais desde 2024, em Porto Alegre.",
+          "Conheça a PO2, consultoria de prospecção B2B de Porto Alegre fundada em 2024 por Matheus Staruck e Victor Nogueira, com +R$20MM em negócios gerados.",
       },
-      { property: "og:title", content: "Sobre a PO2 - Quem está por trás" },
+      { property: "og:title", content: "Quem é a PO2 | Matheus Staruck e Victor Nogueira" },
+      { property: "og:description", content: "Conheça a PO2, consultoria de prospecção B2B de Porto Alegre fundada em 2024 por Matheus Staruck e Victor Nogueira, com +R$20MM em negócios gerados." },
+      { property: "og:type", content: "website" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      },
       { property: "og:url", content: "https://pulsepo2.com/sobre" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/sobre" }],

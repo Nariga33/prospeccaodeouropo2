@@ -13,18 +13,15 @@ import { ArrowRight, Target } from "lucide-react";
 export const Route = createFileRoute("/bdr")({
   head: () => ({
     meta: [
-      { title: "BDR Terceirizado & Outbound - PO2 | Prospecção B2B Ativa" },
+      { title: "BDR Terceirizado: Prospecção Outbound B2B | PO2" },
       {
         name: "description",
         content:
-          "BDR terceirizado com método de 7 etapas: ICP, cadência multicanal, cold call consultiva, gestão de objeções e métricas por canal. Prospecção ativa B2B terceirizada.",
+          "BDR terceirizado com método: ICP, lista, cadência multicanal e cold call consultiva para gerar reuniões qualificadas com decisores. Fale com a PO2.",
       },
-      { property: "og:title", content: "BDR Terceirizado & Outbound - PO2" },
-      {
-        property: "og:description",
-        content:
-          "O mesmo rigor de método que a PO2 aplica no inbound, agora para prospecção ativa terceirizada.",
-      },
+      { property: "og:title", content: "BDR Terceirizado: Prospecção Outbound B2B | PO2" },
+      { property: "og:description", content: "BDR terceirizado com método: ICP, lista, cadência multicanal e cold call consultiva para gerar reuniões qualificadas com decisores. Fale com a PO2." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/bdr" },
       {
         "script:ld+json": {

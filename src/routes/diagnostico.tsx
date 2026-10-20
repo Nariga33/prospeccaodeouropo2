@@ -19,8 +19,11 @@ import logo from "@/assets/po2-logo-verde.svg";
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
     meta: [
-      { title: "Diagnóstico gratuito · PO2" },
-      { name: "description", content: "10 perguntas para mapear sua máquina de prospecção ativa." },
+      { title: "Diagnóstico Comercial Gratuito: 10 Perguntas | PO2" },
+      { name: "description", content: "Descubra a maturidade da sua operação de prospecção em 10 perguntas e receba um playbook de próximos passos para o seu papel: BDR, SDR, closer ou founder." },
+      { property: "og:title", content: "Diagnóstico Comercial Gratuito: 10 Perguntas | PO2" },
+      { property: "og:description", content: "Descubra a maturidade da sua operação de prospecção em 10 perguntas e receba um playbook de próximos passos para o seu papel: BDR, SDR, closer ou founder." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/diagnostico" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/diagnostico" }],

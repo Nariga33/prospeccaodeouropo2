@@ -6,18 +6,15 @@ import { Methodologies } from "@/components/po2/Methodologies";
 export const Route = createFileRoute("/metodologias")({
   head: () => ({
     meta: [
-      { title: "Metodologias & Filosofia PO2 - Prospecção de Ouro 2.0" },
+      { title: "Metodologia PO2: Método de Prospecção B2B Full-Funnel" },
       {
         name: "description",
         content:
-          "Frameworks de qualificação (CHAMP, SPIN, BANT, Challenger Sale) e o Modelo PO2 de Evolução Comercial - mapa mental e ciclo C.R.E.S.C.E.R.",
+          "Conheça o método PO2: ICP, lista, cadência multicanal, cold call consultiva, qualificação e fechamento, do primeiro contato ao contrato assinado.",
       },
-      { property: "og:title", content: "Metodologias PO2" },
-      {
-        property: "og:description",
-        content:
-          "Antes da técnica, a transformação - o Modelo PO2 de Evolução Comercial explicado a fundo.",
-      },
+      { property: "og:title", content: "Metodologia PO2: Método de Prospecção B2B Full-Funnel" },
+      { property: "og:description", content: "Conheça o método PO2: ICP, lista, cadência multicanal, cold call consultiva, qualificação e fechamento, do primeiro contato ao contrato assinado." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/metodologias" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/metodologias" }],

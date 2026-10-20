@@ -8,13 +8,15 @@ import { PO2_WHATSAPP_URL } from "@/lib/contact";
 export const Route = createFileRoute("/cases")({
   head: () => ({
     meta: [
-      { title: "Cases - PO2 Oxigênio Comercial" },
+      { title: "Cases PO2: Resultados em Prospecção B2B com Decisores" },
       {
         name: "description",
         content:
-          "Empresas prospectadas pela PO2: contatos diretos com decisores, agendas realizadas e propostas em andamento.",
+          "Veja empresas prospectadas pela PO2: agendas com C-Level, propostas avançadas e mais de 200 reuniões com decisores. Resultados reais em prospecção B2B.",
       },
-      { property: "og:title", content: "Cases - PO2" },
+      { property: "og:title", content: "Cases PO2: Resultados em Prospecção B2B com Decisores" },
+      { property: "og:description", content: "Veja empresas prospectadas pela PO2: agendas com C-Level, propostas avançadas e mais de 200 reuniões com decisores. Resultados reais em prospecção B2B." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/cases" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/cases" }],

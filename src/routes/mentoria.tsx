@@ -8,18 +8,15 @@ import { GapSection } from "@/components/po2/GapSection";
 export const Route = createFileRoute("/mentoria")({
   head: () => ({
     meta: [
-      { title: "Mentoria com Matheus Staruck - PO2 | Prospecção B2B" },
+      { title: "Mentoria Comercial com Matheus Staruck | PO2" },
       {
         name: "description",
         content:
-          "Mentoria prática de prospecção B2B com Matheus Staruck. Não é curso, é operação que você executa junto - método, indicadores e melhoria contínua.",
+          "Mentoria prática de prospecção e vendas B2B com Matheus Staruck, para founders, gestores e times comerciais aplicarem o método PO2 com acompanhamento.",
       },
-      { property: "og:title", content: "Mentoria PO2 - Matheus Staruck" },
-      {
-        property: "og:description",
-        content:
-          "Mentoria prática para fundadores, gestores e times comerciais construírem uma máquina de prospecção ativa.",
-      },
+      { property: "og:title", content: "Mentoria Comercial com Matheus Staruck | PO2" },
+      { property: "og:description", content: "Mentoria prática de prospecção e vendas B2B com Matheus Staruck, para founders, gestores e times comerciais aplicarem o método PO2 com acompanhamento." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/mentoria" },
       {
         "script:ld+json": {

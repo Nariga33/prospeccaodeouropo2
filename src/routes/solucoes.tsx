@@ -12,13 +12,15 @@ import { ClientesMarquee } from "@/components/po2/ClientesMarquee";
 export const Route = createFileRoute("/solucoes")({
   head: () => ({
     meta: [
-      { title: "Soluções - PO2 Oxigênio Comercial" },
+      { title: "Soluções PO2: Pré-vendas, BDR, SDR e Mentoria Comercial" },
       {
         name: "description",
         content:
-          "Estruturação comercial, aceleração de vendas, mentoria, tecnologia e terceirização de pré-vendas: as soluções da PO2 para gerar mais oportunidades e resultados.",
+          "Estruturação comercial, aceleração de vendas, mentoria e tecnologia: do ICP e da lista ao fechamento. Conheça as soluções da PO2 para o seu time de vendas B2B.",
       },
-      { property: "og:title", content: "Soluções - PO2" },
+      { property: "og:title", content: "Soluções PO2: Pré-vendas, BDR, SDR e Mentoria Comercial" },
+      { property: "og:description", content: "Estruturação comercial, aceleração de vendas, mentoria e tecnologia: do ICP e da lista ao fechamento. Conheça as soluções da PO2 para o seu time de vendas B2B." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/solucoes" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/solucoes" }],

@@ -80,12 +80,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PO2 - Oxigênio Comercial" },
+      { title: "PO2: Estruturação Comercial e Prospecção B2B | Porto Alegre" },
       {
         name: "description",
         content:
-          "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade. Sediada em Porto Alegre (RS), atendendo todo o Brasil.",
+          "A PO2 estrutura e acelera áreas comerciais B2B com processos, tecnologia e mentoria. BDR, SDR e closer com método. Sediada em Porto Alegre (RS), atende todo o Brasil.",
       },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      { name: "theme-color", content: "#101314" },
+      { property: "og:site_name", content: "PO2" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "author", content: "PO2 - Matheus Staruck" },
       {
         property: "og:title",
@@ -97,6 +101,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Prospecção B2B terceirizada: SDR terceirizado, BDR terceirizado e SDR as a Service com método, inteligência e previsibilidade.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
@@ -110,19 +116,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:image",
         content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea",
+          "https://pulsepo2.com/og-po2.png",
       },
       {
         name: "twitter:image",
         content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ef50bc12-88bb-4b38-9497-f9d231af99ea",
+          "https://pulsepo2.com/og-po2.png",
+      },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "PO2",
+          url: "https://pulsepo2.com/",
+          inLanguage: "pt-BR",
+        },
       },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: "PO2 - Prospecção de Ouro 2.0",
-          alternateName: "PO2",
+          name: "PO2 - Oxigênio Comercial",
+          alternateName: ["PO2", "Prospecção de Ouro 2.0"],
+          logo: "https://pulsepo2.com/icon-512.png",
+          image: "https://pulsepo2.com/og-po2.png",
           description:
             "Prospecção B2B terceirizada, com SDR terceirizado, BDR terceirizado e SDR as a Service - ICP, cadência multicanal, cold call consultiva e gestão de indicadores. Sediada em Porto Alegre, Rio Grande do Sul, atendendo todo o Brasil.",
           url: "https://pulsepo2.com/",
@@ -144,7 +161,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "Person",
               name: "Matheus Staruck",
               jobTitle: "Founder & CEO",
-              worksFor: { "@type": "Organization", name: "PO2 - Prospecção de Ouro 2.0" },
+              worksFor: { "@type": "Organization", name: "PO2 - Oxigênio Comercial" },
               knowsAbout: [
                 "Prospecção B2B",
                 "Outbound",
@@ -158,9 +175,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
             {
               "@type": "Person",
-              name: "João Victor Acunha",
+              name: "Victor Nogueira",
               jobTitle: "Co-Founder",
-              worksFor: { "@type": "Organization", name: "PO2 - Prospecção de Ouro 2.0" },
+              worksFor: { "@type": "Organization", name: "PO2 - Oxigênio Comercial" },
               knowsAbout: [
                 "Vendas consultivas",
                 "Geração de demanda",

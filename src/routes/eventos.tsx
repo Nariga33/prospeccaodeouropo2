@@ -7,17 +7,15 @@ import { Sparkles } from "lucide-react";
 export const Route = createFileRoute("/eventos")({
   head: () => ({
     meta: [
-      { title: "Eventos ao vivo - PO2 | Masterclasses de Prospecção B2B" },
+      { title: "Eventos e Masterclasses de Prospecção B2B | PO2" },
       {
         name: "description",
         content:
-          "Inscreva-se nas masterclasses ao vivo da PO2. Encontros online, íntimos e limitados sobre prospecção B2B com certificado de participação.",
+          "Masterclasses ao vivo e gratuitas de prospecção B2B com Matheus Staruck. Garanta sua vaga e aprenda o método PO2 na prática.",
       },
-      { property: "og:title", content: "Eventos ao vivo - PO2" },
-      {
-        property: "og:description",
-        content: "Masterclasses online de prospecção B2B com Matheus Staruck. Vagas limitadas.",
-      },
+      { property: "og:title", content: "Eventos e Masterclasses de Prospecção B2B | PO2" },
+      { property: "og:description", content: "Masterclasses ao vivo e gratuitas de prospecção B2B com Matheus Staruck. Garanta sua vaga e aprenda o método PO2 na prática." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/eventos" },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/eventos" }],
