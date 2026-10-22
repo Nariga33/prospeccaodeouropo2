@@ -530,7 +530,7 @@ function GateMateriais({ material, diagnostico }: { material: string; diagnostic
       await enviar({ data: { name: nome, email, whatsapp: zap, material: `${material} | fat/mês: ${fat}`.slice(0, 120) } });
       // CRM: não bloqueia a entrega dos materiais se falhar
       void enviarCrm({
-        data: { nome, email, whatsapp: zap, faturamento: fat, url: window.location.href, diagnostico },
+        data: { nome, email, whatsapp: zap, faturamento: fat || undefined, url: window.location.href, diagnostico },
       }).catch(() => {});
       setEstado("ok");
     } catch {

@@ -9,7 +9,7 @@ const schema = z.object({
   nome: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(160),
   whatsapp: z.string().trim().max(30).optional().or(z.literal("")),
-  faturamento: z.string().trim().max(60).optional(),
+  faturamento: z.string().trim().max(60).optional().or(z.literal("")),
   url: z.string().trim().max(500).optional(),
   diagnostico: z.object({
     nota: z.number().min(0).max(100),
@@ -28,19 +28,14 @@ export const enviarLeadCrm = createServerFn({ method: "POST" })
       console.warn("[crm] CRM_LEADS_TOKEN ausente: lead não enviado ao CRM");
       return { ok: false as const };
     }
+    // Sem faixa escolhida, o campo não vai no corpo.
+    if (!data.faturamento) delete data.faturamento;
     try {
-      const enviar = (corpo: unknown) =>
-        fetch(CRM_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-          body: JSON.stringify(corpo),
-        });
-      let res = await enviar(data);
-      // Se o CRM ainda não aceita o campo novo, reenvia sem ele para não perder o lead.
-      if ((res.status === 400 || res.status === 422) && data.faturamento) {
-        const { faturamento: _f, ...semFaturamento } = data;
-        res = await enviar(semFaturamento);
-      }
+      const res = await fetch(CRM_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify(data),
+      });
       if (!res.ok) {
         console.error(`[crm] recusou o lead: status ${res.status}`);
         return { ok: false as const };

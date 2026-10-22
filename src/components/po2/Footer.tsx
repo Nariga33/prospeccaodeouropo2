@@ -36,9 +36,6 @@ export function Footer() {
             <Link to="/cases" className="transition-colors hover:text-gold">
               Cases
             </Link>
-            <Link to="/materiais" className="transition-colors hover:text-gold">
-              Materiais
-            </Link>
           </div>
 
           <div className="flex flex-col gap-2 text-sm">
