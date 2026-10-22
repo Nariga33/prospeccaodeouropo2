@@ -5,6 +5,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { ArrowRight } from "lucide-react";
+import { RaioXHome } from "@/components/po2/RaioX";
 import { CtaFinal, CtaOxigenio, ComoHome, PraQuemHome, QuemVendeHome, SolucaoHome } from "@/components/po2/Jornada";
 
 export const Route = createFileRoute("/")({
@@ -42,6 +43,7 @@ function LandingPage() {
         <CtaOxigenio />
         <ComoHome />
         <QuemVendeHome />
+        <RaioXHome />
         <CtaFinal />
       </main>
       <Footer />
