@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, ArrowRight, Check, Download, FileText, RotateCcw, Table } from "lucide-react";
 import { PO2_WHATSAPP_NUMBER } from "@/lib/contact";
 import { submitMaterialLead } from "@/lib/materials.functions";
+import { enviarLeadCrm } from "@/lib/crm-lead.functions";
 
 const GRADIENTE =
   "bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent";
@@ -17,21 +18,25 @@ const AREAS = [
   {
     grupo: "oxigenio",
     nome: "Lista e ICP",
+    ajustes: ["Documentar ICP e persona", "Montar e validar a lista de prospecção"],
     dica: "Defina o ICP e a persona e monte uma lista segmentada e validada. Sem isso, o time liga para quem não compra.",
   },
   {
     grupo: "oxigenio",
     nome: "Abordagem",
+    ajustes: ["Dedicar alguém ao primeiro contato", "Definir roteiro e meta diária de abordagens"],
     dica: "Coloque alguém dedicado ao primeiro contato, com roteiro testado e meta diária de ligações e abordagens.",
   },
   {
     grupo: "pulso",
     nome: "Cadência e ritmo",
+    ajustes: ["Definir cadência multicanal com dias e canais", "Seguir cada lead até responder ou descartar"],
     dica: "Monte uma cadência multicanal com dias e canais definidos, para nenhum lead ficar esquecido.",
   },
   {
     grupo: "pulso",
     nome: "Qualificação e CRM",
+    ajustes: ["Definir critérios de qualificação", "Registrar todo contato no CRM"],
     dica: "Crie critérios claros de qualificação e use o CRM todo dia, para decidir com número e não com feeling.",
   },
 ];
@@ -257,6 +262,12 @@ export function RaioXHome() {
     const v = porArea.filter((_, i) => AREAS[i].grupo === g);
     return Math.round(v.reduce((a, b) => a + b, 0) / v.length);
   };
+  const pilaresCrm = Object.fromEntries(
+    AREAS.map((a, i) => {
+      const r = PERGUNTAS.map((p, j) => ({ p, r: respostas[j] })).filter((x) => x.p.area === i && x.r !== undefined);
+      return [a.nome, r.length ? Math.round((r.reduce((s, x) => s + x.r, 0) / r.length) * 10) / 10 : 0];
+    }),
+  ) as Record<string, number>;
   const oxigenio = media("oxigenio");
   const pulso = media("pulso");
 
@@ -414,7 +425,16 @@ export function RaioXHome() {
                     <p className="mt-2 text-sm text-muted-foreground md:text-base">{AREAS[maisFraca].dica}</p>
                   </div>
 
-                  <GateMateriais material={materialLabel} />
+                  <GateMateriais
+                    material={materialLabel}
+                    diagnostico={{
+                      nota,
+                      pilares: pilaresCrm,
+                      comecar: AREAS[maisFraca].nome,
+                      recomendacao: AREAS[maisFraca].dica,
+                      ajustes: AREAS[maisFraca].ajustes,
+                    }}
+                  />
 
                   <div className="mt-8 flex flex-wrap items-center gap-4">
                     <a
@@ -482,8 +502,17 @@ const MATERIAIS = [
   },
 ];
 
-function GateMateriais({ material }: { material: string }) {
+type DiagnosticoCrm = {
+  nota: number;
+  pilares: Record<string, number>;
+  comecar: string;
+  recomendacao: string;
+  ajustes: string[];
+};
+
+function GateMateriais({ material, diagnostico }: { material: string; diagnostico: DiagnosticoCrm }) {
   const enviar = useServerFn(submitMaterialLead);
+  const enviarCrm = useServerFn(enviarLeadCrm);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [zap, setZap] = useState("");
@@ -496,6 +525,10 @@ function GateMateriais({ material }: { material: string }) {
     setEstado("enviando");
     try {
       await enviar({ data: { name: nome, email, whatsapp: zap, material } });
+      // CRM: não bloqueia a entrega dos materiais se falhar
+      void enviarCrm({
+        data: { nome, email, whatsapp: zap, url: window.location.href, diagnostico },
+      }).catch(() => {});
       setEstado("ok");
     } catch {
       setEstado("form");
