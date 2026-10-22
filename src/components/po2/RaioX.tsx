@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, ArrowRight, Check, Download, FileText, RotateCcw, Table } from "lucide-react";
 import { PO2_WHATSAPP_NUMBER } from "@/lib/contact";
 import { submitMaterialLead } from "@/lib/materials.functions";
+import { FATURAMENTOS_MENSAIS } from "@/lib/faturamento";
 import { enviarLeadCrm } from "@/lib/crm-lead.functions";
 
 const GRADIENTE =
@@ -281,7 +282,7 @@ export function RaioXHome() {
     setRespostas([]);
     setEtapa("intro");
   };
-  const materialLabel = `Raio-X da Prospecção | nota ${nota} | oxigênio ${oxigenio} | pulso ${pulso} | fraca: ${AREAS[maisFraca].nome}`.slice(0, 120);
+  const materialLabel = `Raio-X | nota ${nota} | oxigênio ${oxigenio} | pulso ${pulso} | fraca: ${AREAS[maisFraca].nome}`;
 
   const n = nivel(oxigenio, pulso);
   const msg =
@@ -502,6 +503,7 @@ const MATERIAIS = [
   },
 ];
 
+
 type DiagnosticoCrm = {
   nota: number;
   pilares: Record<string, number>;
@@ -516,6 +518,7 @@ function GateMateriais({ material, diagnostico }: { material: string; diagnostic
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [zap, setZap] = useState("");
+  const [fat, setFat] = useState("");
   const [estado, setEstado] = useState<"form" | "enviando" | "ok">("form");
   const [erro, setErro] = useState("");
 
@@ -524,10 +527,10 @@ function GateMateriais({ material, diagnostico }: { material: string; diagnostic
     setErro("");
     setEstado("enviando");
     try {
-      await enviar({ data: { name: nome, email, whatsapp: zap, material } });
+      await enviar({ data: { name: nome, email, whatsapp: zap, material: `${material} | fat/mês: ${fat}`.slice(0, 120) } });
       // CRM: não bloqueia a entrega dos materiais se falhar
       void enviarCrm({
-        data: { nome, email, whatsapp: zap, url: window.location.href, diagnostico },
+        data: { nome, email, whatsapp: zap, faturamento: fat, url: window.location.href, diagnostico },
       }).catch(() => {});
       setEstado("ok");
     } catch {
@@ -555,6 +558,15 @@ function GateMateriais({ material, diagnostico }: { material: string; diagnostic
           <input className={campo} placeholder="Seu nome" value={nome} onChange={(e) => setNome(e.target.value)} required minLength={2} autoComplete="name" />
           <input className={campo} type="email" placeholder="Seu e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
           <input className={campo} type="tel" placeholder="WhatsApp (opcional)" value={zap} onChange={(e) => setZap(e.target.value)} autoComplete="tel" />
+          <label className="grid gap-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Faturamento mensal da empresa
+            <select className={`${campo} normal-case tracking-normal`} value={fat} onChange={(e) => setFat(e.target.value)} required>
+              <option value="" disabled>Selecione a faixa por mês</option>
+              {FATURAMENTOS_MENSAIS.map((f) => (
+                <option key={f} value={f} className="bg-[#0B0D0E]">{f} por mês</option>
+              ))}
+            </select>
+          </label>
           {erro && <p className="text-sm text-red-400">{erro}</p>}
           <button
             type="submit"

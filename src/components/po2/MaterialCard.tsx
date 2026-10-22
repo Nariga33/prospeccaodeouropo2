@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FATURAMENTOS_MENSAIS } from "@/lib/faturamento";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Download, FileText, Loader2, X } from "lucide-react";
@@ -76,6 +77,7 @@ function LeadGate({
   const submit = useServerFn(submitMaterialLead);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [fat, setFat] = useState("");
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -83,7 +85,7 @@ function LeadGate({
     e.preventDefault();
     setSaving(true);
     try {
-      await submit({ data: { name, email, whatsapp: "", material } });
+      await submit({ data: { name, email, whatsapp: "", material: `${material} | fat/mês: ${fat}`.slice(0, 120) } });
       setDone(true);
       const a = document.createElement("a");
       a.href = fileUrl;
@@ -146,6 +148,17 @@ function LeadGate({
                 placeholder="Seu melhor e-mail"
                 className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm outline-none focus:border-gold/60"
               />
+              <select
+                required
+                value={fat}
+                onChange={(e) => setFat(e.target.value)}
+                className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2.5 text-sm outline-none focus:border-gold/60"
+              >
+                <option value="" disabled>Faturamento mensal da empresa</option>
+                {FATURAMENTOS_MENSAIS.map((f) => (
+                  <option key={f} value={f} className="bg-[#0B0D0E]">{f} por mês</option>
+                ))}
+              </select>
             </div>
             <button
               disabled={saving}

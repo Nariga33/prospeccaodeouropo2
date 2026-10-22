@@ -14,12 +14,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FATURAMENTOS_MENSAIS } from "@/lib/faturamento";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(100),
   cargo: z.string().trim().min(2, "Informe seu cargo").max(80),
   email: z.string().trim().email("E-mail inválido").max(255),
   telefone: z.string().trim().min(8, "Telefone inválido").max(20),
+  faturamento: z.string().trim().min(1, "Selecione o faturamento mensal").max(80),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -40,6 +42,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
     cargo: "",
     email: "",
     telefone: "",
+    faturamento: "",
   });
   const [errors, setErrors] = useState<Errors>({});
 
@@ -73,7 +76,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
     }
     setOpen(false);
     setSubmitting(false);
-    setData({ nome: "", cargo: "", email: "", telefone: "" });
+    setData({ nome: "", cargo: "", email: "", telefone: "", faturamento: "" });
     navigate({ to: "/diagnostico" });
   }
 
@@ -89,7 +92,7 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
             Vamos olhar sua operação outbound.
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            4 campos rápidos e você já entra direto no diagnóstico.
+            5 campos rápidos e você já entra direto no diagnóstico.
           </DialogDescription>
         </DialogHeader>
 
@@ -132,6 +135,18 @@ export function DiagnosticDialog({ trigger, plan }: Props) {
               className="border-white/10 bg-background/60"
               maxLength={20}
             />
+          </Field>
+          <Field label="Faturamento mensal da empresa" error={errors.faturamento}>
+            <select
+              value={data.faturamento}
+              onChange={(e) => update("faturamento", e.target.value)}
+              className="h-10 w-full rounded-md border border-white/10 bg-background/60 px-3 text-sm outline-none focus:border-gold/60"
+            >
+              <option value="" disabled>Selecione a faixa por mês</option>
+              {FATURAMENTOS_MENSAIS.map((f) => (
+                <option key={f} value={f} className="bg-[#0B0D0E]">{f} por mês</option>
+              ))}
+            </select>
           </Field>
 
           <button
