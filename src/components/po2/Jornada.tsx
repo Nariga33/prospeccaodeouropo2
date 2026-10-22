@@ -2,6 +2,7 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import fotoMatheus from "@/assets/sobre-matheus.webp";
 import fotoVictor from "@/assets/sobre-victor.webp";
+import { Halo, Reveal } from "@/components/po2/Reveal";
 
 const GRADIENTE =
   "bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent";
@@ -175,42 +176,54 @@ function CapituloBloco({ c }: { c: Capitulo }) {
       id={c.id}
       className={`relative overflow-hidden border-t border-white/5 ${escuro ? "bg-[#0B0D0E]" : ""}`}
     >
-      <span
+      <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-4 top-6 select-none font-display text-[9rem] font-normal leading-none text-white/[0.03] md:text-[16rem]"
-      >
-        {c.n}
-      </span>
-      <div className="relative mx-auto grid max-w-[1450px] gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="flex items-center gap-3">
+        className={`pointer-events-none absolute top-1/3 h-[420px] w-[420px] rounded-full bg-[#155E75]/15 blur-[120px] ${
+          escuro ? "-right-32" : "-left-32"
+        }`}
+      />
+      <div className="relative mx-auto grid max-w-[1450px] gap-12 px-6 py-20 md:py-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+        <Reveal className="relative lg:sticky lg:top-28 lg:self-start">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-1 -top-16 select-none font-display text-[7rem] leading-none text-transparent md:-top-24 md:text-[11rem]"
+            style={{ WebkitTextStroke: "1px rgba(216,255,54,0.14)" }}
+          >
+            {c.n}
+          </span>
+          <div className="relative flex items-center gap-3">
             <span className="font-display text-sm text-gold">{c.n}</span>
             <span className="h-px w-8 bg-gold/60" />
             <Eyebrow>{c.papel}</Eyebrow>
           </div>
-          <h2 className="mt-5 text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
+          <h2 className="relative mt-5 text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
             {c.titulo}
           </h2>
           <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
             {c.intro}
           </p>
-          <p className="mt-6 max-w-lg border-l-2 border-gold pl-4 text-sm font-medium text-foreground/90">
+          <p className="mt-8 max-w-lg rounded-r-xl border-l-2 border-gold bg-gradient-to-r from-gold/[0.07] to-transparent py-3 pl-4 pr-4 text-sm font-medium text-foreground/90">
             {c.rodape}
           </p>
-        </div>
-        <ol className="space-y-3">
+        </Reveal>
+        <ol className="relative space-y-3">
+          <span
+            aria-hidden="true"
+            className="absolute bottom-10 left-[42px] top-10 w-px bg-gradient-to-b from-gold/60 via-white/10 to-transparent"
+          />
           {c.passos.map((p, i) => (
-            <li
-              key={p.t}
-              className="group flex gap-5 rounded-2xl border border-white/10 bg-card/60 p-6 transition-colors hover:border-gold/40"
-            >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-gold/40 font-display text-sm text-gold">
-                {i + 1}
-              </span>
-              <div>
-                <h3 className="font-display text-lg font-medium">{p.t}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </div>
+            <li key={p.t}>
+              <Reveal delay={i * 70}>
+                <div className="group relative flex gap-5 rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-[0_10px_40px_-12px_rgba(216,255,54,0.18)]">
+                  <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-[#0B0D0E] font-display text-sm text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-gold-foreground">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-medium">{p.t}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+                  </div>
+                </div>
+              </Reveal>
             </li>
           ))}
         </ol>
@@ -245,6 +258,7 @@ function Ecg({ className = "" }: { className?: string }) {
           fill="none"
           stroke="url(#po2g)"
           strokeWidth="3"
+          style={{ filter: "drop-shadow(0 0 6px rgba(62,230,160,0.55))" }}
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -255,8 +269,9 @@ function Ecg({ className = "" }: { className?: string }) {
 
 export function SolucaoHome() {
   return (
-    <section className="border-t border-white/5">
-      <div className="mx-auto max-w-5xl px-6 py-20 text-center md:py-28">
+    <section className="relative overflow-hidden border-t border-white/5">
+      <Halo />
+      <Reveal className="relative mx-auto max-w-5xl px-6 py-24 text-center md:py-36">
         <Eyebrow>O que a gente vende</Eyebrow>
         <h2 className="mt-6 text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
           Retire a sua empresa dos aparelhos e comece a respirar <span className={GRADIENTE}>ar puro</span>
@@ -264,8 +279,8 @@ export function SolucaoHome() {
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl">
           Um comercial que respira sozinho: com método, tecnologia e ritmo.
         </p>
-        <Ecg className="mx-auto mt-10 h-14 w-full max-w-2xl md:h-16" />
-      </div>
+        <Ecg className="mx-auto mt-12 h-14 w-full max-w-3xl md:h-20" />
+      </Reveal>
     </section>
   );
 }
@@ -301,26 +316,32 @@ export function PraQuemHome() {
           para gerar oportunidades.
         </p>
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-card/60 p-8">
+          <Reveal className="rounded-3xl border border-white/10 bg-card/60 p-8 md:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">Sem a PO2</p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-6 space-y-4">
               {SEM.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <X className="mt-0.5 size-4 shrink-0 text-red-400/70" /> {t}
+                <li key={t} className="flex items-start gap-3 text-sm text-muted-foreground md:text-base">
+                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-red-400/10">
+                    <X className="size-3 text-red-400/80" />
+                  </span>
+                  {t}
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-3xl border border-gold/30 bg-gold/5 p-8">
+          </Reveal>
+          <Reveal delay={120} className="relative overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-gold/[0.09] via-gold/[0.03] to-transparent p-8 shadow-[0_0_60px_-20px_rgba(216,255,54,0.25)] md:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Com a PO2</p>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-6 space-y-4">
               {COM.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-foreground/90">
-                  <Check className="mt-0.5 size-4 shrink-0 text-gold" /> {t}
+                <li key={t} className="flex items-start gap-3 text-sm text-foreground/90 md:text-base">
+                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-gold/15">
+                    <Check className="size-3 text-gold" />
+                  </span>
+                  {t}
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -347,16 +368,26 @@ function ComoIntro() {
         <h2 className="mt-4 max-w-4xl text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           Do primeiro contato ao <span className={GRADIENTE}>fechamento</span>
         </h2>
-        <ul className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-5">
-          {FAIXA.map((f) => (
-            <li key={f.href} className="bg-background last:col-span-2 md:last:col-span-1">
-              <a href={f.href} className="flex h-full flex-col gap-2 p-5 transition-colors hover:bg-white/[0.03]">
-                <span className="font-display text-xs text-gold">{f.n}</span>
-                <span className="font-display text-base">{f.t}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <Reveal className="relative mt-12">
+          <span
+            aria-hidden="true"
+            className="absolute left-[10%] right-[10%] top-5 h-px bg-gradient-to-r from-[#D8FF36]/70 via-[#3EE6A0]/40 to-[#22C5E6]/70 md:top-6"
+          />
+          <ul className="relative grid grid-cols-5 gap-2">
+            {FAIXA.map((f) => (
+              <li key={f.href}>
+                <a href={f.href} className="group flex flex-col items-center gap-3 text-center">
+                  <span className="grid size-10 place-items-center rounded-full border border-gold/50 bg-background font-display text-xs text-gold transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-gold-foreground group-hover:shadow-[0_0_30px_rgba(216,255,54,0.45)] md:size-12 md:text-sm">
+                    {f.n}
+                  </span>
+                  <span className="whitespace-nowrap font-display text-[10px] leading-tight text-foreground/90 transition-colors group-hover:text-gold sm:text-sm md:text-lg">
+                    {f.t}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );
@@ -365,7 +396,8 @@ function ComoIntro() {
 function PulseCapitulo() {
   return (
     <section id="pulse" className="relative overflow-hidden border-t border-white/5 bg-[#0B0D0E]">
-      <div className="mx-auto max-w-5xl px-6 py-20 text-center md:py-28">
+      <Halo />
+      <Reveal className="relative mx-auto max-w-5xl px-6 py-24 text-center md:py-36">
         <Eyebrow>05 · Pulse</Eyebrow>
         <h2 className="mt-5 text-balance font-display text-3xl font-normal leading-[1.15] md:text-5xl">
           Oxigênio sem <span className={GRADIENTE}>pulsação</span> não mantém ninguém vivo
@@ -373,8 +405,8 @@ function PulseCapitulo() {
         <p className="mx-auto mt-6 max-w-xl text-pretty text-muted-foreground md:text-lg">
           O Pulse é o CRM da PO2: leads, atividades, funil e cadências no ritmo certo, todo dia.
         </p>
-        <Ecg className="mx-auto mt-10 h-14 w-full max-w-2xl md:h-16" />
-      </div>
+        <Ecg className="mx-auto mt-12 h-14 w-full max-w-3xl md:h-20" />
+      </Reveal>
     </section>
   );
 }
@@ -421,21 +453,26 @@ export function QuemVendeHome() {
           Quem faz a PO2 <span className={GRADIENTE}>respirar vendas</span>
         </h2>
         <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {FUNDADORES.map((f) => (
-            <article key={f.nome} className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card sm:flex-row">
-              <img
-                src={f.foto}
-                alt={f.nome}
-                className="aspect-[4/3] w-full object-cover object-top sm:aspect-[4/5] sm:w-2/5"
-              />
+          {FUNDADORES.map((f, i) => (
+            <Reveal key={f.nome} delay={i * 120}>
+            <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-card transition-all duration-500 hover:border-gold/40 hover:shadow-[0_20px_60px_-25px_rgba(216,255,54,0.25)] sm:flex-row">
+              <div className="relative overflow-hidden sm:w-2/5">
+                <img
+                  src={f.foto}
+                  alt={f.nome}
+                  className="aspect-[4/3] h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04] sm:aspect-[4/5]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/60 to-transparent sm:bg-gradient-to-r sm:from-transparent sm:via-transparent sm:to-card/70" />
+              </div>
               <div className="flex flex-col justify-center p-6 md:p-8">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">{f.cargo}</p>
                 <h3 className="mt-2 font-display text-2xl font-semibold">{f.nome}</h3>
-                <p className="mt-4 font-display text-4xl text-gold">{f.stat}</p>
+                <p className={`mt-4 font-display text-4xl md:text-5xl ${GRADIENTE}`}>{f.stat}</p>
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">em negócios gerados</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.d}</p>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -445,8 +482,17 @@ export function QuemVendeHome() {
 
 export function CtaFinal() {
   return (
-    <section className="border-t border-white/5 bg-[#0B0D0E]">
-      <div className="mx-auto max-w-5xl px-6 py-24 text-center md:py-32">
+    <section className="relative overflow-hidden border-t border-white/5 bg-[#0B0D0E]">
+      <Halo />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 size-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/10 md:size-[760px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#22C5E6]/10 md:size-[500px]"
+      />
+      <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-40">
         <h2 className="text-balance font-display text-4xl font-normal leading-[1.1] md:text-6xl">
           Pronto para <span className={GRADIENTE}>respirar</span>?
         </h2>
