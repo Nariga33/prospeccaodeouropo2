@@ -24,34 +24,21 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-            <Link to="/bdr" className="transition-colors hover:text-gold">
-              BDR
+            <Link to="/sobre" className="transition-colors hover:text-gold">
+              Sobre
             </Link>
-            <Link to="/sdr" className="transition-colors hover:text-gold">
-              SDR
+            <Link to="/solucoes" className="transition-colors hover:text-gold">
+              Soluções
             </Link>
-            <Link to="/inside-sales" className="transition-colors hover:text-gold">
-              Inside Sales
+            <Link to="/pulse" className="transition-colors hover:text-gold">
+              Pulse
             </Link>
-            <Link to="/closer" className="transition-colors hover:text-gold">
-              Closer
-            </Link>
-            <Link to="/metodologias" className="transition-colors hover:text-gold">
-              Metodologias
-            </Link>
-            <Link to="/mentoria" className="transition-colors hover:text-gold">
-              Mentoria
-            </Link>
-            <Link to="/eventos" className="transition-colors hover:text-gold">
-              Eventos
+            <Link to="/cases" className="transition-colors hover:text-gold">
+              Cases
             </Link>
             <Link to="/materiais" className="transition-colors hover:text-gold">
               Materiais
             </Link>
-            <Link to="/parceiros" className="transition-colors hover:text-gold">
-              Parceiros
-            </Link>
-            
           </div>
 
           <div className="flex flex-col gap-2 text-sm">
