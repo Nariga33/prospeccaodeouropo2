@@ -16,6 +16,7 @@ import {
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
+import { PulseDemonstracao, PulsePlanos } from "@/components/po2/PulseVitrine";
 import pulseImg from "@/assets/pulse-dashboard.webp";
 import telaProspectar from "@/assets/pulse-prospectar.webp";
 import telaPlaybooks from "@/assets/pulse-playbooks.webp";
@@ -222,6 +223,13 @@ function PulsePage() {
                 >
                   Ver o que tem no Pulse <ArrowRight className="size-4" />
                 </a>
+                <a
+                  href="#planos"
+                  onClick={() => track("pulse_cta_planos")}
+                  className="inline-flex items-center gap-6 rounded-xl border border-[#101314]/30 px-7 py-4 text-sm font-medium transition-colors hover:border-[#155E75] hover:text-[#155E75]"
+                >
+                  Ver planos <ArrowRight className="size-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -233,6 +241,8 @@ function PulsePage() {
             className="h-full max-h-[720px] w-full object-cover lg:max-h-none"
           />
         </section>
+
+        <PulseDemonstracao />
 
         <section id="indicadores" className="mx-auto max-w-[1450px] px-6 py-20 md:py-28">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Indicadores</p>
@@ -276,6 +286,8 @@ function PulsePage() {
             ))}
           </div>
         </section>
+
+        <PulsePlanos />
       </main>
       <Footer />
     </div>
