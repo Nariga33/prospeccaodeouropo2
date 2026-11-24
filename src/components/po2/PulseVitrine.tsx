@@ -477,3 +477,66 @@ export function PulsePlanos() {
     </section>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Perguntas frequentes (visíveis + FAQPage)                           */
+/* ------------------------------------------------------------------ */
+
+export const PULSE_FAQ = [
+  {
+    q: "O que é o PO2 Pulse?",
+    a: "O PO2 Pulse é o CRM de prospecção B2B da PO2, consultoria de prospecção de Porto Alegre (RS). Ele reúne funil em Kanban, WhatsApp dentro do CRM com SDR de IA, discador, cadências multicanal e métricas do funil, e mostra os sinais vitais do comercial na tela Monitor: ritmo de ligações, ritmo da meta e reuniões agendadas e realizadas.",
+  },
+  {
+    q: "O que diferencia o Pulse de outros CRMs?",
+    a: "O Pulse foi criado por uma consultoria que opera prospecção para outras empresas. Por isso já vem com a metodologia PO2 nos playbooks, um Monitor que mede o pulso da operação comercial em tempo real e a IA dentro do fluxo: o SDR de IA conversa no WhatsApp, entende áudios, faz follow-up e coloca o lead qualificado no funil.",
+  },
+  {
+    q: "O Pulse tem SDR de IA no WhatsApp?",
+    a: "Sim, nos planos Oxigênio e Pulse. O Oxigênio inclui 150 conversas de IA por mês e o Pulse inclui 300. Cada conversa extra custa R$ 2,29.",
+  },
+  {
+    q: "O Pulse tem discador?",
+    a: "Sim, como opção em todos os planos. O discador vem com 3 ramais no Respiro e no Oxigênio e com 5 ramais no Pulse. O ramal extra custa R$ 129 por mês.",
+  },
+  {
+    q: "Quanto custa o PO2 Pulse?",
+    a: "O Respiro custa R$ 219 por mês sem discador ou R$ 606 com 3 ramais. O Oxigênio custa R$ 559 sem discador ou R$ 929 com 3 ramais. O Pulse custa R$ 1.159 sem discador ou R$ 1.779 com 5 ramais. Respiro e Oxigênio incluem 3 usuários e o Pulse inclui 10.",
+  },
+  {
+    q: "Dá para encontrar e completar dados de leads dentro do CRM?",
+    a: "Sim, com as consultas de dados, compradas à parte: 50 consultas por R$ 229 ou 100 consultas por R$ 439. Você compra só o volume que for usar.",
+  },
+  {
+    q: "Para quem o Pulse é indicado?",
+    a: "Para times de vendas B2B que prospectam ativamente, com SDRs, BDRs, closers e gestores comerciais, e para empresas que querem estruturar a prospecção com processo e indicadores.",
+  },
+  {
+    q: "Como contratar o Pulse?",
+    a: "Escolha o plano nesta página e clique em \"Quero o plano\". A conversa abre no WhatsApp comercial da PO2 já com o plano escolhido.",
+  },
+];
+
+export function PulseFaq() {
+  return (
+    <section id="perguntas" className="border-t border-white/5">
+      <div className="mx-auto max-w-4xl px-6 py-20 md:py-28">
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Perguntas frequentes</p>
+        <h2 className="mt-4 font-display text-3xl font-normal leading-tight md:text-5xl">
+          Tudo sobre o <span className={GRADIENTE}>PO2 Pulse</span>
+        </h2>
+        <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
+          {PULSE_FAQ.map((f, i) => (
+            <details key={f.q} className="group py-5" open={i === 0}>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-lg md:text-xl [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <Plus className="size-5 shrink-0 text-gold transition-transform duration-300 group-open:rotate-45" />
+              </summary>
+              <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

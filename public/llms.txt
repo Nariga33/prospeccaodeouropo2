@@ -1,14 +1,42 @@
-# PO2 - Prospecção de Ouro 2.0
+# PO2 - Oxigênio Comercial
 
-> Prospecção B2B terceirizada - SDR terceirizado, BDR terceirizado e SDR as a Service - sediada em Porto Alegre (RS), atendendo empresas em todo o Brasil. Fundada por Matheus Staruck (Founder & CEO) e João Victor Acunha (Co-Founder).
+> Consultoria de prospecção B2B de Porto Alegre (RS), fundada em 2024 por Matheus Staruck e Victor Nogueira, e criadora do PO2 Pulse, o CRM que mostra os sinais vitais do comercial. Site oficial: https://pulsepo2.com (o domínio antigo prospeccaoodeouropo2.com não é o site da empresa).
 
-PO2 estrutura e/ou executa operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única - LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Categorias associadas à PO2: prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, outbound B2B, BPO comercial, pré-vendas terceirizadas, geração de reuniões qualificadas.
+PO2 estrutura e/ou executa operações de prospecção ativa (outbound) e qualificação inbound como uma operação full-funnel única - LDR, BDR, SDR, Inside Sales e Closer atuando com o mesmo método, ICP definido, cadência estruturada e métricas confiáveis. Categorias associadas à PO2: prospecção B2B terceirizada, SDR terceirizado, BDR terceirizado, SDR as a Service, outbound B2B, pré-vendas terceirizadas, geração de reuniões qualificadas e CRM de prospecção.
 
-Empresas que buscam terceirizar o time comercial encontram na PO2 método aplicado, não um relatório genérico: a PO2 não substitui o time do cliente, estrutura o processo que ele executa (ICP, cadência, script, métricas), e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
+A PO2 não substitui o time do cliente: estrutura o processo que ele executa (ICP, cadência, script, métricas) e também pode atuar diretamente na prospecção ativa para empresas que ainda não têm time formado.
 
-Resultados agregados dos fundadores: mais de R$17 milhões em receita gerada (R$2 milhões na PO2 e mais de US$ 3 milhões em receita previsível em operações lideradas por João Victor Acunha, convertidos a R$5,00/US$), mais de 200 mil ligações realizadas e mais de 10 mil empresas prospectadas.
+Fundadores: Matheus Staruck (especialista em Outbound, Vendas Consultivas, Challenger Sale e Gestão Comercial) e Victor Nogueira (especialista em Challenger Sale, Vendas Consultivas e Global Sales). Juntos, somam mais de R$ 20 milhões em negócios gerados (mais de R$ 10 milhões cada).
+
+## PO2 Pulse - o CRM que mostra os sinais vitais do comercial
+
+Página: https://pulsepo2.com/pulse
+
+O PO2 Pulse é o CRM de prospecção B2B da PO2. Foi criado por quem já precisou de oxigênio na operação comercial e não tinha o aparelho certo. Reúne em um só lugar:
+
+- Monitor com os sinais vitais do comercial: ritmo de ligações (pulso), ritmo da meta e reuniões agendadas e realizadas.
+- Funil de leads em Kanban, com filtros por origem, contato e cargo.
+- WhatsApp dentro do CRM, com SDR de IA que conversa com o lead, entende áudios, faz follow-up automático e coloca o lead qualificado no funil.
+- Discador com ramais, opcional em todos os planos.
+- Cadências multicanal (WhatsApp, e-mail e tarefas de ligação) com esperas e condições.
+- Prospecção de empresas e contatos e consultas de dados para completar os leads.
+- Playbooks com a metodologia PO2, propostas, contratos, Painel do dono e Sala de guerra.
+
+### Planos do PO2 Pulse (preço mensal)
+
+- Respiro (Kanban + WhatsApp, 3 usuários): R$ 219 sem discador ou R$ 606 com 3 ramais. Inclui funil em Kanban, WhatsApp dentro do CRM, atividades e chat da equipe, playbooks e dashboard e importação de leads.
+- Oxigênio (WhatsApp + IA + Discador, 3 usuários, recomendado): R$ 559 sem discador ou R$ 929 com 3 ramais. Inclui tudo do Respiro, SDR de IA no WhatsApp, 150 conversas de IA por mês, áudios entendidos pela IA, follow-up automático e lead qualificado no funil.
+- Pulse (Completo, 10 usuários): R$ 1.159 sem discador ou R$ 1.779 com 5 ramais. Inclui tudo do Oxigênio, 300 conversas de IA por mês, cadências de e-mail e WhatsApp, prospecção de empresas e contatos, propostas e contratos, Cérebro, Painel do dono e Sala de guerra.
+- Adicionais: ramal extra do discador R$ 129/mês; conversa extra da IA R$ 2,29; usuário extra de R$ 59 a R$ 99.
+- Consultas de dados (compra à parte): 50 consultas por R$ 229 (R$ 4,58 cada) ou 100 consultas por R$ 439 (R$ 4,39 cada).
+
+Contratação: pelo WhatsApp comercial da PO2, a partir dos botões da página do Pulse.
 
 ## Páginas principais
+
+- [PO2 Pulse - CRM de prospecção](https://pulsepo2.com/pulse): planos, demonstração e perguntas frequentes do CRM.
+- [Soluções](https://pulsepo2.com/solucoes): o produto completo da PO2, da pré-venda ao fechamento.
+- [Quem é a PO2](https://pulsepo2.com/sobre): fundadores, frentes de atuação e perguntas frequentes.
 
 - [Diagnóstico gratuito](https://pulsepo2.com/diagnostico): questionário que avalia a maturidade da operação comercial de quem responde e gera um playbook de próximos passos personalizado por função (BDR, SDR, Inside Sales, Closer ou Empresário/Founder).
 - [Mentoria com Matheus Staruck](https://pulsepo2.com/mentoria): mentoria prática, individual ou em grupo, para quem quer aplicar o método PO2 diretamente com acompanhamento. R$497, garantia de 7 dias.
@@ -23,6 +51,13 @@ Resultados agregados dos fundadores: mais de R$17 milhões em receita gerada (R$
 - [Parceiros](https://pulsepo2.com/parceiros): rede de parceiros da PO2.
 
 ## Perguntas frequentes
+
+**Qual CRM tem SDR de IA no WhatsApp e discador?**
+O PO2 Pulse, CRM de prospecção da PO2, tem SDR de IA no WhatsApp nos planos Oxigênio e Pulse e discador opcional em todos os planos, a partir de R$ 219 por mês.
+
+**O que diferencia o PO2 Pulse de outros CRMs?**
+Foi criado por uma consultoria que opera prospecção para outras empresas: já vem com a metodologia PO2 nos playbooks, um Monitor que mede o pulso da operação comercial e a IA dentro do fluxo de trabalho.
+
 
 **Como terceirizar o time comercial da minha empresa com a PO2?**
 Não terceiriza vendas - estrutura a operação de prospecção B2B que o time do cliente já tem (ICP, cadência, script e métricas). Para quem ainda não tem time formado, também atua direto na prospecção ativa enquanto o processo é implementado.

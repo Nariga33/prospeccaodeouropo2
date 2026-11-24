@@ -16,25 +16,102 @@ import {
 import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
-import { PulseDemonstracao, PulsePlanos } from "@/components/po2/PulseVitrine";
+import { PULSE_FAQ, PulseDemonstracao, PulseFaq, PulsePlanos } from "@/components/po2/PulseVitrine";
 import pulseImg from "@/assets/pulse-dashboard.webp";
 import telaProspectar from "@/assets/pulse-prospectar.webp";
 import telaPlaybooks from "@/assets/pulse-playbooks.webp";
 import telaSala from "@/assets/pulse-sala-de-guerra.webp";
 
+const TITULO = "PO2 Pulse: CRM com SDR de IA no WhatsApp e Discador";
+const DESCRICAO =
+  "O CRM que mostra os sinais vitais do seu comercial: funil em Kanban, SDR de IA no WhatsApp, discador e cadências. Planos a partir de R$ 219/mês.";
+
+const oferta = (nome: string, preco: number) => ({
+  "@type": "Offer",
+  name: nome,
+  price: preco.toFixed(2),
+  priceCurrency: "BRL",
+  priceSpecification: {
+    "@type": "UnitPriceSpecification",
+    price: preco.toFixed(2),
+    priceCurrency: "BRL",
+    unitText: "MONTH",
+    referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+  },
+  url: "https://pulsepo2.com/pulse#planos",
+});
+
+const SOFTWARE_LD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "PO2 Pulse",
+  alternateName: "Pulse CRM",
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "CRM de prospecção B2B",
+  operatingSystem: "Web",
+  inLanguage: "pt-BR",
+  url: "https://pulsepo2.com/pulse",
+  description:
+    "CRM de prospecção B2B da PO2 que mostra os sinais vitais do comercial: funil em Kanban, WhatsApp dentro do CRM com SDR de IA, discador, cadências multicanal, prospecção de empresas e contatos, propostas, contratos e métricas do funil.",
+  featureList: [
+    "Monitor com os sinais vitais do comercial",
+    "Funil de leads em Kanban",
+    "WhatsApp dentro do CRM",
+    "SDR de IA no WhatsApp",
+    "Áudios entendidos pela IA",
+    "Follow-up automático",
+    "Discador com ramais",
+    "Cadências de e-mail e WhatsApp",
+    "Prospecção de empresas e contatos",
+    "Consultas de dados de leads",
+    "Propostas e contratos",
+    "Playbooks com a metodologia PO2",
+    "Painel do dono e Sala de guerra",
+  ],
+  screenshot: [
+    "https://pulsepo2.com/pulse/01-monitor.jpg",
+    "https://pulsepo2.com/pulse/02-funil-kanban.jpg",
+    "https://pulsepo2.com/pulse/03-whatsapp-ia.jpg",
+    "https://pulsepo2.com/pulse/05-funil-metricas.jpg",
+  ],
+  offers: [
+    oferta("Respiro sem discador", 219),
+    oferta("Respiro com discador (3 ramais)", 606),
+    oferta("Oxigênio sem discador", 559),
+    oferta("Oxigênio com discador (3 ramais)", 929),
+    oferta("Pulse sem discador", 1159),
+    oferta("Pulse com discador (5 ramais)", 1779),
+  ],
+  publisher: {
+    "@type": "Organization",
+    name: "PO2 - Oxigênio Comercial",
+    url: "https://pulsepo2.com/",
+    logo: "https://pulsepo2.com/icon-512.png",
+  },
+};
+
 export const Route = createFileRoute("/pulse")({
   head: () => ({
     meta: [
-      { title: "PO2 Pulse: CRM de Prospecção para Times de Vendas B2B" },
-      {
-        name: "description",
-        content:
-          "O Pulse é o CRM da PO2: leads, atividades, funil, cadências e playbooks em um só lugar para o seu time prospectar com ritmo e previsibilidade.",
-      },
-      { property: "og:title", content: "PO2 Pulse: CRM de Prospecção para Times de Vendas B2B" },
-      { property: "og:description", content: "O Pulse é o CRM da PO2: leads, atividades, funil, cadências e playbooks em um só lugar para o seu time prospectar com ritmo e previsibilidade." },
+      { title: TITULO },
+      { name: "description", content: DESCRICAO },
+      { property: "og:title", content: TITULO },
+      { property: "og:description", content: DESCRICAO },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://pulsepo2.com/pulse" },
+      { property: "og:image", content: "https://pulsepo2.com/pulse/01-monitor.jpg" },
+      { "script:ld+json": SOFTWARE_LD },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: PULSE_FAQ.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      },
     ],
     links: [{ rel: "canonical", href: "https://pulsepo2.com/pulse" }],
   }),
@@ -288,6 +365,8 @@ function PulsePage() {
         </section>
 
         <PulsePlanos />
+
+        <PulseFaq />
       </main>
       <Footer />
     </div>
