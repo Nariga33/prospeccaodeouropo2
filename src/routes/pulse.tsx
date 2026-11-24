@@ -18,7 +18,7 @@ import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { PULSE_FAQ, PulseDemonstracao, PulseFaq, PulsePlanos } from "@/components/po2/PulseVitrine";
 import { PulseMonitorVivo } from "@/components/po2/PulseMonitorVivo";
-import { PulseIntegracoes } from "@/components/po2/PulseIntegracoes";
+import { PulseAbas } from "@/components/po2/PulseAbas";
 import telaProspectar from "@/assets/pulse-prospectar.webp";
 import telaPlaybooks from "@/assets/pulse-playbooks.webp";
 import telaSala from "@/assets/pulse-sala-de-guerra.webp";
@@ -359,7 +359,7 @@ function PulsePage() {
           </div>
         </section>
 
-        <PulseIntegracoes />
+        <PulseAbas />
 
         <PulsePlanos />
 
