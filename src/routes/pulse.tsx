@@ -17,7 +17,8 @@ import { Nav } from "@/components/po2/Nav";
 import { Footer } from "@/components/po2/Footer";
 import { PO2_WHATSAPP_URL } from "@/lib/contact";
 import { PULSE_FAQ, PulseDemonstracao, PulseFaq, PulsePlanos } from "@/components/po2/PulseVitrine";
-import pulseImg from "@/assets/pulse-dashboard.webp";
+import { PulseMonitorVivo } from "@/components/po2/PulseMonitorVivo";
+import { PulseIntegracoes } from "@/components/po2/PulseIntegracoes";
 import telaProspectar from "@/assets/pulse-prospectar.webp";
 import telaPlaybooks from "@/assets/pulse-playbooks.webp";
 import telaSala from "@/assets/pulse-sala-de-guerra.webp";
@@ -310,13 +311,7 @@ function PulsePage() {
               </div>
             </div>
           </div>
-          <img
-            src={pulseImg}
-            alt="Painel do PO2 Pulse em um notebook, com nota geral, evolução e indicadores de processos, conversão, gestão e atividades"
-            width={810}
-            height={1080}
-            className="h-full max-h-[720px] w-full object-cover lg:max-h-none"
-          />
+          <PulseMonitorVivo />
         </section>
 
         <PulseDemonstracao />
@@ -363,6 +358,8 @@ function PulsePage() {
             ))}
           </div>
         </section>
+
+        <PulseIntegracoes />
 
         <PulsePlanos />
 
