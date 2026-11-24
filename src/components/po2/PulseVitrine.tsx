@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Database, Phone, Plus, UserPlus, MessageSquareText } from "lucide-react";
 import { PO2_WHATSAPP_NUMBER } from "@/lib/contact";
 import { Halo, Reveal } from "@/components/po2/Reveal";
+import { PulseDemoInterativa } from "@/components/po2/PulseDemoInterativa";
 
 const GRADIENTE =
   "bg-gradient-to-r from-[#D8FF36] via-[#3EE6A0] to-[#22C5E6] bg-clip-text text-transparent";
@@ -152,61 +153,16 @@ export function PulseDemonstracao() {
             Criado por quem já precisou de oxigênio e <span className={GRADIENTE}>não tinha o aparelho certo</span>
           </h2>
           <p className="mt-5 text-pretty text-lg text-muted-foreground">
-            Veja o Pulse por dentro: monitor, funil, WhatsApp com IA, cadências e métricas, na mesma tela.
+            Use o Pulse aqui mesmo: faça uma ligação, arraste um lead no funil, responda o SDR de IA no WhatsApp e monte uma cadência.
           </p>
         </Reveal>
 
         <Reveal className="mx-auto mt-12 max-w-6xl">
-          <VideoTour />
+          <PulseDemoInterativa />
         </Reveal>
 
-        <div className="mx-auto mt-6 grid max-w-6xl gap-4 sm:grid-cols-2">
-          {TELAS_DEMO.map((x, i) => (
-            <Reveal key={x.nome} delay={(i % 2) * 90}>
-              <figure className="group h-full overflow-hidden rounded-2xl border border-white/10 bg-card transition-colors hover:border-gold/40">
-                <div className="overflow-hidden">
-                  <Foto
-                    nome={x.nome}
-                    larguras={[800, 1440]}
-                    w={1440}
-                    h={900}
-                    alt={x.alt}
-                    sizes="(min-width: 1200px) 560px, (min-width: 640px) 50vw, 100vw"
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <figcaption className="p-5">
-                  <p className="font-display text-lg">{x.t}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{x.d}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-          <Reveal className="sm:col-span-2">
-            <figure className="group overflow-hidden rounded-2xl border border-white/10 bg-card transition-colors hover:border-gold/40">
-              <div className="overflow-x-auto">
-                <Foto
-                  nome="04-cadencia"
-                  larguras={[960, 1912]}
-                  w={1912}
-                  h={496}
-                  alt="Cadência do PO2 Pulse em fluxo: início, WhatsApp, espera de um dia útil, condição de resposta, mover no funil, e-mail e tarefa de ligação"
-                  sizes="(min-width: 1200px) 1140px, 100vw"
-                  className="block w-full min-w-[720px] sm:min-w-0"
-                />
-              </div>
-              <figcaption className="p-5">
-                <p className="font-display text-lg">Cadência em múltiplos canais</p>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  WhatsApp, espera, condição, e-mail e tarefa de ligação no mesmo fluxo. Respondeu, o lead anda no funil.
-                </p>
-              </figcaption>
-            </figure>
-          </Reveal>
-        </div>
-
         <p className="mx-auto mt-6 max-w-6xl text-xs text-muted-foreground/70">
-          Imagens ilustrativas com dados fictícios.
+          Demonstração simulada no navegador, com dados fictícios. Nenhuma mensagem é enviada.
         </p>
       </div>
     </section>
