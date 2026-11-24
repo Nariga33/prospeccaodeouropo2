@@ -87,6 +87,10 @@ const TELAS_DEMO = [
   },
 ];
 
+// O tour em vídeo volta quando a versão regravada (sem nomes de modelos de IA no menu) chegar.
+// Enquanto isso, mostra a capa corrigida como imagem fixa.
+const VIDEO_TOUR_LIBERADO = false;
+
 function VideoTour() {
   const ref = useRef<HTMLVideoElement>(null);
   const [reduz, setReduz] = useState(false);
@@ -106,6 +110,7 @@ function VideoTour() {
           PO2 Pulse
         </span>
       </div>
+      {VIDEO_TOUR_LIBERADO ? (
       <video
         ref={ref}
         src="/pulse/tour-pulse.mp4"
@@ -121,6 +126,17 @@ function VideoTour() {
         aria-label="Tour de 52 segundos pelo PO2 Pulse: monitor, leads em Kanban, WhatsApp com SDR de IA, cadências e funil"
         className="block aspect-[16/10] w-full bg-black object-cover"
       />
+      ) : (
+        <Foto
+          nome="tour-pulse-capa"
+          larguras={[800, 1440]}
+          w={1440}
+          h={900}
+          alt="Tela Monitor do PO2 Pulse com o ritmo de ligações do time, pulso de ligações do dia e reuniões do mês"
+          sizes="(min-width: 1200px) 1140px, 100vw"
+          className="block aspect-[16/10] w-full bg-black object-cover"
+        />
+      )}
     </div>
   );
 }
